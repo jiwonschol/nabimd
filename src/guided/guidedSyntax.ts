@@ -816,7 +816,11 @@ function markLinkPunctuation(
       if (title?.index !== undefined && title[3] !== undefined) {
         const titleSource = title[0]
         const openingParen = title.index + titleSource.indexOf("(")
-        const closingParen = title.index + titleSource.lastIndexOf(")")
+        // The raw link has two adjacent closing parentheses here: one closes
+        // the title and the other closes the destination. `lastIndexOf`
+        // selects the destination delimiter, so derive the matching title
+        // delimiter from the captured title text instead.
+        const closingParen = openingParen + title[3].length + 1
         markRange(
           mask,
           { from: range.from + openingParen, to: range.from + openingParen + 1 },
@@ -1176,20 +1180,31 @@ function markNodeSyntax(
       if (range) markRange(mask, range, families, family)
       break
     case "text":
-      if (range && !insideTable) {
+      if (range) {
         const raw = source.slice(range.from, range.to)
-        for (let index = 0; index < raw.length - 1; index += 1) {
-          if (
-            raw[index] === "\\" &&
-            /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/.test(raw[index + 1]!)
-          ) {
+        for (let index = 0; index < raw.length; index += 1) {
+          if (raw[index] !== "\\") continue
+
+          let runLength = 1
+          while (raw[index + runLength] === "\\") runLength += 1
+          const escapedPunctuation = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/.test(
+            raw[index + runLength] ?? "",
+          )
+          const syntaxBackslashes =
+            Math.floor(runLength / 2) + (runLength % 2 === 1 && escapedPunctuation ? 1 : 0)
+
+          for (let pair = 0; pair < syntaxBackslashes; pair += 1) {
             markRange(
               mask,
-              { from: range.from + index, to: range.from + index + 1 },
+              {
+                from: range.from + index + pair * 2,
+                to: range.from + index + pair * 2 + 1,
+              },
               families,
-              `${family}-escape-${index}`,
+              `${family}-escape-${index + pair * 2}`,
             )
           }
+          index += runLength - 1
         }
       }
       break

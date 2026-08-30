@@ -31,18 +31,37 @@ function containsDescendant(node: AstNode, type: string): boolean {
   )
 }
 
-function isNestedBlockquote(node: AstNode): boolean {
-  return node.type === "blockquote" && containsDescendant(node, "blockquote")
+function countNestedBlockquotes(
+  nodes: readonly AstNode[],
+  insideBlockquote = false,
+): number {
+  return nodes.reduce((count, node) => {
+    const isNested = node.type === "blockquote" && insideBlockquote
+    return (
+      count +
+      (isNested ? 1 : 0) +
+      countNestedBlockquotes(
+        node.children ?? [],
+        insideBlockquote || node.type === "blockquote",
+      )
+    )
+  }, 0)
 }
 
 function isListWithBlock(node: AstNode): boolean {
   if (node.type !== "listItem" || !node.children) return false
   return (
     node.children.length > 1 &&
-    node.children.some(
-      (child) => child.type !== "paragraph" && child.type !== "list",
-    )
+    node.children.slice(1).some((child) => child.type !== "list")
   )
+}
+
+function isAngleBracketEmail(node: PositionedSyntaxNode, source: string): boolean {
+  if (node.type !== "link" || !String(node.url ?? "").startsWith("mailto:")) {
+    return false
+  }
+  const raw = rawSource(node, source)
+  return raw.startsWith("<") && !/^<mailto:/i.test(raw)
 }
 
 function countEscapes(
@@ -92,7 +111,7 @@ export function countSyntaxPresence(
     case "strikethrough":
       return nodes.filter((node) => node.type === "delete").length
     case "nested-blockquote":
-      return nodes.filter(isNestedBlockquote).length
+      return countNestedBlockquotes(context.root.children as AstNode[])
     case "code-block-language":
       return nodes.filter(
         (node) => node.type === "code" && Boolean(node.lang?.trim()),
@@ -103,28 +122,37 @@ export function countSyntaxPresence(
       return nodes.filter((node) => {
         if (node.type !== "link") return false
         const raw = rawSource(node, context.source)
-        return !raw.startsWith("<") && /^(?:https?:\/\/|www\.)/.test(raw)
+        return !raw.startsWith("<") && /^(?:https?:\/\/|www\.)/i.test(raw)
       }).length
     case "link-title":
-      return nodes.filter(
-        (node) =>
-          node.type === "link" &&
-          rawSource(node, context.source).startsWith("[") &&
-          Boolean(node.title?.trim()),
-      ).length
+      {
+        const inlineTitles = nodes.filter(
+          (node) =>
+            node.type === "link" &&
+            rawSource(node, context.source).startsWith("[") &&
+            Boolean(node.title?.trim()),
+        ).length
+        const referencedIdentifiers = new Set(
+          nodes
+            .filter((node) => node.type === "linkReference")
+            .map((node) => node.identifier),
+        )
+        const referencedDefinitionTitles = nodes.filter(
+          (node) =>
+            node.type === "definition" &&
+            referencedIdentifiers.has(node.identifier) &&
+            Boolean(node.title?.trim()),
+        ).length
+        return inlineTitles + referencedDefinitionTitles
+      }
     case "angle-bracket-url":
       return nodes.filter((node) => {
         if (node.type !== "link") return false
         const raw = rawSource(node, context.source)
-        return raw.startsWith("<") && !String(node.url ?? "").startsWith("mailto:")
+        return raw.startsWith("<") && !isAngleBracketEmail(node, context.source)
       }).length
     case "angle-bracket-email":
-      return nodes.filter(
-        (node) =>
-          node.type === "link" &&
-          rawSource(node, context.source).startsWith("<") &&
-          String(node.url ?? "").startsWith("mailto:"),
-      ).length
+      return nodes.filter((node) => isAngleBracketEmail(node, context.source)).length
     case "escape":
       return countEscapes(nodes, context.source)
     case "list-with-block":
