@@ -1,0 +1,2561 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-08-31-l2-l3-unlock-037",
+  "engineContractDigest": "dfb1d610d78d119d2bcc0dea19cdf91e8b037da098c99a99ca028869fec6c1aa",
+  "candidates": [
+    {
+      "candidateId": "l2-bold-italic-1",
+      "revision": 1,
+      "candidateDigest": "8a24d19aed2ec72658d233e20a292771e3feb734d4e1fbf7f97fac9a9335f99d",
+      "problemDigest": "fb8d2d7d3fef1376ba590a44521a37dfe553d0564bb77b0c9c7eca6a9cab336e",
+      "fixtureDefinitionDigest": "97a6d2565d6d846587afc6921bad0fe7d4ca48266cf3613fae3619ab7b1e258f",
+      "fixtureResultsDigest": "e1cff80419e8e08c3aae84bab1b6b99fcc73ad1ab7377e47d49b7058dab44b90",
+      "fixtureCount": 6,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-bold-italic-2",
+      "revision": 1,
+      "candidateDigest": "bede05edb7b9f57bb33fc5fe819f42a04a44218d68d3444ad12324db34bd06f7",
+      "problemDigest": "9b6b5de56662e607f9be332a69eff412006d94226a9fa2b2ebb4d92f1b186011",
+      "fixtureDefinitionDigest": "e9d9ee6224a12187fc97a8aac0712937d2a2465211ae35bda81c514541f21e50",
+      "fixtureResultsDigest": "9dc61528f5281b733736f0139fca21077ad5a7f551063f72cb532983ef93a63c",
+      "fixtureCount": 6,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-code-block-language-1",
+      "revision": 1,
+      "candidateDigest": "a31e0599d7abaf0dde382c5b1d502bddda641a6556fd450bf38a15e8202b73a5",
+      "problemDigest": "0c9ed5c7908a54ce4e13f3794be1ad800f48d2dfe00684508d5ab88038716528",
+      "fixtureDefinitionDigest": "76c3a849474019d5ce0c3cc9ee7b796b118cf24681fca8a05ebf2f33a9c2f12d",
+      "fixtureResultsDigest": "58c757d39240d0e484345678b0db3cee160667483c33aee89effa70616ff876e",
+      "fixtureCount": 6,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-code-block-language-2",
+      "revision": 1,
+      "candidateDigest": "4a2fb6ba24076c8f9168caf1172a8a6672713770c50843e8c296e6289a5561b6",
+      "problemDigest": "6596ed67baaf2445b4f7d2cdf6f3d6071d1f894ad5755a7b76d71d6d3e6e0685",
+      "fixtureDefinitionDigest": "6b3b04d0e07ff2229ae24a2c70cdfdb2fa1cabdb9e9dd33c09a9d617f5325bee",
+      "fixtureResultsDigest": "e649f49b123faee64e2ef918650862929f2b4993c56838c6cc76e8f9eaeced42",
+      "fixtureCount": 6,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-hard-line-break-1",
+      "revision": 1,
+      "candidateDigest": "51e556e3be84fe45adb4e22e47614d477a084a0e4331fd8ba2c925da73e6f2cf",
+      "problemDigest": "c5dd2974e31536c0a57cc7729c5f0ec9d6ebeb87e703e9dd75a7a7b70174a1f2",
+      "fixtureDefinitionDigest": "e1ee58ad57461d078eed82a345a62b5320d0c5a107dae15d999883e47f602118",
+      "fixtureResultsDigest": "376ee81082c14911b492e3af2ccb9ea66c9c39df44f3c821e6fd4392e01eaa5b",
+      "fixtureCount": 6,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-hard-line-break-2",
+      "revision": 1,
+      "candidateDigest": "b0bda8d372b7ef811d70b194bd04468676f07395d6c32c43298c90e8bfd22f2a",
+      "problemDigest": "9ce40ab9d9a75153f1e75bc5da8d898a8d1ac7aa7e9310a563a2ca2e4cd58667",
+      "fixtureDefinitionDigest": "b146e8c16b58ae16821ab109bf877dc1f08bc55109ed31da241a606373b844a6",
+      "fixtureResultsDigest": "a24d72498362aced1919d624290a3c2b91235ab981c902380df30a83385eb5aa",
+      "fixtureCount": 6,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-nested-blockquote-1",
+      "revision": 1,
+      "candidateDigest": "0bbb02ab370dfcf5f255d203d0bc32b313739b65f1098cd9528bdfdda4a33708",
+      "problemDigest": "3c9152a923ab3c69653d9b40011b065287c1d270bca619265e493a108133a1b4",
+      "fixtureDefinitionDigest": "640a36b2dd6b7334076227be749545cd80dd5e38da3fda73a15583fb01675a82",
+      "fixtureResultsDigest": "57f5d4a9fe7b83b120fe3e9ee6f27b253f6a85cceb076995ca375b3ebdd24396",
+      "fixtureCount": 6,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-nested-blockquote-2",
+      "revision": 1,
+      "candidateDigest": "10b778a7b604764024cc6c481fbc57b5faa758fe4065d0e961f001fc13efc971",
+      "problemDigest": "72ff81a71868838f1a42b4487605cdfe61d30d5d98a06aa40e765dd3fac08a98",
+      "fixtureDefinitionDigest": "d9e5541be7a70fc2825cbfbc000208d1e9b5e2f9c3f970ed26b31b071aab2427",
+      "fixtureResultsDigest": "ade1a2caa80715bb4b95cf60df3692f9aec92811af9efe6558fc0638ada4e734",
+      "fixtureCount": 6,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-strikethrough-1",
+      "revision": 1,
+      "candidateDigest": "983af3bacf2d94107315597c85bf640580b4b5a8830a5299d753e45ee4e67c7e",
+      "problemDigest": "9e051e0ee721713d793412af1fbcd7ac30d3dfcf2601abb17e3dd63627035813",
+      "fixtureDefinitionDigest": "d547f9234de0bb14bb54123642ab5ed50be40fad57dd43ad77225f91a0b607b1",
+      "fixtureResultsDigest": "8e872302d1c8a982b2a10f239a0d5a086f558eeb239130517a8c32ce2336be62",
+      "fixtureCount": 6,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-strikethrough-2",
+      "revision": 1,
+      "candidateDigest": "4ee2c6a8f5ce943d5c246e568a7f84f57640dd4ac0451cc161b2e411fafc08cf",
+      "problemDigest": "018412a77d68bd4f8a925599490f71eef3e60244f68421cd302ee116c151d468",
+      "fixtureDefinitionDigest": "43d1e7d10a0f9e561eec67553866b432a03ae07e5ae6b8a5f6a38e2daf68873e",
+      "fixtureResultsDigest": "dbe5ca24df71ba6ff65ec240e00be0f2226e0b37ba491759d4dca408f9e307cb",
+      "fixtureCount": 6,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-angle-bracket-email-1",
+      "revision": 1,
+      "candidateDigest": "5cdaef9d64d0acc40938b5343a41fe54930e2d7b4d08151451273b7ecf220436",
+      "problemDigest": "aedd514946295b3570da5e72af23600b48bf56b638a1e3a403825c21ba5b42ea",
+      "fixtureDefinitionDigest": "b6fd32423b1730368e1ff66aa82d76f11278ae0e550894d5ca81128e2444c212",
+      "fixtureResultsDigest": "e89cfd2cd66b2fcd365ac76eb17f1374336cf322fbd4780b9083f296aff2d6cc",
+      "fixtureCount": 8,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-angle-bracket-email-2",
+      "revision": 1,
+      "candidateDigest": "234398521a49c839206130f6ab696c5f3b9de4ba2167f79e8f3b8a9043cb0325",
+      "problemDigest": "d650550384d8e7e69d5dd84fcc181d30f3b053fd192f37c6e563e924e1789630",
+      "fixtureDefinitionDigest": "438d2ab0dfe49d9f31678a071c27720493de8e303833ef32f26940a0e93d99ab",
+      "fixtureResultsDigest": "36ebe6a1504291e8f06648ec76ea8b9569224737db4bea45c11ddd8d10972123",
+      "fixtureCount": 8,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-angle-bracket-url-1",
+      "revision": 1,
+      "candidateDigest": "8997a75ba984b57238eb054281af241878a3b0815bc235ccc99c8be3f0cb059e",
+      "problemDigest": "37b7a4ff905bc70ea7f6b8845d8404d7fc177608d70b967e61a84e4378c92d7e",
+      "fixtureDefinitionDigest": "b9e8af6bf33f156e3edd85427ed185a6c86fe6a05337ec25e38d794f0397cc9d",
+      "fixtureResultsDigest": "05f21ea6ec25759019a3949e13607eed4ae36a6e4547cf68dec625f8dfe76fd7",
+      "fixtureCount": 7,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-angle-bracket-url-2",
+      "revision": 1,
+      "candidateDigest": "56c692309488465ffa8698e84c98623170c05049bc52a3a8c62b5a66a4c8077a",
+      "problemDigest": "0c046a57dcb41934dab17d99a610069c10491212c2555e3a050a93be2d0b4e91",
+      "fixtureDefinitionDigest": "63fe9293a05d7b0d1b40d6ff9a7193d5832066c442761188308bd838b43e68e3",
+      "fixtureResultsDigest": "281e18c1a0373adec0c5d29f9ba83b1e6fc2e08dc5647e9d265f4a79baa4a38c",
+      "fixtureCount": 7,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-escape-1",
+      "revision": 1,
+      "candidateDigest": "362662e33eda02b4d91e7bd3b4127def30fac3ac8bfefc8afa14e1be8d3ff07a",
+      "problemDigest": "5ea3b4618a47ef83efd6130f55a516db3e012d6198c3bd390ed9e76063212226",
+      "fixtureDefinitionDigest": "85eb8878ee8ba0382ddb4ac61000715f6d359030173b5e464353d0c73c419c5f",
+      "fixtureResultsDigest": "48657b26ff69e4ce39c50dbc2e56c6d4744c38b63d77350e36e9feeb8aa83357",
+      "fixtureCount": 8,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-escape-2",
+      "revision": 1,
+      "candidateDigest": "232ce55e078ae6ad6ea9cf648b09301519f3d44f43542f240deea28f1c50c597",
+      "problemDigest": "6b24c53a2f35bc1b383175a05e471b53c8c4b30f893fa2a997933f43b5517f06",
+      "fixtureDefinitionDigest": "dd51c13cc0d085c9f649f55db951bb707b309d980556e09a62f98bd81d6b6431",
+      "fixtureResultsDigest": "09dddf3dfa7a4012cfc9c6fa56e4f1a1427f7c556237d673270084161fcd70e6",
+      "fixtureCount": 8,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-footnote-1",
+      "revision": 1,
+      "candidateDigest": "e48e359dbc6691767fa98bea23d5b1d0abd8cabde7294da1957f4f6e5f6da03a",
+      "problemDigest": "7e6aa3eb4c0824a165dd909ce97ef39e1a6f902d1dd9e160c8c228f694725de9",
+      "fixtureDefinitionDigest": "83ebdd557926f41998db12bf87da6abf446bcd39b46b42e19a8ab9124edb8ea2",
+      "fixtureResultsDigest": "437d0ece6aad1dc95dea2f030cda748557c3197dcf8e304a5334e8f8bf5e8e43",
+      "fixtureCount": 8,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-footnote-2",
+      "revision": 1,
+      "candidateDigest": "efa13e1f08f32cf5db910c9097bfd6406870fbcda17d7a3c1ca39b045e80b365",
+      "problemDigest": "515855d3edb900abecb3a53b21365cb53224e81a3ad813f66499411cb949dd7f",
+      "fixtureDefinitionDigest": "00db07215d2c7537f43868716463fe48928289d7e19fcd208d4424ca6988bbbe",
+      "fixtureResultsDigest": "ad5cb9b680dba43f89730eb47cc6086195f10136948c320a80e72f553a7f90b5",
+      "fixtureCount": 8,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-link-title-1",
+      "revision": 1,
+      "candidateDigest": "b8bec31051a97fbe94a1036edf21f4006a333b0803b30839d1dba56e2691a96e",
+      "problemDigest": "e54a9cd8ca6c39c670d54be9a0fc80fba68e023bc6801443a3e598ff182bfc79",
+      "fixtureDefinitionDigest": "c8809af774ea20ddd82f91020d2624cdb42dbd3eef826af8d98a3f8615908c0c",
+      "fixtureResultsDigest": "3dbc5a41fb554250171a7cf0c4558a9ddac17b728af91ea55001e87086bbf00a",
+      "fixtureCount": 7,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-link-title-2",
+      "revision": 1,
+      "candidateDigest": "15a94bebf3d4872d6c9a09b7ba3b5fafd81a9f53c810b24f76c4aa6e620e8da6",
+      "problemDigest": "97ed5c25d020c74dfa91bb138e4da597345726db08e148916ef89a108b463b10",
+      "fixtureDefinitionDigest": "b9441d1740103d0bafcac64675deb18814d1da1f29e77ceae1b2e79b665c9323",
+      "fixtureResultsDigest": "02f729c77b80d6d9d318ead2ea19ccf4af16c099d94944fbe7afc90c747b5078",
+      "fixtureCount": 7,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-list-with-block-1",
+      "revision": 1,
+      "candidateDigest": "1d26cdf3f51bd451f72829020028c1a9459d4101d2fa8469998ee065c488f0e9",
+      "problemDigest": "6c0e0dc36469719e05b85a99cc08dc7a159053e05949b3ed782516f361bd23fb",
+      "fixtureDefinitionDigest": "b685f85801971314c8507270966b010c12a036ebad0aa7fe564c1f64dd783700",
+      "fixtureResultsDigest": "c902629cf550d2bb78876b71195b9f6e0b45456b33e0cece3600cc0c8f9d42ad",
+      "fixtureCount": 7,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-list-with-block-2",
+      "revision": 1,
+      "candidateDigest": "419356d87878d92e777cfe7c6b70a4ad51156886ecf2d9c55c65cd4d66f86772",
+      "problemDigest": "18611f06d097c1f7777910d2a11ab5c8aa0f31a997576e6d0db237a63af78b77",
+      "fixtureDefinitionDigest": "6fbffae054bfbf8eec9c75a21afa613bf565b70bdff346bdcd43f65ee49f25f9",
+      "fixtureResultsDigest": "3433b1fe8a9b3346de4c8923aef30cccf07ae062726baa7071489188c1773fde",
+      "fixtureCount": 7,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-mixed-link-title-email",
+      "revision": 1,
+      "candidateDigest": "a2dad7f1d4ad8bc55ec8ccdb7a626be1939878e4401df6c1ada97213819fec40",
+      "problemDigest": "669c8467cf73b0cb58c8a711ba5760b992d42770d229d95db6abdc481b63a44c",
+      "fixtureDefinitionDigest": "2eb9ecabf20a7bbe5d257193fd93057cde1ec3770f6bb474ab1d26e63b79570c",
+      "fixtureResultsDigest": "11c5c9260e8a615558d827a8a77c4da105b1b5d027359cfeff59088dd1340a04",
+      "fixtureCount": 8,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-mixed-list-angle-url",
+      "revision": 1,
+      "candidateDigest": "259b689dfefe07a178e6fa5f8ca298ef60dfc203e7586a202a006393d7c69bd2",
+      "problemDigest": "67cfba06d1bcb57f5a48f722cdde9d3e0baa85ada94b86628e8ee5dd47187a28",
+      "fixtureDefinitionDigest": "ab55111cfb08b8116936f4f3ca3e981f216e778719b46060fb0a3dced8633358",
+      "fixtureResultsDigest": "65b678f5b2760a094c08351d9af150f79cc75604a612e608c13390bca04ae7b6",
+      "fixtureCount": 7,
+      "passed": true
+    }
+  ],
+  "results": [
+    {
+      "fixtureId": "l2-bold-italic-1-canonical",
+      "problemId": "l2-bold-italic-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-bold-italic-1-case-spelling-variation",
+      "problemId": "l2-bold-italic-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-bold-italic-1-different-prose",
+      "problemId": "l2-bold-italic-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-bold-italic-1-malformed",
+      "problemId": "l2-bold-italic-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-italic"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-italic"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-bold-italic-1-matched-with-review",
+      "problemId": "l2-bold-italic-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-bold-italic-1-missing",
+      "problemId": "l2-bold-italic-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-italic"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-italic"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-bold-italic-2-canonical",
+      "problemId": "l2-bold-italic-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-bold-italic-2-case-spelling-variation",
+      "problemId": "l2-bold-italic-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-bold-italic-2-different-prose",
+      "problemId": "l2-bold-italic-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-bold-italic-2-malformed",
+      "problemId": "l2-bold-italic-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-italic"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-italic"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-bold-italic-2-matched-with-review",
+      "problemId": "l2-bold-italic-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-bold-italic-2-missing",
+      "problemId": "l2-bold-italic-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-italic"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-italic"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-code-block-language-1-canonical",
+      "problemId": "l2-code-block-language-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-code-block-language-1-case-spelling-variation",
+      "problemId": "l2-code-block-language-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-code-block-language-1-different-prose",
+      "problemId": "l2-code-block-language-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-code-block-language-1-malformed",
+      "problemId": "l2-code-block-language-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-code-block-language"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-code-block-language"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-code-block-language-1-matched-with-review",
+      "problemId": "l2-code-block-language-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-code-block-language-1-missing",
+      "problemId": "l2-code-block-language-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-code-block-language"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-code-block-language"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-code-block-language-2-canonical",
+      "problemId": "l2-code-block-language-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-code-block-language-2-case-spelling-variation",
+      "problemId": "l2-code-block-language-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-code-block-language-2-different-prose",
+      "problemId": "l2-code-block-language-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-code-block-language-2-malformed",
+      "problemId": "l2-code-block-language-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-code-block-language"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-code-block-language"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-code-block-language-2-matched-with-review",
+      "problemId": "l2-code-block-language-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-code-block-language-2-missing",
+      "problemId": "l2-code-block-language-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-code-block-language"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-code-block-language"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-hard-line-break-1-canonical",
+      "problemId": "l2-hard-line-break-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-hard-line-break-1-case-spelling-variation",
+      "problemId": "l2-hard-line-break-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-hard-line-break-1-different-prose",
+      "problemId": "l2-hard-line-break-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-hard-line-break-1-malformed",
+      "problemId": "l2-hard-line-break-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-hard-line-break"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-hard-line-break"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-hard-line-break-1-matched-with-review",
+      "problemId": "l2-hard-line-break-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-hard-line-break-1-missing",
+      "problemId": "l2-hard-line-break-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-hard-line-break"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-hard-line-break"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-hard-line-break-2-canonical",
+      "problemId": "l2-hard-line-break-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-hard-line-break-2-case-spelling-variation",
+      "problemId": "l2-hard-line-break-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-hard-line-break-2-different-prose",
+      "problemId": "l2-hard-line-break-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-hard-line-break-2-malformed",
+      "problemId": "l2-hard-line-break-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-hard-line-break"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-hard-line-break"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-hard-line-break-2-matched-with-review",
+      "problemId": "l2-hard-line-break-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-hard-line-break-2-missing",
+      "problemId": "l2-hard-line-break-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-hard-line-break"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-hard-line-break"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-blockquote-1-canonical",
+      "problemId": "l2-nested-blockquote-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-blockquote-1-case-spelling-variation",
+      "problemId": "l2-nested-blockquote-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-blockquote-1-different-prose",
+      "problemId": "l2-nested-blockquote-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-blockquote-1-malformed",
+      "problemId": "l2-nested-blockquote-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-nested-blockquote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-nested-blockquote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-blockquote-1-matched-with-review",
+      "problemId": "l2-nested-blockquote-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-blockquote-1-missing",
+      "problemId": "l2-nested-blockquote-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-nested-blockquote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-nested-blockquote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-blockquote-2-canonical",
+      "problemId": "l2-nested-blockquote-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-blockquote-2-case-spelling-variation",
+      "problemId": "l2-nested-blockquote-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-blockquote-2-different-prose",
+      "problemId": "l2-nested-blockquote-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-blockquote-2-malformed",
+      "problemId": "l2-nested-blockquote-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-nested-blockquote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-nested-blockquote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-blockquote-2-matched-with-review",
+      "problemId": "l2-nested-blockquote-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-blockquote-2-missing",
+      "problemId": "l2-nested-blockquote-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-nested-blockquote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-nested-blockquote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-strikethrough-1-canonical",
+      "problemId": "l2-strikethrough-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-strikethrough-1-case-spelling-variation",
+      "problemId": "l2-strikethrough-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-strikethrough-1-different-prose",
+      "problemId": "l2-strikethrough-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-strikethrough-1-malformed",
+      "problemId": "l2-strikethrough-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-strikethrough"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-strikethrough"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-strikethrough-1-matched-with-review",
+      "problemId": "l2-strikethrough-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-strikethrough-1-missing",
+      "problemId": "l2-strikethrough-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-strikethrough"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-strikethrough"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-strikethrough-2-canonical",
+      "problemId": "l2-strikethrough-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-strikethrough-2-case-spelling-variation",
+      "problemId": "l2-strikethrough-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-strikethrough-2-different-prose",
+      "problemId": "l2-strikethrough-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-strikethrough-2-malformed",
+      "problemId": "l2-strikethrough-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-strikethrough"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-strikethrough"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-strikethrough-2-matched-with-review",
+      "problemId": "l2-strikethrough-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-strikethrough-2-missing",
+      "problemId": "l2-strikethrough-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-strikethrough"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-strikethrough"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-email-1-canonical",
+      "problemId": "l3-angle-bracket-email-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-email-1-case-spelling-variation",
+      "problemId": "l3-angle-bracket-email-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-email-1-different-prose",
+      "problemId": "l3-angle-bracket-email-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-email-1-edge-case",
+      "problemId": "l3-angle-bracket-email-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-email-1-mailto-uri",
+      "problemId": "l3-angle-bracket-email-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-email-1-malformed",
+      "problemId": "l3-angle-bracket-email-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-email-1-matched-with-review",
+      "problemId": "l3-angle-bracket-email-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-email-1-missing",
+      "problemId": "l3-angle-bracket-email-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-email-2-canonical",
+      "problemId": "l3-angle-bracket-email-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-email-2-case-spelling-variation",
+      "problemId": "l3-angle-bracket-email-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-email-2-different-prose",
+      "problemId": "l3-angle-bracket-email-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-email-2-edge-case",
+      "problemId": "l3-angle-bracket-email-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-email-2-mailto-uri",
+      "problemId": "l3-angle-bracket-email-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-email-2-malformed",
+      "problemId": "l3-angle-bracket-email-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-email-2-matched-with-review",
+      "problemId": "l3-angle-bracket-email-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-email-2-missing",
+      "problemId": "l3-angle-bracket-email-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-url-1-canonical",
+      "problemId": "l3-angle-bracket-url-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-url-1-case-spelling-variation",
+      "problemId": "l3-angle-bracket-url-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-url-1-different-prose",
+      "problemId": "l3-angle-bracket-url-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-url-1-edge-case",
+      "problemId": "l3-angle-bracket-url-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-url-1-malformed",
+      "problemId": "l3-angle-bracket-url-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-url"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-url"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-url-1-matched-with-review",
+      "problemId": "l3-angle-bracket-url-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-url-1-missing",
+      "problemId": "l3-angle-bracket-url-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-url"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-url"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-url-2-canonical",
+      "problemId": "l3-angle-bracket-url-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-url-2-case-spelling-variation",
+      "problemId": "l3-angle-bracket-url-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-url-2-different-prose",
+      "problemId": "l3-angle-bracket-url-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-url-2-edge-case",
+      "problemId": "l3-angle-bracket-url-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-url-2-malformed",
+      "problemId": "l3-angle-bracket-url-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-url"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-url"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-url-2-matched-with-review",
+      "problemId": "l3-angle-bracket-url-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-url-2-missing",
+      "problemId": "l3-angle-bracket-url-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-url"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-url"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-escape-1-canonical",
+      "problemId": "l3-escape-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-escape-1-case-spelling-variation",
+      "problemId": "l3-escape-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-escape-1-different-prose",
+      "problemId": "l3-escape-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-escape-1-edge-case",
+      "problemId": "l3-escape-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-escape-1-literal-code-backslashes",
+      "problemId": "l3-escape-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-escape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-escape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-escape-1-malformed",
+      "problemId": "l3-escape-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-escape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-escape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-escape-1-matched-with-review",
+      "problemId": "l3-escape-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-escape-1-missing",
+      "problemId": "l3-escape-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-escape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-escape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-escape-2-canonical",
+      "problemId": "l3-escape-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-escape-2-case-spelling-variation",
+      "problemId": "l3-escape-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-escape-2-different-prose",
+      "problemId": "l3-escape-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-escape-2-edge-case",
+      "problemId": "l3-escape-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-escape-2-literal-code-backslashes",
+      "problemId": "l3-escape-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-escape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-escape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-escape-2-malformed",
+      "problemId": "l3-escape-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-escape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-escape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-escape-2-matched-with-review",
+      "problemId": "l3-escape-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-escape-2-missing",
+      "problemId": "l3-escape-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-escape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-escape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-footnote-1-canonical",
+      "problemId": "l3-footnote-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-footnote-1-case-spelling-variation",
+      "problemId": "l3-footnote-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-footnote-1-different-prose",
+      "problemId": "l3-footnote-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-footnote-1-edge-case",
+      "problemId": "l3-footnote-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-footnote-1-malformed",
+      "problemId": "l3-footnote-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-footnote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-footnote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-footnote-1-matched-with-review",
+      "problemId": "l3-footnote-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-footnote-1-missing",
+      "problemId": "l3-footnote-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-footnote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-footnote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-footnote-1-unreferenced-definition",
+      "problemId": "l3-footnote-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-footnote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-footnote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-footnote-2-canonical",
+      "problemId": "l3-footnote-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-footnote-2-case-spelling-variation",
+      "problemId": "l3-footnote-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-footnote-2-different-prose",
+      "problemId": "l3-footnote-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-footnote-2-edge-case",
+      "problemId": "l3-footnote-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-footnote-2-malformed",
+      "problemId": "l3-footnote-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-footnote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-footnote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-footnote-2-matched-with-review",
+      "problemId": "l3-footnote-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-footnote-2-missing",
+      "problemId": "l3-footnote-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-footnote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-footnote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-footnote-2-unreferenced-definition",
+      "problemId": "l3-footnote-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-footnote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-footnote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-link-title-1-canonical",
+      "problemId": "l3-link-title-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-link-title-1-case-spelling-variation",
+      "problemId": "l3-link-title-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-link-title-1-different-prose",
+      "problemId": "l3-link-title-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-link-title-1-edge-case",
+      "problemId": "l3-link-title-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-link-title-1-malformed",
+      "problemId": "l3-link-title-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-link-title"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-link-title"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-link-title-1-matched-with-review",
+      "problemId": "l3-link-title-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-link-title-1-missing",
+      "problemId": "l3-link-title-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-link-title"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-link-title"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-link-title-2-canonical",
+      "problemId": "l3-link-title-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-link-title-2-case-spelling-variation",
+      "problemId": "l3-link-title-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-link-title-2-different-prose",
+      "problemId": "l3-link-title-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-link-title-2-edge-case",
+      "problemId": "l3-link-title-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-link-title-2-malformed",
+      "problemId": "l3-link-title-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-link-title"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-link-title"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-link-title-2-matched-with-review",
+      "problemId": "l3-link-title-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-link-title-2-missing",
+      "problemId": "l3-link-title-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-link-title"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-link-title"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-list-with-block-1-canonical",
+      "problemId": "l3-list-with-block-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-list-with-block-1-case-spelling-variation",
+      "problemId": "l3-list-with-block-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-list-with-block-1-different-prose",
+      "problemId": "l3-list-with-block-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-list-with-block-1-edge-case",
+      "problemId": "l3-list-with-block-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-list-with-block-1-malformed",
+      "problemId": "l3-list-with-block-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-list-with-block"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-list-with-block"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-list-with-block-1-matched-with-review",
+      "problemId": "l3-list-with-block-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-list-with-block-1-missing",
+      "problemId": "l3-list-with-block-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-list-with-block"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-list-with-block"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-list-with-block-2-canonical",
+      "problemId": "l3-list-with-block-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-list-with-block-2-case-spelling-variation",
+      "problemId": "l3-list-with-block-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-list-with-block-2-different-prose",
+      "problemId": "l3-list-with-block-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-list-with-block-2-edge-case",
+      "problemId": "l3-list-with-block-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-list-with-block-2-malformed",
+      "problemId": "l3-list-with-block-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-list-with-block"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-list-with-block"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-list-with-block-2-matched-with-review",
+      "problemId": "l3-list-with-block-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-list-with-block-2-missing",
+      "problemId": "l3-list-with-block-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-list-with-block"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-list-with-block"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-mixed-link-title-email-canonical",
+      "problemId": "l3-mixed-link-title-email",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-mixed-link-title-email-case-spelling-variation",
+      "problemId": "l3-mixed-link-title-email",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-mixed-link-title-email-different-prose",
+      "problemId": "l3-mixed-link-title-email",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-mixed-link-title-email-edge-case",
+      "problemId": "l3-mixed-link-title-email",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-mixed-link-title-email-mailto-uri",
+      "problemId": "l3-mixed-link-title-email",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-mixed-link-title-email-malformed",
+      "problemId": "l3-mixed-link-title-email",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-mixed-link-title-email-matched-with-review",
+      "problemId": "l3-mixed-link-title-email",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-mixed-link-title-email-missing",
+      "problemId": "l3-mixed-link-title-email",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-link-title"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-link-title"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-mixed-list-angle-url-canonical",
+      "problemId": "l3-mixed-list-angle-url",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-mixed-list-angle-url-case-spelling-variation",
+      "problemId": "l3-mixed-list-angle-url",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-mixed-list-angle-url-different-prose",
+      "problemId": "l3-mixed-list-angle-url",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-mixed-list-angle-url-edge-case",
+      "problemId": "l3-mixed-list-angle-url",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "keep-short"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-mixed-list-angle-url-malformed",
+      "problemId": "l3-mixed-list-angle-url",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-url"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-url"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-mixed-list-angle-url-matched-with-review",
+      "problemId": "l3-mixed-list-angle-url",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-mixed-list-angle-url-missing",
+      "problemId": "l3-mixed-list-angle-url",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-list-with-block"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-list-with-block"
+      },
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "verificationDigest": "f55aef7bd247f3de0cf890777d542c2f073dcd25670c47c5f6dcd4a192b31c0f"
+}
