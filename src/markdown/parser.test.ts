@@ -74,17 +74,21 @@ describe("the product reads one Markdown dialect", () => {
     expect(derivePlaintextStarter("Compare A | B")).toBe("Compare A | B")
   })
 
-  test("a bare address is not turned into a blank", () => {
-    // Enabling GFM makes `https://example.com` a link node. Without the guard
-    // in `markLinkPunctuation` the derivation masks its first character and
-    // the card asks the learner to type `h`. The bracketed link beside it is
-    // the pass case: the guard must not stop teaching real link punctuation.
-    expect(
-      deriveSyntaxCheckpoints("Docs live at https://example.com now.", ""),
-    ).toEqual([])
-    expect(
-      deriveSyntaxCheckpoints("Docs live at <https://example.com> now.", ""),
-    ).toEqual([])
+  test("a bare address asks for its URL scheme instead of one arbitrary letter", () => {
+    // GFM makes the bare address a link node. The whole scheme is the grammar
+    // that distinguishes an automatic URL; masking one `h` would still teach
+    // nothing, and masking the domain would turn Goal content into an answer.
+    const [automatic] = deriveSyntaxCheckpoints(
+      "Docs live at https://example.com now.",
+      "",
+    )
+    expect(automatic?.canonicalInput).toBe("https://")
+    const [angleBracket] = deriveSyntaxCheckpoints(
+      "Docs live at <https://example.com> now.",
+      "",
+    )
+    expect(angleBracket?.canonicalInput).toBe("<>")
+    // A bracketed link remains its own punctuation lesson.
     const bracketed = deriveSyntaxCheckpoints(
       "Docs live at [the guide](https://example.com) now.",
       "",

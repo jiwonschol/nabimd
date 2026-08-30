@@ -71,6 +71,7 @@ function checkPasses(
     case "code-block":
     case "block-sequence":
     case "document-limits":
+    case "syntax-presence":
       return structuralCheckPasses(check, context)
   }
 }

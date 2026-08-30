@@ -682,6 +682,7 @@ describe("describeCheckpoint", () => {
     // code under test would let both be wrong together.
     const LIST_MARKER = /^ {0,3}(?:[-+*]|\d+[.)])[\t ]+$/
     const INLINE_CODE = /^`{1,2}$/
+    const LANGUAGE_NAME = /^[A-Za-z][\w+#-]*$/
     // Every mixed-kind shape the bank serves today. A new combination has to
     // land here deliberately: without this the next pairing ships silently,
     // which is exactly how these 15 got out.
@@ -691,6 +692,7 @@ describe("describeCheckpoint", () => {
       '["- ","`","`"]',
       '["#. ","`","`"]',
       '["#. ","`","`","#. ","`","`"]',
+      '["```","<language>","```"]',
     ])
 
     let mixed = 0
@@ -714,7 +716,11 @@ describe("describeCheckpoint", () => {
 
         if (kinds.size > 1) {
           const shape = JSON.stringify(
-            blanks.map((value) => value.replace(/^\d+/, "#")),
+            blanks.map((value) =>
+              LANGUAGE_NAME.test(value)
+                ? "<language>"
+                : value.replace(/^\d+/, "#"),
+            ),
           )
           expect(KNOWN.has(shape), `${where} serves new mixed shape ${shape}`).toBe(
             true,
@@ -892,17 +898,9 @@ describe("describeCheckpoint", () => {
     )
   })
 
-  it("records which families the engine still cannot reach", () => {
-    // One is left, and it is not a parser gap. `instructionFor` names a
-    // syntax-highlighted block by reading a blank that holds the language
-    // name — and a blank holding a name is Goal prose, which the published
-    // blank policy forbids ("asks only Markdown grammar characters", in
-    // `guidedSyntax.test.ts`). Blanking `js` turns that suite red on bank
-    // problems that already ship a `text` fence. So the fence is reachable
-    // and the language sentence is not, by contract; whether the product
-    // wants a blank that asks for prose is Jiwon's call, not the deriver's.
+  it("names the language token that distinguishes a highlighted block", () => {
     expect(
       describeCheckpoint(checkpointFor("```js\nlet a = 1\n```")).term,
-    ).toBe("fenced code block")
+    ).toBe("syntax-highlighted code block")
   })
 })

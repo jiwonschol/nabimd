@@ -80,6 +80,21 @@ export type LinkShapeOptions = {
   allowAutolinks: boolean
 }
 
+export type SyntaxPresenceKind =
+  | "bold-italic"
+  | "strikethrough"
+  | "nested-blockquote"
+  | "code-block-language"
+  | "hard-line-break"
+  | "automatic-url"
+  | "link-title"
+  | "angle-bracket-url"
+  | "angle-bracket-email"
+  | "escape"
+  | "list-with-block"
+  | "footnote"
+  | "heading-id"
+
 export type MatchCheck =
   | (HeadingMatchCheck & { kind: "heading-spacing" })
   | (HeadingMatchCheck & { kind: "hash-heading-style" })
@@ -161,6 +176,12 @@ export type MatchCheck =
       maxLines?: number
       minSourceCharacters?: number
       maxSourceCharacters?: number
+    })
+  | (MatchCheckBase & {
+      kind: "syntax-presence"
+      syntax: SyntaxPresenceKind
+      min: number
+      max?: number
     })
 
 export type EditorialCheck =

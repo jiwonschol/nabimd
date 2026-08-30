@@ -192,6 +192,7 @@ function mutateCheck(problem: NormalizedProblem, check: MatchCheck): string {
     case "hash-heading-style":
     case "has-heading":
     case "document-limits":
+    case "syntax-presence":
       throw new Error(`Unsupported Batch 017 match check ${check.kind}`)
   }
 }

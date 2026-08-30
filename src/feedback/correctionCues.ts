@@ -159,6 +159,15 @@ export function correctionCue(failure: MatchFailureItem): CorrectionCue {
       return cue(failure, sequenceLabel(check), null)
     case "document-limits":
       return cue(failure, "Document size", null)
+    case "syntax-presence":
+      return cue(
+        failure,
+        check.syntax
+          .split("-")
+          .map((word) => word[0]?.toUpperCase() + word.slice(1))
+          .join(" "),
+        null,
+      )
     default:
       return assertNever(check)
   }

@@ -26,6 +26,7 @@ import {
   type EvaluationContext,
 } from "../evaluationContext"
 import { isClosedFencedCode, isFencedCode } from "../markdownAst"
+import { countSyntaxPresence } from "../syntaxPresence"
 
 type StructuralCheck = Exclude<
   MatchCheck,
@@ -735,5 +736,11 @@ export function structuralCheckPasses(
       return blockSequencePasses(check, context)
     case "document-limits":
       return documentLimitsPasses(check, context)
+    case "syntax-presence":
+      return inRange(
+        countSyntaxPresence(context, check.syntax),
+        check.min,
+        check.max,
+      )
   }
 }

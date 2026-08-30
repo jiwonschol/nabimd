@@ -180,14 +180,14 @@ function buildAcceptedForms(
   }
 
   if (
-    canonicalParts.length === 2 &&
-    canonicalParts[0] === canonicalParts[1] &&
+    (canonicalParts.length === 2 || canonicalParts.length === 3) &&
+    canonicalParts[0] === canonicalParts.at(-1) &&
     (canonicalParts[0] === "```" || canonicalParts[0] === "~~~")
   ) {
     const alternativeFence = canonicalParts[0] === "```" ? "~~~" : "```"
     expandInputForms(forms, (form) =>
-      form[0] === canonicalParts[0] && form[1] === canonicalParts[1]
-        ? [alternativeFence, alternativeFence]
+      form[0] === canonicalParts[0] && form.at(-1) === canonicalParts.at(-1)
+        ? [alternativeFence, ...form.slice(1, -1), alternativeFence]
         : null,
     )
   }
@@ -305,8 +305,13 @@ export function syntaxGroupTerm(
   // indistinguishable, so the spacing is checked on the raw value.
   if (/^ {0,3}[-+*][\t ]+$/.test(value)) return "bullet item"
   if (/^ {0,3}\d+[.)][\t ]+$/.test(value)) return "numbered step"
+  if (/^ {2,}\n?$/.test(value)) return "line break"
 
   const mark = value.trim()
+  if (/^(?:https?:\/\/|www\.)$/.test(mark)) return "automatic URL"
+  if (mark === '"' || mark === "'") return "link title"
+  if (mark === "\\") return "escape"
+  if (/^\[\^[^\]]+\](?::)?$/.test(mark)) return "footnote"
   if (/^(?:=+|-+)$/.test(mark) && precededByLineBreak) {
     return `level ${mark.startsWith("=") ? "1" : "2"} Setext heading`
   }
@@ -323,6 +328,7 @@ export function syntaxGroupTerm(
     return precededByQuoteMarker ? "quote inside a quote" : "block quote"
   }
   if (mark.startsWith("```") || mark.startsWith("~~~")) return "fenced code block"
+  if (/^[A-Za-z][\w+#-]*$/.test(mark)) return "syntax-highlighted code block"
   if (mark === "**" || mark === "__") return "bold text"
   if (mark === "*" || mark === "_") return "italic text"
   if (mark === "~~") return "strikethrough text"
@@ -351,6 +357,21 @@ function syntaxGroupTermsInOrder(
   return checkpoint.segments.flatMap((segment, index) => {
     if (segment.kind !== "input") return []
     const previous = checkpoint.segments[index - 1]
+    const next = checkpoint.segments[index + 1]
+    if (segment.value === "<" || segment.value === ">") {
+      const destination =
+        segment.value === "<" && next?.kind === "locked"
+          ? next.value
+          : segment.value === ">" && previous?.kind === "locked"
+            ? previous.value
+            : ""
+      if (destination.includes("@") && !destination.includes("://")) {
+        return ["angle-bracket email"]
+      }
+      if (/^(?:https?:\/\/|www\.)/.test(destination)) {
+        return ["angle-bracket URL"]
+      }
+    }
     return [
       syntaxGroupTerm(
         segment.value,
@@ -701,7 +722,36 @@ function markLinkPunctuation(
   // with it. `<https://example.com>` is skipped for the same reason: its
   // angle brackets are a different curriculum element and are not taught by
   // pretending they are link punctuation.
-  if (!raw.startsWith("[") && !raw.startsWith("![")) return
+  if (
+    /^<(?:https?:\/\/|www\.|[^<>\s@]+@[^<>\s@]+)/.test(raw) &&
+    raw.endsWith(">")
+  ) {
+    markRange(
+      mask,
+      { from: range.from, to: range.from + 1 },
+      families,
+      `${family}-angle`,
+    )
+    markRange(
+      mask,
+      { from: range.to - 1, to: range.to },
+      families,
+      `${family}-angle`,
+    )
+    return
+  }
+  if (!raw.startsWith("[") && !raw.startsWith("![")) {
+    const automaticScheme = raw.match(/^(?:https?:\/\/|www\.)/)?.[0]
+    if (automaticScheme) {
+      markRange(
+        mask,
+        { from: range.from, to: range.from + automaticScheme.length },
+        families,
+        `${family}-automatic`,
+      )
+    }
+    return
+  }
   const openingLength = raw.startsWith("![") ? 2 : 1
   markRange(
     mask,
@@ -729,6 +779,30 @@ function markLinkPunctuation(
     )
     const destinationClose = raw.lastIndexOf(")")
     if (destinationClose > destinationOpen) {
+      const title = raw.match(/\s+(["'])([\s\S]*?)\1\s*\)$/)
+      if (title?.index !== undefined && title[1]) {
+        const titleSource = title[0]
+        const openingQuote = title.index + titleSource.indexOf(title[1])
+        const closingQuote = title.index + titleSource.lastIndexOf(title[1])
+        markRange(
+          mask,
+          {
+            from: range.from + openingQuote,
+            to: range.from + openingQuote + 1,
+          },
+          families,
+          `${family}-title`,
+        )
+        markRange(
+          mask,
+          {
+            from: range.from + closingQuote,
+            to: range.from + closingQuote + 1,
+          },
+          families,
+          `${family}-title`,
+        )
+      }
       markRange(
         mask,
         {
@@ -767,12 +841,21 @@ function markCodeFence(
     `${family}-open`,
   )
 
-  // The info string is *not* blanked. `instructionFor` has a sentence for a
-  // syntax-highlighted block and it reads a blank holding the language name,
-  // but a blank holding a name is Goal prose, which the published blank
-  // policy forbids outright ("asks only Markdown grammar characters"). The
-  // sentence is unreachable by contract rather than by omission, so the gap
-  // is a product question and not a parser one.
+  // The language is part of the opening fence's grammar, not Goal prose. It
+  // must be an answer or a code-block-language exercise only teaches the same
+  // fence as Level 1 while silently revealing the distinguishing token.
+  const info = source
+    .slice(openingMarkEnd, openingEnd)
+    .match(/^[\t ]*([^\t ]+)/)
+  if (info?.[1] && node.type === "code" && node.lang?.trim()) {
+    const languageFrom = openingMarkEnd + (info[0].length - info[1].length)
+    markRange(
+      mask,
+      { from: languageFrom, to: languageFrom + info[1].length },
+      families,
+      `${family}-language`,
+    )
+  }
 
   const closingLineStart = lineStartAt(source, Math.max(range.from, range.to - 1))
   if (closingLineStart !== openingStart) {
@@ -803,6 +886,7 @@ function markNodeSyntax(
   groupedRanges: SourceRange[],
   families: SyntaxFamilies,
   insideQuote = false,
+  insideTable = false,
 ): void {
   const range = nodeRange(node)
   // Two sibling nodes of the same type can sit side by side (`[a](b)[c](d)`).
@@ -1064,6 +1148,42 @@ function markNodeSyntax(
     case "break":
       if (range) markRange(mask, range, families, family)
       break
+    case "text":
+      if (range && !insideTable) {
+        const raw = source.slice(range.from, range.to)
+        for (let index = 0; index < raw.length - 1; index += 1) {
+          if (
+            raw[index] === "\\" &&
+            /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/.test(raw[index + 1]!)
+          ) {
+            markRange(
+              mask,
+              { from: range.from + index, to: range.from + index + 1 },
+              families,
+              `${family}-escape-${index}`,
+            )
+          }
+        }
+      }
+      break
+    case "footnoteReference":
+      if (range) markRange(mask, range, families, family)
+      break
+    case "footnoteDefinition":
+      if (range) {
+        const prefix = source
+          .slice(range.from, lineEndAt(source, range.from))
+          .match(/^ {0,3}\[\^[^\]]+\]:[\t ]*/)?.[0]
+        if (prefix) {
+          markRange(
+            mask,
+            { from: range.from, to: range.from + prefix.length },
+            families,
+            family,
+          )
+        }
+      }
+      break
     default:
       break
   }
@@ -1077,6 +1197,7 @@ function markNodeSyntax(
         groupedRanges,
         families,
         insideQuote || node.type === "blockquote",
+        insideTable || node.type === "table",
       )
     }
   }

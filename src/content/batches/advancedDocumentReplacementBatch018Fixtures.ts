@@ -220,6 +220,7 @@ function mutateCheck(problem: NormalizedProblem, check: MatchCheck): string {
     case "heading-spacing":
     case "hash-heading-style":
     case "has-heading":
+    case "syntax-presence":
       throw new Error(`Unsupported Batch 018 match check ${check.kind}`)
   }
 }

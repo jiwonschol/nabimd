@@ -5,6 +5,8 @@ import {
   getCurriculumElements,
 } from "../content/curriculumElements"
 import { isEligibleMixedExercise } from "../content/mixedExercisePolicy"
+import { checkpointShape } from "./checkpointShape"
+import { instructionFor } from "./checkpointInstruction"
 import { parseMarkdownSource } from "../markdown/parser"
 import { problemBank } from "../content/problemBank"
 import { evaluateProblem } from "../engine/evaluateProblem"
@@ -56,6 +58,20 @@ describe("deriveSyntaxCheckpoints", () => {
     // underline, which the note must not confuse with one.
     expect(syntaxGroupTerm("---")).toBe("section break")
     expect(syntaxGroupTerm("---", true)).toBe("level 2 Setext heading")
+  })
+
+  it("names the two-space blank as the hard line-break action", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints(
+      "First line  \nSecond line",
+      "First line\nSecond line",
+    )
+
+    expect(checkpoint?.canonicalInput).toBe("  ")
+    expect(syntaxCheckpointTerms(checkpoint!)).toEqual(["line break"])
+    expect(instructionFor(checkpointShape(checkpoint!))).toMatchObject({
+      prefix: "End the line with two spaces to force a ",
+      term: "line break",
+    })
   })
 
   it("names the blanks the deriver learned to make in #189", () => {
@@ -591,6 +607,132 @@ describe("deriveSyntaxCheckpoints", () => {
     ])
   })
 
+  it("asks for the delimiters that attach a title to a link", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints(
+      '[Guide](https://example.com "Read the guide")',
+      "Guide",
+    )
+
+    expect(checkpoint?.canonicalInput).toBe('[]("")')
+    expect(checkpoint?.segments).toEqual([
+      { kind: "input", value: "[" },
+      { kind: "locked", value: "Guide" },
+      { kind: "input", value: "](" },
+      { kind: "locked", value: "https://example.com " },
+      { kind: "input", value: '"' },
+      { kind: "locked", value: "Read the guide" },
+      { kind: "input", value: '"' },
+      { kind: "input", value: ")" },
+    ])
+    expect(syntaxCheckpointTerms(checkpoint!)).toContain("link title")
+    expect(instructionFor(checkpointShape(checkpoint!)).term).toBe(
+      "link with a title",
+    )
+  })
+
+  it("asks for the scheme that turns a bare address into an automatic URL", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints(
+      "Visit https://example.com today.",
+      "Visit https://example.com today.",
+    )
+
+    expect(checkpoint?.canonicalInput).toBe("https://")
+    expect(checkpoint?.segments).toEqual([
+      { kind: "locked", value: "Visit " },
+      { kind: "input", value: "https://" },
+      { kind: "locked", value: "example.com today." },
+    ])
+    expect(syntaxCheckpointTerms(checkpoint!)).toEqual(["automatic URL"])
+    expect(instructionFor(checkpointShape(checkpoint!)).term).toBe(
+      "automatic URL",
+    )
+  })
+
+  it("asks for the angle brackets around an autolink URL", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints(
+      "Open <https://example.com>.",
+      "Open https://example.com.",
+    )
+
+    expect(checkpoint?.canonicalInput).toBe("<>")
+    expect(checkpoint?.segments).toEqual([
+      { kind: "locked", value: "Open " },
+      { kind: "input", value: "<" },
+      { kind: "locked", value: "https://example.com" },
+      { kind: "input", value: ">" },
+      { kind: "locked", value: "." },
+    ])
+    expect(syntaxCheckpointTerms(checkpoint!)).toEqual([
+      "angle-bracket URL",
+    ])
+    expect(instructionFor(checkpointShape(checkpoint!)).term).toBe(
+      "angle-bracket URL",
+    )
+  })
+
+  it("asks for the angle brackets around an autolink email", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints(
+      "Email <learn@example.com>.",
+      "Email learn@example.com.",
+    )
+
+    expect(checkpoint?.canonicalInput).toBe("<>")
+    expect(checkpoint?.segments).toEqual([
+      { kind: "locked", value: "Email " },
+      { kind: "input", value: "<" },
+      { kind: "locked", value: "learn@example.com" },
+      { kind: "input", value: ">" },
+      { kind: "locked", value: "." },
+    ])
+    expect(syntaxCheckpointTerms(checkpoint!)).toEqual([
+      "angle-bracket email",
+    ])
+    expect(instructionFor(checkpointShape(checkpoint!)).term).toBe(
+      "angle-bracket email",
+    )
+  })
+
+  it("asks for backslashes that escape literal Markdown punctuation", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints(
+      "\\*Literal asterisks\\*",
+      "*Literal asterisks*",
+    )
+
+    expect(checkpoint?.canonicalInput).toBe("\\\\")
+    expect(checkpoint?.segments).toEqual([
+      { kind: "input", value: "\\" },
+      { kind: "locked", value: "*Literal asterisks" },
+      { kind: "input", value: "\\" },
+      { kind: "locked", value: "*" },
+    ])
+    expect(syntaxCheckpointTerms(checkpoint!)).toEqual(["escape"])
+    expect(instructionFor(checkpointShape(checkpoint!)).term).toBe(
+      "Markdown escape",
+    )
+  })
+
+  it("asks for matching footnote reference and definition markers", () => {
+    const checkpoints = deriveSyntaxCheckpoints(
+      "Claim[^1]\n\n[^1]: Source note",
+      "Claim\n\nSource note",
+    )
+
+    expect(checkpoints.map((checkpoint) => checkpoint.canonicalInput)).toEqual([
+      "[^1][^1]: ",
+    ])
+    expect(checkpoints[0]?.segments).toEqual([
+      { kind: "locked", value: "Claim" },
+      { kind: "input", value: "[^1]" },
+      { kind: "locked", value: "\n\n" },
+      { kind: "input", value: "[^1]: " },
+      { kind: "locked", value: "Source note" },
+    ])
+    for (const checkpoint of checkpoints) {
+      expect(syntaxCheckpointTerms(checkpoint)).toEqual(["footnote"])
+      expect(instructionFor(checkpointShape(checkpoint)).term).toBe("footnote")
+    }
+  })
+
   it("keeps a nested list on its own card and never asks for the indentation", () => {
     const target = ["- Parent", "  * Child"].join("\n")
     const checkpoints = deriveSyntaxCheckpoints(
@@ -722,12 +864,34 @@ describe("deriveSyntaxCheckpoints", () => {
     const checkpoints = deriveSyntaxCheckpoints(target, starter)
 
     expect(checkpoints).toHaveLength(1)
-    expect(checkpoints[0]?.canonicalInput).toBe("``````")
+    expect(checkpoints[0]?.canonicalInput).toBe("```bash```")
     expect(checkpoints[0]?.segments).toEqual([
       { kind: "input", value: "```" },
-      { kind: "locked", value: "bash\nnpm test\n" },
+      { kind: "input", value: "bash" },
+      { kind: "locked", value: "\nnpm test\n" },
       { kind: "input", value: "```" },
     ])
+  })
+
+  it("asks for a fenced block language and names the highlighted block", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints(
+      "```js\nconst value = 1\n```",
+      "\nconst value = 1\n",
+    )
+
+    expect(checkpoint?.canonicalInput).toBe("```js```")
+    expect(checkpoint?.segments).toEqual([
+      { kind: "input", value: "```" },
+      { kind: "input", value: "js" },
+      { kind: "locked", value: "\nconst value = 1\n" },
+      { kind: "input", value: "```" },
+    ])
+    expect(syntaxCheckpointTerms(checkpoint!)).toContain(
+      "syntax-highlighted code block",
+    )
+    expect(instructionFor(checkpointShape(checkpoint!)).term).toBe(
+      "syntax-highlighted code block",
+    )
   })
 })
 
@@ -876,9 +1040,16 @@ describe("published blank policy", () => {
     ),
   )
 
-  it("asks only Markdown grammar characters, never Goal prose", () => {
+  it("asks only Markdown grammar tokens, never Goal prose", () => {
     for (const { label, checkpoint } of bankCheckpoints) {
-      expect(checkpoint.canonicalInput, label).not.toMatch(/[A-Za-z]/)
+      if (/[A-Za-z]/.test(checkpoint.canonicalInput)) {
+        // A fenced block's info string is the only grammar token made of
+        // letters. Matching fences around one language token keep arbitrary
+        // Goal prose outside this exception.
+        expect(checkpoint.canonicalInput, label).toMatch(
+          /^(`{3,}|~{3,})[A-Za-z][\w+#-]*\1$/,
+        )
+      }
     }
   })
 

@@ -1,4 +1,5 @@
 import { normalizeProblem } from "./normalizeProblem"
+import { curriculumElementIds } from "./curriculumElements"
 import { BLOCK_KINDS } from "./types"
 import type {
   FixtureKind,
@@ -48,6 +49,7 @@ const supportedMatchCheckKinds = new Set<string>([
   "code-block",
   "block-sequence",
   "document-limits",
+  "syntax-presence",
 ])
 
 const supportedInlineKinds = new Set<string>([
@@ -459,6 +461,14 @@ function validateMatchChecks(problem: GradableProblem, errors: string[]) {
         }
         break
       }
+      case "syntax-presence":
+        validateRange(problem.id, check, check.min, check.max, errors)
+        if (!curriculumElementIds.includes(check.syntax)) {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} has unsupported syntax: ${String(check.syntax)}`,
+          )
+        }
+        break
     }
   }
 }

@@ -98,6 +98,8 @@ function targetNodeForCheck(
       return descendants(nodesInScope(context, check.scope) as AstNode[]).find(
         (node) => node.type === "code",
       ) as PositionedNode | undefined
+    case "syntax-presence":
+      return context.blocks[0] as PositionedNode | undefined
   }
 }
 
@@ -176,6 +178,7 @@ function syntaxSource(
     case "heading-depth-order":
     case "block-sequence":
     case "document-limits":
+    case "syntax-presence":
       return null
   }
 }
@@ -184,7 +187,8 @@ function isAggregate(check: MatchCheck): boolean {
   if (
     check.kind === "block-sequence" ||
     check.kind === "document-limits" ||
-    check.kind === "heading-depth-order"
+    check.kind === "heading-depth-order" ||
+    check.kind === "syntax-presence"
   ) {
     return true
   }

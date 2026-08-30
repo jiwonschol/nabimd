@@ -139,6 +139,37 @@ export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
     )
   }
 
+  if (everyInput(shape, /^(?:https?:\/\/|www\.)$/)) {
+    return instruction("Type the URL scheme to create an ", "automatic URL")
+  }
+
+  if (everyInput(shape, /^\\$/)) {
+    return instruction(
+      `Type ${inputs.length > 1 ? "backslashes" : "a backslash"} for a `,
+      "Markdown escape",
+    )
+  }
+
+  if (everyInput(shape, /^\[\^[^\]]+\](?::[\t ]*)?$/)) {
+    return instruction("Type the matching Markdown marker for a ", "footnote")
+  }
+
+  if (
+    inputs.length === 2 &&
+    inputs[0] === "<" &&
+    inputs[1] === ">"
+  ) {
+    const destination = shape.locked.find(
+      (value) => value.includes("://") || value.includes("@"),
+    ) ?? ""
+    return instruction(
+      "Wrap the address in angle brackets to create an ",
+      destination.includes("@") && !destination.includes("://")
+        ? "angle-bracket email"
+        : "angle-bracket URL",
+    )
+  }
+
   // Table rows are the one family the marks cannot name on their own: a header
   // row and the divider under it can both be nothing but bars. A bar counts
   // when the learner types it, or when it sits in a locked run holding nothing
@@ -491,6 +522,12 @@ export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
     return instruction("Add the Markdown punctuation for an ", "image")
   }
   if (leading.startsWith("[")) {
+    if (inputs.some((value) => value === '"' || value === "'")) {
+      return instruction(
+        "Add the Markdown punctuation and title delimiters for a ",
+        "link with a title",
+      )
+    }
     return instruction("Add the Markdown punctuation for a ", "link")
   }
   // The count still comes from the card. Two list items that also carry bold
