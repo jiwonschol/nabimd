@@ -127,6 +127,38 @@ describe("buildReviewCorrections", () => {
     ])
   })
 
+  it("keeps a document-wide syntax requirement separate from a local repair", () => {
+    const target = "**Owner:** ~~old~~"
+    const problem = problemWith(target, [
+      {
+        ...checkBase("owner-bold", 10),
+        kind: "inline-presence",
+        scope: { kind: "document" },
+        inline: "strong",
+        min: 1,
+      },
+      {
+        ...checkBase("needs-deletion", 20),
+        kind: "syntax-presence",
+        syntax: "strikethrough",
+        min: 1,
+      },
+    ])
+    const evaluation = failedEvaluation(problem, "Owner: old")
+    const corrections = buildReviewCorrections(problem, evaluation, "Owner: old")
+
+    expect(corrections.map((correction) => correction.id)).toEqual([
+      "owner-bold",
+      "needs-deletion",
+    ])
+    expect(corrections[0]?.attachedFailureIds).toEqual(["owner-bold"])
+    expect(corrections[1]).toMatchObject({
+      kind: "structure",
+      learnerExcerpt: null,
+      attachedFailureIds: ["needs-deletion"],
+    })
+  })
+
   it("orders independent errors by their fixed Goal positions", () => {
     const target = [
       "# Guide",

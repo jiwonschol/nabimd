@@ -103,6 +103,20 @@ function nestedQuoteInstruction(
 export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
   const { inputs } = shape
 
+  const breakInputs = inputs.filter((_value, index) =>
+    shape.inputFamilies[index]?.startsWith("break@"),
+  )
+  if (
+    breakInputs.length === inputs.length &&
+    breakInputs.some((value) => value === "\\") &&
+    breakInputs.some((value) => SPACE_RUN.test(value))
+  ) {
+    return instruction(
+      "Complete each line ending with its shown hard-break form to force a ",
+      "line break",
+    )
+  }
+
   if (
     inputs.length > 0 &&
     inputs.every(
@@ -174,14 +188,15 @@ export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
     inputs[0] === "<" &&
     inputs[1] === ">"
   ) {
-    const destination = shape.locked.find(
-      (value) => value.includes("://") || value.includes("@"),
-    ) ?? ""
+    const closingIndex = inputs.indexOf(">")
+    const destination = shape.lockedBefore[closingIndex] ?? ""
     return instruction(
       "Wrap the address in angle brackets to create an ",
-      destination.includes("@") && !destination.includes("://")
-        ? "angle-bracket email"
-        : "angle-bracket URL",
+      /^[A-Za-z][A-Za-z0-9+.-]{1,31}:/.test(destination)
+        ? "angle-bracket URL"
+        : destination.includes("@")
+          ? "angle-bracket email"
+          : "angle-bracket URL",
     )
   }
 

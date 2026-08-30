@@ -99,7 +99,7 @@ function targetNodeForCheck(
         (node) => node.type === "code",
       ) as PositionedNode | undefined
     case "syntax-presence":
-      return context.blocks[0] as PositionedNode | undefined
+      return undefined
   }
 }
 
