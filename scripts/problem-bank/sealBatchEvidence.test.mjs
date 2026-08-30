@@ -69,10 +69,7 @@ async function makeCliBatch() {
     resolve(sourceBank, "runtime-projections.generated.json"),
     resolve(bankRoot, "runtime-projections.generated.json"),
   )
-  await cp(
-    resolve(sourceBank, "tracker.generated.json"),
-    resolve(bankRoot, "tracker.generated.json"),
-  )
+  await copyTrackerFixture(sourceBank, bankRoot)
   const reviewName = (await readdir(resolve(batchDir, "reviews")))
     .filter((name) => name.endsWith(".json"))
     .sort()[0]
@@ -88,6 +85,21 @@ async function removeBatchFromTracker(bankRoot, batchId) {
   const tracker = JSON.parse(await readFile(trackerPath, "utf8"))
   tracker.batches = (tracker.batches ?? []).filter(
     (batch) => batch.batchId !== batchId,
+  )
+  await writeFile(trackerPath, `${JSON.stringify(tracker, null, 2)}\n`)
+}
+
+async function copyTrackerFixture(sourceBank, bankRoot) {
+  const trackerPath = resolve(bankRoot, "tracker.generated.json")
+  await cp(resolve(sourceBank, "tracker.generated.json"), trackerPath)
+  const batchIds = new Set(
+    (await readdir(resolve(bankRoot, "batches"), { withFileTypes: true }))
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name),
+  )
+  const tracker = JSON.parse(await readFile(trackerPath, "utf8"))
+  tracker.batches = (tracker.batches ?? []).filter((batch) =>
+    batchIds.has(batch.batchId),
   )
   await writeFile(trackerPath, `${JSON.stringify(tracker, null, 2)}\n`)
 }
@@ -234,10 +246,7 @@ test("resealing multiple published edits rebuilds the chain only after every sea
     resolve(sourceBank, "runtime-projections.generated.json"),
     resolve(bankRoot, "runtime-projections.generated.json"),
   )
-  await cp(
-    resolve(sourceBank, "tracker.generated.json"),
-    resolve(bankRoot, "tracker.generated.json"),
-  )
+  await copyTrackerFixture(sourceBank, bankRoot)
 
   const batchDirs = batchIds.map((batchId) => resolve(batchesRoot, batchId))
   for (const [index, batchDir] of batchDirs.entries()) {
@@ -481,10 +490,7 @@ test("semantic chain validation fails before any seal is written", async () => {
     resolve(sourceBank, "runtime-projections.generated.json"),
     resolve(bankRoot, "runtime-projections.generated.json"),
   )
-  await cp(
-    resolve(sourceBank, "tracker.generated.json"),
-    resolve(bankRoot, "tracker.generated.json"),
-  )
+  await copyTrackerFixture(sourceBank, bankRoot)
   const reviewName = (await readdir(resolve(targetDir, "reviews")))
     .filter((name) => name.endsWith(".json"))
     .sort()[0]
@@ -521,7 +527,7 @@ test("a published batch missing editorial blocks a later reseal", async () => {
     })
   }
   await cp(resolve(sourceBank, "runtime-projections.generated.json"), resolve(bankRoot, "runtime-projections.generated.json"))
-  await cp(resolve(sourceBank, "tracker.generated.json"), resolve(bankRoot, "tracker.generated.json"))
+  await copyTrackerFixture(sourceBank, bankRoot)
   await unlink(resolve(batchesRoot, batchIds[0], "editorial.json"))
   const targetDir = resolve(batchesRoot, batchIds[1])
   const reviewName = (await readdir(resolve(targetDir, "reviews"))).find((name) => name.endsWith(".json"))
@@ -550,10 +556,7 @@ test("a tracker-only published batch missing editorial blocks resealing", async 
     resolve(sourceBank, "runtime-projections.generated.json"),
     resolve(bankRoot, "runtime-projections.generated.json"),
   )
-  await cp(
-    resolve(sourceBank, "tracker.generated.json"),
-    resolve(bankRoot, "tracker.generated.json"),
-  )
+  await copyTrackerFixture(sourceBank, bankRoot)
   await unlink(resolve(batchDir, "editorial.json"))
 
   await assert.rejects(
@@ -572,7 +575,7 @@ test("the no-argument write command reports drift in immutable batches", async (
   await mkdir(batchesRoot, { recursive: true })
   await cp(resolve(sourceBank, "batches", batchId), batchDir, { recursive: true })
   await cp(resolve(sourceBank, "runtime-projections.generated.json"), resolve(bankRoot, "runtime-projections.generated.json"))
-  await cp(resolve(sourceBank, "tracker.generated.json"), resolve(bankRoot, "tracker.generated.json"))
+  await copyTrackerFixture(sourceBank, bankRoot)
   await resealBatchEvidence({ batchDir, write: true })
   await run("git", ["init"], { cwd: repository })
   await run("git", ["config", "user.name", "Nabi Test"], { cwd: repository })
@@ -609,10 +612,7 @@ test("the default write repairs generated drift for immutable batches", async ()
     resolve(sourceBank, "runtime-projections.generated.json"),
     resolve(bankRoot, "runtime-projections.generated.json"),
   )
-  await cp(
-    resolve(sourceBank, "tracker.generated.json"),
-    resolve(bankRoot, "tracker.generated.json"),
-  )
+  await copyTrackerFixture(sourceBank, bankRoot)
   await resealBatchEvidence({ batchDir, write: true })
   await run("git", ["init"], { cwd: repository })
   await run("git", ["config", "user.name", "Nabi Test"], { cwd: repository })
@@ -661,6 +661,15 @@ test("the default command rejects a missing tracker-recorded batch directory", a
     await readFile(resolve(bankRoot, "tracker.generated.json"), "utf8"),
     trackerBefore,
   )
+  const remainingBatchDir = resolve(
+    bankRoot,
+    "batches",
+    "2026-07-19-milestone-1-foundation-001",
+  )
+  await assert.rejects(
+    resealBatchEvidence({ batchDir: remainingBatchDir, write: true }),
+    /tracker-recorded batch directories are missing/i,
+  )
 })
 
 test("a review can be resealed before editorial evidence exists", async () => {
@@ -672,7 +681,7 @@ test("a review can be resealed before editorial evidence exists", async () => {
   await mkdir(resolve(bankRoot, "batches"), { recursive: true })
   await cp(resolve(sourceBank, "batches", batchId), batchDir, { recursive: true })
   await cp(resolve(sourceBank, "runtime-projections.generated.json"), resolve(bankRoot, "runtime-projections.generated.json"))
-  await cp(resolve(sourceBank, "tracker.generated.json"), resolve(bankRoot, "tracker.generated.json"))
+  await copyTrackerFixture(sourceBank, bankRoot)
   await removeBatchFromTracker(bankRoot, batchId)
   await unlink(resolve(batchDir, "editorial.json"))
   await unlink(resolve(batchDir, "summary.generated.json"))
@@ -695,7 +704,7 @@ test("invalid review evidence cannot be sealed before editorial exists", async (
   await mkdir(resolve(bankRoot, "batches"), { recursive: true })
   await cp(resolve(sourceBank, "batches", batchId), batchDir, { recursive: true })
   await cp(resolve(sourceBank, "runtime-projections.generated.json"), resolve(bankRoot, "runtime-projections.generated.json"))
-  await cp(resolve(sourceBank, "tracker.generated.json"), resolve(bankRoot, "tracker.generated.json"))
+  await copyTrackerFixture(sourceBank, bankRoot)
   await removeBatchFromTracker(bankRoot, batchId)
   await unlink(resolve(batchDir, "editorial.json"))
   await unlink(resolve(batchDir, "summary.generated.json"))
@@ -730,7 +739,7 @@ test("rerunning repairs a stale generated chain after seals already match", asyn
   await mkdir(batchesRoot, { recursive: true })
   await cp(resolve(sourceBank, "batches", batchId), targetDir, { recursive: true })
   await cp(resolve(sourceBank, "runtime-projections.generated.json"), resolve(bankRoot, "runtime-projections.generated.json"))
-  await cp(resolve(sourceBank, "tracker.generated.json"), resolve(bankRoot, "tracker.generated.json"))
+  await copyTrackerFixture(sourceBank, bankRoot)
   const summaryPath = resolve(targetDir, "summary.generated.json")
   const staleSummary = await readFile(summaryPath, "utf8")
   const reviewName = (await readdir(resolve(targetDir, "reviews"))).find((name) => name.endsWith(".json"))
@@ -762,7 +771,7 @@ test("resealing recreates a missing published summary", async () => {
     )
   }
   await cp(resolve(sourceBank, "runtime-projections.generated.json"), resolve(bankRoot, "runtime-projections.generated.json"))
-  await cp(resolve(sourceBank, "tracker.generated.json"), resolve(bankRoot, "tracker.generated.json"))
+  await copyTrackerFixture(sourceBank, bankRoot)
   await unlink(resolve(batchDir, "summary.generated.json"))
 
   const drift = await resealBatchEvidence({ batchDir, write: false })
@@ -783,7 +792,7 @@ test("resealing recreates the terminal published summary from the tracker", asyn
     await cp(resolve(sourceBank, "batches", batchId), resolve(bankRoot, "batches", batchId), { recursive: true })
   }
   await cp(resolve(sourceBank, "runtime-projections.generated.json"), resolve(bankRoot, "runtime-projections.generated.json"))
-  await cp(resolve(sourceBank, "tracker.generated.json"), resolve(bankRoot, "tracker.generated.json"))
+  await copyTrackerFixture(sourceBank, bankRoot)
   await unlink(resolve(terminalBatchDir, "summary.generated.json"))
 
   const drift = await resealBatchEvidence({ batchDir: terminalBatchDir, write: false })
@@ -800,10 +809,7 @@ test("resealing recreates a missing runtime projection artifact", async () => {
   const batchDir = resolve(bankRoot, "batches", batchId)
   await mkdir(resolve(bankRoot, "batches"), { recursive: true })
   await cp(resolve(sourceBank, "batches", batchId), batchDir, { recursive: true })
-  await cp(
-    resolve(sourceBank, "tracker.generated.json"),
-    resolve(bankRoot, "tracker.generated.json"),
-  )
+  await copyTrackerFixture(sourceBank, bankRoot)
 
   const drift = await resealBatchEvidence({ batchDir, write: false })
   assert.ok(drift.changed.includes("runtime-projections.generated.json"))
@@ -844,7 +850,7 @@ test("the default write repairs mutable chain drift without blaming immutable se
   await mkdir(batchesRoot, { recursive: true })
   await cp(resolve(sourceBank, "batches", firstBatchId), resolve(batchesRoot, firstBatchId), { recursive: true })
   await cp(resolve(sourceBank, "runtime-projections.generated.json"), resolve(bankRoot, "runtime-projections.generated.json"))
-  await cp(resolve(sourceBank, "tracker.generated.json"), resolve(bankRoot, "tracker.generated.json"))
+  await copyTrackerFixture(sourceBank, bankRoot)
   await resealBatchEvidence({ batchDir: resolve(batchesRoot, firstBatchId), write: true })
   await run("git", ["init"], { cwd: repository })
   await run("git", ["config", "user.name", "Nabi Test"], { cwd: repository })

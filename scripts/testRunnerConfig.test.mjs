@@ -1,9 +1,13 @@
 import { readdir, readFile } from "node:fs/promises"
-import { resolve } from "node:path"
+import { relative, resolve } from "node:path"
 import { describe, expect, it } from "vitest"
 import { parseAst } from "vite"
 
 const repositoryRoot = resolve(import.meta.dirname, "..")
+
+export function repositoryTestPath(path, root = repositoryRoot, relativePath = relative) {
+  return relativePath(root, path).replaceAll("\\", "/")
+}
 
 async function scriptTestFiles() {
   const found = []
@@ -118,7 +122,7 @@ describe("test runner configuration", () => {
     let nodeTestFiles = 0
     let vitestFiles = 0
     for (const path of files) {
-      const relative = path.slice(repositoryRoot.length + 1)
+      const relative = repositoryTestPath(path)
       const source = await readFile(path, "utf8")
       // An import statement, not a mention: this file names both runners in
       // its own assertions and would otherwise classify itself.
@@ -138,6 +142,14 @@ describe("test runner configuration", () => {
     // A sweep that matched neither kind would satisfy both branches above.
     expect(nodeTestFiles).toBeGreaterThan(0)
     expect(vitestFiles).toBeGreaterThan(0)
+  })
+
+  it("normalizes discovered test paths to Git-style separators", () => {
+    expect(
+      repositoryTestPath("ignored", "ignored", () =>
+        String.raw`scripts\problem-bank\batchPipeline.test.mjs`,
+      ),
+    ).toBe("scripts/problem-bank/batchPipeline.test.mjs")
   })
 
   it("recognizes valid node:test import forms", () => {

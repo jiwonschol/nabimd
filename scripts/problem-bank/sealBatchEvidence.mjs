@@ -237,6 +237,7 @@ export async function resealBatchEvidenceSet({ batchDirs, write = false }) {
 
   if (write && batchDirs.length > 0) {
     const bankRoot = dirname(dirname(batchDirs[0]))
+    await assertTrackedBatchDirectoriesExist(bankRoot)
     const loaded = await loadBatchDirectories(bankRoot)
     const loaderErrors = loaded.flatMap((batch) => batch.loaderErrors ?? [])
     if (loaderErrors.length > 0) {
@@ -295,9 +296,7 @@ export async function listBatchDirectories(bankRoot) {
 
 export const DEFAULT_BANK_ROOT = "curriculum/problem-bank/batches"
 
-async function assertTrackedBatchDirectoriesExist(batchDirs) {
-  if (batchDirs.length === 0) return
-  const bankRoot = dirname(dirname(batchDirs[0]))
+async function assertTrackedBatchDirectoriesExist(bankRoot) {
   let tracker
   try {
     tracker = JSON.parse(
@@ -307,6 +306,7 @@ async function assertTrackedBatchDirectoriesExist(batchDirs) {
     if (error.code === "ENOENT") return
     throw error
   }
+  const batchDirs = await listBatchDirectories(resolve(bankRoot, "batches"))
   const directoryIds = new Set(batchDirs.map((batchDir) => basename(batchDir)))
   const missing = (tracker.batches ?? [])
     .map((batch) => batch.batchId)
@@ -435,7 +435,11 @@ async function main(argv) {
     ? args.map((value) => resolve(process.cwd(), value))
     : await listBatchDirectories(resolve(process.cwd(), DEFAULT_BANK_ROOT))
 
-  if (args.length === 0) await assertTrackedBatchDirectoriesExist(targets)
+  if (args.length === 0) {
+    await assertTrackedBatchDirectoriesExist(
+      dirname(resolve(process.cwd(), DEFAULT_BANK_ROOT)),
+    )
+  }
 
   if (args.length > 0) {
     const missing = []
