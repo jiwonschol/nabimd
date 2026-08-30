@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-08-31-l2-l3-unlock-035",
+  "normalizedArtifactDigest": "c3ec97793ca261f1edc541e35a3b30031d196184042ad47b9bad61f27ffc2573",
+  "fixtureArtifactDigest": "b1b7231fd7da51196d7af0c68bbf800ac27cf60b1cbfd5e476e67c1a74248ac0",
+  "verificationDigest": "64d53b73b9eb5b1f422aca36634a8be7d55da3b6e89ce57b4c4388ed6f645a0f",
+  "entries": [
+    {
+      "candidateId": "l2-bold-italic-1",
+      "revision": 1,
+      "candidateDigest": "4db77a7f165d00c07649e62c8fd5492904443e4fdc07c710111ad7fa0539b39e",
+      "problemDigest": "752b6c80464d370a1a9fb3ee881b0cecbe9c91a2554393b32aaf72f19a08af65",
+      "fixtureDefinitionDigest": "97a6d2565d6d846587afc6921bad0fe7d4ca48266cf3613fae3619ab7b1e258f",
+      "fixtureResultsDigest": "aff3b0e29d558446b100209eec86d41a7a3056d34e732a652dbe63fb041e53d0",
+      "fixtureCount": 6,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l2-bold-italic-2",
+      "revision": 1,
+      "candidateDigest": "240881544266ea5b8b7453222248d152e3c156dc9417dde72698e16a89bbb408",
+      "problemDigest": "ad7965d85c77320ad0686b81b57a8ff00649bd63217be98da820642600e7c516",
+      "fixtureDefinitionDigest": "e9d9ee6224a12187fc97a8aac0712937d2a2465211ae35bda81c514541f21e50",
+      "fixtureResultsDigest": "8c96c7cde42473f08c98df22ae6503676919192d07e8cd643dfb1e8291947c06",
+      "fixtureCount": 6,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l2-code-block-language-1",
+      "revision": 1,
+      "candidateDigest": "6c5bc6f3badd01217b44cfc5adf9b77c561cedc3b6d9cef15569590a90d453b2",
+      "problemDigest": "3ce14c0e053421f8521b9e84dc629ac0337393643654dd3aacae3b6ec38c01e7",
+      "fixtureDefinitionDigest": "76c3a849474019d5ce0c3cc9ee7b796b118cf24681fca8a05ebf2f33a9c2f12d",
+      "fixtureResultsDigest": "2ab8b0c55e831ee2ec3fc70a7ec5de5980f8f90c2de091c8fd6e2d66a794f308",
+      "fixtureCount": 6,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l2-code-block-language-2",
+      "revision": 1,
+      "candidateDigest": "0db12ca773878930f067bfe964b6e3c75cec0de60ced51b835ec94ae17224f93",
+      "problemDigest": "edca6b573b31ff360dbe5af015708839ed54532f4271465b4d98aa6aa56f242d",
+      "fixtureDefinitionDigest": "6b3b04d0e07ff2229ae24a2c70cdfdb2fa1cabdb9e9dd33c09a9d617f5325bee",
+      "fixtureResultsDigest": "f8f08034f3b5407cd1e95c5aedccff91f9baa77f04d5b83ec8751ae7a09cc065",
+      "fixtureCount": 6,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l2-hard-line-break-1",
+      "revision": 1,
+      "candidateDigest": "ca4d0f3dca4f08f95228f65abf7940d5680a9ea35613057493fc87f3174f9ea9",
+      "problemDigest": "3704c69287e3fabaaa4a01e078af57c4b04530abbafb5a010a9b547dfb3ba095",
+      "fixtureDefinitionDigest": "e1ee58ad57461d078eed82a345a62b5320d0c5a107dae15d999883e47f602118",
+      "fixtureResultsDigest": "64f719504381b70ed5f3f33902558b65e2a58ddbf7e2cd3010c4c9e89bc83819",
+      "fixtureCount": 6,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l2-hard-line-break-2",
+      "revision": 1,
+      "candidateDigest": "ab439f098f8644859b32b685a907d08190e1a15f9cbba2a8e6fa97fbf519fa3e",
+      "problemDigest": "852071b79e3b85913a69ee3ea20c19fa583ac879027b05dfb7e04ab677c51a77",
+      "fixtureDefinitionDigest": "b146e8c16b58ae16821ab109bf877dc1f08bc55109ed31da241a606373b844a6",
+      "fixtureResultsDigest": "3a88640ac6d0062310bca122d87d001a0897144eed57e464fe4c8076666d96a8",
+      "fixtureCount": 6,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l2-nested-blockquote-1",
+      "revision": 1,
+      "candidateDigest": "697151486e462d5d25966f57cb9227313745783eff3f760d1b3fc497bd7ba683",
+      "problemDigest": "0424b4478e282447496747394dae31b6804650a9a30f0a2e420ba7eaf3ec9b71",
+      "fixtureDefinitionDigest": "640a36b2dd6b7334076227be749545cd80dd5e38da3fda73a15583fb01675a82",
+      "fixtureResultsDigest": "2f28e8392bbc8df19f5fc07766f242ea066fbbdad0043675957e50a1faa2cfd2",
+      "fixtureCount": 6,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l2-nested-blockquote-2",
+      "revision": 1,
+      "candidateDigest": "84d49f98d764db4194808cda334e4fed1bd9fe441ca812af08af18c376a3b1f8",
+      "problemDigest": "af905609b4bcb505bc93411f074dd97b21ed83ec55e1e344c8ff301773431516",
+      "fixtureDefinitionDigest": "d9e5541be7a70fc2825cbfbc000208d1e9b5e2f9c3f970ed26b31b071aab2427",
+      "fixtureResultsDigest": "2fb232f383bdc0c43d34fed23d937e5dd25abc752843ae796dd066b91a690ae1",
+      "fixtureCount": 6,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l2-strikethrough-1",
+      "revision": 1,
+      "candidateDigest": "8b12a0e3efc50709e37221ecdd2aa47e8699901e52087e72b52a712a0c9aecb6",
+      "problemDigest": "36f89e6db389934896317b072883c070c3fe7e8cd87cf371ca5904257f206567",
+      "fixtureDefinitionDigest": "d547f9234de0bb14bb54123642ab5ed50be40fad57dd43ad77225f91a0b607b1",
+      "fixtureResultsDigest": "edda3ede787c46aa29c8c35f00caefcee2c112d8f452afb54467cc4c96b7b010",
+      "fixtureCount": 6,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l2-strikethrough-2",
+      "revision": 1,
+      "candidateDigest": "3c38a3be1771d3d8e425de5a4f13084f36ca979cbe6f973dfa533b8e6bcfdf87",
+      "problemDigest": "458e56a62f2d8fc2f97f9a6247eb64551943d013d8f018a1fecd844971385df2",
+      "fixtureDefinitionDigest": "43d1e7d10a0f9e561eec67553866b432a03ae07e5ae6b8a5f6a38e2daf68873e",
+      "fixtureResultsDigest": "5ac0c51ca77a6a8524c75f2505fbb8054e749ea5ab6ace071691d6ece5641c14",
+      "fixtureCount": 6,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l3-angle-bracket-email-1",
+      "revision": 1,
+      "candidateDigest": "80199403ac15c007d8c5ac25233ac8edb900ffd3d1a51044a1f5572a178cf349",
+      "problemDigest": "6343e3bae22335a72b31bac2923d0c26764d50671a0bf1e8388cf0052f8e83fe",
+      "fixtureDefinitionDigest": "b6fd32423b1730368e1ff66aa82d76f11278ae0e550894d5ca81128e2444c212",
+      "fixtureResultsDigest": "74050a9282fd849ff9442ca320120ed1135eb37457515585d80a96364d6fc6c8",
+      "fixtureCount": 8,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l3-angle-bracket-email-2",
+      "revision": 1,
+      "candidateDigest": "b390d4baf03284090ee5e5aa4306ed6001f9491fa0ba540c007694ed3132e992",
+      "problemDigest": "76c893382ba981c4a31b77fde4d535c7fd1638490a455522a3fee92c5d73775f",
+      "fixtureDefinitionDigest": "438d2ab0dfe49d9f31678a071c27720493de8e303833ef32f26940a0e93d99ab",
+      "fixtureResultsDigest": "1e111562018091a76acdaadc0c590b39027da9e0064a89e57891677cc969f7be",
+      "fixtureCount": 8,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l3-angle-bracket-url-1",
+      "revision": 1,
+      "candidateDigest": "a6cbe7f16a20b54741b739338cee172b4dc5c916e4bfafc099f133afdab448e5",
+      "problemDigest": "beb44817e5f4c73652bfcae50b4aa152227ab6e5a498ebb100d0d4b7dc3addb1",
+      "fixtureDefinitionDigest": "b9e8af6bf33f156e3edd85427ed185a6c86fe6a05337ec25e38d794f0397cc9d",
+      "fixtureResultsDigest": "21a69cef46e7492fcfa6981316c779d48cd89db59849598d54377667446dd6ae",
+      "fixtureCount": 7,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l3-angle-bracket-url-2",
+      "revision": 1,
+      "candidateDigest": "2e6597bc239fc300f31f93cbf4cca3be48ee4efa23fb1f00df55c9840ca2ecc8",
+      "problemDigest": "2de34486ca33afb03e62f1b45c1cf02f87d9207dc8ca54002e4be7573860fca6",
+      "fixtureDefinitionDigest": "63fe9293a05d7b0d1b40d6ff9a7193d5832066c442761188308bd838b43e68e3",
+      "fixtureResultsDigest": "e246f8b85ccdcc857fd5ed4acabb5a1563258b0692054180428224f70753769f",
+      "fixtureCount": 7,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l3-escape-1",
+      "revision": 1,
+      "candidateDigest": "5113692ac43036f25cfc296ad94ae979557fde05ba0ff9c458400732cd509899",
+      "problemDigest": "bea1000975f76d9362b2374ecdceb71c7a723f633fc00c5b804f37b041b616aa",
+      "fixtureDefinitionDigest": "85eb8878ee8ba0382ddb4ac61000715f6d359030173b5e464353d0c73c419c5f",
+      "fixtureResultsDigest": "c9e2ea3b93ab5fc4482eb2cb140e02992631ab878fcd815a9240b9f92c23ec98",
+      "fixtureCount": 8,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l3-escape-2",
+      "revision": 1,
+      "candidateDigest": "414034bfd7c208ff6ae8bc4d240332d504f62413b0eadc85713d95fb42553366",
+      "problemDigest": "50b437b133ba4ac90d47d2a05652d660db79b6d574f92a563c99c1db0842175f",
+      "fixtureDefinitionDigest": "dd51c13cc0d085c9f649f55db951bb707b309d980556e09a62f98bd81d6b6431",
+      "fixtureResultsDigest": "5e6c4dd95b45843bae6fff44b037a20f05702b31e32b287ad8ed5e5ae212a3dd",
+      "fixtureCount": 8,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l3-footnote-1",
+      "revision": 1,
+      "candidateDigest": "5e8eef193c66060de86629b5d27a998fa770779632fb8330464eb3703dfb5da9",
+      "problemDigest": "252b199db18ecf857464f27646187c7ce9d43a72275e5536df80e51ac35cb6eb",
+      "fixtureDefinitionDigest": "83ebdd557926f41998db12bf87da6abf446bcd39b46b42e19a8ab9124edb8ea2",
+      "fixtureResultsDigest": "afcb7069c785c736140b5de9135f3efb1529b4f11025402ae768b86b313847d0",
+      "fixtureCount": 8,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l3-footnote-2",
+      "revision": 1,
+      "candidateDigest": "b9dfd3116be90d3f61888f268884eeaec42444659c7e49a7202a8f5a75d04786",
+      "problemDigest": "e85cd271a3a5667b98387b93d37415fed5959f24b227d2318be62dfd834722f7",
+      "fixtureDefinitionDigest": "00db07215d2c7537f43868716463fe48928289d7e19fcd208d4424ca6988bbbe",
+      "fixtureResultsDigest": "2086d3bcca13b21aebe48c39fcb84283ba6352a18cadae2c3122adb1b0266ec2",
+      "fixtureCount": 8,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l3-link-title-1",
+      "revision": 1,
+      "candidateDigest": "b7661be29403033cab0e4594816aaa062de8dad98739c23dfcb18b2854fed7cb",
+      "problemDigest": "aeddcd0cb859b822372bdacbf76569369048f6874f45c667b0772cba4fd2e044",
+      "fixtureDefinitionDigest": "c8809af774ea20ddd82f91020d2624cdb42dbd3eef826af8d98a3f8615908c0c",
+      "fixtureResultsDigest": "0fdcb5ff7232a93a2087bf657693504bc65a95654a8841d79596dd251aa2d723",
+      "fixtureCount": 7,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l3-link-title-2",
+      "revision": 1,
+      "candidateDigest": "a8bd41b8a795ebd0ab7793a1199183224f77618da4a7a33dc6e78713758e067f",
+      "problemDigest": "af60141846bb7d31cc84cf5d7ba0a3c49bf99a355cd52c85c53cb5a0d9ca9a1d",
+      "fixtureDefinitionDigest": "b9441d1740103d0bafcac64675deb18814d1da1f29e77ceae1b2e79b665c9323",
+      "fixtureResultsDigest": "9e577e5fd42ad6486c1fe5bd0f19cbb8d629d0e6187f760d3528f8782f3ee6ba",
+      "fixtureCount": 7,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l3-list-with-block-1",
+      "revision": 1,
+      "candidateDigest": "aef6f4f7470011ee909353ff911d14ad3eeabfd6f2fbcd3a7ff1c784de16e222",
+      "problemDigest": "69531590e3c1732d5bac6d065314c539c6304d1a6ba97ba4887e6446404b6530",
+      "fixtureDefinitionDigest": "b685f85801971314c8507270966b010c12a036ebad0aa7fe564c1f64dd783700",
+      "fixtureResultsDigest": "b47e45c77b86b91fb45af9b36252e91c22ba7e928fd43493e89310e133c1c778",
+      "fixtureCount": 7,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l3-list-with-block-2",
+      "revision": 1,
+      "candidateDigest": "e1e247bd51dbb47d336abd1b46365bf675ee27df6319d7a1250cfd982161d30f",
+      "problemDigest": "7fb9cab281cc48aab28e6ebe9dd9241929cc04ef020b1ccc7205fa1a1c04b309",
+      "fixtureDefinitionDigest": "6fbffae054bfbf8eec9c75a21afa613bf565b70bdff346bdcd43f65ee49f25f9",
+      "fixtureResultsDigest": "91b3812d86be59124e558dfecb4f60ea80027d1ebedf7538450ff147bb6ac07b",
+      "fixtureCount": 7,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l3-mixed-link-title-email",
+      "revision": 1,
+      "candidateDigest": "95cc42db7d9243b5c8c11af89b8afb9581cc37503f66f09ee6fd39081653b236",
+      "problemDigest": "ad5794b61d1b6d0333c03c9e6dc79de788da1732b262d5ee416a6d43ca8fca09",
+      "fixtureDefinitionDigest": "2eb9ecabf20a7bbe5d257193fd93057cde1ec3770f6bb474ab1d26e63b79570c",
+      "fixtureResultsDigest": "f9d92f67f66826f38dea6de77b60634fa296b4ac70cd2d8bf7671f843526732a",
+      "fixtureCount": 8,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    },
+    {
+      "candidateId": "l3-mixed-list-angle-url",
+      "revision": 1,
+      "candidateDigest": "384f404a6fd60b2cc6d8cdf086172ff61acd4de5962732ab34a81e2a846dbdb1",
+      "problemDigest": "a8ef63508608ca53e9211be4d82ec5a78ffde985607db74c60f574c421faa624",
+      "fixtureDefinitionDigest": "ab55111cfb08b8116936f4f3ca3e981f216e778719b46060fb0a3dced8633358",
+      "fixtureResultsDigest": "187a7b49df3e534de2c017391b8a2ad35ac00ef3725fd0ee946c977ba6d61deb",
+      "fixtureCount": 7,
+      "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
+    }
+  ],
+  "manifestDigest": "3ccb4dff7eb4eb98550bd8334c8ab06adca0850d051e059d9781fccabc2a9c21"
+}

@@ -1,4 +1,4 @@
-# Batch 034: Level 2 and Level 3 unlock candidates
+# Batch 035: Level 2 and Level 3 unlock candidates
 
 Prepare short, independently reviewable exercises for every Level 2 and Level 3
 syntax that the current parser, grader, guided checkpoint generator, and learner
@@ -7,7 +7,7 @@ not support them.
 
 ## Coverage
 
-- Create two dedicated standard problems for each of the six supported Level 2
+- Create two dedicated standard problems for each of the five supported Level 2
   elements and each of the six supported Level 3 elements.
 - Create two standard mixed exercises owned by Level 3. Each must combine two
   Level 3 elements, produce no more than five guided checkpoints, and avoid a

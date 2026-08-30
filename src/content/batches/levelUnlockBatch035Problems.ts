@@ -1,6 +1,6 @@
 import type { NormalizedProblem, SyntaxPresenceKind } from "../types"
 
-export const levelUnlockBatch034Id = "2026-08-31-l2-l3-unlock-034"
+export const levelUnlockBatch035Id = "2026-08-31-l2-l3-unlock-035"
 
 const curriculumVersion = "2026-07-19"
 
@@ -82,7 +82,7 @@ function createSingleProblem(input: SingleInput, variant: number): NormalizedPro
       domains: [input.level === 2 ? "everyday-notes" : "workplace-notes"],
       terms: [...new Set(target.match(/[A-Za-z]+/g) ?? [])].slice(0, 8),
     },
-    sourceBatchId: levelUnlockBatch034Id,
+    sourceBatchId: levelUnlockBatch035Id,
     revision: 1,
     curriculumVersion,
     contentVariant: `variant-${suffix}`,
@@ -159,13 +159,13 @@ const mixedProblems: readonly NormalizedProblem[] = mixedInputs.map((input, inde
     domains: ["workplace-notes"],
     terms: [...new Set(input.target.match(/[A-Za-z]+/g) ?? [])].slice(0, 8),
   },
-  sourceBatchId: levelUnlockBatch034Id,
+  sourceBatchId: levelUnlockBatch035Id,
   revision: 1,
   curriculumVersion,
   contentVariant: index === 0 ? "link-and-email" : "list-and-url",
 }))
 
-export const levelUnlockBatch034Problems: readonly NormalizedProblem[] = [
+export const levelUnlockBatch035Problems: readonly NormalizedProblem[] = [
   ...singleProblems,
   ...mixedProblems,
 ]

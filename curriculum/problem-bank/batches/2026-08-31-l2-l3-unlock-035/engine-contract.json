@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "policyId": "real-engine-contract-v1",
-  "policyDigest": "76c6f522ecd1d3a5867a610bca45c80bb29f2a86f7bce5da5d66fa0fefa263e1",
+  "policyDigest": "f1e83d1dd45d53793379d08bb8a8c05426a092ab988c337f5790442103570b12",
   "files": [
     {
       "path": "package-lock.json",
@@ -14,6 +14,10 @@
     {
       "path": "src/content/types.ts",
       "sha256": "1c571de9955d9ce6edce7f7a3d95dbd305775c6f2eb74ae4178b22d471bb238f"
+    },
+    {
+      "path": "src/editor/renderedMarkdown.ts",
+      "sha256": "8b0dbdaa205866e9aaac48b93798be35fb90087a831d1af9be6885cb1515aea1"
     },
     {
       "path": "src/engine/evaluateProblem.ts",
@@ -74,5 +78,5 @@
       "version": "3.0.0"
     }
   ],
-  "engineContractDigest": "c9cc671aa5fc38965a5fb4bd4b9f3692e85136b092ff48dab506ca24e83110eb"
+  "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8"
 }

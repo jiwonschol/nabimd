@@ -1,245 +1,245 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-31-l2-l3-unlock-034",
-  "engineContractDigest": "c9cc671aa5fc38965a5fb4bd4b9f3692e85136b092ff48dab506ca24e83110eb",
+  "batchId": "2026-08-31-l2-l3-unlock-035",
+  "engineContractDigest": "c00e0b00ad5dd44a74f9059869c29c8cbefdb3f9acb984772f01832fc4be68c8",
   "candidates": [
     {
       "candidateId": "l2-bold-italic-1",
       "revision": 1,
-      "candidateDigest": "0fcdb83bcca53e97e3a3fb55ac3bc5f16464e2def86de335c15469c92b89f8df",
-      "problemDigest": "a48417da90dab2fb5223932265166952bcbc8fedfa2752a7108ca8a0a6a67983",
+      "candidateDigest": "4db77a7f165d00c07649e62c8fd5492904443e4fdc07c710111ad7fa0539b39e",
+      "problemDigest": "752b6c80464d370a1a9fb3ee881b0cecbe9c91a2554393b32aaf72f19a08af65",
       "fixtureDefinitionDigest": "97a6d2565d6d846587afc6921bad0fe7d4ca48266cf3613fae3619ab7b1e258f",
-      "fixtureResultsDigest": "79542d5b168d4fffe3d4be8bebd9fd85ad296c9bc7c3822062211f5959431e73",
+      "fixtureResultsDigest": "aff3b0e29d558446b100209eec86d41a7a3056d34e732a652dbe63fb041e53d0",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-bold-italic-2",
       "revision": 1,
-      "candidateDigest": "9841610753f417b8c1e52ebc0992b1b65eb9473766a3cab9648040975794237b",
-      "problemDigest": "7c2128d9f23bab181b39742d50ec571f76ec91e3e499e1c256e1477075c666e4",
+      "candidateDigest": "240881544266ea5b8b7453222248d152e3c156dc9417dde72698e16a89bbb408",
+      "problemDigest": "ad7965d85c77320ad0686b81b57a8ff00649bd63217be98da820642600e7c516",
       "fixtureDefinitionDigest": "e9d9ee6224a12187fc97a8aac0712937d2a2465211ae35bda81c514541f21e50",
-      "fixtureResultsDigest": "2d6d1cb4d212ea8fda3a11a5eb47459fc4d8204802a83f07040d2d6a199f1dd9",
+      "fixtureResultsDigest": "8c96c7cde42473f08c98df22ae6503676919192d07e8cd643dfb1e8291947c06",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-code-block-language-1",
       "revision": 1,
-      "candidateDigest": "c457f1d912680e815c48f24682eff2ee06891df1f13db87f54149273b8296f95",
-      "problemDigest": "af3f503c0f77c8df8819f5061f4ba97ca84bebd4222166793f66d68bd869691a",
+      "candidateDigest": "6c5bc6f3badd01217b44cfc5adf9b77c561cedc3b6d9cef15569590a90d453b2",
+      "problemDigest": "3ce14c0e053421f8521b9e84dc629ac0337393643654dd3aacae3b6ec38c01e7",
       "fixtureDefinitionDigest": "76c3a849474019d5ce0c3cc9ee7b796b118cf24681fca8a05ebf2f33a9c2f12d",
-      "fixtureResultsDigest": "ad8775cbfb46606b5da9bfe3a59b02f3b6d5ec7fa54e208ff405b7907d154d6e",
+      "fixtureResultsDigest": "2ab8b0c55e831ee2ec3fc70a7ec5de5980f8f90c2de091c8fd6e2d66a794f308",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-code-block-language-2",
       "revision": 1,
-      "candidateDigest": "12ac470e91fa5604c930b15ea976c4087f24c76e502dfd4a7e3cc08fa5a80313",
-      "problemDigest": "3d0f62d5cedb926fd32970d151f348a11a1fd3448d1dc3eb68c0992d097239f7",
+      "candidateDigest": "0db12ca773878930f067bfe964b6e3c75cec0de60ced51b835ec94ae17224f93",
+      "problemDigest": "edca6b573b31ff360dbe5af015708839ed54532f4271465b4d98aa6aa56f242d",
       "fixtureDefinitionDigest": "6b3b04d0e07ff2229ae24a2c70cdfdb2fa1cabdb9e9dd33c09a9d617f5325bee",
-      "fixtureResultsDigest": "d34f5d53cfaa29407f1be241da3715d828d7be55a3969b18b0902370ac7d34ca",
+      "fixtureResultsDigest": "f8f08034f3b5407cd1e95c5aedccff91f9baa77f04d5b83ec8751ae7a09cc065",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-hard-line-break-1",
       "revision": 1,
-      "candidateDigest": "63e9d53c99c4fbec5f9f187abe774d0900a359c8dc064f2bf9a91ed067a181ba",
-      "problemDigest": "07a8dad48634a9f9d5be5cfdf6d1beb27262c02c22436aecd3435ceff33ad501",
+      "candidateDigest": "ca4d0f3dca4f08f95228f65abf7940d5680a9ea35613057493fc87f3174f9ea9",
+      "problemDigest": "3704c69287e3fabaaa4a01e078af57c4b04530abbafb5a010a9b547dfb3ba095",
       "fixtureDefinitionDigest": "e1ee58ad57461d078eed82a345a62b5320d0c5a107dae15d999883e47f602118",
-      "fixtureResultsDigest": "7c961f75988def2881415fdb02d538a546fe0f5d04e8159fad4ca2f50a54a08b",
+      "fixtureResultsDigest": "64f719504381b70ed5f3f33902558b65e2a58ddbf7e2cd3010c4c9e89bc83819",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-hard-line-break-2",
       "revision": 1,
-      "candidateDigest": "248cad3a63977f746b7aded666b35ddb33c2ee8d732ebdba4f3f27f30ee7ebcd",
-      "problemDigest": "5ba4da8576aa04583d1dd732c845b16ebdcf7e5cbfc75082f980bfcf31f4a766",
+      "candidateDigest": "ab439f098f8644859b32b685a907d08190e1a15f9cbba2a8e6fa97fbf519fa3e",
+      "problemDigest": "852071b79e3b85913a69ee3ea20c19fa583ac879027b05dfb7e04ab677c51a77",
       "fixtureDefinitionDigest": "b146e8c16b58ae16821ab109bf877dc1f08bc55109ed31da241a606373b844a6",
-      "fixtureResultsDigest": "0950110b9adab82d3681b0c9379ef9f063660e5c2e4eb39e8fb06623bc113ea3",
+      "fixtureResultsDigest": "3a88640ac6d0062310bca122d87d001a0897144eed57e464fe4c8076666d96a8",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-nested-blockquote-1",
       "revision": 1,
-      "candidateDigest": "da29c45bab3ac81a8b3b9e8f7b75b48f0514c13760bcfc73959157c55ee0a90b",
-      "problemDigest": "160fc569e440e46aec19e4397bb5b97adebde4c244fa61ffd8a304397620edb3",
+      "candidateDigest": "697151486e462d5d25966f57cb9227313745783eff3f760d1b3fc497bd7ba683",
+      "problemDigest": "0424b4478e282447496747394dae31b6804650a9a30f0a2e420ba7eaf3ec9b71",
       "fixtureDefinitionDigest": "640a36b2dd6b7334076227be749545cd80dd5e38da3fda73a15583fb01675a82",
-      "fixtureResultsDigest": "3f0a1dcde659e2493cc07a58008e18723c0af1318029416f916e2aeab663b68a",
+      "fixtureResultsDigest": "2f28e8392bbc8df19f5fc07766f242ea066fbbdad0043675957e50a1faa2cfd2",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-nested-blockquote-2",
       "revision": 1,
-      "candidateDigest": "aeb6da60a8f41a9579cce565d25d1cd79333b45d7d5e435c53836fd612906d11",
-      "problemDigest": "4c3b9e2efcc563cfaba699eadac8c1d4a3280b7ec7312e7ba3e22610fe5488ad",
+      "candidateDigest": "84d49f98d764db4194808cda334e4fed1bd9fe441ca812af08af18c376a3b1f8",
+      "problemDigest": "af905609b4bcb505bc93411f074dd97b21ed83ec55e1e344c8ff301773431516",
       "fixtureDefinitionDigest": "d9e5541be7a70fc2825cbfbc000208d1e9b5e2f9c3f970ed26b31b071aab2427",
-      "fixtureResultsDigest": "30111ee06440036cfc12d8675878ebbb69d91247318477a23956d8058b6482d0",
+      "fixtureResultsDigest": "2fb232f383bdc0c43d34fed23d937e5dd25abc752843ae796dd066b91a690ae1",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-strikethrough-1",
       "revision": 1,
-      "candidateDigest": "9d2e755c5d301c1bab057e62ed3cfc868a1c035edd23e9718be55fea71c4e6b4",
-      "problemDigest": "017b4915f636a9551ae8b6060d15dcbac56acbfcf86fc62dcefc5bc2cbb29c61",
+      "candidateDigest": "8b12a0e3efc50709e37221ecdd2aa47e8699901e52087e72b52a712a0c9aecb6",
+      "problemDigest": "36f89e6db389934896317b072883c070c3fe7e8cd87cf371ca5904257f206567",
       "fixtureDefinitionDigest": "d547f9234de0bb14bb54123642ab5ed50be40fad57dd43ad77225f91a0b607b1",
-      "fixtureResultsDigest": "b7ee01a2242704b8f23e101cdab8dc837d2d4533a9d63fa11e8d564c039a1d0b",
+      "fixtureResultsDigest": "edda3ede787c46aa29c8c35f00caefcee2c112d8f452afb54467cc4c96b7b010",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-strikethrough-2",
       "revision": 1,
-      "candidateDigest": "8043213e3ae1e3d144c1b2b843cf81a8b9a2e563b173e790faed3304c7670da7",
-      "problemDigest": "de8f96d72673fecbffc8483fa12e3038c2421e8fc17dfc3aef94d96a9d61ee32",
+      "candidateDigest": "3c38a3be1771d3d8e425de5a4f13084f36ca979cbe6f973dfa533b8e6bcfdf87",
+      "problemDigest": "458e56a62f2d8fc2f97f9a6247eb64551943d013d8f018a1fecd844971385df2",
       "fixtureDefinitionDigest": "43d1e7d10a0f9e561eec67553866b432a03ae07e5ae6b8a5f6a38e2daf68873e",
-      "fixtureResultsDigest": "46bd2fd4260f8c171d3c439415003f7658d3050b1db6490e59fd56cc8e460a6f",
+      "fixtureResultsDigest": "5ac0c51ca77a6a8524c75f2505fbb8054e749ea5ab6ace071691d6ece5641c14",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l3-angle-bracket-email-1",
       "revision": 1,
-      "candidateDigest": "3893963a4a8f5d26aec9ebd8b5134cf3941fe0c1b3c7ee76572cffa4a43f2df5",
-      "problemDigest": "20e85ea3a8dd619df2d9c9fbf1d721283d033d11d99fc1ad0109cd9a640a4821",
-      "fixtureDefinitionDigest": "0c8c12b6abb5489a1fe5cf5fcbf657581c990df97be67f352e1ac7b8cc2bdb8a",
-      "fixtureResultsDigest": "2edfb975668734cbbe2f649d45ed6d7589be0842c57d8662eed72dd4a65c9d2d",
-      "fixtureCount": 7,
+      "candidateDigest": "80199403ac15c007d8c5ac25233ac8edb900ffd3d1a51044a1f5572a178cf349",
+      "problemDigest": "6343e3bae22335a72b31bac2923d0c26764d50671a0bf1e8388cf0052f8e83fe",
+      "fixtureDefinitionDigest": "b6fd32423b1730368e1ff66aa82d76f11278ae0e550894d5ca81128e2444c212",
+      "fixtureResultsDigest": "74050a9282fd849ff9442ca320120ed1135eb37457515585d80a96364d6fc6c8",
+      "fixtureCount": 8,
       "passed": true
     },
     {
       "candidateId": "l3-angle-bracket-email-2",
       "revision": 1,
-      "candidateDigest": "b60ddfe9b0f12aa71fbaafc3407b12aff059ba24f6a1a674f31e9f6a759be505",
-      "problemDigest": "3074d1e3cdd6a423d9725df29d3e0c0c2f53143e346d67aad6c9c2ac65d95181",
-      "fixtureDefinitionDigest": "4a24d57f048fc887771e8b0aa3d116ac748ed318c0a539af2cc12d7bb21c264c",
-      "fixtureResultsDigest": "1aabd10300a24aedc78a41b931c79e36e2496f9c4271a46c9dbcfcbf21bf5486",
-      "fixtureCount": 7,
+      "candidateDigest": "b390d4baf03284090ee5e5aa4306ed6001f9491fa0ba540c007694ed3132e992",
+      "problemDigest": "76c893382ba981c4a31b77fde4d535c7fd1638490a455522a3fee92c5d73775f",
+      "fixtureDefinitionDigest": "438d2ab0dfe49d9f31678a071c27720493de8e303833ef32f26940a0e93d99ab",
+      "fixtureResultsDigest": "1e111562018091a76acdaadc0c590b39027da9e0064a89e57891677cc969f7be",
+      "fixtureCount": 8,
       "passed": true
     },
     {
       "candidateId": "l3-angle-bracket-url-1",
       "revision": 1,
-      "candidateDigest": "55cd70a43f12bcd61492f153a8f5f064d776dfe12c0286c2a0381763dff3656d",
-      "problemDigest": "bc7afb5c45b6c7399f61d496ec6d461d18bb4010cdbebff9d27879526cb0de31",
+      "candidateDigest": "a6cbe7f16a20b54741b739338cee172b4dc5c916e4bfafc099f133afdab448e5",
+      "problemDigest": "beb44817e5f4c73652bfcae50b4aa152227ab6e5a498ebb100d0d4b7dc3addb1",
       "fixtureDefinitionDigest": "b9e8af6bf33f156e3edd85427ed185a6c86fe6a05337ec25e38d794f0397cc9d",
-      "fixtureResultsDigest": "a173efaa88a7b14cd22062457fc65518d1fc711a9f52ddcd605c9b8f005d9b10",
+      "fixtureResultsDigest": "21a69cef46e7492fcfa6981316c779d48cd89db59849598d54377667446dd6ae",
       "fixtureCount": 7,
       "passed": true
     },
     {
       "candidateId": "l3-angle-bracket-url-2",
       "revision": 1,
-      "candidateDigest": "03129a1c5b2f2f0401830385ab98ade97c382008b0c2592e1f81dc8ba734e59e",
-      "problemDigest": "5a61d3b331737ac1288d6af08980dfe856bb6543664c176e4c4f492dbee724cd",
+      "candidateDigest": "2e6597bc239fc300f31f93cbf4cca3be48ee4efa23fb1f00df55c9840ca2ecc8",
+      "problemDigest": "2de34486ca33afb03e62f1b45c1cf02f87d9207dc8ca54002e4be7573860fca6",
       "fixtureDefinitionDigest": "63fe9293a05d7b0d1b40d6ff9a7193d5832066c442761188308bd838b43e68e3",
-      "fixtureResultsDigest": "b5f8520b87ec39b8558c53aaabba23e4f81acd033e5e9d48915783630efc8f12",
+      "fixtureResultsDigest": "e246f8b85ccdcc857fd5ed4acabb5a1563258b0692054180428224f70753769f",
       "fixtureCount": 7,
       "passed": true
     },
     {
       "candidateId": "l3-escape-1",
       "revision": 1,
-      "candidateDigest": "570183085746b14101e042e4b8b5d64ab5708fccc2d61318c2053561d40a4d2b",
-      "problemDigest": "3eac4e3d14617bd5d96cda1981b985438524e737b4d937da92dd41c8aed7cccd",
+      "candidateDigest": "5113692ac43036f25cfc296ad94ae979557fde05ba0ff9c458400732cd509899",
+      "problemDigest": "bea1000975f76d9362b2374ecdceb71c7a723f633fc00c5b804f37b041b616aa",
       "fixtureDefinitionDigest": "85eb8878ee8ba0382ddb4ac61000715f6d359030173b5e464353d0c73c419c5f",
-      "fixtureResultsDigest": "e209b8568d2be5ca4efae2ac749013670aa90558c029ba65b8508d689d42e502",
+      "fixtureResultsDigest": "c9e2ea3b93ab5fc4482eb2cb140e02992631ab878fcd815a9240b9f92c23ec98",
       "fixtureCount": 8,
       "passed": true
     },
     {
       "candidateId": "l3-escape-2",
       "revision": 1,
-      "candidateDigest": "d0c1dcf8f264fad0d7e11ce196846d20d94a58019cbb710dce34b755d17eabdb",
-      "problemDigest": "d56d721b0b09897447004b9720667bf88839d9c28a8e6db97eed624583272850",
+      "candidateDigest": "414034bfd7c208ff6ae8bc4d240332d504f62413b0eadc85713d95fb42553366",
+      "problemDigest": "50b437b133ba4ac90d47d2a05652d660db79b6d574f92a563c99c1db0842175f",
       "fixtureDefinitionDigest": "dd51c13cc0d085c9f649f55db951bb707b309d980556e09a62f98bd81d6b6431",
-      "fixtureResultsDigest": "9ff0518c50e9697f07cf829a38d179676c8bf14ffb375b5196522143548884b6",
+      "fixtureResultsDigest": "5e6c4dd95b45843bae6fff44b037a20f05702b31e32b287ad8ed5e5ae212a3dd",
       "fixtureCount": 8,
       "passed": true
     },
     {
       "candidateId": "l3-footnote-1",
       "revision": 1,
-      "candidateDigest": "0e0078c66c68cb40364af734e19331957b3a0b907f55b28fc72a059fb39687a0",
-      "problemDigest": "aeb4d59e45d40d58b87ff7f6c8c73603685a7c2efe9887b17f4f3f381f2edbfd",
+      "candidateDigest": "5e8eef193c66060de86629b5d27a998fa770779632fb8330464eb3703dfb5da9",
+      "problemDigest": "252b199db18ecf857464f27646187c7ce9d43a72275e5536df80e51ac35cb6eb",
       "fixtureDefinitionDigest": "83ebdd557926f41998db12bf87da6abf446bcd39b46b42e19a8ab9124edb8ea2",
-      "fixtureResultsDigest": "d6bbddac7920ae771c2683f005e35b448e9a563af1804ebf2ff0407c30e64d7e",
+      "fixtureResultsDigest": "afcb7069c785c736140b5de9135f3efb1529b4f11025402ae768b86b313847d0",
       "fixtureCount": 8,
       "passed": true
     },
     {
       "candidateId": "l3-footnote-2",
       "revision": 1,
-      "candidateDigest": "6f003468df08804c02d41fb56890f887e9f9d36efd1ffe6665058c2f7daadac4",
-      "problemDigest": "1e5317069336f1cd195b98781fe812a20b4ea73b924bcf56564c624848fea33b",
+      "candidateDigest": "b9dfd3116be90d3f61888f268884eeaec42444659c7e49a7202a8f5a75d04786",
+      "problemDigest": "e85cd271a3a5667b98387b93d37415fed5959f24b227d2318be62dfd834722f7",
       "fixtureDefinitionDigest": "00db07215d2c7537f43868716463fe48928289d7e19fcd208d4424ca6988bbbe",
-      "fixtureResultsDigest": "d75fae10ba32b37fdfa541cf38f01ffc1348f50e24ff0005305f22aa04f82632",
+      "fixtureResultsDigest": "2086d3bcca13b21aebe48c39fcb84283ba6352a18cadae2c3122adb1b0266ec2",
       "fixtureCount": 8,
       "passed": true
     },
     {
       "candidateId": "l3-link-title-1",
       "revision": 1,
-      "candidateDigest": "941c3d23f9f7aab762f6f65d85fcd7ad8065d78cac2f7eebd4881fd810bdf8b5",
-      "problemDigest": "30aebf4ef8899e17c3fddea13453b58e679922c11861590689451ff6e037d2ff",
+      "candidateDigest": "b7661be29403033cab0e4594816aaa062de8dad98739c23dfcb18b2854fed7cb",
+      "problemDigest": "aeddcd0cb859b822372bdacbf76569369048f6874f45c667b0772cba4fd2e044",
       "fixtureDefinitionDigest": "c8809af774ea20ddd82f91020d2624cdb42dbd3eef826af8d98a3f8615908c0c",
-      "fixtureResultsDigest": "266a315f75c86dcf8b7b86f96e68dfaa2335980daf52cc6c44bcfa4574ce7167",
+      "fixtureResultsDigest": "0fdcb5ff7232a93a2087bf657693504bc65a95654a8841d79596dd251aa2d723",
       "fixtureCount": 7,
       "passed": true
     },
     {
       "candidateId": "l3-link-title-2",
       "revision": 1,
-      "candidateDigest": "1e89f6881cc793c9cbe37f8505c6f4d49a7f5bd980c291c47b2d8e6854452445",
-      "problemDigest": "f0803acc72178bcce0b5f41e416c9fd6fc88b9fd0c8dc873fa6746db3ad9490d",
+      "candidateDigest": "a8bd41b8a795ebd0ab7793a1199183224f77618da4a7a33dc6e78713758e067f",
+      "problemDigest": "af60141846bb7d31cc84cf5d7ba0a3c49bf99a355cd52c85c53cb5a0d9ca9a1d",
       "fixtureDefinitionDigest": "b9441d1740103d0bafcac64675deb18814d1da1f29e77ceae1b2e79b665c9323",
-      "fixtureResultsDigest": "4add82b987c74792e701ea3b4147da86ce483b774c235c7cf5f76b6bd9ceb47f",
+      "fixtureResultsDigest": "9e577e5fd42ad6486c1fe5bd0f19cbb8d629d0e6187f760d3528f8782f3ee6ba",
       "fixtureCount": 7,
       "passed": true
     },
     {
       "candidateId": "l3-list-with-block-1",
       "revision": 1,
-      "candidateDigest": "abdfdd29462e47bb2bc84520a8ab48c9ac0be6a971fc299ad0f3576c4fba0acd",
-      "problemDigest": "c7f83f2c8aad8ac9700418f4959bf2de17d055fb82b735579a7a2152c2cbb3b7",
+      "candidateDigest": "aef6f4f7470011ee909353ff911d14ad3eeabfd6f2fbcd3a7ff1c784de16e222",
+      "problemDigest": "69531590e3c1732d5bac6d065314c539c6304d1a6ba97ba4887e6446404b6530",
       "fixtureDefinitionDigest": "b685f85801971314c8507270966b010c12a036ebad0aa7fe564c1f64dd783700",
-      "fixtureResultsDigest": "6b05175da871dd680191d2c2399359302164d8faeb465ff3bdb4f21b2d0d6e8b",
+      "fixtureResultsDigest": "b47e45c77b86b91fb45af9b36252e91c22ba7e928fd43493e89310e133c1c778",
       "fixtureCount": 7,
       "passed": true
     },
     {
       "candidateId": "l3-list-with-block-2",
       "revision": 1,
-      "candidateDigest": "84f4723c0fe86905f01cf20a851539a9ba18e0634794a729eebe9fd587766c3d",
-      "problemDigest": "a5ae64c7306cb5d984711a8dd34da0da4d5e6b72e15eaa541821424f65792af8",
+      "candidateDigest": "e1e247bd51dbb47d336abd1b46365bf675ee27df6319d7a1250cfd982161d30f",
+      "problemDigest": "7fb9cab281cc48aab28e6ebe9dd9241929cc04ef020b1ccc7205fa1a1c04b309",
       "fixtureDefinitionDigest": "6fbffae054bfbf8eec9c75a21afa613bf565b70bdff346bdcd43f65ee49f25f9",
-      "fixtureResultsDigest": "31a81e1b900570d0fe687a9b5be4de522d97cd0727cfb6c76d2df56158f3c82f",
+      "fixtureResultsDigest": "91b3812d86be59124e558dfecb4f60ea80027d1ebedf7538450ff147bb6ac07b",
       "fixtureCount": 7,
       "passed": true
     },
     {
       "candidateId": "l3-mixed-link-title-email",
       "revision": 1,
-      "candidateDigest": "4c048ad39bf23deb4eec38a6a14d83f19c4c06ba59f5524bdea5cd854f13e2d0",
-      "problemDigest": "73e3db36f7eeb8781c0304d0116ebff891dfbcc1db7f3b9b8fa104d87fe7c845",
-      "fixtureDefinitionDigest": "82ccfcc8fa5b325e778d8d6596faa0549765358628f509f79352c02c77169f01",
-      "fixtureResultsDigest": "db57a1ae1d39caf3ac23a914e8bed886e92faff0272a750ebb74d8d108dcd74d",
-      "fixtureCount": 7,
+      "candidateDigest": "95cc42db7d9243b5c8c11af89b8afb9581cc37503f66f09ee6fd39081653b236",
+      "problemDigest": "ad5794b61d1b6d0333c03c9e6dc79de788da1732b262d5ee416a6d43ca8fca09",
+      "fixtureDefinitionDigest": "2eb9ecabf20a7bbe5d257193fd93057cde1ec3770f6bb474ab1d26e63b79570c",
+      "fixtureResultsDigest": "f9d92f67f66826f38dea6de77b60634fa296b4ac70cd2d8bf7671f843526732a",
+      "fixtureCount": 8,
       "passed": true
     },
     {
       "candidateId": "l3-mixed-list-angle-url",
       "revision": 1,
-      "candidateDigest": "add482440740fdf24b42c188add8e05de6b76dc7a6aebb16fd99c289266c9684",
-      "problemDigest": "eeddba24c1246e21b20a7a05d176a5d11a6c8a9c4443c053a958a88c4bfb7b53",
+      "candidateDigest": "384f404a6fd60b2cc6d8cdf086172ff61acd4de5962732ab34a81e2a846dbdb1",
+      "problemDigest": "a8ef63508608ca53e9211be4d82ec5a78ffde985607db74c60f574c421faa624",
       "fixtureDefinitionDigest": "ab55111cfb08b8116936f4f3ca3e981f216e778719b46060fb0a3dced8633358",
-      "fixtureResultsDigest": "eb2bb685d939c0b130fe20b2ad6c434b157b2069af8ff1479363935dff30bb3c",
+      "fixtureResultsDigest": "187a7b49df3e534de2c017391b8a2ad35ac00ef3725fd0ee946c977ba6d61deb",
       "fixtureCount": 7,
       "passed": true
     }
@@ -1142,6 +1142,20 @@
       "passed": true
     },
     {
+      "fixtureId": "l3-angle-bracket-email-1-mailto-uri",
+      "problemId": "l3-angle-bracket-email-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "passed": true
+    },
+    {
       "fixtureId": "l3-angle-bracket-email-1-malformed",
       "problemId": "l3-angle-bracket-email-1",
       "problemRevision": 1,
@@ -1236,6 +1250,20 @@
       "actual": {
         "status": "fail",
         "feedbackId": "keep-short"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-angle-bracket-email-2-mailto-uri",
+      "problemId": "l3-angle-bracket-email-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
       },
       "passed": true
     },
@@ -2374,6 +2402,20 @@
       "passed": true
     },
     {
+      "fixtureId": "l3-mixed-link-title-email-mailto-uri",
+      "problemId": "l3-mixed-link-title-email",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-angle-bracket-email"
+      },
+      "passed": true
+    },
+    {
       "fixtureId": "l3-mixed-link-title-email-malformed",
       "problemId": "l3-mixed-link-title-email",
       "problemRevision": 1,
@@ -2515,5 +2557,5 @@
     }
   ],
   "errors": [],
-  "verificationDigest": "57c627486f21e691a4cf9b62e84f1e6c3ad43164a19c70e34180eb0f6b0d1f9f"
+  "verificationDigest": "64d53b73b9eb5b1f422aca36634a8be7d55da3b6e89ce57b4c4388ed6f645a0f"
 }

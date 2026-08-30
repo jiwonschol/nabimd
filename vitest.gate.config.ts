@@ -33,7 +33,7 @@ export default defineConfig({
       "scripts/problem-bank/imageBatch029Artifacts.gate.ts",
       "scripts/problem-bank/tableBatch030Artifacts.gate.ts",
       "scripts/problem-bank/tableBatch031Artifacts.gate.ts",
-      "scripts/problem-bank/levelUnlockBatch034Artifacts.gate.ts",
+      "scripts/problem-bank/levelUnlockBatch035Artifacts.gate.ts",
       "scripts/problem-bank/runtimeBudget.gate.ts",
     ],
   },

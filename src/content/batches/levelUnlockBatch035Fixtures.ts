@@ -1,5 +1,5 @@
 import type { FixtureRole, ProblemFixture, SyntaxPresenceKind } from "../types"
-import { levelUnlockBatch034Problems } from "./levelUnlockBatch034Problems"
+import { levelUnlockBatch035Problems } from "./levelUnlockBatch035Problems"
 
 type SupportedUnlockSyntax = Exclude<
   SyntaxPresenceKind,
@@ -48,7 +48,7 @@ function fixture(problemId: string, role: FixtureRole, source: string, expectedS
   }
 }
 
-function singleFixtures(problem: (typeof levelUnlockBatch034Problems)[number]): readonly ProblemFixture[] {
+function singleFixtures(problem: (typeof levelUnlockBatch035Problems)[number]): readonly ProblemFixture[] {
   const syntax = problem.skillIds[0] as SupportedUnlockSyntax
   const sources = singleSources[syntax]
   const checkId = `use-${syntax}`
@@ -89,10 +89,22 @@ function singleFixtures(problem: (typeof levelUnlockBatch034Problems)[number]): 
       ),
     )
   }
+  if (syntax === "angle-bracket-email") {
+    fixtures.push(
+      fixture(
+        problem.id,
+        "edge-case",
+        "<mailto:foo>",
+        "fail",
+        failed,
+        "mailto-uri",
+      ),
+    )
+  }
   return fixtures
 }
 
-function mixedFixtures(problem: (typeof levelUnlockBatch034Problems)[number]): readonly ProblemFixture[] {
+function mixedFixtures(problem: (typeof levelUnlockBatch035Problems)[number]): readonly ProblemFixture[] {
   const [first, second] = problem.skillIds
   const isLinkMix = first === "link-title"
   const sources = isLinkMix
@@ -109,7 +121,7 @@ function mixedFixtures(problem: (typeof levelUnlockBatch034Problems)[number]): r
         malformed: "- Reference\n\n  > Visit https://example.net.",
       }
   const matched = { expectedReviewIds: [] } as const
-  return [
+  const fixtures = [
     fixture(problem.id, "canonical", problem.target, "matched", matched),
     fixture(problem.id, "different-prose", sources.different, "matched", matched),
     fixture(problem.id, "case-spelling-variation", sources.caseVariation, "matched", matched),
@@ -118,9 +130,25 @@ function mixedFixtures(problem: (typeof levelUnlockBatch034Problems)[number]): r
     fixture(problem.id, "matched-with-review", `${sources.different}\n\nPlain follow-up.`, "matched", matched),
     fixture(problem.id, "edge-case", `${sources.different}\n${Array.from({ length: 28 }, (_, index) => `Plain line ${index + 1}.`).join("\n")}`, "fail", { expectedFeedbackId: "keep-short", exercisesCheckId: "keep-short" }),
   ]
+  if (isLinkMix) {
+    fixtures.push(
+      fixture(
+        problem.id,
+        "edge-case",
+        '[Map](https://example.net "Office map")\n\nEmail <mailto:foo>.',
+        "fail",
+        {
+          expectedFeedbackId: `use-${second}`,
+          exercisesCheckId: `use-${second}`,
+        },
+        "mailto-uri",
+      ),
+    )
+  }
+  return fixtures
 }
 
-export const levelUnlockBatch034Fixtures: readonly ProblemFixture[] =
-  levelUnlockBatch034Problems.flatMap((problem) =>
+export const levelUnlockBatch035Fixtures: readonly ProblemFixture[] =
+  levelUnlockBatch035Problems.flatMap((problem) =>
     problem.skillIds.length === 1 ? singleFixtures(problem) : mixedFixtures(problem),
   )
