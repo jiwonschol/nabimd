@@ -1,5 +1,5 @@
 import assert from "node:assert/strict"
-import { cp, mkdtemp, mkdir, readFile, writeFile, readdir, unlink } from "node:fs/promises"
+import { cp, mkdtemp, mkdir, readFile, writeFile, readdir, rm, unlink } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import { resolve } from "node:path"
 import test from "node:test"
@@ -543,6 +543,7 @@ test("the no-argument write command reports drift in immutable batches", async (
   await cp(resolve(sourceBank, "batches", batchId), batchDir, { recursive: true })
   await cp(resolve(sourceBank, "runtime-projections.generated.json"), resolve(bankRoot, "runtime-projections.generated.json"))
   await cp(resolve(sourceBank, "tracker.generated.json"), resolve(bankRoot, "tracker.generated.json"))
+  await resealBatchEvidence({ batchDir, write: true })
   await run("git", ["init"], { cwd: repository })
   await run("git", ["config", "user.name", "Nabi Test"], { cwd: repository })
   await run("git", ["config", "user.email", "nabi@example.com"], { cwd: repository })
@@ -563,6 +564,73 @@ test("the no-argument write command reports drift in immutable batches", async (
   assert.equal(result.code, 1)
   assert.match(result.stderr, /Immutable baseline evidence has drifted/)
   assert.match(result.stderr, /publish a new replacement batch instead/)
+})
+
+test("the default write repairs generated drift for immutable batches", async () => {
+  const sourceBank = resolve(import.meta.dirname, "../../curriculum/problem-bank")
+  const repository = await mkdtemp(resolve(tmpdir(), "nabimd-immutable-chain-"))
+  const bankRoot = resolve(repository, "curriculum/problem-bank")
+  const batchesRoot = resolve(bankRoot, "batches")
+  const batchId = "2026-07-19-milestone-1-foundation-001"
+  const batchDir = resolve(batchesRoot, batchId)
+  await mkdir(batchesRoot, { recursive: true })
+  await cp(resolve(sourceBank, "batches", batchId), batchDir, { recursive: true })
+  await cp(
+    resolve(sourceBank, "runtime-projections.generated.json"),
+    resolve(bankRoot, "runtime-projections.generated.json"),
+  )
+  await cp(
+    resolve(sourceBank, "tracker.generated.json"),
+    resolve(bankRoot, "tracker.generated.json"),
+  )
+  await resealBatchEvidence({ batchDir, write: true })
+  await run("git", ["init"], { cwd: repository })
+  await run("git", ["config", "user.name", "Nabi Test"], { cwd: repository })
+  await run("git", ["config", "user.email", "nabi@example.com"], { cwd: repository })
+  await run("git", ["add", "."], { cwd: repository })
+  await run("git", ["commit", "-m", "published baseline"], { cwd: repository })
+  await run("git", ["branch", "-M", "main"], { cwd: repository })
+  await run("git", ["checkout", "-b", "feature"], { cwd: repository })
+  await writeFile(resolve(repository, "feature.txt"), "feature\n")
+  await run("git", ["add", "feature.txt"], { cwd: repository })
+  await run("git", ["commit", "-m", "feature"], { cwd: repository })
+  const runtimePath = resolve(bankRoot, "runtime-projections.generated.json")
+  await unlink(runtimePath)
+
+  const result = await runCli([], repository, { ...process.env, NABI_BASE_SHA: "" })
+  assert.equal(result.code, 0, result.stderr)
+  await assert.doesNotReject(readFile(runtimePath, "utf8"))
+})
+
+test("the default command rejects a missing tracker-recorded batch directory", async () => {
+  const sourceBank = resolve(import.meta.dirname, "../../curriculum/problem-bank")
+  const repository = await mkdtemp(resolve(tmpdir(), "nabimd-missing-batch-dir-"))
+  const bankRoot = resolve(repository, "curriculum/problem-bank")
+  await mkdir(resolve(repository, "curriculum"), { recursive: true })
+  await cp(sourceBank, bankRoot, { recursive: true })
+  await run("git", ["init"], { cwd: repository })
+  await run("git", ["config", "user.name", "Nabi Test"], { cwd: repository })
+  await run("git", ["config", "user.email", "nabi@example.com"], { cwd: repository })
+  await run("git", ["add", "."], { cwd: repository })
+  await run("git", ["commit", "-m", "published baseline"], { cwd: repository })
+  await run("git", ["branch", "-M", "main"], { cwd: repository })
+  await run("git", ["checkout", "-b", "feature"], { cwd: repository })
+  await writeFile(resolve(repository, "feature.txt"), "feature\n")
+  await run("git", ["add", "feature.txt"], { cwd: repository })
+  await run("git", ["commit", "-m", "feature"], { cwd: repository })
+
+  const missingBatchId = "2026-07-19-l1-l2-headings-002"
+  await rm(resolve(bankRoot, "batches", missingBatchId), { recursive: true })
+  const trackerBefore = await readFile(resolve(bankRoot, "tracker.generated.json"), "utf8")
+
+  const result = await runCli([], repository, { ...process.env, NABI_BASE_SHA: "" })
+  assert.notEqual(result.code, 0)
+  assert.match(result.stderr, /tracker-recorded batch directories are missing/i)
+  assert.match(result.stderr, new RegExp(missingBatchId))
+  assert.equal(
+    await readFile(resolve(bankRoot, "tracker.generated.json"), "utf8"),
+    trackerBefore,
+  )
 })
 
 test("a review can be resealed before editorial evidence exists", async () => {
@@ -710,6 +778,29 @@ test("resealing recreates a missing runtime projection artifact", async () => {
   const drift = await resealBatchEvidence({ batchDir, write: false })
   assert.ok(drift.changed.includes("runtime-projections.generated.json"))
   await resealBatchEvidence({ batchDir, write: true })
+  assert.deepEqual((await resealBatchEvidence({ batchDir, write: false })).changed, [])
+})
+
+test("resealing recreates a missing tracker from published summaries", async () => {
+  const sourceBank = resolve(import.meta.dirname, "../../curriculum/problem-bank")
+  const tempRoot = await mkdtemp(resolve(tmpdir(), "nabimd-missing-tracker-"))
+  const bankRoot = resolve(tempRoot, "problem-bank")
+  const batchId = "2026-07-19-milestone-1-foundation-001"
+  const batchDir = resolve(bankRoot, "batches", batchId)
+  await mkdir(resolve(bankRoot, "batches"), { recursive: true })
+  await cp(resolve(sourceBank, "batches", batchId), batchDir, { recursive: true })
+  await cp(
+    resolve(sourceBank, "runtime-projections.generated.json"),
+    resolve(bankRoot, "runtime-projections.generated.json"),
+  )
+
+  const drift = await resealBatchEvidence({ batchDir, write: false })
+  assert.ok(drift.changed.includes("tracker.generated.json"))
+  await resealBatchEvidence({ batchDir, write: true })
+  const tracker = JSON.parse(
+    await readFile(resolve(bankRoot, "tracker.generated.json"), "utf8"),
+  )
+  assert.ok(tracker.batches.some((batch) => batch.batchId === batchId))
   assert.deepEqual((await resealBatchEvidence({ batchDir, write: false })).changed, [])
 })
 

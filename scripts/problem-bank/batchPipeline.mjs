@@ -685,6 +685,12 @@ export function evaluateBatchEvidence({
   const runIds = reviewArray.map((review) => review.reviewRunId)
   for (const duplicate of countDuplicates(reviewerIds)) errors.push(`Duplicate reviewer identity: ${duplicate}`)
   for (const duplicate of countDuplicates(runIds)) errors.push(`Duplicate review run: ${duplicate}`)
+  if (
+    isRecord(editorial) &&
+    (new Set(reviewerIds).size < 2 || new Set(runIds).size < 2)
+  ) {
+    errors.push(`Batch ${normalized.batchId} requires two declared-independent reviews`)
+  }
 
   const expectedReviewDigests = reviewArray.map((review) => review.reviewDigest).sort()
   if (editorialArtifact.schemaVersion !== BATCH_SCHEMA_VERSION) {

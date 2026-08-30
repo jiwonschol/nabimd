@@ -770,6 +770,29 @@ test("evidence requires declared-independent reviewers and a separate editorial 
   )
 })
 
+test("a fully rejected editorial batch still requires two independent reviews", async () => {
+  const evidence = await acceptedBatch()
+  evidence.reviews = [evidence.reviews[0]]
+  evidence.editorial = sealEditorial(
+    {
+      ...evidence.editorial,
+      editorialDigest: undefined,
+      reviewDigests: undefined,
+      decisions: evidence.editorial.decisions.map((decision) => ({
+        ...decision,
+        status: "rejected",
+      })),
+    },
+    evidence.reviews,
+  )
+
+  assert.ok(
+    evaluateBatchEvidence(evidence).errors.some((error) =>
+      error.includes("requires two declared-independent reviews"),
+    ),
+  )
+})
+
 test("editorial evidence rejects decisions for unknown candidates", async () => {
   const evidence = await acceptedBatch()
   evidence.editorial = sealEditorial(

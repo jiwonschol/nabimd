@@ -37,9 +37,14 @@ async function updatePublishedChain({ batchDirs, projectedBatches, write }) {
     return replacement ? { ...batch, ...replacement } : batch
   })
   const trackerPath = resolve(bankRoot, "tracker.generated.json")
-  const committedTracker = JSON.parse(await readFile(trackerPath, "utf8"))
+  let committedTracker = null
+  try {
+    committedTracker = JSON.parse(await readFile(trackerPath, "utf8"))
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error
+  }
   const trackedBatchIds = new Set(
-    (committedTracker.batches ?? []).map((batch) => batch.batchId),
+    (committedTracker?.batches ?? []).map((batch) => batch.batchId),
   )
   const missingPublishedEditorial = projected.filter(
     (batch) =>
@@ -290,6 +295,30 @@ export async function listBatchDirectories(bankRoot) {
 
 export const DEFAULT_BANK_ROOT = "curriculum/problem-bank/batches"
 
+async function assertTrackedBatchDirectoriesExist(batchDirs) {
+  if (batchDirs.length === 0) return
+  const bankRoot = dirname(dirname(batchDirs[0]))
+  let tracker
+  try {
+    tracker = JSON.parse(
+      await readFile(resolve(bankRoot, "tracker.generated.json"), "utf8"),
+    )
+  } catch (error) {
+    if (error.code === "ENOENT") return
+    throw error
+  }
+  const directoryIds = new Set(batchDirs.map((batchDir) => basename(batchDir)))
+  const missing = (tracker.batches ?? [])
+    .map((batch) => batch.batchId)
+    .filter((batchId) => !directoryIds.has(batchId))
+  if (missing.length > 0) {
+    throw new Error(
+      "Tracker-recorded batch directories are missing; refusing to shrink the published chain:\n" +
+        missing.map((batchId) => `- ${batchId}`).join("\n"),
+    )
+  }
+}
+
 export async function resolveBaselineSha(
   cwd = process.cwd(),
   explicitBaseSha = process.env.NABI_BASE_SHA,
@@ -381,6 +410,8 @@ async function main(argv) {
     ? args.map((value) => resolve(process.cwd(), value))
     : await listBatchDirectories(resolve(process.cwd(), DEFAULT_BANK_ROOT))
 
+  if (args.length === 0) await assertTrackedBatchDirectoriesExist(targets)
+
   if (args.length > 0) {
     const missing = []
     for (const target of targets) {
@@ -429,9 +460,6 @@ async function main(argv) {
         )
       }
     }
-    targets = targets.filter(
-      (batchDir) => !protectedTargets.has(repositoryRelativePath(batchDir)),
-    )
   }
 
   const drifted = []
