@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-30-l2-l3-unlock-033",
+  "batchId": "2026-08-31-l2-l3-unlock-034",
   "sequence": 28,
   "curriculumVersion": "2026-07-19",
   "generatedBy": "gpt-5.6-sol-build-time-authoring",
-  "generatedOn": "2026-08-30",
-  "promptSha256": "8bd45edff3a3e0e9b17faf5a14733987c87082a83cad1f68c509c053252cd8bb",
-  "rawArtifactDigest": "fb6bbcb35854010e9e8ee8e779e823166202ae6fd95064e587c6da514f18a486",
+  "generatedOn": "2026-08-31",
+  "promptSha256": "c3c9c5d2827374b212c24816962e59a83b49e25013ba907353016879ce08739f",
+  "rawArtifactDigest": "713d7947a3f525a1b98bba331117b804c4f09b4b01bbdeb1900184572e10f740",
   "candidateCount": 24,
   "candidates": [
     {
@@ -68,8 +68,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "268caf043a599c66dc7d1a6cad6848258a971702281a4f2e8701334613ff401d"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "0fcdb83bcca53e97e3a3fb55ac3bc5f16464e2def86de335c15469c92b89f8df"
     },
     {
       "id": "l2-bold-italic-2",
@@ -130,8 +130,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "3c206e1e76578cdb767ea4427e2ccf3f89d262a4ca5c0395d67cc3ac4d1e2587"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "9841610753f417b8c1e52ebc0992b1b65eb9473766a3cab9648040975794237b"
     },
     {
       "id": "l2-code-block-language-1",
@@ -193,8 +193,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "1a1e9d6f961a9af4fa051cfdbf84a928372186ecea62023e8f79571dbbdde357"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "c457f1d912680e815c48f24682eff2ee06891df1f13db87f54149273b8296f95"
     },
     {
       "id": "l2-code-block-language-2",
@@ -256,8 +256,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "9596cd6a245b77166be4d8b3172d03bb8cca22346db86d7cbbe2f58955af5677"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "12ac470e91fa5604c930b15ea976c4087f24c76e502dfd4a7e3cc08fa5a80313"
     },
     {
       "id": "l2-hard-line-break-1",
@@ -318,8 +318,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "4f94d824e554b9dae3da19eb7f12a564a15258add3c4daaeeb61bae02ccc5c7e"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "63e9d53c99c4fbec5f9f187abe774d0900a359c8dc064f2bf9a91ed067a181ba"
     },
     {
       "id": "l2-hard-line-break-2",
@@ -380,8 +380,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "c4495dd9b18fd599fe38c18930667545b7e375f4f08e9890caeca8a7436081a6"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "248cad3a63977f746b7aded666b35ddb33c2ee8d732ebdba4f3f27f30ee7ebcd"
     },
     {
       "id": "l2-nested-blockquote-1",
@@ -442,8 +442,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "852d81c4b0a7c3e1bc778608f12819b08f62fd5df4bf8ad61a3ae2d3e4581d96"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "da29c45bab3ac81a8b3b9e8f7b75b48f0514c13760bcfc73959157c55ee0a90b"
     },
     {
       "id": "l2-nested-blockquote-2",
@@ -503,8 +503,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "a4251dd4ba4789b413cc6a1240e51c4b87fea29bfdf1d1945f0af243ea24a357"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "aeb6da60a8f41a9579cce565d25d1cd79333b45d7d5e435c53836fd612906d11"
     },
     {
       "id": "l2-strikethrough-1",
@@ -564,8 +564,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "d55fc8572a6bc4431a9a2bba5ef1cf778fa7e3baa24a08c3549b1a35728a87fd"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "9d2e755c5d301c1bab057e62ed3cfc868a1c035edd23e9718be55fea71c4e6b4"
     },
     {
       "id": "l2-strikethrough-2",
@@ -625,8 +625,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "2c53a96c2b4fbc75e94a1e61f1a27731abffeb1e4e1cea3b9fe20a36118a1870"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "8043213e3ae1e3d144c1b2b843cf81a8b9a2e563b173e790faed3304c7670da7"
     },
     {
       "id": "l3-angle-bracket-email-1",
@@ -694,8 +694,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "31bc34d3f1ea934155a63a859cba4528b302adbd12f8702f94fba4d168df4bfd"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "3893963a4a8f5d26aec9ebd8b5134cf3941fe0c1b3c7ee76572cffa4a43f2df5"
     },
     {
       "id": "l3-angle-bracket-email-2",
@@ -763,8 +763,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "8ac3697fb1741f7ffd448ac553a5a0e3e88efdd8a1b99e74d44790e440f87372"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "b60ddfe9b0f12aa71fbaafc3407b12aff059ba24f6a1a674f31e9f6a759be505"
     },
     {
       "id": "l3-angle-bracket-url-1",
@@ -832,8 +832,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "27a46adc13e99f65bf3a50e21b6c3d93bbc9140b7aadd6a692afdd6535ccaba3"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "55cd70a43f12bcd61492f153a8f5f064d776dfe12c0286c2a0381763dff3656d"
     },
     {
       "id": "l3-angle-bracket-url-2",
@@ -902,8 +902,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "26de6a5cca9ef5ee23e1f335afabc993548a385081a101d5da3680e258ae25c4"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "03129a1c5b2f2f0401830385ab98ade97c382008b0c2592e1f81dc8ba734e59e"
     },
     {
       "id": "l3-escape-1",
@@ -970,8 +970,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "819a7b412e420ea92b906fa16d7ffd017a48d265e65c8c4d273bda7034a68686"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "570183085746b14101e042e4b8b5d64ab5708fccc2d61318c2053561d40a4d2b"
     },
     {
       "id": "l3-escape-2",
@@ -1038,8 +1038,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "719bbf85563f1a8009389cbd196a08127c900bbb8ccef2710d3e59de9f30582b"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "d0c1dcf8f264fad0d7e11ce196846d20d94a58019cbb710dce34b755d17eabdb"
     },
     {
       "id": "l3-footnote-1",
@@ -1109,8 +1109,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "31c185e61af262d6e9d8c9b893cdba1eb16b95fef752f440af74d6abd5d66aba"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "0e0078c66c68cb40364af734e19331957b3a0b907f55b28fc72a059fb39687a0"
     },
     {
       "id": "l3-footnote-2",
@@ -1181,8 +1181,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "e15c87f4405bd690c037633f002a3e13615c7b2151e6660c35146516615d76f4"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "6f003468df08804c02d41fb56890f887e9f9d36efd1ffe6665058c2f7daadac4"
     },
     {
       "id": "l3-link-title-1",
@@ -1254,8 +1254,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "452f06a11c7afac1f3b4a62b8f37c04ea48b600df0ef9ca519ce0a5e591d06ef"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "941c3d23f9f7aab762f6f65d85fcd7ad8065d78cac2f7eebd4881fd810bdf8b5"
     },
     {
       "id": "l3-link-title-2",
@@ -1327,8 +1327,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "bc9a5ae504982e28c70c742fb2efb8cb39e316b5a2c1bb5903916a3a96042135"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "1e89f6881cc793c9cbe37f8505c6f4d49a7f5bd980c291c47b2d8e6854452445"
     },
     {
       "id": "l3-list-with-block-1",
@@ -1397,8 +1397,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "09b130740b6bfc34c244fefd1f22eea9c4c957b5bdd963d013b8677a4c61d555"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "abdfdd29462e47bb2bc84520a8ab48c9ac0be6a971fc299ad0f3576c4fba0acd"
     },
     {
       "id": "l3-list-with-block-2",
@@ -1466,8 +1466,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "287bf726198a51bbe5b60cbe780c098700352072e6c6a5653208358f8abe34bd"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "84f4723c0fe86905f01cf20a851539a9ba18e0634794a729eebe9fd587766c3d"
     },
     {
       "id": "l3-mixed-link-title-email",
@@ -1550,8 +1550,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "link-and-email",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "4691cddf63a5c89e4b7ed97b6653a717722e1c82e632a45354253ab73ae19339"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "4c048ad39bf23deb4eec38a6a14d83f19c4c06ba59f5524bdea5cd854f13e2d0"
     },
     {
       "id": "l3-mixed-list-angle-url",
@@ -1633,9 +1633,9 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "list-and-url",
-      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
-      "candidateDigest": "87b560aed9fd963d045c477969940110b970e10fbe6c71afd7ea7ffc1fae4725"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-034",
+      "candidateDigest": "add482440740fdf24b42c188add8e05de6b76dc7a6aebb16fd99c289266c9684"
     }
   ],
-  "artifactDigest": "1a05731db1769abbf2c11617722fd28ab75840dfed528e4fbc6a0f23e55101ce"
+  "artifactDigest": "2efa98f15cbbc4eeb7b50380b016e63c5f0c9eb844ec6ca4987bcc7f00584b89"
 }
