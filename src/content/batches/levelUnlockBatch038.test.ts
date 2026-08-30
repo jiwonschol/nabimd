@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest"
 import { readFileSync } from "node:fs"
-import { deriveSyntaxCheckpoints } from "../../guided/guidedSyntax"
+import {
+  buildGuidedDraft,
+  deriveSyntaxCheckpoints,
+} from "../../guided/guidedSyntax"
 import { evaluateProblem } from "../../engine/evaluateProblem"
 import { RUN_POLICY } from "../../selection/runPolicy"
 import { curriculumLevels } from "../curriculumLevels"
@@ -127,6 +130,23 @@ describe("Level 2 and 3 unlock batch 038", () => {
         problem.id,
       ).toBeGreaterThan(0)
       expect(withinRuntimeBudget(problem), problem.id).toBe(true)
+    }
+  })
+
+  it("replays every completed guided draft through the real evaluator", () => {
+    for (const problem of levelUnlockBatch038Problems) {
+      const checkpoints = deriveSyntaxCheckpoints(
+        problem.target,
+        problem.starterText,
+      )
+      const completed = buildGuidedDraft(
+        problem.target,
+        checkpoints,
+        checkpoints.length,
+      )
+      expect(evaluateProblem(problem, completed), problem.id).toMatchObject({
+        status: "pass",
+      })
     }
   })
 
