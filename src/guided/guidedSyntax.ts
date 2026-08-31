@@ -292,7 +292,10 @@ function buildAcceptedForms(
       : [],
   )
   for (const hardBreakInput of hardBreakInputs) {
-    const alternative = hardBreakInput.value === "\\" ? "  " : "\\"
+    const lineEnding = hardBreakInput.value.endsWith("\n") ? "\n" : ""
+    const alternative = hardBreakInput.value.startsWith("\\")
+      ? `  ${lineEnding}`
+      : `\\${lineEnding}`
     expandInputForms(forms, (form) => {
       if (form[hardBreakInput.inputIndex] !== hardBreakInput.value) return null
       const replaced = [...form]
@@ -323,9 +326,35 @@ function buildAcceptedForms(
 
   if (
     canonicalParts.length === 4 &&
-    canonicalParts.map((part) => part.length).join(",") === "1,2,2,1"
+    canonicalParts.map((part) => part.length).join(",") === "1,2,2,1" &&
+    canonicalParts.every((part) => /^[*_]+$/.test(part))
   ) {
     forms.push(["**", "_", "_", "**"], ["__", "*", "*", "__"])
+  }
+
+  const escapeInputs = checkpoint.segments.flatMap((segment, segmentIndex) => {
+    if (segment.kind !== "input" || !segment.family?.includes("-escape-")) {
+      return []
+    }
+    const next = checkpoint.segments[segmentIndex + 1]
+    return [{
+      inputIndex: checkpoint.segments
+        .slice(0, segmentIndex)
+        .filter((candidate) => candidate.kind === "input").length,
+      escaped: next?.kind === "locked" ? next.value[0] : undefined,
+      value: segment.value,
+    }]
+  })
+  if (
+    escapeInputs.length === 2 &&
+    escapeInputs[0]!.value === "\\" &&
+    escapeInputs[1]!.value === "\\" &&
+    escapeInputs[0]!.escaped === escapeInputs[1]!.escaped &&
+    /[*_~]/.test(escapeInputs[0]!.escaped ?? "")
+  ) {
+    const openingOnly = [...canonicalParts]
+    openingOnly[escapeInputs[1]!.inputIndex] = ""
+    forms.push(openingOnly)
   }
 
   const isSetextHeading =
@@ -569,48 +598,96 @@ export function syntaxCheckpointTerms(
 function fencedCodeInputParts(
   checkpoint: SyntaxCheckpoint,
   value: string,
-): readonly [string, string, string] | null {
+): readonly string[] | null {
   const inputSegments = checkpoint.segments.flatMap((segment, segmentIndex) =>
-    segment.kind === "input" ? [{ segmentIndex, value: segment.value }] : [],
+    segment.kind === "input"
+      ? [{ family: segment.family, segmentIndex, value: segment.value }]
+      : [],
   )
   const canonicalParts = inputSegments.map(({ value: part }) => part)
+  const openingIndex = inputSegments.findIndex(({ family }) =>
+    family?.endsWith("-open"),
+  )
+  const languageIndex = inputSegments.findIndex(({ family }) =>
+    family?.endsWith("-language"),
+  )
+  const closingIndex = inputSegments.findIndex(({ family }) =>
+    family?.endsWith("-close"),
+  )
   if (
-    canonicalParts.length !== 3 ||
-    !/^(?:`{3,}|~{3,})$/.test(canonicalParts[0] ?? "") ||
-    !/^(?:`{3,}|~{3,})$/.test(canonicalParts[2] ?? "") ||
-    canonicalParts[0]![0] !== canonicalParts[2]![0] ||
-    canonicalParts[2]!.length < canonicalParts[0]!.length ||
-    !/^\S+$/.test(canonicalParts[1] ?? "")
+    openingIndex < 0 ||
+    languageIndex <= openingIndex ||
+    closingIndex <= languageIndex ||
+    !/^(?:`{3,}|~{3,})$/.test(canonicalParts[openingIndex] ?? "") ||
+    !/^(?:`{3,}|~{3,})$/.test(canonicalParts[closingIndex] ?? "") ||
+    canonicalParts[openingIndex]![0] !== canonicalParts[closingIndex]![0] ||
+    canonicalParts[closingIndex]!.length < canonicalParts[openingIndex]!.length ||
+    !/^\S+$/.test(canonicalParts[languageIndex] ?? "")
   ) {
     return null
   }
 
-  const submitted = /^(`{3,}|~{3,})(\S+?)(`{3,}|~{3,})$/.exec(value)
-  if (!submitted) return null
-  const openingFence = submitted[1]!
-  const informationToken = submitted[2]!
-  const closingFence = submitted[3]!
   const languageTouchesFence = checkpoint.segments
-    .slice(inputSegments[0]!.segmentIndex + 1, inputSegments[1]!.segmentIndex)
+    .slice(
+      inputSegments[openingIndex]!.segmentIndex + 1,
+      inputSegments[languageIndex]!.segmentIndex,
+    )
     .every((segment) => segment.kind === "input" || segment.value.length === 0)
-  if (
-    closingFence[0] !== openingFence[0] ||
-    closingFence.length < openingFence.length ||
-    (openingFence.startsWith("`") && informationToken.includes("`")) ||
-    (languageTouchesFence && informationToken.startsWith(openingFence[0]!))
-  ) return null
-  return [openingFence, informationToken, closingFence]
+  for (const form of buildAcceptedForms(checkpoint)) {
+    const pattern = form.map((part, index) => {
+      if (index === openingIndex) return "(`{3,}|~{3,})"
+      if (index === languageIndex) return "(\\S+?)"
+      if (index === closingIndex) return "(`{3,}|~{3,})"
+      return part.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+    }).join("")
+    const submitted = new RegExp(`^${pattern}$`).exec(value)
+    if (!submitted) continue
+    const openingFence = submitted[1]!
+    const informationToken = submitted[2]!
+    const closingFence = submitted[3]!
+    if (
+      closingFence[0] !== openingFence[0] ||
+      closingFence.length < openingFence.length ||
+      (openingFence.startsWith("`") && informationToken.includes("`")) ||
+      (languageTouchesFence && informationToken.startsWith(openingFence[0]!))
+    ) continue
+    return form.map((part, index) =>
+      index === openingIndex
+        ? openingFence
+        : index === languageIndex
+          ? informationToken
+          : index === closingIndex
+            ? closingFence
+            : part,
+    )
+  }
+  return null
+}
+
+function acceptedInputParts(
+  checkpoint: SyntaxCheckpoint,
+  value: string,
+): readonly string[] | null {
+  const fencedParts = fencedCodeInputParts(checkpoint, value)
+  if (fencedParts) return fencedParts
+  const foldedValue = foldTaskBoxCase(value)
+  for (const form of buildAcceptedForms(checkpoint)) {
+    if (foldTaskBoxCase(form.join("")) !== foldedValue) continue
+    let offset = 0
+    return form.map((part) => {
+      const submittedPart = value.slice(offset, offset + part.length)
+      offset += part.length
+      return submittedPart
+    })
+  }
+  return null
 }
 
 export function acceptsGuidedSyntaxInput(
   checkpoint: SyntaxCheckpoint,
   value: string,
 ): boolean {
-  if (fencedCodeInputParts(checkpoint, value) !== null) return true
-  const folded = foldTaskBoxCase(value)
-  return acceptedGuidedSyntaxInputs(checkpoint).some(
-    (accepted) => foldTaskBoxCase(accepted) === folded,
-  )
+  return acceptedInputParts(checkpoint, value) !== null
 }
 
 function renderCheckpointWithInput(
@@ -619,11 +696,11 @@ function renderCheckpointWithInput(
 ): string {
   let inputOffset = 0
   let inputIndex = 0
-  const fencedParts = fencedCodeInputParts(checkpoint, value)
+  const acceptedParts = acceptedInputParts(checkpoint, value)
   return checkpoint.segments
     .map((segment) => {
       if (segment.kind === "locked") return segment.value
-      if (fencedParts) return fencedParts[inputIndex++]!
+      if (acceptedParts) return acceptedParts[inputIndex++]!
       const replacement = value.slice(
         inputOffset,
         inputOffset + segment.value.length,

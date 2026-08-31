@@ -604,6 +604,14 @@ describe("deriveSyntaxCheckpoints", () => {
     )
   })
 
+  it("does not offer bold-italic forms for italic strikethrough", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints("*~~old~~*", "old")
+
+    expect(acceptedGuidedSyntaxInputs(checkpoint!)).not.toEqual(
+      expect.arrayContaining(["**__**", "__**__"]),
+    )
+  })
+
   it.each([
     ["## Next steps", "Next steps", ["## "]],
     ["> A useful note", "A useful note", ["> "]],
@@ -1303,6 +1311,19 @@ describe("deriveSyntaxCheckpoints", () => {
     ).toBe("```python\nvalue\n````")
   })
 
+  it("accepts a replacement language inside a block quote fence", () => {
+    const target = "> ```js\n> value\n> ```"
+    const checkpoint = deriveSyntaxCheckpoints(target, "value").find((candidate) =>
+      syntaxCheckpointTerms(candidate).includes("syntax-highlighted code block"),
+    )!
+    const submitted = checkpoint.canonicalInput.replace("js", "python")
+
+    expect(acceptsGuidedSyntaxInput(checkpoint, submitted)).toBe(true)
+    expect(
+      buildGuidedDraft(target, [checkpoint], 1, { [checkpoint.id]: submitted }),
+    ).toContain("```python")
+  })
+
   it("offers hard-break alternatives inside mixed checkpoints", () => {
     const checkpoint = deriveSyntaxCheckpoints(
       "**First**  \nSecond",
@@ -1319,8 +1340,23 @@ describe("deriveSyntaxCheckpoints", () => {
     )
 
     expect(acceptedGuidedSyntaxInputs(checkpoint!)).toEqual(
-      ["~~  \n  \n~~", "~~\\  \n~~", "~~  \n\\~~", "~~\\\\~~"],
+      ["~~  \n  \n~~", "~~\\\n  \n~~", "~~  \n\\\n~~", "~~\\\n\\\n~~"],
     )
+    expect(
+      buildGuidedDraft("~~a  \nb  \nc~~", [checkpoint!], 1, {
+        [checkpoint!.id]: "~~\\\n  \n~~",
+      }),
+    ).toBe("~~a\\\nb  \nc~~")
+  })
+
+  it("accepts one opening escape for paired literal emphasis marks", () => {
+    const target = "Write \\*required\\* literally."
+    const [checkpoint] = deriveSyntaxCheckpoints(target, "Write *required* literally.")
+
+    expect(acceptsGuidedSyntaxInput(checkpoint!, "\\")).toBe(true)
+    expect(
+      buildGuidedDraft(target, [checkpoint!], 1, { [checkpoint!.id]: "\\" }),
+    ).toBe("Write \\*required* literally.")
   })
 
   it("skips unused footnote definitions and everything inside them", () => {
