@@ -15,7 +15,7 @@ describe("syntax presence", () => {
         createEvaluationContext("[x][ref]\n\n[ref]: foo\\(bar\\)"),
         "escape",
       ),
-    ).toBe(2)
+    ).toBe(0)
     expect(
       countSyntaxPresence(createEvaluationContext("<http://x/\\*>"), "escape"),
     ).toBe(0)
@@ -80,6 +80,15 @@ describe("syntax presence", () => {
       countSyntaxPresence(
         createEvaluationContext("[^a]: > outer\n    > > inner"),
         "nested-blockquote",
+      ),
+    ).toBe(0)
+  })
+
+  it("ignores escapes hidden in effective reference definitions", () => {
+    expect(
+      countSyntaxPresence(
+        createEvaluationContext("[visible][a]\n\n[a]: https://example.com/\\*"),
+        "escape",
       ),
     ).toBe(0)
   })

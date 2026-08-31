@@ -227,6 +227,8 @@ function countEscapes(
       ? fullRaw.match(/^!?\[(?:\\.|[^\]])*\]/)?.[0] ?? ""
       : node.type === "footnoteDefinition"
         ? fullRaw.match(/^(?: {0,3})\[\^(?:\\.|[^\]])+\]:/)?.[0] ?? ""
+        : node.type === "definition"
+          ? fullRaw.match(/^(?: {0,3})\[(?:\\.|[^\]])+\]:/)?.[0] ?? ""
         : fullRaw
     const syntaxBearingRange =
       node.type === "text" ||
