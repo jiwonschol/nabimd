@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-31-l2-l3-unlock-040",
+  "batchId": "2026-08-31-l2-l3-unlock-041",
   "sequence": 28,
   "curriculumVersion": "2026-07-19",
   "generatedBy": "gpt-5.6-sol-build-time-authoring",
@@ -2678,7 +2678,7 @@
       ],
       "title": "escaped punctuation",
       "prompt": "Write the short document with the escaped punctuation.",
-      "target": "Draft label\n\nKeep \\# pending as plain text in the report.",
+      "target": "Draft label\n\n\\# pending stays plain text in the report.",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -2717,12 +2717,12 @@
         "terms": [
           "Draft",
           "label",
-          "Keep",
           "pending",
-          "as",
+          "stays",
           "plain",
           "text",
-          "in"
+          "in",
+          "the"
         ]
       },
       "revision": 1,
@@ -2822,7 +2822,7 @@
       ],
       "title": "escaped punctuation",
       "prompt": "Write the short document with the escaped punctuation.",
-      "target": "Template reminder\n\nShow \\{owner\\} as literal braces in the example.",
+      "target": "Template reminder\n\n\\> owner stays ordinary text in the example.",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -2861,12 +2861,12 @@
         "terms": [
           "Template",
           "reminder",
-          "Show",
           "owner",
-          "as",
-          "literal",
-          "braces",
-          "in"
+          "stays",
+          "ordinary",
+          "text",
+          "in",
+          "the"
         ]
       },
       "revision": 1,
@@ -2894,7 +2894,7 @@
       ],
       "title": "escaped punctuation",
       "prompt": "Write the short document with the escaped punctuation.",
-      "target": "Command note\n\nKeep \\+ optional as ordinary text in the guide.",
+      "target": "Command note\n\n\\+ optional stays ordinary text in the guide.",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -2933,12 +2933,12 @@
         "terms": [
           "Command",
           "note",
-          "Keep",
           "optional",
-          "as",
+          "stays",
           "ordinary",
           "text",
-          "in"
+          "in",
+          "the"
         ]
       },
       "revision": 1,

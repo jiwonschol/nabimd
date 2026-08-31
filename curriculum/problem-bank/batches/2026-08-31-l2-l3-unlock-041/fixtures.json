@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-31-l2-l3-unlock-040",
+  "batchId": "2026-08-31-l2-l3-unlock-041",
   "fixtures": [
     {
       "id": "l2-bold-italic-1-canonical",
@@ -2193,7 +2193,7 @@
       "problemId": "l3-escape-2",
       "problemRevision": 1,
       "role": "canonical",
-      "source": "Draft label\n\nKeep \\# pending as plain text in the report.",
+      "source": "Draft label\n\n\\# pending stays plain text in the report.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2345,7 +2345,7 @@
       "problemId": "l3-escape-4",
       "problemRevision": 1,
       "role": "canonical",
-      "source": "Template reminder\n\nShow \\{owner\\} as literal braces in the example.",
+      "source": "Template reminder\n\n\\> owner stays ordinary text in the example.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2421,7 +2421,7 @@
       "problemId": "l3-escape-5",
       "problemRevision": 1,
       "role": "canonical",
-      "source": "Command note\n\nKeep \\+ optional as ordinary text in the guide.",
+      "source": "Command note\n\n\\+ optional stays ordinary text in the guide.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },

@@ -1,6 +1,6 @@
 import type { NormalizedProblem, SyntaxPresenceKind } from "../types"
 
-export const levelUnlockBatch040Id = "2026-08-31-l2-l3-unlock-040"
+export const levelUnlockBatch041Id = "2026-08-31-l2-l3-unlock-041"
 
 const curriculumVersion = "2026-07-19"
 
@@ -128,10 +128,10 @@ export const levelUnlockSingleInputs: readonly SingleInput[] = [
     label: "escaped punctuation",
     targets: [
       "Notation note\n\nWrite \"\\*required\\*\" as literal text in the form.",
-      "Draft label\n\nKeep \\# pending as plain text in the report.",
+      "Draft label\n\n\\# pending stays plain text in the report.",
       "Search note\n\nType \\_archive\\_ exactly in the search field.",
-      "Template reminder\n\nShow \\{owner\\} as literal braces in the example.",
-      "Command note\n\nKeep \\+ optional as ordinary text in the guide.",
+      "Template reminder\n\n\\> owner stays ordinary text in the example.",
+      "Command note\n\n\\+ optional stays ordinary text in the guide.",
     ],
     example: "\\_Literal marks\\_",
   },
@@ -216,7 +216,7 @@ function createSingleProblem(input: SingleInput, variant: number): NormalizedPro
       domains: [input.level === 2 ? "everyday-notes" : "workplace-notes"],
       terms: [...new Set(target.match(/[A-Za-z]+/g) ?? [])].slice(0, 8),
     },
-    sourceBatchId: levelUnlockBatch040Id,
+    sourceBatchId: levelUnlockBatch041Id,
     revision: 1,
     curriculumVersion,
     contentVariant: `variant-${suffix}`,
@@ -315,13 +315,13 @@ const mixedProblems: readonly NormalizedProblem[] = mixedInputs.map((input) => (
     domains: ["workplace-notes"],
     terms: [...new Set(input.target.match(/[A-Za-z]+/g) ?? [])].slice(0, 8),
   },
-  sourceBatchId: levelUnlockBatch040Id,
+  sourceBatchId: levelUnlockBatch041Id,
   revision: 1,
   curriculumVersion,
   contentVariant: input.contentVariant,
 }))
 
-export const levelUnlockBatch040Problems: readonly NormalizedProblem[] = [
+export const levelUnlockBatch041Problems: readonly NormalizedProblem[] = [
   ...singleProblems,
   ...mixedProblems,
 ]

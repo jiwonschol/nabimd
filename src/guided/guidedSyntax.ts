@@ -531,7 +531,8 @@ function fencedLanguageInputParts(
     const informationToken = value.slice(fence.length, -fence.length)
     if (
       /^\S+$/.test(informationToken) &&
-      !(fence.startsWith("`") && informationToken.includes("`"))
+      !(fence.startsWith("`") && informationToken.includes("`")) &&
+      !informationToken.startsWith(fence[0]!)
     ) {
       return [fence, informationToken, fence]
     }
