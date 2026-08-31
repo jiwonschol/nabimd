@@ -67,7 +67,9 @@ describe("deriveSyntaxCheckpoints", () => {
     )
 
     expect(checkpoint?.canonicalInput).toBe("  ")
-    expect(acceptedGuidedSyntaxInputs(checkpoint!)).toEqual(["  ", "\\"])
+    expect(acceptedGuidedSyntaxInputs(checkpoint!)).toEqual(["  "])
+    expect(acceptedGuidedSyntaxGroupInputs(checkpoint!, 0)).toEqual(["  ", "\\"])
+    expect(acceptsGuidedSyntaxInput(checkpoint!, "\\")).toBe(true)
     expect(syntaxCheckpointTerms(checkpoint!)).toEqual(["line break"])
     expect(instructionFor(checkpointShape(checkpoint!))).toMatchObject({
       prefix: "End the line with two spaces to force a ",
@@ -81,7 +83,9 @@ describe("deriveSyntaxCheckpoints", () => {
       "First line\nSecond line",
     )
 
-    expect(acceptedGuidedSyntaxInputs(checkpoint!)).toEqual(["\\", "  "])
+    expect(acceptedGuidedSyntaxInputs(checkpoint!)).toEqual(["\\"])
+    expect(acceptedGuidedSyntaxGroupInputs(checkpoint!, 0)).toEqual(["\\", "  "])
+    expect(acceptsGuidedSyntaxInput(checkpoint!, "  ")).toBe(true)
   })
 
   it("names the blanks the deriver learned to make in #189", () => {
@@ -669,6 +673,17 @@ describe("deriveSyntaxCheckpoints", () => {
     ])
   })
 
+  it("does not present image metadata as link-title syntax", () => {
+    const checkpoints = deriveSyntaxCheckpoints(
+      '![Map](map.png "Floor plan")',
+      "Map",
+    )
+
+    expect(
+      checkpoints.flatMap((checkpoint) => syntaxCheckpointTerms(checkpoint)),
+    ).not.toContain("link title")
+  })
+
   it("asks for parenthesized link-title delimiters", () => {
     const [checkpoint] = deriveSyntaxCheckpoints(
       "[Guide](https://example.com (Read me))",
@@ -914,7 +929,7 @@ describe("deriveSyntaxCheckpoints", () => {
     ])
   })
 
-  it("asks for escapes stored on effective definition leaf ranges", () => {
+  it("keeps escapes in effective reference destinations locked", () => {
     for (const target of [
       "[x][a]\n\n[a]: foo\\(bar\\)",
     ]) {
@@ -922,7 +937,7 @@ describe("deriveSyntaxCheckpoints", () => {
         deriveSyntaxCheckpoints(target, "")
           .flatMap((checkpoint) => syntaxCheckpointTerms(checkpoint)),
         target,
-      ).toContain("escape")
+      ).not.toContain("escape")
     }
     expect(
       deriveSyntaxCheckpoints("[x](foo\\(bar\\))", "")
@@ -930,17 +945,17 @@ describe("deriveSyntaxCheckpoints", () => {
     ).not.toContain("escape")
   })
 
-  it("asks for visible image-reference escapes and the effective image definition", () => {
+  it("keeps render-neutral image-label and definition escapes locked", () => {
     const checkpoints = deriveSyntaxCheckpoints(
       "![a\\*][ref]\n\n[ref]: /foo\\(bar\\)",
       "a",
     )
 
     expect(checkpoints.map((checkpoint) => checkpoint.canonicalInput).join(""))
-      .toContain("\\")
+      .not.toContain("\\")
     expect(
       checkpoints.flatMap((checkpoint) => syntaxCheckpointTerms(checkpoint)),
-    ).toContain("escape")
+    ).not.toContain("escape")
   })
 
   it("ignores duplicate reference definitions after the first", () => {
@@ -952,7 +967,18 @@ describe("deriveSyntaxCheckpoints", () => {
       .flatMap((checkpoint) => checkpoint.segments)
       .filter((segment) => segment.kind === "input" && segment.value === "\\")
 
-    expect(escapeInputs).toHaveLength(2)
+    expect(escapeInputs).toHaveLength(0)
+  })
+
+  it("keeps escapes in reference destinations out of guided input", () => {
+    const checkpoints = deriveSyntaxCheckpoints(
+      "[x][a]\n\n[a]: foo\\(bar\\)",
+      "x",
+    )
+
+    expect(
+      checkpoints.flatMap((checkpoint) => syntaxCheckpointTerms(checkpoint)),
+    ).not.toContain("escape")
   })
 
   it("groups multiline reference titles and accepts equivalent delimiters", () => {
@@ -1302,29 +1328,38 @@ describe("deriveSyntaxCheckpoints", () => {
     ).toContain("```python")
   })
 
-  it("offers hard-break alternatives inside mixed checkpoints", () => {
+  it("accepts hard-break alternatives inside mixed checkpoints", () => {
     const checkpoint = deriveSyntaxCheckpoints(
       "**First**  \nSecond",
       "First\nSecond",
     ).find((candidate) => syntaxCheckpointTerms(candidate).includes("line break"))!
 
-    expect(acceptedGuidedSyntaxInputs(checkpoint)).toContain("****\\")
+    expect(acceptsGuidedSyntaxInput(checkpoint, "****\\")).toBe(true)
   })
 
-  it("offers the independent product of every grouped hard-break form", () => {
+  it("accepts independent grouped hard-break forms without enumerating their product", () => {
     const [checkpoint] = deriveSyntaxCheckpoints(
       "~~a  \nb  \nc~~",
       "a\nb\nc",
     )
 
-    expect(acceptedGuidedSyntaxInputs(checkpoint!)).toEqual(
-      ["~~  \n  \n~~", "~~\\\n  \n~~", "~~  \n\\\n~~", "~~\\\n\\\n~~"],
-    )
+    expect(acceptedGuidedSyntaxInputs(checkpoint!)).toEqual(["~~  \n  \n~~"])
     expect(
       buildGuidedDraft("~~a  \nb  \nc~~", [checkpoint!], 1, {
         [checkpoint!.id]: "~~\\\n  \n~~",
       }),
     ).toBe("~~a\\\nb  \nc~~")
+
+    const longTarget = Array.from(
+      { length: 16 },
+      (_, index) => `line ${index + 1}${index < 15 ? "  " : ""}`,
+    ).join("\n")
+    const [long] = deriveSyntaxCheckpoints(
+      longTarget,
+      longTarget.replace(/ {2}$/gm, ""),
+    )
+    expect(acceptedGuidedSyntaxInputs(long!)).toHaveLength(1)
+    expect(checkpointHintRows(long!)).toHaveLength(1)
   })
 
   it("accepts and preserves any valid trailing-space hard break width", () => {
@@ -1347,6 +1382,7 @@ describe("deriveSyntaxCheckpoints", () => {
 
     expect(acceptsGuidedSyntaxInput(plain, ">")).toBe(true)
     expect(acceptsGuidedSyntaxInput(nested, ">>")).toBe(true)
+    expect(acceptsGuidedSyntaxInput(plain, ">\t\t")).toBe(false)
     expect(
       buildGuidedDraft(target, checkpoints, checkpoints.length, {
         [plain.id]: ">",

@@ -5,6 +5,7 @@ import { countSyntaxPresence } from "./syntaxPresence"
 describe("syntax presence", () => {
   it("counts escapes only where Markdown interprets them", () => {
     expect(countSyntaxPresence(createEvaluationContext("\\*text\\*"), "escape")).toBe(2)
+    expect(countSyntaxPresence(createEvaluationContext("plain\\."), "escape")).toBe(0)
     expect(countSyntaxPresence(createEvaluationContext("`\\*text\\*`"), "escape")).toBe(0)
     expect(countSyntaxPresence(createEvaluationContext("```text\n\\# literal\n```"), "escape")).toBe(0)
     expect(
@@ -42,7 +43,7 @@ describe("syntax presence", () => {
         createEvaluationContext("![a\\*][ref]\n\n[ref]: /image"),
         "escape",
       ),
-    ).toBe(1)
+    ).toBe(0)
     expect(
       countSyntaxPresence(
         createEvaluationContext("[visible](https://example.com/\\*)"),
@@ -54,7 +55,7 @@ describe("syntax presence", () => {
         createEvaluationContext("![a\\*](https://example.com/\\*)"),
         "escape",
       ),
-    ).toBe(1)
+    ).toBe(0)
     expect(
       countSyntaxPresence(
         createEvaluationContext("A[^a\\*]\n\n[^a\\*]: note"),

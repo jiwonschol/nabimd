@@ -1,4 +1,5 @@
 import type { SyntaxPresenceKind } from "../content/types"
+import { parseMarkdownSource } from "../markdown/parser"
 import {
   descendants,
   type AstNode,
@@ -258,7 +259,14 @@ function countEscapes(
       }
     }
   }
-  return offsets.size
+  const withoutEscapes = [...source]
+    .filter((_, index) => !offsets.has(index))
+    .join("")
+  const semanticTree = (value: string) => JSON.stringify(
+    parseMarkdownSource(value),
+    (key, child) => key === "position" ? undefined : child,
+  )
+  return semanticTree(source) === semanticTree(withoutEscapes) ? 0 : offsets.size
 }
 
 export const supportedSyntaxPresenceKinds = new Set<SyntaxPresenceKind>([
