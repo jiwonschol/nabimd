@@ -21,7 +21,7 @@
     },
     {
       "path": "src/components/RenderedDocument.tsx",
-      "sha256": "79f45d1fe50f54a45a9eab11eeceb84e46496e316a6c7a51b98d0c3d917ffa53"
+      "sha256": "04c4bd9d91f1479df62e9a33fe96344d05c982a1ecf42ef40f5073d26637105e"
     },
     {
       "path": "src/editor/renderedMarkdown.ts",
@@ -53,7 +53,7 @@
     },
     {
       "path": "src/engine/syntaxPresence.ts",
-      "sha256": "5ff0f590ec6bff5409a9db2d68c7f8df1ed3a5800836d697d446b99960fab297"
+      "sha256": "4beb8397fc39c2a0453d4918c2d08eab5def6955f0b2f4c5fe42047a2d59dfd6"
     },
     {
       "path": "src/markdown/parser.ts",
@@ -73,7 +73,7 @@
     },
     {
       "path": "src/guided/guidedSyntax.ts",
-      "sha256": "856d238974badcf804ead4b3ed9e93efe6b960527887b63728d39ccc4fda11cc"
+      "sha256": "7ab5740b5153df31e37f53e35a6ca3028f43a1558d8810fcc5e55f36fcb09460"
     }
   ],
   "dependencies": [
@@ -90,5 +90,5 @@
       "version": "3.0.0"
     }
   ],
-  "engineContractDigest": "ce897aae6aa5cd4d0f8358825dd455b18d629f330df81f50ecc0f84fd2d2eff1"
+  "engineContractDigest": "991d6d0516ec6e0f99f6efd60802640972d3f3cc28a3597d45ee4a1df10c8bb0"
 }

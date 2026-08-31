@@ -20,6 +20,24 @@ describe("RenderedDocument", () => {
     expect(container.querySelectorAll(".rendered-document__link")).toHaveLength(0)
   })
 
+  it("shows a link title in the Goal while its plaintext starter omits it", () => {
+    const target = '[Setup notes](https://example.com "Details")'
+    const { container, rerender } = render(
+      <RenderedDocumentBody source={target} />,
+    )
+
+    expect(container.querySelector(".rendered-document__link-title"))
+      .toHaveTextContent("(Details)")
+    expect(container).toHaveTextContent("Setup notes (Details)")
+
+    rerender(
+      <RenderedDocumentBody source={derivePlaintextStarter(target)} />,
+    )
+    expect(container.querySelector(".rendered-document__link-title")).toBeNull()
+    expect(container).toHaveTextContent("Setup notes")
+    expect(container).not.toHaveTextContent("Details")
+  })
+
   it("uses one paper surface for Goal and Live preview", () => {
     const { rerender } = render(
       <RenderedDocument label="Goal" source="# Apple" />,

@@ -2329,6 +2329,12 @@ button:focus-visible,
   text-underline-offset: 0.15em;
 }
 
+.rendered-document__link-title {
+  color: var(--muted);
+  font-size: 0.9em;
+  text-decoration: none;
+}
+
 .rendered-document__quote {
   margin: 1.5rem 0;
   padding: 1rem 1.25rem;

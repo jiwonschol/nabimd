@@ -1,5 +1,5 @@
 import type { FixtureRole, ProblemFixture, SyntaxPresenceKind } from "../types"
-import { levelUnlockBatch043Problems } from "./levelUnlockBatch043Problems"
+import { levelUnlockBatch044Problems } from "./levelUnlockBatch044Problems"
 
 type SupportedUnlockSyntax = Exclude<
   SyntaxPresenceKind,
@@ -19,7 +19,7 @@ const singleSources: Readonly<Record<SupportedUnlockSyntax, FixtureSources>> = {
   "nested-blockquote": { different: "> Topic\n> > Detail", caseVariation: "> TOPIC\n> > DETAIL", missing: "> Topic\n> Detail", malformed: "> Topic\n> Reply" },
   "code-block-language": { different: "```html\n<p>Hi</p>\n```", caseVariation: "```HTML\n<P>HI</P>\n```", missing: "```\nplain\n```", malformed: "    plain code" },
   "hard-line-break": { different: "Left  \nRight", caseVariation: "LEFT  \nRIGHT", missing: "Left\nRight", malformed: "Left \nRight" },
-  "link-title": { different: "[Help](https://example.net \"Details\")", caseVariation: "[HELP](https://EXAMPLE.NET \"DETAILS\")", missing: "[Help](https://example.net)", malformed: "[Help](https://example.net \"\")" },
+  "link-title": { different: "[Help](https://example.net \"Details\")", caseVariation: "[HELP](https://EXAMPLE.NET \"DETAILS\")", missing: "[Help](https://example.net)", malformed: "[Help](https://example.net \"Details)" },
   "angle-bracket-url": { different: "<ftp://example.net/help>", caseVariation: "<FTP://EXAMPLE.NET/HELP>", missing: "ftp://example.net/help", malformed: "[Help](ftp://example.net/help)" },
   escape: { different: "\\_Literal underscores\\_", caseVariation: "\\_LITERAL UNDERSCORES\\_", missing: "Literal underscores", malformed: "_Formatted underscores_" },
   "list-with-block": { different: "- Item\n\n  > Detail", caseVariation: "- ITEM\n\n  > DETAIL", missing: "- Item\n  - Detail", malformed: "- Item\n\n> Detail" },
@@ -47,7 +47,7 @@ function fixture(problemId: string, role: FixtureRole, source: string, expectedS
   }
 }
 
-function singleFixtures(problem: (typeof levelUnlockBatch043Problems)[number]): readonly ProblemFixture[] {
+function singleFixtures(problem: (typeof levelUnlockBatch044Problems)[number]): readonly ProblemFixture[] {
   const syntax = problem.skillIds[0] as SupportedUnlockSyntax
   const sources = singleSources[syntax]
   const checkId = `use-${syntax}`
@@ -111,7 +111,7 @@ function singleFixtures(problem: (typeof levelUnlockBatch043Problems)[number]): 
   return fixtures
 }
 
-function mixedFixtures(problem: (typeof levelUnlockBatch043Problems)[number]): readonly ProblemFixture[] {
+function mixedFixtures(problem: (typeof levelUnlockBatch044Problems)[number]): readonly ProblemFixture[] {
   const [first, second] = problem.skillIds
   const sourcesById: Readonly<Record<string, FixtureSources>> = {
     "l3-mixed-link-title-escape": {
@@ -160,7 +160,7 @@ function mixedFixtures(problem: (typeof levelUnlockBatch043Problems)[number]): r
   return fixtures
 }
 
-export const levelUnlockBatch043Fixtures: readonly ProblemFixture[] =
-  levelUnlockBatch043Problems.flatMap((problem) =>
+export const levelUnlockBatch044Fixtures: readonly ProblemFixture[] =
+  levelUnlockBatch044Problems.flatMap((problem) =>
     problem.skillIds.length === 1 ? singleFixtures(problem) : mixedFixtures(problem),
   )

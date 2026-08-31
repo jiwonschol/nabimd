@@ -64,8 +64,15 @@ export function RenderedDocumentBody({
         <Markdown
           remarkPlugins={[[remarkGfm, GFM_OPTIONS]]}
           components={{
-            a: ({ children }) => (
-              <span className="rendered-document__link">{children}</span>
+            a: ({ children, title }) => (
+              <span className="rendered-document__link">
+                {children}
+                {title !== undefined ? (
+                  <span className="rendered-document__link-title">
+                    {" ("}{title}{")"}
+                  </span>
+                ) : null}
+              </span>
             ),
             blockquote: ({ children }) => (
               <blockquote className="rendered-document__quote">

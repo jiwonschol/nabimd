@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-31-l2-l3-unlock-043",
+  "batchId": "2026-08-31-l2-l3-unlock-044",
   "fixtures": [
     {
       "id": "l2-bold-italic-1-canonical",
@@ -2585,7 +2585,7 @@
       "problemRevision": 1,
       "role": "malformed-required",
       "exercisesCheckId": "use-link-title",
-      "source": "[Help](https://example.net \"\")",
+      "source": "[Help](https://example.net \"Details)",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-link-title"
     },
@@ -2651,7 +2651,7 @@
       "problemRevision": 1,
       "role": "malformed-required",
       "exercisesCheckId": "use-link-title",
-      "source": "[Help](https://example.net \"\")",
+      "source": "[Help](https://example.net \"Details)",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-link-title"
     },
@@ -2717,7 +2717,7 @@
       "problemRevision": 1,
       "role": "malformed-required",
       "exercisesCheckId": "use-link-title",
-      "source": "[Help](https://example.net \"\")",
+      "source": "[Help](https://example.net \"Details)",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-link-title"
     },
@@ -2783,7 +2783,7 @@
       "problemRevision": 1,
       "role": "malformed-required",
       "exercisesCheckId": "use-link-title",
-      "source": "[Help](https://example.net \"\")",
+      "source": "[Help](https://example.net \"Details)",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-link-title"
     },
@@ -2849,7 +2849,7 @@
       "problemRevision": 1,
       "role": "malformed-required",
       "exercisesCheckId": "use-link-title",
-      "source": "[Help](https://example.net \"\")",
+      "source": "[Help](https://example.net \"Details)",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-link-title"
     },
