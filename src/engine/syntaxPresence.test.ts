@@ -141,6 +141,27 @@ describe("syntax presence", () => {
     ).toBe(0)
   })
 
+  it("counts title delimiters even when the title text is whitespace", () => {
+    expect(
+      countSyntaxPresence(createEvaluationContext('[x](url " ")'), "link-title"),
+    ).toBe(1)
+    expect(
+      countSyntaxPresence(
+        createEvaluationContext('[x][a]\n\n[a]: /url " \t"'),
+        "link-title",
+      ),
+    ).toBe(1)
+  })
+
+  it("does not count escapes hidden in reference identifiers", () => {
+    expect(
+      countSyntaxPresence(
+        createEvaluationContext("[x][a\\*]\n\n[a\\*]: /url"),
+        "escape",
+      ),
+    ).toBe(1)
+  })
+
   it("counts each inner bold-italic segment", () => {
     expect(
       countSyntaxPresence(
