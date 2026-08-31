@@ -1268,6 +1268,19 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(acceptedGuidedSyntaxInputs(checkpoint!)).toContain("~~~~js~~~~~")
   })
 
+  it("accepts and renders a closing fence longer than the submitted opener", () => {
+    const target = "```python\nvalue\n```"
+    const [checkpoint] = deriveSyntaxCheckpoints(target, "value")
+    const submitted = "```python````"
+
+    expect(acceptsGuidedSyntaxInput(checkpoint!, submitted)).toBe(true)
+    expect(
+      buildGuidedDraft(target, [checkpoint!], 1, {
+        [checkpoint!.id]: submitted,
+      }),
+    ).toBe("```python\nvalue\n````")
+  })
+
   it("offers hard-break alternatives inside mixed checkpoints", () => {
     const checkpoint = deriveSyntaxCheckpoints(
       "**First**  \nSecond",
@@ -1275,6 +1288,17 @@ describe("deriveSyntaxCheckpoints", () => {
     ).find((candidate) => syntaxCheckpointTerms(candidate).includes("line break"))!
 
     expect(acceptedGuidedSyntaxInputs(checkpoint)).toContain("****\\")
+  })
+
+  it("offers the independent product of every grouped hard-break form", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints(
+      "~~a  \nb  \nc~~",
+      "a\nb\nc",
+    )
+
+    expect(acceptedGuidedSyntaxInputs(checkpoint!)).toEqual(
+      ["~~  \n  \n~~", "~~\\  \n~~", "~~  \n\\~~", "~~\\\\~~"],
+    )
   })
 
   it("skips unused footnote definitions and everything inside them", () => {
@@ -1291,6 +1315,13 @@ describe("deriveSyntaxCheckpoints", () => {
       checkpoints.filter((checkpoint) =>
         syntaxCheckpointTerms(checkpoint).includes("footnote")),
     ).toHaveLength(1)
+
+    expect(
+      deriveSyntaxCheckpoints(
+        "[^unused]: [hidden][ref]\n\n[ref]: /a\\*b",
+        "",
+      ),
+    ).toHaveLength(0)
   })
 
   it("does not mistake quoted or parenthesized definition URLs for titles", () => {
