@@ -53,7 +53,7 @@
     },
     {
       "path": "src/engine/syntaxPresence.ts",
-      "sha256": "4beb8397fc39c2a0453d4918c2d08eab5def6955f0b2f4c5fe42047a2d59dfd6"
+      "sha256": "0cca0abdc510bc71523e7413e7c6791cdb3019de77ba935f44c8dc3d58f13c18"
     },
     {
       "path": "src/markdown/parser.ts",
@@ -73,7 +73,7 @@
     },
     {
       "path": "src/guided/guidedSyntax.ts",
-      "sha256": "43e05924a1673a685a8aadcdf074b8e52822afc40997bdae59d2e6e6e1a78717"
+      "sha256": "90f05f3c3cf14062f79ef0c534f8e0e81beadd303a2ea4a1593498e479d5157c"
     }
   ],
   "dependencies": [
@@ -90,5 +90,5 @@
       "version": "3.0.0"
     }
   ],
-  "engineContractDigest": "3feb630157b4be8495118c901a40b629143cd95cb382e7510540d1aaf8f9f45d"
+  "engineContractDigest": "980da214efe9e8b014e5f007b6c5af5afd29d8683e57ac29ecf79a63779fc489"
 }
