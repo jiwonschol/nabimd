@@ -1,10 +1,13 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-31-l2-l3-unlock-041",
+  "batchId": "2026-08-31-l2-l3-unlock-042",
   "sequence": 28,
   "curriculumVersion": "2026-07-19",
   "generatedBy": "gpt-5.6-sol-build-time-authoring",
   "generatedOn": "2026-08-31",
+  "promptSha256": "6b5f7b29c4a8e97c48c8c9f5b06bebc89bf3a99f3520c5b521ebcb09db0f1981",
+  "rawArtifactDigest": "9974bc32a8ae286fd211975d31b8bade1797edb8aa266d829a1446415fde697f",
+  "candidateCount": 60,
   "candidates": [
     {
       "id": "l2-bold-italic-1",
@@ -64,7 +67,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "9447bd67f4dc16689c55410f7f46c90c5c3c43f37fc9c958d68d7efbf97fa1d2"
     },
     {
       "id": "l2-bold-italic-2",
@@ -124,7 +129,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "6c10e9680dd60b531c1a6070f865aa8ebd5b9888ce0b6db5d143d33beb6832e7"
     },
     {
       "id": "l2-bold-italic-3",
@@ -184,7 +191,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-3"
+      "contentVariant": "variant-3",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "4eebb698eb341ddcd97c82929b91e8263d400aa53940a4390ff4b49cc3d1336e"
     },
     {
       "id": "l2-bold-italic-4",
@@ -244,7 +253,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-4"
+      "contentVariant": "variant-4",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "129aff12ddffb6552d7bbec6dc9aeb4fb7ae59b3e313fc25574b768bccca8272"
     },
     {
       "id": "l2-bold-italic-5",
@@ -305,599 +316,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-5"
-    },
-    {
-      "id": "l2-strikethrough-1",
-      "schemaVersion": 2,
-      "level": 2,
-      "flavor": "standard",
-      "familyId": "strikethrough",
-      "skillIds": [
-        "strikethrough"
-      ],
-      "difficulty": "warmup",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Strikethrough text is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the strikethrough text.",
-        "example": "~~Old note~~"
-      },
-      "syntaxTokens": [
-        "strikethrough"
-      ],
-      "title": "strikethrough text",
-      "prompt": "Write the strikethrough text.",
-      "target": "~~Old address~~",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-strikethrough",
-          "kind": "syntax-presence",
-          "syntax": "strikethrough",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown strikethrough text syntax."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a strikethrough text.",
-        "Add the missing strikethrough text marks.",
-        "Example: ~~Old note~~"
-      ],
-      "retryFamily": "level-2-strikethrough",
-      "reviewTags": [
-        "strikethrough",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "everyday-recall",
-        "domains": [
-          "everyday-notes"
-        ],
-        "terms": [
-          "Old",
-          "address"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
-    },
-    {
-      "id": "l2-strikethrough-2",
-      "schemaVersion": 2,
-      "level": 2,
-      "flavor": "standard",
-      "familyId": "strikethrough",
-      "skillIds": [
-        "strikethrough"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Strikethrough text is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the strikethrough text.",
-        "example": "~~Old note~~"
-      },
-      "syntaxTokens": [
-        "strikethrough"
-      ],
-      "title": "strikethrough text",
-      "prompt": "Write the strikethrough text.",
-      "target": "~~Canceled meeting~~",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-strikethrough",
-          "kind": "syntax-presence",
-          "syntax": "strikethrough",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown strikethrough text syntax."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a strikethrough text.",
-        "Add the missing strikethrough text marks.",
-        "Example: ~~Old note~~"
-      ],
-      "retryFamily": "level-2-strikethrough",
-      "reviewTags": [
-        "strikethrough",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "everyday-recall",
-        "domains": [
-          "everyday-notes"
-        ],
-        "terms": [
-          "Canceled",
-          "meeting"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
-    },
-    {
-      "id": "l2-strikethrough-3",
-      "schemaVersion": 2,
-      "level": 2,
-      "flavor": "standard",
-      "familyId": "strikethrough",
-      "skillIds": [
-        "strikethrough"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Strikethrough text is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the strikethrough text.",
-        "example": "~~Old note~~"
-      },
-      "syntaxTokens": [
-        "strikethrough"
-      ],
-      "title": "strikethrough text",
-      "prompt": "Write the strikethrough text.",
-      "target": "~~Previous deadline~~",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-strikethrough",
-          "kind": "syntax-presence",
-          "syntax": "strikethrough",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown strikethrough text syntax."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a strikethrough text.",
-        "Add the missing strikethrough text marks.",
-        "Example: ~~Old note~~"
-      ],
-      "retryFamily": "level-2-strikethrough",
-      "reviewTags": [
-        "strikethrough",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "everyday-recall",
-        "domains": [
-          "everyday-notes"
-        ],
-        "terms": [
-          "Previous",
-          "deadline"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-3"
-    },
-    {
-      "id": "l2-strikethrough-4",
-      "schemaVersion": 2,
-      "level": 2,
-      "flavor": "standard",
-      "familyId": "strikethrough",
-      "skillIds": [
-        "strikethrough"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Strikethrough text is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the strikethrough text.",
-        "example": "~~Old note~~"
-      },
-      "syntaxTokens": [
-        "strikethrough"
-      ],
-      "title": "strikethrough text",
-      "prompt": "Write the strikethrough text.",
-      "target": "~~Outdated instructions~~",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-strikethrough",
-          "kind": "syntax-presence",
-          "syntax": "strikethrough",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown strikethrough text syntax."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a strikethrough text.",
-        "Add the missing strikethrough text marks.",
-        "Example: ~~Old note~~"
-      ],
-      "retryFamily": "level-2-strikethrough",
-      "reviewTags": [
-        "strikethrough",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "everyday-recall",
-        "domains": [
-          "everyday-notes"
-        ],
-        "terms": [
-          "Outdated",
-          "instructions"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-4"
-    },
-    {
-      "id": "l2-strikethrough-5",
-      "schemaVersion": 2,
-      "level": 2,
-      "flavor": "standard",
-      "familyId": "strikethrough",
-      "skillIds": [
-        "strikethrough"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Strikethrough text is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the strikethrough text.",
-        "example": "~~Old note~~"
-      },
-      "syntaxTokens": [
-        "strikethrough"
-      ],
-      "title": "strikethrough text",
-      "prompt": "Write the strikethrough text.",
-      "target": "~~Earlier estimate~~",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-strikethrough",
-          "kind": "syntax-presence",
-          "syntax": "strikethrough",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown strikethrough text syntax."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a strikethrough text.",
-        "Add the missing strikethrough text marks.",
-        "Example: ~~Old note~~"
-      ],
-      "retryFamily": "level-2-strikethrough",
-      "reviewTags": [
-        "strikethrough",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "everyday-recall",
-        "domains": [
-          "everyday-notes"
-        ],
-        "terms": [
-          "Earlier",
-          "estimate"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-5"
-    },
-    {
-      "id": "l2-nested-blockquote-1",
-      "schemaVersion": 2,
-      "level": 2,
-      "flavor": "standard",
-      "familyId": "nested-blockquote",
-      "skillIds": [
-        "nested-blockquote"
-      ],
-      "difficulty": "warmup",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Nested block quote is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the nested block quote.",
-        "example": "> Note\n> > Detail"
-      },
-      "syntaxTokens": [
-        "nested-blockquote"
-      ],
-      "title": "nested block quote",
-      "prompt": "Write the nested block quote.",
-      "target": "> Main note\n> > Reply",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-nested-blockquote",
-          "kind": "syntax-presence",
-          "syntax": "nested-blockquote",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown nested block quote syntax."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a nested block quote.",
-        "Add the missing nested block quote marks.",
-        "Example: > Note\n> > Detail"
-      ],
-      "retryFamily": "level-2-nested-blockquote",
-      "reviewTags": [
-        "nested-blockquote",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "everyday-recall",
-        "domains": [
-          "everyday-notes"
-        ],
-        "terms": [
-          "Main",
-          "note",
-          "Reply"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
-    },
-    {
-      "id": "l2-nested-blockquote-2",
-      "schemaVersion": 2,
-      "level": 2,
-      "flavor": "standard",
-      "familyId": "nested-blockquote",
-      "skillIds": [
-        "nested-blockquote"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Nested block quote is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the nested block quote.",
-        "example": "> Note\n> > Detail"
-      },
-      "syntaxTokens": [
-        "nested-blockquote"
-      ],
-      "title": "nested block quote",
-      "prompt": "Write the nested block quote.",
-      "target": "> Question\n> > Answer",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-nested-blockquote",
-          "kind": "syntax-presence",
-          "syntax": "nested-blockquote",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown nested block quote syntax."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a nested block quote.",
-        "Add the missing nested block quote marks.",
-        "Example: > Note\n> > Detail"
-      ],
-      "retryFamily": "level-2-nested-blockquote",
-      "reviewTags": [
-        "nested-blockquote",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "everyday-recall",
-        "domains": [
-          "everyday-notes"
-        ],
-        "terms": [
-          "Question",
-          "Answer"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
-    },
-    {
-      "id": "l2-nested-blockquote-3",
-      "schemaVersion": 2,
-      "level": 2,
-      "flavor": "standard",
-      "familyId": "nested-blockquote",
-      "skillIds": [
-        "nested-blockquote"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Nested block quote is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the nested block quote.",
-        "example": "> Note\n> > Detail"
-      },
-      "syntaxTokens": [
-        "nested-blockquote"
-      ],
-      "title": "nested block quote",
-      "prompt": "Write the nested block quote.",
-      "target": "> Update\n> > Follow-up",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-nested-blockquote",
-          "kind": "syntax-presence",
-          "syntax": "nested-blockquote",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown nested block quote syntax."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a nested block quote.",
-        "Add the missing nested block quote marks.",
-        "Example: > Note\n> > Detail"
-      ],
-      "retryFamily": "level-2-nested-blockquote",
-      "reviewTags": [
-        "nested-blockquote",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "everyday-recall",
-        "domains": [
-          "everyday-notes"
-        ],
-        "terms": [
-          "Update",
-          "Follow",
-          "up"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-3"
-    },
-    {
-      "id": "l2-nested-blockquote-4",
-      "schemaVersion": 2,
-      "level": 2,
-      "flavor": "standard",
-      "familyId": "nested-blockquote",
-      "skillIds": [
-        "nested-blockquote"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Nested block quote is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the nested block quote.",
-        "example": "> Note\n> > Detail"
-      },
-      "syntaxTokens": [
-        "nested-blockquote"
-      ],
-      "title": "nested block quote",
-      "prompt": "Write the nested block quote.",
-      "target": "> Request\n> > Response",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-nested-blockquote",
-          "kind": "syntax-presence",
-          "syntax": "nested-blockquote",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown nested block quote syntax."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a nested block quote.",
-        "Add the missing nested block quote marks.",
-        "Example: > Note\n> > Detail"
-      ],
-      "retryFamily": "level-2-nested-blockquote",
-      "reviewTags": [
-        "nested-blockquote",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "everyday-recall",
-        "domains": [
-          "everyday-notes"
-        ],
-        "terms": [
-          "Request",
-          "Response"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-4"
-    },
-    {
-      "id": "l2-nested-blockquote-5",
-      "schemaVersion": 2,
-      "level": 2,
-      "flavor": "standard",
-      "familyId": "nested-blockquote",
-      "skillIds": [
-        "nested-blockquote"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Nested block quote is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the nested block quote.",
-        "example": "> Note\n> > Detail"
-      },
-      "syntaxTokens": [
-        "nested-blockquote"
-      ],
-      "title": "nested block quote",
-      "prompt": "Write the nested block quote.",
-      "target": "> Summary\n> > Detail",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-nested-blockquote",
-          "kind": "syntax-presence",
-          "syntax": "nested-blockquote",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown nested block quote syntax."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a nested block quote.",
-        "Add the missing nested block quote marks.",
-        "Example: > Note\n> > Detail"
-      ],
-      "retryFamily": "level-2-nested-blockquote",
-      "reviewTags": [
-        "nested-blockquote",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "everyday-recall",
-        "domains": [
-          "everyday-notes"
-        ],
-        "terms": [
-          "Summary",
-          "Detail"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-5"
+      "contentVariant": "variant-5",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "cb7db5d83ef040c8f46d5f215c75430e826df9720eaddd919f0edd5193be78ee"
     },
     {
       "id": "l2-code-block-language-1",
@@ -958,7 +379,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "a13074e589e5c5b1b038339222040c7b75184b18ce485c79c25a278eb032cb4a"
     },
     {
       "id": "l2-code-block-language-2",
@@ -1019,7 +442,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "5a83e4147143e3fb95a5d41cccc66b1436cbfe6bf0aeeeefe6d4ca4a1dfd36c2"
     },
     {
       "id": "l2-code-block-language-3",
@@ -1079,7 +504,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-3"
+      "contentVariant": "variant-3",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "cfbb32a11ff9d6c05c3be4d65f0b4bc5b52d4df740a191ab0723bd9474491ec4"
     },
     {
       "id": "l2-code-block-language-4",
@@ -1139,7 +566,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-4"
+      "contentVariant": "variant-4",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "77f65f37bb203274ec26b0b40d6da1a2387cb4097afef4b786395bb3af487c9f"
     },
     {
       "id": "l2-code-block-language-5",
@@ -1201,7 +630,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-5"
+      "contentVariant": "variant-5",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "8efa13b2ff97f0a58126e1f9458a799e16b0f98eb407286aa6dd6add30fd33d5"
     },
     {
       "id": "l2-hard-line-break-1",
@@ -1261,7 +692,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "19a5f4a549579917a62c6a859482e8933d0aeab15e14fccb185147a0db17b74a"
     },
     {
       "id": "l2-hard-line-break-2",
@@ -1321,7 +754,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "459272d760643b2b373cb7d6d13adbcae94fd2db9206c0d5ef051cfc487dd349"
     },
     {
       "id": "l2-hard-line-break-3",
@@ -1381,7 +816,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-3"
+      "contentVariant": "variant-3",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "d32d721c016e2ba174247191b7186b66104bc31294b56503680db8bccf328ca7"
     },
     {
       "id": "l2-hard-line-break-4",
@@ -1442,7 +879,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-4"
+      "contentVariant": "variant-4",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "f9650b7ba9f470b3f6d7389ac006601b057f7d0d871dc725ca36c83cf98e3784"
     },
     {
       "id": "l2-hard-line-break-5",
@@ -1503,727 +942,621 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-5"
+      "contentVariant": "variant-5",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "fee7828cd78192f5505c058297833368a31f279473507439c974b135c80079a8"
     },
     {
-      "id": "l3-link-title-1",
+      "id": "l2-nested-blockquote-1",
       "schemaVersion": 2,
-      "level": 3,
+      "level": 2,
       "flavor": "standard",
-      "familyId": "link-title",
+      "familyId": "nested-blockquote",
       "skillIds": [
-        "link-title"
+        "nested-blockquote"
       ],
       "difficulty": "warmup",
       "teachingMode": "recall",
       "teaching": {
-        "concept": "Link title is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the link title.",
-        "example": "[Help](https://example.net \"More details\")"
+        "concept": "Nested block quote is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the nested block quote.",
+        "example": "> Note\n> > Detail"
       },
       "syntaxTokens": [
-        "link-title"
+        "nested-blockquote"
       ],
-      "title": "link title",
-      "prompt": "Write the short document with the link title.",
-      "target": "Project guide\n\nRead the [setup notes](https://example.com \"Setup notes\") before Monday.",
+      "title": "nested block quote",
+      "prompt": "Write the nested block quote.",
+      "target": "> Main note\n> > Reply",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
         {
-          "id": "use-link-title",
+          "id": "use-nested-blockquote",
           "kind": "syntax-presence",
-          "syntax": "link-title",
+          "syntax": "nested-blockquote",
           "min": 1,
           "priority": 10,
-          "feedback": "Use Markdown link title syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Use Markdown nested block quote syntax."
         }
       ],
       "editorialChecks": [],
       "hints": [
-        "Look for the punctuation used by a link title.",
-        "Add the missing link title marks.",
-        "Example: [Help](https://example.net \"More details\")"
+        "Look for the punctuation used by a nested block quote.",
+        "Add the missing nested block quote marks.",
+        "Example: > Note\n> > Detail"
       ],
-      "retryFamily": "level-3-link-title",
+      "retryFamily": "level-2-nested-blockquote",
       "reviewTags": [
-        "link-title",
+        "nested-blockquote",
         "level-unlock"
       ],
       "vocabulary": {
-        "profile": "workplace-document",
+        "profile": "everyday-recall",
         "domains": [
-          "workplace-notes"
+          "everyday-notes"
         ],
         "terms": [
-          "Project",
-          "guide",
-          "Read",
-          "the",
-          "setup",
-          "notes",
-          "https",
-          "example"
+          "Main",
+          "note",
+          "Reply"
         ]
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "22084938183f8ed5e02aae88d28b9dd54e32953a5538fb2c0d3ba84a2ad85e93"
     },
     {
-      "id": "l3-link-title-2",
+      "id": "l2-nested-blockquote-2",
       "schemaVersion": 2,
-      "level": 3,
+      "level": 2,
       "flavor": "standard",
-      "familyId": "link-title",
+      "familyId": "nested-blockquote",
       "skillIds": [
-        "link-title"
+        "nested-blockquote"
       ],
       "difficulty": "makeover",
       "teachingMode": "recall",
       "teaching": {
-        "concept": "Link title is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the link title.",
-        "example": "[Help](https://example.net \"More details\")"
+        "concept": "Nested block quote is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the nested block quote.",
+        "example": "> Note\n> > Detail"
       },
       "syntaxTokens": [
-        "link-title"
+        "nested-blockquote"
       ],
-      "title": "link title",
-      "prompt": "Write the short document with the link title.",
-      "target": "Office visit\n\nOpen the [floor map](https://example.org 'Office map') before you leave.",
+      "title": "nested block quote",
+      "prompt": "Write the nested block quote.",
+      "target": "> Question\n> > Answer",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
         {
-          "id": "use-link-title",
+          "id": "use-nested-blockquote",
           "kind": "syntax-presence",
-          "syntax": "link-title",
+          "syntax": "nested-blockquote",
           "min": 1,
           "priority": 10,
-          "feedback": "Use Markdown link title syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Use Markdown nested block quote syntax."
         }
       ],
       "editorialChecks": [],
       "hints": [
-        "Look for the punctuation used by a link title.",
-        "Add the missing link title marks.",
-        "Example: [Help](https://example.net \"More details\")"
+        "Look for the punctuation used by a nested block quote.",
+        "Add the missing nested block quote marks.",
+        "Example: > Note\n> > Detail"
       ],
-      "retryFamily": "level-3-link-title",
+      "retryFamily": "level-2-nested-blockquote",
       "reviewTags": [
-        "link-title",
+        "nested-blockquote",
         "level-unlock"
       ],
       "vocabulary": {
-        "profile": "workplace-document",
+        "profile": "everyday-recall",
         "domains": [
-          "workplace-notes"
+          "everyday-notes"
         ],
         "terms": [
-          "Office",
-          "visit",
-          "Open",
-          "the",
-          "floor",
-          "map",
-          "https",
-          "example"
+          "Question",
+          "Answer"
         ]
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "5d3d44182fa078944a7323a2c82c07db7b83daa61931e08d322fa0fe85dbdf6f"
     },
     {
-      "id": "l3-link-title-3",
+      "id": "l2-nested-blockquote-3",
       "schemaVersion": 2,
-      "level": 3,
+      "level": 2,
       "flavor": "standard",
-      "familyId": "link-title",
+      "familyId": "nested-blockquote",
       "skillIds": [
-        "link-title"
+        "nested-blockquote"
       ],
       "difficulty": "makeover",
       "teachingMode": "recall",
       "teaching": {
-        "concept": "Link title is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the link title.",
-        "example": "[Help](https://example.net \"More details\")"
+        "concept": "Nested block quote is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the nested block quote.",
+        "example": "> Note\n> > Detail"
       },
       "syntaxTokens": [
-        "link-title"
+        "nested-blockquote"
       ],
-      "title": "link title",
-      "prompt": "Write the short document with the link title.",
-      "target": "Team handbook\n\nKeep the [leave policy](https://example.net \"Leave policy\") nearby.",
+      "title": "nested block quote",
+      "prompt": "Write the nested block quote.",
+      "target": "> Update\n> > Follow-up",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
         {
-          "id": "use-link-title",
+          "id": "use-nested-blockquote",
           "kind": "syntax-presence",
-          "syntax": "link-title",
+          "syntax": "nested-blockquote",
           "min": 1,
           "priority": 10,
-          "feedback": "Use Markdown link title syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Use Markdown nested block quote syntax."
         }
       ],
       "editorialChecks": [],
       "hints": [
-        "Look for the punctuation used by a link title.",
-        "Add the missing link title marks.",
-        "Example: [Help](https://example.net \"More details\")"
+        "Look for the punctuation used by a nested block quote.",
+        "Add the missing nested block quote marks.",
+        "Example: > Note\n> > Detail"
       ],
-      "retryFamily": "level-3-link-title",
+      "retryFamily": "level-2-nested-blockquote",
       "reviewTags": [
-        "link-title",
+        "nested-blockquote",
         "level-unlock"
       ],
       "vocabulary": {
-        "profile": "workplace-document",
+        "profile": "everyday-recall",
         "domains": [
-          "workplace-notes"
+          "everyday-notes"
         ],
         "terms": [
-          "Team",
-          "handbook",
-          "Keep",
-          "the",
-          "leave",
-          "policy",
-          "https",
-          "example"
+          "Update",
+          "Follow",
+          "up"
         ]
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-3"
+      "contentVariant": "variant-3",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "b0f0f9a8a9ff75fc7c5318371c157274948910f0d693bd954e0f8487ec6c39f9"
     },
     {
-      "id": "l3-link-title-4",
+      "id": "l2-nested-blockquote-4",
       "schemaVersion": 2,
-      "level": 3,
+      "level": 2,
       "flavor": "standard",
-      "familyId": "link-title",
+      "familyId": "nested-blockquote",
       "skillIds": [
-        "link-title"
+        "nested-blockquote"
       ],
       "difficulty": "makeover",
       "teachingMode": "recall",
       "teaching": {
-        "concept": "Link title is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the link title.",
-        "example": "[Help](https://example.net \"More details\")"
+        "concept": "Nested block quote is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the nested block quote.",
+        "example": "> Note\n> > Detail"
       },
       "syntaxTokens": [
-        "link-title"
+        "nested-blockquote"
       ],
-      "title": "link title",
-      "prompt": "Write the short document with the link title.",
-      "target": "Workshop prep\n\nReview the [arrival guide](https://example.edu 'Arrival guide') this week.",
+      "title": "nested block quote",
+      "prompt": "Write the nested block quote.",
+      "target": "> Request\n> > Response",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
         {
-          "id": "use-link-title",
+          "id": "use-nested-blockquote",
           "kind": "syntax-presence",
-          "syntax": "link-title",
+          "syntax": "nested-blockquote",
           "min": 1,
           "priority": 10,
-          "feedback": "Use Markdown link title syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Use Markdown nested block quote syntax."
         }
       ],
       "editorialChecks": [],
       "hints": [
-        "Look for the punctuation used by a link title.",
-        "Add the missing link title marks.",
-        "Example: [Help](https://example.net \"More details\")"
+        "Look for the punctuation used by a nested block quote.",
+        "Add the missing nested block quote marks.",
+        "Example: > Note\n> > Detail"
       ],
-      "retryFamily": "level-3-link-title",
+      "retryFamily": "level-2-nested-blockquote",
       "reviewTags": [
-        "link-title",
+        "nested-blockquote",
         "level-unlock"
       ],
       "vocabulary": {
-        "profile": "workplace-document",
+        "profile": "everyday-recall",
         "domains": [
-          "workplace-notes"
+          "everyday-notes"
         ],
         "terms": [
-          "Workshop",
-          "prep",
-          "Review",
-          "the",
-          "arrival",
-          "guide",
-          "https",
-          "example"
+          "Request",
+          "Response"
         ]
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-4"
+      "contentVariant": "variant-4",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "cb9d7eee783d7a78329664e46c53a1078de91c10146f9f39c368a1d296cd8a55"
     },
     {
-      "id": "l3-link-title-5",
+      "id": "l2-nested-blockquote-5",
       "schemaVersion": 2,
-      "level": 3,
+      "level": 2,
       "flavor": "standard",
-      "familyId": "link-title",
+      "familyId": "nested-blockquote",
       "skillIds": [
-        "link-title"
+        "nested-blockquote"
       ],
       "difficulty": "makeover",
       "teachingMode": "recall",
       "teaching": {
-        "concept": "Link title is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the link title.",
-        "example": "[Help](https://example.net \"More details\")"
+        "concept": "Nested block quote is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the nested block quote.",
+        "example": "> Note\n> > Detail"
       },
       "syntaxTokens": [
-        "link-title"
+        "nested-blockquote"
       ],
-      "title": "link title",
-      "prompt": "Write the short document with the link title.",
-      "target": "Support handoff\n\nShare the [contact guide](https://example.info \"Contact guide\") with the next shift.",
+      "title": "nested block quote",
+      "prompt": "Write the nested block quote.",
+      "target": "> Summary\n> > Detail",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
         {
-          "id": "use-link-title",
+          "id": "use-nested-blockquote",
           "kind": "syntax-presence",
-          "syntax": "link-title",
+          "syntax": "nested-blockquote",
           "min": 1,
           "priority": 10,
-          "feedback": "Use Markdown link title syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Use Markdown nested block quote syntax."
         }
       ],
       "editorialChecks": [],
       "hints": [
-        "Look for the punctuation used by a link title.",
-        "Add the missing link title marks.",
-        "Example: [Help](https://example.net \"More details\")"
+        "Look for the punctuation used by a nested block quote.",
+        "Add the missing nested block quote marks.",
+        "Example: > Note\n> > Detail"
       ],
-      "retryFamily": "level-3-link-title",
+      "retryFamily": "level-2-nested-blockquote",
       "reviewTags": [
-        "link-title",
+        "nested-blockquote",
         "level-unlock"
       ],
       "vocabulary": {
-        "profile": "workplace-document",
+        "profile": "everyday-recall",
         "domains": [
-          "workplace-notes"
+          "everyday-notes"
         ],
         "terms": [
-          "Support",
-          "handoff",
-          "Share",
-          "the",
-          "contact",
-          "guide",
-          "https",
-          "example"
+          "Summary",
+          "Detail"
         ]
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-5"
+      "contentVariant": "variant-5",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "488717da7ff59a91ec691d4c4e0cbbdc6ee02c8e2249c244dc7d588f44ed96f8"
     },
     {
-      "id": "l3-angle-bracket-url-1",
+      "id": "l2-strikethrough-1",
       "schemaVersion": 2,
-      "level": 3,
+      "level": 2,
       "flavor": "standard",
-      "familyId": "angle-bracket-url",
+      "familyId": "strikethrough",
       "skillIds": [
-        "angle-bracket-url"
+        "strikethrough"
       ],
       "difficulty": "warmup",
       "teachingMode": "recall",
       "teaching": {
-        "concept": "Angle-bracket URL is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the angle-bracket URL.",
-        "example": "<https://example.net>"
+        "concept": "Strikethrough text is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the strikethrough text.",
+        "example": "~~Old note~~"
       },
       "syntaxTokens": [
-        "angle-bracket-url"
+        "strikethrough"
       ],
-      "title": "angle-bracket URL",
-      "prompt": "Write the short document with the angle-bracket URL.",
-      "target": "Project reference\n\nOpen <https://example.com> for the current plan.",
+      "title": "strikethrough text",
+      "prompt": "Write the strikethrough text.",
+      "target": "~~Old address~~",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
         {
-          "id": "use-angle-bracket-url",
+          "id": "use-strikethrough",
           "kind": "syntax-presence",
-          "syntax": "angle-bracket-url",
+          "syntax": "strikethrough",
           "min": 1,
           "priority": 10,
-          "feedback": "Use Markdown angle-bracket URL syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Use Markdown strikethrough text syntax."
         }
       ],
       "editorialChecks": [],
       "hints": [
-        "Look for the punctuation used by a angle-bracket URL.",
-        "Add the missing angle-bracket URL marks.",
-        "Example: <https://example.net>"
+        "Look for the punctuation used by a strikethrough text.",
+        "Add the missing strikethrough text marks.",
+        "Example: ~~Old note~~"
       ],
-      "retryFamily": "level-3-angle-bracket-url",
+      "retryFamily": "level-2-strikethrough",
       "reviewTags": [
-        "angle-bracket-url",
+        "strikethrough",
         "level-unlock"
       ],
       "vocabulary": {
-        "profile": "workplace-document",
+        "profile": "everyday-recall",
         "domains": [
-          "workplace-notes"
+          "everyday-notes"
         ],
         "terms": [
-          "Project",
-          "reference",
-          "Open",
-          "https",
-          "example",
-          "com",
-          "for",
-          "the"
+          "Old",
+          "address"
         ]
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "23d823b0be30bda5fd40938a17a36c9d66fed20cc263739d3ced3c6b41577a49"
     },
     {
-      "id": "l3-angle-bracket-url-2",
+      "id": "l2-strikethrough-2",
       "schemaVersion": 2,
-      "level": 3,
+      "level": 2,
       "flavor": "standard",
-      "familyId": "angle-bracket-url",
+      "familyId": "strikethrough",
       "skillIds": [
-        "angle-bracket-url"
+        "strikethrough"
       ],
       "difficulty": "makeover",
       "teachingMode": "recall",
       "teaching": {
-        "concept": "Angle-bracket URL is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the angle-bracket URL.",
-        "example": "<https://example.net>"
+        "concept": "Strikethrough text is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the strikethrough text.",
+        "example": "~~Old note~~"
       },
       "syntaxTokens": [
-        "angle-bracket-url"
+        "strikethrough"
       ],
-      "title": "angle-bracket URL",
-      "prompt": "Write the short document with the angle-bracket URL.",
-      "target": "Visitor information\n\nUse <https://example.org/help> before arriving.",
+      "title": "strikethrough text",
+      "prompt": "Write the strikethrough text.",
+      "target": "~~Canceled meeting~~",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
         {
-          "id": "use-angle-bracket-url",
+          "id": "use-strikethrough",
           "kind": "syntax-presence",
-          "syntax": "angle-bracket-url",
+          "syntax": "strikethrough",
           "min": 1,
           "priority": 10,
-          "feedback": "Use Markdown angle-bracket URL syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Use Markdown strikethrough text syntax."
         }
       ],
       "editorialChecks": [],
       "hints": [
-        "Look for the punctuation used by a angle-bracket URL.",
-        "Add the missing angle-bracket URL marks.",
-        "Example: <https://example.net>"
+        "Look for the punctuation used by a strikethrough text.",
+        "Add the missing strikethrough text marks.",
+        "Example: ~~Old note~~"
       ],
-      "retryFamily": "level-3-angle-bracket-url",
+      "retryFamily": "level-2-strikethrough",
       "reviewTags": [
-        "angle-bracket-url",
+        "strikethrough",
         "level-unlock"
       ],
       "vocabulary": {
-        "profile": "workplace-document",
+        "profile": "everyday-recall",
         "domains": [
-          "workplace-notes"
+          "everyday-notes"
         ],
         "terms": [
-          "Visitor",
-          "information",
-          "Use",
-          "https",
-          "example",
-          "org",
-          "help",
-          "before"
+          "Canceled",
+          "meeting"
         ]
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "0b32958014dd926915976e89598d44bd7937b1a2d3704ee151d7852c7210f784"
     },
     {
-      "id": "l3-angle-bracket-url-3",
+      "id": "l2-strikethrough-3",
       "schemaVersion": 2,
-      "level": 3,
+      "level": 2,
       "flavor": "standard",
-      "familyId": "angle-bracket-url",
+      "familyId": "strikethrough",
       "skillIds": [
-        "angle-bracket-url"
+        "strikethrough"
       ],
       "difficulty": "makeover",
       "teachingMode": "recall",
       "teaching": {
-        "concept": "Angle-bracket URL is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the angle-bracket URL.",
-        "example": "<https://example.net>"
+        "concept": "Strikethrough text is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the strikethrough text.",
+        "example": "~~Old note~~"
       },
       "syntaxTokens": [
-        "angle-bracket-url"
+        "strikethrough"
       ],
-      "title": "angle-bracket URL",
-      "prompt": "Write the short document with the angle-bracket URL.",
-      "target": "Team calendar\n\nCheck <https://example.net/calendar> for the next date.",
+      "title": "strikethrough text",
+      "prompt": "Write the strikethrough text.",
+      "target": "~~Previous deadline~~",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
         {
-          "id": "use-angle-bracket-url",
+          "id": "use-strikethrough",
           "kind": "syntax-presence",
-          "syntax": "angle-bracket-url",
+          "syntax": "strikethrough",
           "min": 1,
           "priority": 10,
-          "feedback": "Use Markdown angle-bracket URL syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Use Markdown strikethrough text syntax."
         }
       ],
       "editorialChecks": [],
       "hints": [
-        "Look for the punctuation used by a angle-bracket URL.",
-        "Add the missing angle-bracket URL marks.",
-        "Example: <https://example.net>"
+        "Look for the punctuation used by a strikethrough text.",
+        "Add the missing strikethrough text marks.",
+        "Example: ~~Old note~~"
       ],
-      "retryFamily": "level-3-angle-bracket-url",
+      "retryFamily": "level-2-strikethrough",
       "reviewTags": [
-        "angle-bracket-url",
+        "strikethrough",
         "level-unlock"
       ],
       "vocabulary": {
-        "profile": "workplace-document",
+        "profile": "everyday-recall",
         "domains": [
-          "workplace-notes"
+          "everyday-notes"
         ],
         "terms": [
-          "Team",
-          "calendar",
-          "Check",
-          "https",
-          "example",
-          "net",
-          "for",
-          "the"
+          "Previous",
+          "deadline"
         ]
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-3"
+      "contentVariant": "variant-3",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "0c1aaddd626aa617f329c7e8200a5a68e609ed4e6e8e043a527dada7bd11ffa0"
     },
     {
-      "id": "l3-angle-bracket-url-4",
+      "id": "l2-strikethrough-4",
       "schemaVersion": 2,
-      "level": 3,
+      "level": 2,
       "flavor": "standard",
-      "familyId": "angle-bracket-url",
+      "familyId": "strikethrough",
       "skillIds": [
-        "angle-bracket-url"
+        "strikethrough"
       ],
       "difficulty": "makeover",
       "teachingMode": "recall",
       "teaching": {
-        "concept": "Angle-bracket URL is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the angle-bracket URL.",
-        "example": "<https://example.net>"
+        "concept": "Strikethrough text is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the strikethrough text.",
+        "example": "~~Old note~~"
       },
       "syntaxTokens": [
-        "angle-bracket-url"
+        "strikethrough"
       ],
-      "title": "angle-bracket URL",
-      "prompt": "Write the short document with the angle-bracket URL.",
-      "target": "Release notes\n\nRead <https://example.edu/releases> before the update.",
+      "title": "strikethrough text",
+      "prompt": "Write the strikethrough text.",
+      "target": "~~Outdated instructions~~",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
         {
-          "id": "use-angle-bracket-url",
+          "id": "use-strikethrough",
           "kind": "syntax-presence",
-          "syntax": "angle-bracket-url",
+          "syntax": "strikethrough",
           "min": 1,
           "priority": 10,
-          "feedback": "Use Markdown angle-bracket URL syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Use Markdown strikethrough text syntax."
         }
       ],
       "editorialChecks": [],
       "hints": [
-        "Look for the punctuation used by a angle-bracket URL.",
-        "Add the missing angle-bracket URL marks.",
-        "Example: <https://example.net>"
+        "Look for the punctuation used by a strikethrough text.",
+        "Add the missing strikethrough text marks.",
+        "Example: ~~Old note~~"
       ],
-      "retryFamily": "level-3-angle-bracket-url",
+      "retryFamily": "level-2-strikethrough",
       "reviewTags": [
-        "angle-bracket-url",
+        "strikethrough",
         "level-unlock"
       ],
       "vocabulary": {
-        "profile": "workplace-document",
+        "profile": "everyday-recall",
         "domains": [
-          "workplace-notes"
+          "everyday-notes"
         ],
         "terms": [
-          "Release",
-          "notes",
-          "Read",
-          "https",
-          "example",
-          "edu",
-          "releases",
-          "before"
+          "Outdated",
+          "instructions"
         ]
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-4"
+      "contentVariant": "variant-4",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "b9c09bdeadb6548b9d29caa23610043c46963ab0c6e5bd53924dc45a32805e2c"
     },
     {
-      "id": "l3-angle-bracket-url-5",
+      "id": "l2-strikethrough-5",
       "schemaVersion": 2,
-      "level": 3,
+      "level": 2,
       "flavor": "standard",
-      "familyId": "angle-bracket-url",
+      "familyId": "strikethrough",
       "skillIds": [
-        "angle-bracket-url"
+        "strikethrough"
       ],
       "difficulty": "makeover",
       "teachingMode": "recall",
       "teaching": {
-        "concept": "Angle-bracket URL is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the angle-bracket URL.",
-        "example": "<https://example.net>"
+        "concept": "Strikethrough text is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the strikethrough text.",
+        "example": "~~Old note~~"
       },
       "syntaxTokens": [
-        "angle-bracket-url"
+        "strikethrough"
       ],
-      "title": "angle-bracket URL",
-      "prompt": "Write the short document with the angle-bracket URL.",
-      "target": "Support status\n\nVisit <https://example.info/status> for the latest notice.",
+      "title": "strikethrough text",
+      "prompt": "Write the strikethrough text.",
+      "target": "~~Earlier estimate~~",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
         {
-          "id": "use-angle-bracket-url",
+          "id": "use-strikethrough",
           "kind": "syntax-presence",
-          "syntax": "angle-bracket-url",
+          "syntax": "strikethrough",
           "min": 1,
           "priority": 10,
-          "feedback": "Use Markdown angle-bracket URL syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Use Markdown strikethrough text syntax."
         }
       ],
       "editorialChecks": [],
       "hints": [
-        "Look for the punctuation used by a angle-bracket URL.",
-        "Add the missing angle-bracket URL marks.",
-        "Example: <https://example.net>"
+        "Look for the punctuation used by a strikethrough text.",
+        "Add the missing strikethrough text marks.",
+        "Example: ~~Old note~~"
       ],
-      "retryFamily": "level-3-angle-bracket-url",
+      "retryFamily": "level-2-strikethrough",
       "reviewTags": [
-        "angle-bracket-url",
+        "strikethrough",
         "level-unlock"
       ],
       "vocabulary": {
-        "profile": "workplace-document",
+        "profile": "everyday-recall",
         "domains": [
-          "workplace-notes"
+          "everyday-notes"
         ],
         "terms": [
-          "Support",
-          "status",
-          "Visit",
-          "https",
-          "example",
-          "info",
-          "for",
-          "the"
+          "Earlier",
+          "estimate"
         ]
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-5"
+      "contentVariant": "variant-5",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "9a9f450d47f586b527a13520b86b09ecd3c516f3361f605806664415593923a8"
     },
     {
       "id": "l3-angle-bracket-email-1",
@@ -2295,7 +1628,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "a91fbee02dddc0a14622f1c4a85f11d390952b3fe563f006220cbacea91c9351"
     },
     {
       "id": "l3-angle-bracket-email-2",
@@ -2367,7 +1702,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "8a7e36007499b283ec00288c596674b5c178915edf673df338c20de50a05dfa1"
     },
     {
       "id": "l3-angle-bracket-email-3",
@@ -2439,7 +1776,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-3"
+      "contentVariant": "variant-3",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "91289abf11ecfa75e5e0ef843274f1e7af04bcd5d270bb65c5246df018609cd1"
     },
     {
       "id": "l3-angle-bracket-email-4",
@@ -2511,7 +1850,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-4"
+      "contentVariant": "variant-4",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "bb7181dc147c84125738379b7216836515a08eec89360116eba49fec73e8c547"
     },
     {
       "id": "l3-angle-bracket-email-5",
@@ -2583,7 +1924,379 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-5"
+      "contentVariant": "variant-5",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "939a68b6d435bde994dc0c51bd32fc84ff809c20f1a5b3f2d71a145577aefc9b"
+    },
+    {
+      "id": "l3-angle-bracket-url-1",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "angle-bracket-url",
+      "skillIds": [
+        "angle-bracket-url"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Angle-bracket URL is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the angle-bracket URL.",
+        "example": "<https://example.net>"
+      },
+      "syntaxTokens": [
+        "angle-bracket-url"
+      ],
+      "title": "angle-bracket URL",
+      "prompt": "Write the short document with the angle-bracket URL.",
+      "target": "Project reference\n\nOpen <https://example.com> for the current plan.",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-angle-bracket-url",
+          "kind": "syntax-presence",
+          "syntax": "angle-bracket-url",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown angle-bracket URL syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a angle-bracket URL.",
+        "Add the missing angle-bracket URL marks.",
+        "Example: <https://example.net>"
+      ],
+      "retryFamily": "level-3-angle-bracket-url",
+      "reviewTags": [
+        "angle-bracket-url",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Project",
+          "reference",
+          "Open",
+          "https",
+          "example",
+          "com",
+          "for",
+          "the"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "2354e104addc37d12eb5e33e2d011173927f772c03719016ac73c67e2ea7074c"
+    },
+    {
+      "id": "l3-angle-bracket-url-2",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "angle-bracket-url",
+      "skillIds": [
+        "angle-bracket-url"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Angle-bracket URL is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the angle-bracket URL.",
+        "example": "<https://example.net>"
+      },
+      "syntaxTokens": [
+        "angle-bracket-url"
+      ],
+      "title": "angle-bracket URL",
+      "prompt": "Write the short document with the angle-bracket URL.",
+      "target": "Visitor information\n\nUse <https://example.org/help> before arriving.",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-angle-bracket-url",
+          "kind": "syntax-presence",
+          "syntax": "angle-bracket-url",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown angle-bracket URL syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a angle-bracket URL.",
+        "Add the missing angle-bracket URL marks.",
+        "Example: <https://example.net>"
+      ],
+      "retryFamily": "level-3-angle-bracket-url",
+      "reviewTags": [
+        "angle-bracket-url",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Visitor",
+          "information",
+          "Use",
+          "https",
+          "example",
+          "org",
+          "help",
+          "before"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "dbf2e287957a8ec011eb50d90de2bdd1a015dd1da248dbc28ddf8f27676888a7"
+    },
+    {
+      "id": "l3-angle-bracket-url-3",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "angle-bracket-url",
+      "skillIds": [
+        "angle-bracket-url"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Angle-bracket URL is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the angle-bracket URL.",
+        "example": "<https://example.net>"
+      },
+      "syntaxTokens": [
+        "angle-bracket-url"
+      ],
+      "title": "angle-bracket URL",
+      "prompt": "Write the short document with the angle-bracket URL.",
+      "target": "Team calendar\n\nCheck <https://example.net/calendar> for the next date.",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-angle-bracket-url",
+          "kind": "syntax-presence",
+          "syntax": "angle-bracket-url",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown angle-bracket URL syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a angle-bracket URL.",
+        "Add the missing angle-bracket URL marks.",
+        "Example: <https://example.net>"
+      ],
+      "retryFamily": "level-3-angle-bracket-url",
+      "reviewTags": [
+        "angle-bracket-url",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Team",
+          "calendar",
+          "Check",
+          "https",
+          "example",
+          "net",
+          "for",
+          "the"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-3",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "a34126c017ff837e4e656d2351e45ee02e36ac87a8f54aaf0943835f696b4b3f"
+    },
+    {
+      "id": "l3-angle-bracket-url-4",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "angle-bracket-url",
+      "skillIds": [
+        "angle-bracket-url"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Angle-bracket URL is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the angle-bracket URL.",
+        "example": "<https://example.net>"
+      },
+      "syntaxTokens": [
+        "angle-bracket-url"
+      ],
+      "title": "angle-bracket URL",
+      "prompt": "Write the short document with the angle-bracket URL.",
+      "target": "Release notes\n\nRead <https://example.edu/releases> before the update.",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-angle-bracket-url",
+          "kind": "syntax-presence",
+          "syntax": "angle-bracket-url",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown angle-bracket URL syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a angle-bracket URL.",
+        "Add the missing angle-bracket URL marks.",
+        "Example: <https://example.net>"
+      ],
+      "retryFamily": "level-3-angle-bracket-url",
+      "reviewTags": [
+        "angle-bracket-url",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Release",
+          "notes",
+          "Read",
+          "https",
+          "example",
+          "edu",
+          "releases",
+          "before"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-4",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "9575faa94dca029541f098d2ab7618a439bad72cab23b75ce995b75cbc3d33a3"
+    },
+    {
+      "id": "l3-angle-bracket-url-5",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "angle-bracket-url",
+      "skillIds": [
+        "angle-bracket-url"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Angle-bracket URL is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the angle-bracket URL.",
+        "example": "<https://example.net>"
+      },
+      "syntaxTokens": [
+        "angle-bracket-url"
+      ],
+      "title": "angle-bracket URL",
+      "prompt": "Write the short document with the angle-bracket URL.",
+      "target": "Support status\n\nVisit <https://example.info/status> for the latest notice.",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-angle-bracket-url",
+          "kind": "syntax-presence",
+          "syntax": "angle-bracket-url",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown angle-bracket URL syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a angle-bracket URL.",
+        "Add the missing angle-bracket URL marks.",
+        "Example: <https://example.net>"
+      ],
+      "retryFamily": "level-3-angle-bracket-url",
+      "reviewTags": [
+        "angle-bracket-url",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Support",
+          "status",
+          "Visit",
+          "https",
+          "example",
+          "info",
+          "for",
+          "the"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-5",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "8894359f0528b7d0a15b16906c3a977efa4bd2040b12514d68f4867b0f979763"
     },
     {
       "id": "l3-escape-1",
@@ -2655,7 +2368,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "31cb04c88cd959b73a1f25239ca80501c97e4452554cb4c7c6ad701e8a3ccca7"
     },
     {
       "id": "l3-escape-2",
@@ -2727,7 +2442,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "ae48ba7597a32072e865d7a5f3b7a3b511b0f42722e49ee344b07df37a57e172"
     },
     {
       "id": "l3-escape-3",
@@ -2799,7 +2516,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-3"
+      "contentVariant": "variant-3",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "d015db6feb2684b27016028073328138ac0ac4b98fe1ef94d57273d1b99b095a"
     },
     {
       "id": "l3-escape-4",
@@ -2871,7 +2590,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-4"
+      "contentVariant": "variant-4",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "d4ba6177468e81e48d515094ad9e613850922aa4d46db0ba8f9415ac864d4c56"
     },
     {
       "id": "l3-escape-5",
@@ -2943,356 +2664,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-5"
-    },
-    {
-      "id": "l3-list-with-block-1",
-      "schemaVersion": 2,
-      "level": 3,
-      "flavor": "standard",
-      "familyId": "list-with-block",
-      "skillIds": [
-        "list-with-block"
-      ],
-      "difficulty": "warmup",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "List item with a block is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the list item with a block.",
-        "example": "- > Detail"
-      },
-      "syntaxTokens": [
-        "list-with-block"
-      ],
-      "title": "list item with a block",
-      "prompt": "Write the short document with the list item with a block.",
-      "target": "Meeting follow-up\n\n- > Bring a notebook",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-list-with-block",
-          "kind": "syntax-presence",
-          "syntax": "list-with-block",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown list item with a block syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a list item with a block.",
-        "Add the missing list item with a block marks.",
-        "Example: - > Detail"
-      ],
-      "retryFamily": "level-3-list-with-block",
-      "reviewTags": [
-        "list-with-block",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "workplace-document",
-        "domains": [
-          "workplace-notes"
-        ],
-        "terms": [
-          "Meeting",
-          "follow",
-          "up",
-          "Bring",
-          "a",
-          "notebook"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
-    },
-    {
-      "id": "l3-list-with-block-2",
-      "schemaVersion": 2,
-      "level": 3,
-      "flavor": "standard",
-      "familyId": "list-with-block",
-      "skillIds": [
-        "list-with-block"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "List item with a block is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the list item with a block.",
-        "example": "- > Detail"
-      },
-      "syntaxTokens": [
-        "list-with-block"
-      ],
-      "title": "list item with a block",
-      "prompt": "Write the short document with the list item with a block.",
-      "target": "Project reminder\n\n- > Share the update",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-list-with-block",
-          "kind": "syntax-presence",
-          "syntax": "list-with-block",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown list item with a block syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a list item with a block.",
-        "Add the missing list item with a block marks.",
-        "Example: - > Detail"
-      ],
-      "retryFamily": "level-3-list-with-block",
-      "reviewTags": [
-        "list-with-block",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "workplace-document",
-        "domains": [
-          "workplace-notes"
-        ],
-        "terms": [
-          "Project",
-          "reminder",
-          "Share",
-          "the",
-          "update"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
-    },
-    {
-      "id": "l3-list-with-block-3",
-      "schemaVersion": 2,
-      "level": 3,
-      "flavor": "standard",
-      "familyId": "list-with-block",
-      "skillIds": [
-        "list-with-block"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "List item with a block is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the list item with a block.",
-        "example": "- > Detail"
-      },
-      "syntaxTokens": [
-        "list-with-block"
-      ],
-      "title": "list item with a block",
-      "prompt": "Write the short document with the list item with a block.",
-      "target": "Visitor note\n\n- > Check in at reception",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-list-with-block",
-          "kind": "syntax-presence",
-          "syntax": "list-with-block",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown list item with a block syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a list item with a block.",
-        "Add the missing list item with a block marks.",
-        "Example: - > Detail"
-      ],
-      "retryFamily": "level-3-list-with-block",
-      "reviewTags": [
-        "list-with-block",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "workplace-document",
-        "domains": [
-          "workplace-notes"
-        ],
-        "terms": [
-          "Visitor",
-          "note",
-          "Check",
-          "in",
-          "at",
-          "reception"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-3"
-    },
-    {
-      "id": "l3-list-with-block-4",
-      "schemaVersion": 2,
-      "level": 3,
-      "flavor": "standard",
-      "familyId": "list-with-block",
-      "skillIds": [
-        "list-with-block"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "List item with a block is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the list item with a block.",
-        "example": "- > Detail"
-      },
-      "syntaxTokens": [
-        "list-with-block"
-      ],
-      "title": "list item with a block",
-      "prompt": "Write the short document with the list item with a block.",
-      "target": "Workshop plan\n\n- > Save time for questions",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-list-with-block",
-          "kind": "syntax-presence",
-          "syntax": "list-with-block",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown list item with a block syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a list item with a block.",
-        "Add the missing list item with a block marks.",
-        "Example: - > Detail"
-      ],
-      "retryFamily": "level-3-list-with-block",
-      "reviewTags": [
-        "list-with-block",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "workplace-document",
-        "domains": [
-          "workplace-notes"
-        ],
-        "terms": [
-          "Workshop",
-          "plan",
-          "Save",
-          "time",
-          "for",
-          "questions"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-4"
-    },
-    {
-      "id": "l3-list-with-block-5",
-      "schemaVersion": 2,
-      "level": 3,
-      "flavor": "standard",
-      "familyId": "list-with-block",
-      "skillIds": [
-        "list-with-block"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "List item with a block is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the list item with a block.",
-        "example": "- > Detail"
-      },
-      "syntaxTokens": [
-        "list-with-block"
-      ],
-      "title": "list item with a block",
-      "prompt": "Write the short document with the list item with a block.",
-      "target": "Support handoff\n\n- > Confirm the next owner",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-list-with-block",
-          "kind": "syntax-presence",
-          "syntax": "list-with-block",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown list item with a block syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a list item with a block.",
-        "Add the missing list item with a block marks.",
-        "Example: - > Detail"
-      ],
-      "retryFamily": "level-3-list-with-block",
-      "reviewTags": [
-        "list-with-block",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "workplace-document",
-        "domains": [
-          "workplace-notes"
-        ],
-        "terms": [
-          "Support",
-          "handoff",
-          "Confirm",
-          "the",
-          "next",
-          "owner"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-5"
+      "contentVariant": "variant-5",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "6cf22675386f3ac39bda7cfaf7e30faf2c01b93536b71e42fa5a9acff2ee6963"
     },
     {
       "id": "l3-footnote-1",
@@ -3364,7 +2738,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "3416bf120ca0de10b43263fcbf4ccef5f7eea48e66455423af24baa0f9ab7870"
     },
     {
       "id": "l3-footnote-2",
@@ -3436,7 +2812,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "6a11f7e877ecf555e29c90140cfed4dc947f1123590079d73194be56859e49e3"
     },
     {
       "id": "l3-footnote-3",
@@ -3508,7 +2886,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-3"
+      "contentVariant": "variant-3",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "ea2f4527cc9e5b558b08710142a7c8bbfe999a6deae3fc3780bee34e4ac8f748"
     },
     {
       "id": "l3-footnote-4",
@@ -3580,7 +2960,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-4"
+      "contentVariant": "variant-4",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "c497ec344e7126a96d9e333ec41b3d015a1533d61a15233e8cf288666bfecc49"
     },
     {
       "id": "l3-footnote-5",
@@ -3652,32 +3034,32 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-5"
+      "contentVariant": "variant-5",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "267836ba908462d6947d287cfee791f79b84a873495d03b23404e1ce529a8360"
     },
     {
-      "id": "l3-mixed-link-title-email",
+      "id": "l3-link-title-1",
       "schemaVersion": 2,
       "level": 3,
       "flavor": "standard",
-      "familyId": "level-3-mixed-syntax",
+      "familyId": "link-title",
       "skillIds": [
-        "link-title",
-        "angle-bracket-email"
+        "link-title"
       ],
-      "difficulty": "mixed",
+      "difficulty": "warmup",
       "teachingMode": "recall",
       "teaching": {
-        "concept": "A short Markdown document can combine more than one syntax pattern.",
-        "howTo": "Add each requested mark while keeping the document readable.",
-        "example": "Team guide\n\nRead the [handoff notes](https://example.com \"Team guide\"), then contact <team@example.com>."
+        "concept": "Link title is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the link title.",
+        "example": "[Help](https://example.net \"More details\")"
       },
       "syntaxTokens": [
-        "link-title",
-        "angle-bracket-email"
+        "link-title"
       ],
-      "title": "Combined Markdown patterns",
-      "prompt": "Write the short document with both Markdown patterns.",
-      "target": "Team guide\n\nRead the [handoff notes](https://example.com \"Team guide\"), then contact <team@example.com>.",
+      "title": "link title",
+      "prompt": "Write the short document with the link title.",
+      "target": "Project guide\n\nRead the [setup notes](https://example.com \"Setup notes\") before Monday.",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -3687,15 +3069,7 @@
           "syntax": "link-title",
           "min": 1,
           "priority": 10,
-          "feedback": "Use Markdown link-title syntax."
-        },
-        {
-          "id": "use-angle-bracket-email",
-          "kind": "syntax-presence",
-          "syntax": "angle-bracket-email",
-          "min": 1,
-          "priority": 11,
-          "feedback": "Use Markdown angle-bracket-email syntax."
+          "feedback": "Use Markdown link title syntax."
         },
         {
           "id": "keep-short",
@@ -3707,13 +3081,161 @@
       ],
       "editorialChecks": [],
       "hints": [
-        "Find the punctuation for both requested patterns.",
-        "Complete one syntax pattern at a time.",
-        "Check that both patterns still parse as Markdown."
+        "Look for the punctuation used by a link title.",
+        "Add the missing link title marks.",
+        "Example: [Help](https://example.net \"More details\")"
       ],
-      "retryFamily": "level-3-mixed-syntax",
+      "retryFamily": "level-3-link-title",
       "reviewTags": [
-        "mixed-syntax",
+        "link-title",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Project",
+          "guide",
+          "Read",
+          "the",
+          "setup",
+          "notes",
+          "https",
+          "example"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "a559157fcdde430bcba30b48dcae4f534bdb4fe1f671722bc90f166d7bdd539f"
+    },
+    {
+      "id": "l3-link-title-2",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "link-title",
+      "skillIds": [
+        "link-title"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Link title is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the link title.",
+        "example": "[Help](https://example.net \"More details\")"
+      },
+      "syntaxTokens": [
+        "link-title"
+      ],
+      "title": "link title",
+      "prompt": "Write the short document with the link title.",
+      "target": "Office visit\n\nOpen the [floor map](https://example.org 'Office map') before you leave.",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-link-title",
+          "kind": "syntax-presence",
+          "syntax": "link-title",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown link title syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a link title.",
+        "Add the missing link title marks.",
+        "Example: [Help](https://example.net \"More details\")"
+      ],
+      "retryFamily": "level-3-link-title",
+      "reviewTags": [
+        "link-title",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Office",
+          "visit",
+          "Open",
+          "the",
+          "floor",
+          "map",
+          "https",
+          "example"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "1a2d7cef3f295599dca95bb89b3afa7340a1d0fdc9fb14c54df42b58fbd92419"
+    },
+    {
+      "id": "l3-link-title-3",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "link-title",
+      "skillIds": [
+        "link-title"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Link title is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the link title.",
+        "example": "[Help](https://example.net \"More details\")"
+      },
+      "syntaxTokens": [
+        "link-title"
+      ],
+      "title": "link title",
+      "prompt": "Write the short document with the link title.",
+      "target": "Team handbook\n\nKeep the [leave policy](https://example.net \"Leave policy\") nearby.",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-link-title",
+          "kind": "syntax-presence",
+          "syntax": "link-title",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown link title syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a link title.",
+        "Add the missing link title marks.",
+        "Example: [Help](https://example.net \"More details\")"
+      ],
+      "retryFamily": "level-3-link-title",
+      "reviewTags": [
+        "link-title",
         "level-unlock"
       ],
       "vocabulary": {
@@ -3723,61 +3245,53 @@
         ],
         "terms": [
           "Team",
-          "guide",
-          "Read",
+          "handbook",
+          "Keep",
           "the",
-          "handoff",
-          "notes",
+          "leave",
+          "policy",
           "https",
           "example"
         ]
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "link-and-email"
+      "contentVariant": "variant-3",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "d965362f09670243eae4be0612f077da363b47834dc2c5bdf488d196c85bc6a1"
     },
     {
-      "id": "l3-mixed-list-angle-url",
+      "id": "l3-link-title-4",
       "schemaVersion": 2,
       "level": 3,
       "flavor": "standard",
-      "familyId": "level-3-mixed-syntax",
+      "familyId": "link-title",
       "skillIds": [
-        "list-with-block",
-        "angle-bracket-url"
+        "link-title"
       ],
-      "difficulty": "mixed",
+      "difficulty": "makeover",
       "teachingMode": "recall",
       "teaching": {
-        "concept": "A short Markdown document can combine more than one syntax pattern.",
-        "howTo": "Add each requested mark while keeping the document readable.",
-        "example": "Visitor checklist\n\n- > Open <https://example.org/visit> before arriving."
+        "concept": "Link title is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the link title.",
+        "example": "[Help](https://example.net \"More details\")"
       },
       "syntaxTokens": [
-        "list-with-block",
-        "angle-bracket-url"
+        "link-title"
       ],
-      "title": "Combined Markdown patterns",
-      "prompt": "Write the short document with both Markdown patterns.",
-      "target": "Visitor checklist\n\n- > Open <https://example.org/visit> before arriving.",
+      "title": "link title",
+      "prompt": "Write the short document with the link title.",
+      "target": "Workshop prep\n\nReview the [arrival guide](https://example.edu 'Arrival guide') this week.",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
         {
-          "id": "use-list-with-block",
+          "id": "use-link-title",
           "kind": "syntax-presence",
-          "syntax": "list-with-block",
+          "syntax": "link-title",
           "min": 1,
           "priority": 10,
-          "feedback": "Use Markdown list-with-block syntax."
-        },
-        {
-          "id": "use-angle-bracket-url",
-          "kind": "syntax-presence",
-          "syntax": "angle-bracket-url",
-          "min": 1,
-          "priority": 11,
-          "feedback": "Use Markdown angle-bracket-url syntax."
+          "feedback": "Use Markdown link title syntax."
         },
         {
           "id": "keep-short",
@@ -3789,13 +3303,304 @@
       ],
       "editorialChecks": [],
       "hints": [
-        "Find the punctuation for both requested patterns.",
-        "Complete one syntax pattern at a time.",
-        "Check that both patterns still parse as Markdown."
+        "Look for the punctuation used by a link title.",
+        "Add the missing link title marks.",
+        "Example: [Help](https://example.net \"More details\")"
       ],
-      "retryFamily": "level-3-mixed-syntax",
+      "retryFamily": "level-3-link-title",
       "reviewTags": [
-        "mixed-syntax",
+        "link-title",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Workshop",
+          "prep",
+          "Review",
+          "the",
+          "arrival",
+          "guide",
+          "https",
+          "example"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-4",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "1970e98024c623099e047c040ef02b0f6df41d258264370531f6ad9d86582328"
+    },
+    {
+      "id": "l3-link-title-5",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "link-title",
+      "skillIds": [
+        "link-title"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Link title is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the link title.",
+        "example": "[Help](https://example.net \"More details\")"
+      },
+      "syntaxTokens": [
+        "link-title"
+      ],
+      "title": "link title",
+      "prompt": "Write the short document with the link title.",
+      "target": "Support handoff\n\nShare the [contact guide](https://example.info \"Contact guide\") with the next shift.",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-link-title",
+          "kind": "syntax-presence",
+          "syntax": "link-title",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown link title syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a link title.",
+        "Add the missing link title marks.",
+        "Example: [Help](https://example.net \"More details\")"
+      ],
+      "retryFamily": "level-3-link-title",
+      "reviewTags": [
+        "link-title",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Support",
+          "handoff",
+          "Share",
+          "the",
+          "contact",
+          "guide",
+          "https",
+          "example"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-5",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "41e7027d3b0e9277797f905f2657733a025bd5460797879263a13ba43eb0d4e4"
+    },
+    {
+      "id": "l3-list-with-block-1",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "list-with-block",
+      "skillIds": [
+        "list-with-block"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "List item with a block is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the list item with a block.",
+        "example": "- > Detail"
+      },
+      "syntaxTokens": [
+        "list-with-block"
+      ],
+      "title": "list item with a block",
+      "prompt": "Write the short document with the list item with a block.",
+      "target": "Meeting follow-up\n\n- > Bring a notebook",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-list-with-block",
+          "kind": "syntax-presence",
+          "syntax": "list-with-block",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown list item with a block syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a list item with a block.",
+        "Add the missing list item with a block marks.",
+        "Example: - > Detail"
+      ],
+      "retryFamily": "level-3-list-with-block",
+      "reviewTags": [
+        "list-with-block",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Meeting",
+          "follow",
+          "up",
+          "Bring",
+          "a",
+          "notebook"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "f7c1b829499e70a0f8403a6669825cb5c67b81d762c154b2619c3e77b621e29b"
+    },
+    {
+      "id": "l3-list-with-block-2",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "list-with-block",
+      "skillIds": [
+        "list-with-block"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "List item with a block is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the list item with a block.",
+        "example": "- > Detail"
+      },
+      "syntaxTokens": [
+        "list-with-block"
+      ],
+      "title": "list item with a block",
+      "prompt": "Write the short document with the list item with a block.",
+      "target": "Project reminder\n\n- > Share the update",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-list-with-block",
+          "kind": "syntax-presence",
+          "syntax": "list-with-block",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown list item with a block syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a list item with a block.",
+        "Add the missing list item with a block marks.",
+        "Example: - > Detail"
+      ],
+      "retryFamily": "level-3-list-with-block",
+      "reviewTags": [
+        "list-with-block",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Project",
+          "reminder",
+          "Share",
+          "the",
+          "update"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "3e97489218575abeb0fd80416d463e036a489c4add5251438cbbca1fb5ba28d0"
+    },
+    {
+      "id": "l3-list-with-block-3",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "list-with-block",
+      "skillIds": [
+        "list-with-block"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "List item with a block is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the list item with a block.",
+        "example": "- > Detail"
+      },
+      "syntaxTokens": [
+        "list-with-block"
+      ],
+      "title": "list item with a block",
+      "prompt": "Write the short document with the list item with a block.",
+      "target": "Visitor note\n\n- > Check in at reception",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-list-with-block",
+          "kind": "syntax-presence",
+          "syntax": "list-with-block",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown list item with a block syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a list item with a block.",
+        "Add the missing list item with a block marks.",
+        "Example: - > Detail"
+      ],
+      "retryFamily": "level-3-list-with-block",
+      "reviewTags": [
+        "list-with-block",
         "level-unlock"
       ],
       "vocabulary": {
@@ -3805,18 +3610,162 @@
         ],
         "terms": [
           "Visitor",
-          "checklist",
-          "Open",
-          "https",
-          "example",
-          "org",
-          "visit",
-          "before"
+          "note",
+          "Check",
+          "in",
+          "at",
+          "reception"
         ]
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "list-and-url"
+      "contentVariant": "variant-3",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "0ae1a791043b5027e3c4caea43c093ff4bfd4e22d3e65240129c4c791b6e21b3"
+    },
+    {
+      "id": "l3-list-with-block-4",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "list-with-block",
+      "skillIds": [
+        "list-with-block"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "List item with a block is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the list item with a block.",
+        "example": "- > Detail"
+      },
+      "syntaxTokens": [
+        "list-with-block"
+      ],
+      "title": "list item with a block",
+      "prompt": "Write the short document with the list item with a block.",
+      "target": "Workshop plan\n\n- > Save time for questions",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-list-with-block",
+          "kind": "syntax-presence",
+          "syntax": "list-with-block",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown list item with a block syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a list item with a block.",
+        "Add the missing list item with a block marks.",
+        "Example: - > Detail"
+      ],
+      "retryFamily": "level-3-list-with-block",
+      "reviewTags": [
+        "list-with-block",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Workshop",
+          "plan",
+          "Save",
+          "time",
+          "for",
+          "questions"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-4",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "9109e4b51009c740cba2cdaf41743d6c9f075fec650b729f347f65d460bea9dc"
+    },
+    {
+      "id": "l3-list-with-block-5",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "list-with-block",
+      "skillIds": [
+        "list-with-block"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "List item with a block is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the list item with a block.",
+        "example": "- > Detail"
+      },
+      "syntaxTokens": [
+        "list-with-block"
+      ],
+      "title": "list item with a block",
+      "prompt": "Write the short document with the list item with a block.",
+      "target": "Support handoff\n\n- > Confirm the next owner",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-list-with-block",
+          "kind": "syntax-presence",
+          "syntax": "list-with-block",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown list item with a block syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a list item with a block.",
+        "Add the missing list item with a block marks.",
+        "Example: - > Detail"
+      ],
+      "retryFamily": "level-3-list-with-block",
+      "reviewTags": [
+        "list-with-block",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Support",
+          "handoff",
+          "Confirm",
+          "the",
+          "next",
+          "owner"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-5",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "71335c0161bdb064bbe51067dc12d016b44cbd5ada64cb746acd9fa9af880bd0"
     },
     {
       "id": "l3-mixed-escape-footnote",
@@ -3898,7 +3847,93 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "escape-and-footnote"
+      "contentVariant": "escape-and-footnote",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "b71f8a3d18e21f8758a79acf9290cc0852ff07697d8065544f53f016707b4290"
+    },
+    {
+      "id": "l3-mixed-link-title-email",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "level-3-mixed-syntax",
+      "skillIds": [
+        "link-title",
+        "angle-bracket-email"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A short Markdown document can combine more than one syntax pattern.",
+        "howTo": "Add each requested mark while keeping the document readable.",
+        "example": "Team guide\n\nRead the [handoff notes](https://example.com \"Team guide\"), then contact <team@example.com>."
+      },
+      "syntaxTokens": [
+        "link-title",
+        "angle-bracket-email"
+      ],
+      "title": "Combined Markdown patterns",
+      "prompt": "Write the short document with both Markdown patterns.",
+      "target": "Team guide\n\nRead the [handoff notes](https://example.com \"Team guide\"), then contact <team@example.com>.",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-link-title",
+          "kind": "syntax-presence",
+          "syntax": "link-title",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown link-title syntax."
+        },
+        {
+          "id": "use-angle-bracket-email",
+          "kind": "syntax-presence",
+          "syntax": "angle-bracket-email",
+          "min": 1,
+          "priority": 11,
+          "feedback": "Use Markdown angle-bracket-email syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Find the punctuation for both requested patterns.",
+        "Complete one syntax pattern at a time.",
+        "Check that both patterns still parse as Markdown."
+      ],
+      "retryFamily": "level-3-mixed-syntax",
+      "reviewTags": [
+        "mixed-syntax",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Team",
+          "guide",
+          "Read",
+          "the",
+          "handoff",
+          "notes",
+          "https",
+          "example"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "link-and-email",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "0f5ce1da39840dbc33a6a39d43af4614dbfd0116498b583d521895e94217afeb"
     },
     {
       "id": "l3-mixed-link-title-url",
@@ -3980,7 +4015,93 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "link-and-url"
+      "contentVariant": "link-and-url",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "50b23ee9ad5725d82ea12da2587386cb6d38f802f9850539ec00e47f1cf5b110"
+    },
+    {
+      "id": "l3-mixed-list-angle-url",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "level-3-mixed-syntax",
+      "skillIds": [
+        "list-with-block",
+        "angle-bracket-url"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A short Markdown document can combine more than one syntax pattern.",
+        "howTo": "Add each requested mark while keeping the document readable.",
+        "example": "Visitor checklist\n\n- > Open <https://example.org/visit> before arriving."
+      },
+      "syntaxTokens": [
+        "list-with-block",
+        "angle-bracket-url"
+      ],
+      "title": "Combined Markdown patterns",
+      "prompt": "Write the short document with both Markdown patterns.",
+      "target": "Visitor checklist\n\n- > Open <https://example.org/visit> before arriving.",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-list-with-block",
+          "kind": "syntax-presence",
+          "syntax": "list-with-block",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown list-with-block syntax."
+        },
+        {
+          "id": "use-angle-bracket-url",
+          "kind": "syntax-presence",
+          "syntax": "angle-bracket-url",
+          "min": 1,
+          "priority": 11,
+          "feedback": "Use Markdown angle-bracket-url syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Find the punctuation for both requested patterns.",
+        "Complete one syntax pattern at a time.",
+        "Check that both patterns still parse as Markdown."
+      ],
+      "retryFamily": "level-3-mixed-syntax",
+      "reviewTags": [
+        "mixed-syntax",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Visitor",
+          "checklist",
+          "Open",
+          "https",
+          "example",
+          "org",
+          "visit",
+          "before"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "list-and-url",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "fd95c364641714b7d925502786919b432c623f130f739bf2c435ecd9c927bb40"
     },
     {
       "id": "l3-mixed-list-email",
@@ -4062,7 +4183,10 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "list-and-email"
+      "contentVariant": "list-and-email",
+      "sourceBatch": "2026-08-31-l2-l3-unlock-042",
+      "candidateDigest": "47834f3d1a4b9a3eacfae331aa17cdf2688d6caf3e8e44a835da1f52221fbc04"
     }
-  ]
+  ],
+  "artifactDigest": "8ba725e245e668304e09f1d59bc2f060db790e7b8cbf24e6266404a134f0ba6b"
 }

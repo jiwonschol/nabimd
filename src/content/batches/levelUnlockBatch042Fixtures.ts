@@ -1,5 +1,5 @@
 import type { FixtureRole, ProblemFixture, SyntaxPresenceKind } from "../types"
-import { levelUnlockBatch041Problems } from "./levelUnlockBatch041Problems"
+import { levelUnlockBatch042Problems } from "./levelUnlockBatch042Problems"
 
 type SupportedUnlockSyntax = Exclude<
   SyntaxPresenceKind,
@@ -48,7 +48,7 @@ function fixture(problemId: string, role: FixtureRole, source: string, expectedS
   }
 }
 
-function singleFixtures(problem: (typeof levelUnlockBatch041Problems)[number]): readonly ProblemFixture[] {
+function singleFixtures(problem: (typeof levelUnlockBatch042Problems)[number]): readonly ProblemFixture[] {
   const syntax = problem.skillIds[0] as SupportedUnlockSyntax
   const sources = singleSources[syntax]
   const checkId = `use-${syntax}`
@@ -74,6 +74,18 @@ function singleFixtures(problem: (typeof levelUnlockBatch041Problems)[number]): 
         "fail",
         failed,
         "unreferenced-definition",
+      ),
+    )
+  }
+  if (syntax === "list-with-block") {
+    fixtures.push(
+      fixture(
+        problem.id,
+        "edge-case",
+        "- item\n\n  [a]: /url",
+        "fail",
+        failed,
+        "invisible-definition",
       ),
     )
   }
@@ -104,7 +116,7 @@ function singleFixtures(problem: (typeof levelUnlockBatch041Problems)[number]): 
   return fixtures
 }
 
-function mixedFixtures(problem: (typeof levelUnlockBatch041Problems)[number]): readonly ProblemFixture[] {
+function mixedFixtures(problem: (typeof levelUnlockBatch042Problems)[number]): readonly ProblemFixture[] {
   const [first, second] = problem.skillIds
   const sourcesById: Readonly<Record<string, FixtureSources>> = {
     "l3-mixed-link-title-email": {
@@ -171,7 +183,7 @@ function mixedFixtures(problem: (typeof levelUnlockBatch041Problems)[number]): r
   return fixtures
 }
 
-export const levelUnlockBatch041Fixtures: readonly ProblemFixture[] =
-  levelUnlockBatch041Problems.flatMap((problem) =>
+export const levelUnlockBatch042Fixtures: readonly ProblemFixture[] =
+  levelUnlockBatch042Problems.flatMap((problem) =>
     problem.skillIds.length === 1 ? singleFixtures(problem) : mixedFixtures(problem),
   )

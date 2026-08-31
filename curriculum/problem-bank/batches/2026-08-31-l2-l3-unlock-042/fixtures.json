@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-31-l2-l3-unlock-041",
+  "batchId": "2026-08-31-l2-l3-unlock-042",
   "fixtures": [
     {
       "id": "l2-bold-italic-1-canonical",
@@ -3240,6 +3240,16 @@
       "expectedFeedbackId": "keep-short"
     },
     {
+      "id": "l3-list-with-block-1-invisible-definition",
+      "problemId": "l3-list-with-block-1",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-list-with-block",
+      "source": "- item\n\n  [a]: /url",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-list-with-block"
+    },
+    {
       "id": "l3-list-with-block-1-malformed",
       "problemId": "l3-list-with-block-1",
       "problemRevision": 1,
@@ -3304,6 +3314,16 @@
       "source": "- Item\n\n  > Detail\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
       "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-list-with-block-2-invisible-definition",
+      "problemId": "l3-list-with-block-2",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-list-with-block",
+      "source": "- item\n\n  [a]: /url",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-list-with-block"
     },
     {
       "id": "l3-list-with-block-2-malformed",
@@ -3372,6 +3392,16 @@
       "expectedFeedbackId": "keep-short"
     },
     {
+      "id": "l3-list-with-block-3-invisible-definition",
+      "problemId": "l3-list-with-block-3",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-list-with-block",
+      "source": "- item\n\n  [a]: /url",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-list-with-block"
+    },
+    {
       "id": "l3-list-with-block-3-malformed",
       "problemId": "l3-list-with-block-3",
       "problemRevision": 1,
@@ -3438,6 +3468,16 @@
       "expectedFeedbackId": "keep-short"
     },
     {
+      "id": "l3-list-with-block-4-invisible-definition",
+      "problemId": "l3-list-with-block-4",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-list-with-block",
+      "source": "- item\n\n  [a]: /url",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-list-with-block"
+    },
+    {
       "id": "l3-list-with-block-4-malformed",
       "problemId": "l3-list-with-block-4",
       "problemRevision": 1,
@@ -3502,6 +3542,16 @@
       "source": "- Item\n\n  > Detail\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
       "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-list-with-block-5-invisible-definition",
+      "problemId": "l3-list-with-block-5",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-list-with-block",
+      "source": "- item\n\n  [a]: /url",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-list-with-block"
     },
     {
       "id": "l3-list-with-block-5-malformed",
