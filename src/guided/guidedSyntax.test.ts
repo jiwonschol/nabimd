@@ -986,7 +986,7 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(acceptedGuidedSyntaxInputs(title)).toEqual(expect.arrayContaining(['""', "''", "()"]))
   })
 
-  it("asks for escaped closing brackets in both footnote markers", () => {
+  it("does not ask for escapes hidden in footnote identifiers", () => {
     const checkpoints = deriveSyntaxCheckpoints(
       "A[^a\\]]\n\n[^a\\]]: note",
       "A\n\nnote",
@@ -995,7 +995,7 @@ describe("deriveSyntaxCheckpoints", () => {
       checkpoints.flatMap((checkpoint) => checkpoint.segments).filter(
         (segment) => segment.kind === "input" && segment.value === "\\",
       ),
-    ).toHaveLength(2)
+    ).toHaveLength(0)
   })
 
   it("asks for escape syntax inside GFM table cells", () => {
@@ -1035,7 +1035,7 @@ describe("deriveSyntaxCheckpoints", () => {
     }
   })
 
-  it("asks for escapes inside footnote labels", () => {
+  it("keeps escapes inside hidden footnote labels out of guided input", () => {
     const checkpoints = deriveSyntaxCheckpoints(
       "Claim[^a\\*]\n\n[^a\\*]: Source note",
       "Claim\n\nSource note",
@@ -1043,14 +1043,14 @@ describe("deriveSyntaxCheckpoints", () => {
 
     expect(
       checkpoints.flatMap((checkpoint) => syntaxCheckpointTerms(checkpoint)),
-    ).toContain("escape")
+    ).not.toContain("escape")
     expect(
       checkpoints.flatMap((checkpoint) =>
         checkpoint.segments.filter(
           (segment) => segment.kind === "input" && segment.value === "\\",
         ),
       ),
-    ).toHaveLength(2)
+    ).toHaveLength(0)
   })
 
   it("keeps a nested list on its own card and never asks for the indentation", () => {
@@ -1349,6 +1349,34 @@ describe("deriveSyntaxCheckpoints", () => {
     ).toBe("~~a\\\nb  \nc~~")
   })
 
+  it("accepts and preserves any valid trailing-space hard break width", () => {
+    const target = "First step  \nSecond step"
+    const [checkpoint] = deriveSyntaxCheckpoints(target, "First step\nSecond step")
+
+    expect(acceptsGuidedSyntaxInput(checkpoint!, "   ")).toBe(true)
+    expect(
+      buildGuidedDraft(target, [checkpoint!], 1, {
+        [checkpoint!.id]: "   ",
+      }),
+    ).toBe("First step   \nSecond step")
+  })
+
+  it("accepts and preserves nested quote markers without trailing spaces", () => {
+    const target = "> Main note\n> > Reply"
+    const checkpoints = deriveSyntaxCheckpoints(target, "Main note\nReply")
+    const plain = checkpoints.find((checkpoint) => checkpoint.canonicalInput === "> ")!
+    const nested = checkpoints.find((checkpoint) => checkpoint.canonicalInput === "> > ")!
+
+    expect(acceptsGuidedSyntaxInput(plain, ">")).toBe(true)
+    expect(acceptsGuidedSyntaxInput(nested, ">>")).toBe(true)
+    expect(
+      buildGuidedDraft(target, checkpoints, checkpoints.length, {
+        [plain.id]: ">",
+        [nested.id]: ">>",
+      }),
+    ).toBe(">Main note\n>>Reply")
+  })
+
   it("accepts one opening escape for paired literal emphasis marks", () => {
     const target = "Write \\*required\\* literally."
     const [checkpoint] = deriveSyntaxCheckpoints(target, "Write *required* literally.")
@@ -1569,9 +1597,7 @@ describe("published blank policy", () => {
       if (/^\d+[.)]/.test(canonical)) {
         expect(canonical, label).toMatch(/^\d+[.)] /)
       }
-      if (canonical.startsWith(">")) {
-        expect(canonical, label).toMatch(/^> /)
-      }
+      if (canonical.startsWith(">")) expect(canonical, label).toMatch(/^> /)
     }
   })
 
@@ -1579,7 +1605,7 @@ describe("published blank policy", () => {
     for (const { label, checkpoint } of bankCheckpoints) {
       const canonical = checkpoint.canonicalInput
       const withoutSpace = canonical.replace(
-        /^(#{1,6}|\d+[.)]|[*+-]|>) /,
+        /^(#{1,6}|\d+[.)]|[*+-]) /,
         "$1",
       )
       if (withoutSpace === canonical) continue

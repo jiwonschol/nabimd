@@ -670,6 +670,31 @@ function acceptedInputParts(
 ): readonly string[] | null {
   const fencedParts = fencedCodeInputParts(checkpoint, value)
   if (fencedParts) return fencedParts
+  const inputSegments = checkpoint.segments.filter(
+    (segment): segment is Extract<GuidedSyntaxSegment, { kind: "input" }> =>
+      segment.kind === "input",
+  )
+  for (const form of buildAcceptedForms(checkpoint)) {
+    let hasVariableWidthPart = false
+    const pattern = form.map((part, index) => {
+      const segment = inputSegments[index]
+      if (segment?.family?.startsWith("break@") && /^ {2,}\n?$/.test(part)) {
+        hasVariableWidthPart = true
+        return part.endsWith("\n") ? "( {2,}\\n)" : "( {2,})"
+      }
+      if (segment && QUOTE_MARKER_BLANK.test(segment.value)) {
+        const marker = part.match(/^( {0,3}>)[\t ]*$/)?.[1]
+        if (marker) {
+          hasVariableWidthPart = true
+          return `(${marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}[\\t ]*)`
+        }
+      }
+      return `(${part.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`
+    }).join("")
+    if (!hasVariableWidthPart) continue
+    const submitted = new RegExp(`^${pattern}$`).exec(value)
+    if (submitted) return submitted.slice(1)
+  }
   const foldedValue = foldTaskBoxCase(value)
   for (const form of buildAcceptedForms(checkpoint)) {
     if (foldTaskBoxCase(form.join("")) !== foldedValue) continue
@@ -1532,7 +1557,6 @@ function markNodeSyntax(
       if (range) {
         markRange(mask, { from: range.from, to: range.from + 2 }, families, family)
         markRange(mask, { from: range.to - 1, to: range.to }, families, family)
-        markEscapeSyntax(source, mask, node, families, family)
       }
       break
     case "footnoteDefinition":
@@ -1555,7 +1579,6 @@ function markNodeSyntax(
             families,
             family,
           )
-          markEscapeSyntax(source, mask, node, families, family)
         }
       }
       break
