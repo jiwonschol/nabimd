@@ -67,11 +67,21 @@ describe("deriveSyntaxCheckpoints", () => {
     )
 
     expect(checkpoint?.canonicalInput).toBe("  ")
+    expect(acceptedGuidedSyntaxInputs(checkpoint!)).toEqual(["  ", "\\"])
     expect(syntaxCheckpointTerms(checkpoint!)).toEqual(["line break"])
     expect(instructionFor(checkpointShape(checkpoint!))).toMatchObject({
       prefix: "End the line with two spaces to force a ",
       term: "line break",
     })
+  })
+
+  it("accepts two spaces for a canonical backslash hard break", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints(
+      "First line\\\nSecond line",
+      "First line\nSecond line",
+    )
+
+    expect(acceptedGuidedSyntaxInputs(checkpoint!)).toEqual(["\\", "  "])
   })
 
   it("names the blanks the deriver learned to make in #189", () => {
@@ -583,7 +593,6 @@ describe("deriveSyntaxCheckpoints", () => {
     ["Press `Enter`.", "Press Enter.", ["``"]],
     ["Read the [guide](/guide).", "Read the guide.", ["[]()"]],
     ["See ![Map](/map.png).", "See Map.", ["![]()"]],
-    ["First line  \nSecond line", "First line\nSecond line", ["  "]],
   ] as const)("keeps non-equivalent syntax exact for %s", (target, starter, expected) => {
     const checkpoint = deriveSyntaxCheckpoints(target, starter)[0]!
     expect(acceptedGuidedSyntaxInputs(checkpoint)).toEqual(expected)
