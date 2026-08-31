@@ -234,8 +234,6 @@ function countEscapes(
       node.type === "text" ||
       node.type === "image" ||
       node.type === "imageReference" ||
-      node.type === "footnoteReference" ||
-      node.type === "footnoteDefinition" ||
       (node.type === "definition" &&
         Boolean(node.identifier) &&
         referencedDefinitionIdentifiers.has(node.identifier!) &&

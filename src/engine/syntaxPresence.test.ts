@@ -60,7 +60,7 @@ describe("syntax presence", () => {
         createEvaluationContext("A[^a\\*]\n\n[^a\\*]: note"),
         "escape",
       ),
-    ).toBe(2)
+    ).toBe(0)
   })
 
   it("ignores literal block-code backslashes inside referenced footnotes", () => {
