@@ -108,6 +108,39 @@ describe("schema-v2 problem-bank validation", () => {
     )
   })
 
+  it("requires syntax-presence checks to declare an integer min", () => {
+    const missing = problem("syntax-presence-missing-min", {
+      matchChecks: [
+        {
+          id: "use-escape",
+          kind: "syntax-presence",
+          syntax: "escape",
+          priority: 10,
+          feedback: "Use an escape.",
+        } as never,
+      ],
+    })
+    const fractional = problem("syntax-presence-fractional-min", {
+      matchChecks: [
+        {
+          id: "use-escape",
+          kind: "syntax-presence",
+          syntax: "escape",
+          min: 0.5,
+          priority: 10,
+          feedback: "Use an escape.",
+        },
+      ],
+    })
+
+    expect(validate([missing])).toContain(
+      "Problem syntax-presence-missing-min check use-escape requires a min",
+    )
+    expect(validate([fractional])).toContain(
+      "Problem syntax-presence-fractional-min check use-escape has invalid min",
+    )
+  })
+
   it("accepts unique fixtures and multiple edge cases per role", () => {
     const problems = [problem("first"), problem("second")]
     const problemFixtures = [

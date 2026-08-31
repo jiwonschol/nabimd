@@ -434,6 +434,9 @@ function syntaxGroupTermsInOrder(
     if (segment.family?.endsWith("-title")) {
       return ["link title"]
     }
+    if (segment.family?.includes("-escape-")) {
+      return ["escape"]
+    }
     if (segment.family?.startsWith("footnote")) {
       return ["footnote"]
     }
@@ -1372,6 +1375,7 @@ function markNodeSyntax(
       if (range) {
         markRange(mask, { from: range.from, to: range.from + 2 }, families, family)
         markRange(mask, { from: range.to - 1, to: range.to }, families, family)
+        markEscapeSyntax(source, mask, node, families, family)
       }
       break
     case "footnoteDefinition":
@@ -1394,6 +1398,7 @@ function markNodeSyntax(
             families,
             family,
           )
+          markEscapeSyntax(source, mask, node, families, family)
         }
       }
       break

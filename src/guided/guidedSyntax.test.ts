@@ -951,6 +951,24 @@ describe("deriveSyntaxCheckpoints", () => {
     }
   })
 
+  it("asks for escapes inside footnote labels", () => {
+    const checkpoints = deriveSyntaxCheckpoints(
+      "Claim[^a\\*]\n\n[^a\\*]: Source note",
+      "Claim\n\nSource note",
+    )
+
+    expect(
+      checkpoints.flatMap((checkpoint) => syntaxCheckpointTerms(checkpoint)),
+    ).toContain("escape")
+    expect(
+      checkpoints.flatMap((checkpoint) =>
+        checkpoint.segments.filter(
+          (segment) => segment.kind === "input" && segment.value === "\\",
+        ),
+      ),
+    ).toHaveLength(2)
+  })
+
   it("keeps a nested list on its own card and never asks for the indentation", () => {
     const target = ["- Parent", "  * Child"].join("\n")
     const checkpoints = deriveSyntaxCheckpoints(
