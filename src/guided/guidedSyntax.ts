@@ -281,29 +281,6 @@ function buildAcceptedForms(
     )
   }
 
-  const hardBreakInputs = checkpoint.segments.flatMap((segment, segmentIndex) =>
-    segment.kind === "input" && Boolean(segment.family?.startsWith("break@"))
-      ? [{
-          inputIndex: checkpoint.segments
-            .slice(0, segmentIndex)
-            .filter((candidate) => candidate.kind === "input").length,
-          value: segment.value,
-        }]
-      : [],
-  )
-  for (const hardBreakInput of hardBreakInputs) {
-    const lineEnding = hardBreakInput.value.endsWith("\n") ? "\n" : ""
-    const alternative = hardBreakInput.value.startsWith("\\")
-      ? `  ${lineEnding}`
-      : `\\${lineEnding}`
-    expandInputForms(forms, (form) => {
-      if (form[hardBreakInput.inputIndex] !== hardBreakInput.value) return null
-      const replaced = [...form]
-      replaced[hardBreakInput.inputIndex] = alternative
-      return replaced
-    })
-  }
-
   const quoteInputs = checkpoint.segments.flatMap((segment, segmentIndex) =>
     segment.kind === "input" && QUOTE_MARKER_BLANK.test(segment.value)
       ? [{
@@ -418,6 +395,14 @@ export function missedGuidedSyntaxGroups(
   const missed: number[] = []
   for (let index = 0; index < groupCount; index += 1) {
     const value = foldTaskBoxCase(values[index] ?? "")
+    const segment = checkpoint.segments.filter(
+      (candidate) => candidate.kind === "input",
+    )[index]
+    if (
+      segment?.kind === "input" &&
+      ((segment.family?.startsWith("break@") && /^(?: {2,}|\\)\n?$/.test(value)) ||
+        (QUOTE_MARKER_BLANK.test(segment.value) && /^ {0,3}>[\t ]?$/.test(value)))
+    ) continue
     const explained = forms.some((form) => {
       const accepted = form[index]
       return accepted !== undefined && foldTaskBoxCase(accepted) === value
@@ -439,12 +424,21 @@ export function acceptedGuidedSyntaxGroupInputs(
       ),
     ),
   ]
+  const segment = checkpoint.segments.filter(
+    (candidate) => candidate.kind === "input",
+  )[groupIndex]
+  const expandedValues = segment?.kind === "input" && segment.family?.startsWith("break@")
+    ? values.flatMap((value) => {
+        const lineEnding = value.endsWith("\n") ? "\n" : ""
+        return [value, value.startsWith("\\") ? `  ${lineEnding}` : `\\${lineEnding}`]
+      })
+    : values
   // The other spelling of a checked box is listed here rather than doubling
   // the accepted forms it would come from — see `foldTaskBoxCase`. One group
   // gains one row; the complete forms gain none.
   return [
     ...new Set(
-      values.flatMap((value) =>
+      expandedValues.flatMap((value) =>
         value === "[x]"
           ? [value, "[X]"]
           : value === "[X]"
@@ -678,15 +672,20 @@ function acceptedInputParts(
     let hasVariableWidthPart = false
     const pattern = form.map((part, index) => {
       const segment = inputSegments[index]
-      if (segment?.family?.startsWith("break@") && /^ {2,}\n?$/.test(part)) {
+      if (
+        segment?.family?.startsWith("break@") &&
+        /^(?: {2,}|\\)\n?$/.test(part)
+      ) {
         hasVariableWidthPart = true
-        return part.endsWith("\n") ? "( {2,}\\n)" : "( {2,})"
+        return part.endsWith("\n")
+          ? "((?: {2,}|\\\\)\\n)"
+          : "((?: {2,}|\\\\))"
       }
       if (segment && QUOTE_MARKER_BLANK.test(segment.value)) {
         const marker = part.match(/^( {0,3}>)[\t ]*$/)?.[1]
         if (marker) {
           hasVariableWidthPart = true
-          return `(${marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}[\\t ]*)`
+          return `(${marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}[\\t ]?)`
         }
       }
       return `(${part.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`
@@ -1050,6 +1049,7 @@ function markLinkPunctuation(
     return
   }
   const openingLength = raw.startsWith("![") ? 2 : 1
+  const teachesTitle = node.type === "link"
   markRange(
     mask,
     { from: range.from, to: range.from + openingLength },
@@ -1077,7 +1077,7 @@ function markLinkPunctuation(
     const destinationClose = raw.lastIndexOf(")")
     if (destinationClose > destinationOpen) {
       const title = raw.match(/\s+(?:(["'])([\s\S]*?)\1|\(([\s\S]*?)\))\s*\)$/)
-      if (title?.index !== undefined && title[1]) {
+      if (teachesTitle && title?.index !== undefined && title[1]) {
         const titleSource = title[0]
         const openingQuote = title.index + titleSource.indexOf(title[1])
         const closingQuote = title.index + titleSource.lastIndexOf(title[1])
@@ -1100,7 +1100,7 @@ function markLinkPunctuation(
           `${family}-title`,
         )
       }
-      if (title?.index !== undefined && title[3] !== undefined) {
+      if (teachesTitle && title?.index !== undefined && title[3] !== undefined) {
         const titleSource = title[0]
         const openingParen = title.index + titleSource.indexOf("(")
         // The raw link has two adjacent closing parentheses here: one closes
@@ -1214,6 +1214,8 @@ function markEscapeSyntax(
     ? fullRaw.match(/^!?\[(?:\\.|[^\]])*\]/)?.[0] ?? ""
     : node.type === "footnoteDefinition"
       ? fullRaw.match(/^(?: {0,3})\[\^(?:\\.|[^\]])+\]:/)?.[0] ?? ""
+      : node.type === "definition"
+        ? fullRaw.match(/^(?: {0,3})\[(?:\\.|[^\]])+\]:/)?.[0] ?? ""
       : fullRaw
   const literalRanges: SourceRange[] = []
   const collectLiterals = (candidate: Nodes): void => {
@@ -1486,11 +1488,7 @@ function markNodeSyntax(
     case "image":
     case "imageReference":
       markLinkPunctuation(source, mask, node, families, family)
-      if (
-        node.type === "link" ||
-        node.type === "image" ||
-        node.type === "imageReference"
-      ) {
+      if (node.type === "link") {
         markEscapeSyntax(source, mask, node, families, family)
       }
       if (
