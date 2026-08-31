@@ -1,5 +1,5 @@
 import type { FixtureRole, ProblemFixture, SyntaxPresenceKind } from "../types"
-import { levelUnlockBatch050Problems } from "./levelUnlockBatch050Problems"
+import { levelUnlockBatch051Problems } from "./levelUnlockBatch051Problems"
 
 type SupportedUnlockSyntax = Exclude<
   SyntaxPresenceKind,
@@ -58,7 +58,7 @@ function fixture(problemId: string, role: FixtureRole, source: string, expectedS
   }
 }
 
-function singleFixtures(problem: (typeof levelUnlockBatch050Problems)[number]): readonly ProblemFixture[] {
+function singleFixtures(problem: (typeof levelUnlockBatch051Problems)[number]): readonly ProblemFixture[] {
   const syntax = problem.skillIds[0] as SupportedUnlockSyntax
   const sources = singleSources[syntax]
   const checkId = `use-${syntax}`
@@ -105,6 +105,14 @@ function singleFixtures(problem: (typeof levelUnlockBatch050Problems)[number]): 
         "fail",
         failed,
         "invisible-definition",
+      ),
+      fixture(
+        problem.id,
+        "edge-case",
+        "Title\n\n- item\n\n  <!-- hidden -->",
+        "fail",
+        failed,
+        "invisible-html-block",
       ),
     )
   }
@@ -155,7 +163,7 @@ function singleFixtures(problem: (typeof levelUnlockBatch050Problems)[number]): 
   return fixtures
 }
 
-function mixedFixtures(problem: (typeof levelUnlockBatch050Problems)[number]): readonly ProblemFixture[] {
+function mixedFixtures(problem: (typeof levelUnlockBatch051Problems)[number]): readonly ProblemFixture[] {
   const [first, second] = problem.skillIds
   const sourcesById: Readonly<Record<string, FixtureSources>> = {
     "l3-mixed-link-title-escape": {
@@ -219,10 +227,16 @@ function mixedFixtures(problem: (typeof levelUnlockBatch050Problems)[number]): r
       : "[visible][a\\*]\n\n[a\\*]: /url\n\nClaim[^b]\n\n[^b]: Source"
     fixtures.push(fixture(problem.id, "edge-case", hiddenReferenceSource, "fail", { expectedFeedbackId: "use-escape", exercisesCheckId: "use-escape" }, "hidden-reference-identifier"))
   }
+  if (problem.skillIds.includes("list-with-block")) {
+    const invisibleHtmlSource = problem.skillIds.includes("angle-bracket-url")
+      ? "Reference\n\n- item\n\n  <!-- hidden -->\n\nVisit <ftp://example.net/help>."
+      : "Handoff\n\n- item[^a]\n\n  <!-- hidden -->\n\n[^a]: Team log"
+    fixtures.push(fixture(problem.id, "edge-case", invisibleHtmlSource, "fail", { expectedFeedbackId: "use-list-with-block", exercisesCheckId: "use-list-with-block" }, "invisible-html-block"))
+  }
   return fixtures
 }
 
-export const levelUnlockBatch050Fixtures: readonly ProblemFixture[] =
-  levelUnlockBatch050Problems.flatMap((problem) =>
+export const levelUnlockBatch051Fixtures: readonly ProblemFixture[] =
+  levelUnlockBatch051Problems.flatMap((problem) =>
     problem.skillIds.length === 1 ? singleFixtures(problem) : mixedFixtures(problem),
   )
