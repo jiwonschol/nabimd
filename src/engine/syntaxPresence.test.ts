@@ -169,6 +169,12 @@ describe("syntax presence", () => {
         createEvaluationContext("[x][a\\*]\n\n[a\\*]: /url"),
         "escape",
       ),
+    ).toBe(0)
+    expect(
+      countSyntaxPresence(
+        createEvaluationContext("[a\\*][]\n\n[a\\*]: /url"),
+        "escape",
+      ),
     ).toBe(1)
   })
 
