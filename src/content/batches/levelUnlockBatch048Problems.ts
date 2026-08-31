@@ -1,6 +1,6 @@
 import type { NormalizedProblem, SyntaxPresenceKind } from "../types"
 
-export const levelUnlockBatch047Id = "2026-08-31-l2-l3-unlock-047"
+export const levelUnlockBatch048Id = "2026-08-31-l2-l3-unlock-048"
 
 const curriculumVersion = "2026-07-19"
 
@@ -161,11 +161,13 @@ function createSingleProblem(input: SingleInput, variant: number): NormalizedPro
     priority: 10,
     feedback: `Use Markdown ${input.label} syntax.`,
   }, ...(input.level === 3 ? [{
-    id: "keep-short",
+    id: "keep-readable",
     kind: "document-limits" as const,
+    minBlocks: 2,
+    minLines: 3,
     maxLines: 28,
     priority: 20,
-    feedback: "Keep the answer within 28 lines.",
+    feedback: "Write a short document with at least two blocks and no more than 28 lines.",
   }] : [])]
   return {
     id: `l${input.level}-${input.syntax}-${suffix}`,
@@ -203,7 +205,7 @@ function createSingleProblem(input: SingleInput, variant: number): NormalizedPro
       domains: [input.level === 2 ? "everyday-notes" : "workplace-notes"],
       terms: [...new Set(target.match(/[A-Za-z]+/g) ?? [])].slice(0, 8),
     },
-    sourceBatchId: levelUnlockBatch047Id,
+    sourceBatchId: levelUnlockBatch048Id,
     revision: 1,
     curriculumVersion,
     contentVariant: `variant-${suffix}`,
@@ -282,11 +284,13 @@ const mixedProblems: readonly NormalizedProblem[] = mixedInputs.map((input) => (
       feedback: `Use Markdown ${syntax} syntax.`,
     })),
     {
-      id: "keep-short",
+      id: "keep-readable",
       kind: "document-limits" as const,
+      minBlocks: 2,
+      minLines: 3,
       maxLines: 28,
       priority: 20,
-      feedback: "Keep the answer within 28 lines.",
+      feedback: "Write a short document with at least two blocks and no more than 28 lines.",
     },
   ],
   editorialChecks: [],
@@ -302,13 +306,13 @@ const mixedProblems: readonly NormalizedProblem[] = mixedInputs.map((input) => (
     domains: ["workplace-notes"],
     terms: [...new Set(input.target.match(/[A-Za-z]+/g) ?? [])].slice(0, 8),
   },
-  sourceBatchId: levelUnlockBatch047Id,
+  sourceBatchId: levelUnlockBatch048Id,
   revision: 1,
   curriculumVersion,
   contentVariant: input.contentVariant,
 }))
 
-export const levelUnlockBatch047Problems: readonly NormalizedProblem[] = [
+export const levelUnlockBatch048Problems: readonly NormalizedProblem[] = [
   ...singleProblems,
   ...mixedProblems,
 ]

@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-31-l2-l3-unlock-047",
+  "batchId": "2026-08-31-l2-l3-unlock-048",
   "sequence": 28,
   "curriculumVersion": "2026-07-19",
   "generatedBy": "gpt-5.6-sol-build-time-authoring",
   "generatedOn": "2026-08-31",
-  "promptSha256": "8fee597b9841e81340372592b5f2b9317eb7a22a30e53632a184b526595dbd81",
-  "rawArtifactDigest": "4d0ebb2fa22cdfd17e5c5e4bd47e53ce6e4232092b8e349b63cf5bc4a6d1699f",
+  "promptSha256": "040e30ceb36e6f03dbe42dbe6ee536868e369f3db2e0d051a7c64811d1e83c30",
+  "rawArtifactDigest": "43c59fbf1d13386ff5af3edf6c23fe43fe0fd03f60ef0015b9a13df3586dcffd",
   "candidateCount": 55,
   "candidates": [
     {
@@ -68,8 +68,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "a9da5500a716ea84fbcad5c1a64fd7bc239149f4b459048fc8c8c31e80c04e39"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "eb05721877033ab1a402c21db8d9289a70b2e9d38358a34f78281d05238d2e31"
     },
     {
       "id": "l2-bold-italic-2",
@@ -130,8 +130,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "2a8fe80d55f9a71ac5629132af01ed7f3784d4046a70b2bf12afb66ab430b7ad"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "bad1e8797f2c0253453394863ff0cc18298e8f3723fd79d82710df27ceda8135"
     },
     {
       "id": "l2-bold-italic-3",
@@ -192,8 +192,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-3",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "fe0a284133ddb51d390489c8bfa28955e600d5dea3e4db675432e730127bd4e4"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "6f9c595b74568a13f4567a733e39d8044639a2d6370af2c5704ed555c987def1"
     },
     {
       "id": "l2-bold-italic-4",
@@ -254,8 +254,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-4",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "d1e26bdb87efc40772e9a77adfa3a10c73a5c4aebbc96937fdabd8c53dc0a92a"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "df74ebeaa65cacda3a7218d19a80c5c21f68d31456138438a740f34b8ad50a95"
     },
     {
       "id": "l2-bold-italic-5",
@@ -317,8 +317,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-5",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "9f29e78863797762e2653eaba0f4b8543c0004f979643e03b4f38fbe89b3f6f6"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "df561d7bd4a265f6c43a76bb59f426b3b039e4254bd34147f5c2d4ac6061b9fe"
     },
     {
       "id": "l2-code-block-language-1",
@@ -380,8 +380,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "6983228e2165023fe8036487230e8fd133a8d95ec0e8687e889ce4a1a4090322"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "69a987a41b44a0341353cce613c2a0a1ea07bf4a7334493cbd5734fb13e655d0"
     },
     {
       "id": "l2-code-block-language-2",
@@ -443,8 +443,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "80c4db18256d9b71a2af8ed10d7190ba846b493c7cb4856ffc39c6740dc3d223"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "abc9633c21af41a67e1c6268fdebbfd03125b9dce88c51a7a3c1608b4fde0113"
     },
     {
       "id": "l2-code-block-language-3",
@@ -505,8 +505,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-3",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "415313d8b1f158129f548211d3313c5396fb30d2d4fc14f9ede9c2fb9eb367c7"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "c20cb322810c82624bc44ecab1d64e58efbbce38ae1d3b723ad8b9dc9a67cba9"
     },
     {
       "id": "l2-code-block-language-4",
@@ -567,8 +567,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-4",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "80064d3ab893381de53b6a35d0fdb03957409c058d2d86b995ac41f0b4f296d4"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "1c1d3b98d0fe48ba4e232837f5119dd1b4e1f3e47ebe52266ce69b51290edba8"
     },
     {
       "id": "l2-code-block-language-5",
@@ -631,8 +631,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-5",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "be80e41ef85910e06752149519b0aec4cb42b44c259b947c6b34d339ddf5347c"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "ef914b71d1b46a8591bf917fc53c3de3e2f30cf2c25b1a45ab125ee3ab15d120"
     },
     {
       "id": "l2-hard-line-break-1",
@@ -693,8 +693,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "bfd4623da14e61af5feb97e175c1bfe542e32f215ac4e679c94a10ee8ea9d01f"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "8174b4eb122e939f5e280e2e4069b11271a22f19722b8cf5cc2004d50d528ebf"
     },
     {
       "id": "l2-hard-line-break-2",
@@ -755,8 +755,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "982ff59cd8a921c11b6e666c90765e2425a11c008a8af94f8838003c85a7db41"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "eaf48346e9bc073b3874c3fc2de8d83451d2d9989f43b9b47101aa0bf539500c"
     },
     {
       "id": "l2-hard-line-break-3",
@@ -817,8 +817,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-3",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "028fdb694d9f7f7670f4c8a93086a8970cfb7737fbf1a4700d5247d72bd28a24"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "774fdceb881f49a33ad623708257e58c87fdfe9035c7461ae7020be958846bf5"
     },
     {
       "id": "l2-hard-line-break-4",
@@ -880,8 +880,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-4",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "91247b97387b4834888f6c9785799a942b405ad7efbd8850b2f4b9200041515d"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "c1a4093af6bb7424a1c670868020a55420c69766f3ba45e4db8ad19f894278ca"
     },
     {
       "id": "l2-hard-line-break-5",
@@ -943,8 +943,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-5",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "0027b83e213b9b4564bd496f26221a50f64ad2ff3a18c03d4e607068aa94f70b"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "462229fde281e42875325cca0150980c7df38d8fa908ae030dbb4a22867409c2"
     },
     {
       "id": "l2-nested-blockquote-1",
@@ -1005,8 +1005,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "39941c357283077a9a943105f9f260a9f0516250e3fdded1b701b2a05c61db8f"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "c6600bbc1dfbdf41c6c5ec283ec84701290358117d45d27274b46cc249686283"
     },
     {
       "id": "l2-nested-blockquote-2",
@@ -1066,8 +1066,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "70699e6e0d6fd486e6d09b30307435fc46a62049c460a021e99bc2524bc2929f"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "f8edcf8cb0ea9db2c020ba0dc2096c09188835f5e98d755ee0156ce29612e474"
     },
     {
       "id": "l2-nested-blockquote-3",
@@ -1128,8 +1128,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-3",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "c9de7f013b8db9bc045b701a886345886db4d9fea9df9b88edfe489247b56bba"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "3882c4358f8946834b99a1765527e48d91045f11d47ed14694fb822edcd5b100"
     },
     {
       "id": "l2-nested-blockquote-4",
@@ -1189,8 +1189,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-4",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "c9909dfc63b2a8fcf064c7f15999405f3188b49a5490ab78a826637b99397c05"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "e35cb7a64b05e17b6557fb71c8f45ca1ca9ba6839e83cc86cd11cc496d232082"
     },
     {
       "id": "l2-nested-blockquote-5",
@@ -1250,8 +1250,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-5",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "2b7823a091ce1414a26e3cd26330c20022c757d3fa9cbe69580ba249e43add93"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "50397034d37173337370ea4cd95109e9dfdd5ca1743b10390acc6aa5afa452ce"
     },
     {
       "id": "l2-strikethrough-1",
@@ -1311,8 +1311,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "3177dd82227b2aff49b3062d4feccf5386b43e8c33d8c2625b3e238c2c24d688"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "1824b71a731e887e0c23af39deabe858541684dc92c57a660953dff30a8c0b88"
     },
     {
       "id": "l2-strikethrough-2",
@@ -1372,8 +1372,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "ea77c4b9d077ed00a071b62934665ff3353998f24c43d7ddb24295555919e28f"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "06187bc7f5f0c3c642365285ab6cc972e1efcc324e93455c01b21923bc635909"
     },
     {
       "id": "l2-strikethrough-3",
@@ -1433,8 +1433,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-3",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "0c5f303bb3e3fe301676af930e28fc737d7025f5ea5a24e8773774bc8f50bb63"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "d29466d130025a1ba10b25795eed1e4c6fed11e0c90e47c053c6e0eb6507118c"
     },
     {
       "id": "l2-strikethrough-4",
@@ -1494,8 +1494,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-4",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "80cfe15441db4284334f58e1a6d1dd368c008862170500af1350cac808dde801"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "18963c1d15f64fd89111a863c935e34c3e3e1662ccf84e3cdb6f7ef56290f988"
     },
     {
       "id": "l2-strikethrough-5",
@@ -1555,8 +1555,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-5",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "297842dba99103ea8288b5e5b29d3ad301e87451a665fec907f9941df5693dc8"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "24f1fa9f5841b448c767206e40df23eba5845fbfae4aabed0ecf961e2e9567b7"
     },
     {
       "id": "l3-angle-bracket-url-1",
@@ -1592,11 +1592,13 @@
           "feedback": "Use Markdown angle-bracket URL syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -1629,8 +1631,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "93dba678ebf6bbc56b2f32151c7a2523b850a910209ee7d2964f2a15e20347ac"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "5982a0488b9186ddcb684b76e0e064b4d0d9e7806feca8e26dd0eb4b9bf3b0e0"
     },
     {
       "id": "l3-angle-bracket-url-2",
@@ -1666,11 +1668,13 @@
           "feedback": "Use Markdown angle-bracket URL syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -1703,8 +1707,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "2fd242c97c907637ade5e9eb6e9e0df436d3dd358040bea2e54c3e7b4f0d599d"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "eedf7d9073ca3f270df508ce6a9a94939e08f091b9876efa8085f83c91fdf44f"
     },
     {
       "id": "l3-angle-bracket-url-3",
@@ -1740,11 +1744,13 @@
           "feedback": "Use Markdown angle-bracket URL syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -1777,8 +1783,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-3",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "5c279308c15eccbf3b41e02f30a969980e957f06f3a555734915ce5da63b8466"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "1823a265aa846bacfcdd3a9ece05aa6e8931b1b2481c0c2d104bc2069e6795c5"
     },
     {
       "id": "l3-angle-bracket-url-4",
@@ -1814,11 +1820,13 @@
           "feedback": "Use Markdown angle-bracket URL syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -1851,8 +1859,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-4",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "0a1169ead98d1c64c3e3826eda9c27a38525015c68392a32861781e619b8b23c"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "4eab343f961d99050a67295f27b5c7e59e678d29395916e6529016b4ce021fc8"
     },
     {
       "id": "l3-angle-bracket-url-5",
@@ -1888,11 +1896,13 @@
           "feedback": "Use Markdown angle-bracket URL syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -1925,8 +1935,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-5",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "0d00c29ecab9d28acb83624e412a94a8b64f6782977045ee4ca0de3c0989c365"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "457301be4e6eb27a6c554325c6b3cedb74726e9e092a483b877ef2eb3ac460f1"
     },
     {
       "id": "l3-escape-1",
@@ -1962,11 +1972,13 @@
           "feedback": "Use Markdown escaped punctuation syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -1999,8 +2011,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "1d375d8bf401579a35b36e271f06c84c3c28f7c9ceb6fe61b0ed552a6f6e1f0c"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "5b603225478542ccf287db1fd037856f7514c8b9d65efced5086854fa5412015"
     },
     {
       "id": "l3-escape-2",
@@ -2036,11 +2048,13 @@
           "feedback": "Use Markdown escaped punctuation syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2073,8 +2087,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "1273dbf344ed10084bb1117a9247d8765c1a8974d7f3fe53eac87536f81d5233"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "052a4073d486425fbeb5af2ba83a5b189c181a3c2410931a983ddf7aa984a3de"
     },
     {
       "id": "l3-escape-3",
@@ -2110,11 +2124,13 @@
           "feedback": "Use Markdown escaped punctuation syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2147,8 +2163,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-3",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "a25092b5014f6057a36ff49a294cd5ee234098a45abc180873b8fb70f1f229a0"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "c6d8420020b0b08dac31694cbeb4fff5ec8c4603084edf855f8e6b2f8b2759fa"
     },
     {
       "id": "l3-escape-4",
@@ -2184,11 +2200,13 @@
           "feedback": "Use Markdown escaped punctuation syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2221,8 +2239,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-4",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "4577557f33ed888d17b7e349adc64a08564a7e8f60a1f6e9d3af6a7be27e730a"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "025605e3c87d602bf13d199fbf6d93286e6451c8c7a6e26cba46cf8f59143244"
     },
     {
       "id": "l3-escape-5",
@@ -2258,11 +2276,13 @@
           "feedback": "Use Markdown escaped punctuation syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2295,8 +2315,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-5",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "74bafc18b4c58725bae99046eadeb7dc175504a443a2205c91f1cee0e2e06c41"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "a0b4bf36f745f29b53c58213a419ec1ab65df59a096c94cac4183e9232fd5eaf"
     },
     {
       "id": "l3-footnote-1",
@@ -2332,11 +2352,13 @@
           "feedback": "Use Markdown footnote syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2369,8 +2391,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "2cf560c88641b3dc3c54140126d51de77934e098fc096d6ce01fc34dde25e64c"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "c95f4bb9661d7e3cd5e9d49f9e346aa38a40cce28d9ba3e303533dda5e208e4f"
     },
     {
       "id": "l3-footnote-2",
@@ -2406,11 +2428,13 @@
           "feedback": "Use Markdown footnote syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2443,8 +2467,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "81e53699c26547653957302601d31efaad16c65de58211385c14bb91de95ac23"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "a38b3525cf70d8163c51a2b6bbc7574b6ccc977cecb911b6a9e112f52e84f798"
     },
     {
       "id": "l3-footnote-3",
@@ -2480,11 +2504,13 @@
           "feedback": "Use Markdown footnote syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2517,8 +2543,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-3",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "d6e5450c282fd438811f04f9741d2285b76619d2c680fe7c062d826242101dad"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "5df582c0aa0a42d553bb119e3558b15c10a9fd0d2602af5a5586c379900ea5df"
     },
     {
       "id": "l3-footnote-4",
@@ -2554,11 +2580,13 @@
           "feedback": "Use Markdown footnote syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2591,8 +2619,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-4",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "82bf110f41e688af4d343350fa2ecab70159ee4eefa11971080da32679963acc"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "5da3492a55662a7239e8f36caea999c5a6976af9e3a951067a7facd30fd3e8f7"
     },
     {
       "id": "l3-footnote-5",
@@ -2628,11 +2656,13 @@
           "feedback": "Use Markdown footnote syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2665,8 +2695,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-5",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "342e2d585e718d73e4e90fab8494d7a061d0d1b2168fef01426e9c9e5e56413a"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "2661b16ed9d98d4a8cd0a4ddbcc4b0c88592e8b5d3ffb94204e7949a5de71ce4"
     },
     {
       "id": "l3-link-title-1",
@@ -2702,11 +2732,13 @@
           "feedback": "Use Markdown link title syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2739,8 +2771,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "e0216f38f91f7d69edd372e26c177f2e5c018fee12e74cb64959fdfe442733b7"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "1f130e9706aea8f65bd930c2066a86758b652fe9223e170cb094c3b3b1f4a70c"
     },
     {
       "id": "l3-link-title-2",
@@ -2776,11 +2808,13 @@
           "feedback": "Use Markdown link title syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2813,8 +2847,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "7809f5cceea7be6ff3da606dc7a3e338fbfb9b3c44a12cb8e4342f0437bdcebf"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "797763d144b4cc1b6608faa1ba01272bcec59aefad633620ecd58ffce95de25a"
     },
     {
       "id": "l3-link-title-3",
@@ -2850,11 +2884,13 @@
           "feedback": "Use Markdown link title syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2887,8 +2923,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-3",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "190c6c47c0cff8aa86a02710c54e28f4fcf3d9309977580e16cfa422495b139a"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "f85c9c92a83005d388ecb6d23c88fb35558b37cbe7cc5b51d556c8c5668fad4c"
     },
     {
       "id": "l3-link-title-4",
@@ -2924,11 +2960,13 @@
           "feedback": "Use Markdown link title syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2961,8 +2999,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-4",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "641c4c03c106c5cb96746d0782571214f30f79bba85f8bb51a6411fe70c392d7"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "36ae339e6679d8ffcd4d0fbb90d12370e3b0a5516d468a4e7b4200e990774c65"
     },
     {
       "id": "l3-link-title-5",
@@ -2998,11 +3036,13 @@
           "feedback": "Use Markdown link title syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -3035,8 +3075,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-5",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "c633a0a4e10e5b14ae69b1c3af8838419c50b1591c6501556e4f3129e9754c61"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "fadb74f04831074e0f8de522368167db9e2c64b54393e9cb04fba1b8262ca118"
     },
     {
       "id": "l3-list-with-block-1",
@@ -3072,11 +3112,13 @@
           "feedback": "Use Markdown list item with a block syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -3107,8 +3149,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-1",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "339b091347f2ce7ec0e520e2443b7fa28425fd22b4ad62fb70759da1b3a30762"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "a2678ef5d1797eaaa228f630f5fd1e9cd471af2680f02cf719b3c3e831de3e52"
     },
     {
       "id": "l3-list-with-block-2",
@@ -3144,11 +3186,13 @@
           "feedback": "Use Markdown list item with a block syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -3178,8 +3222,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-2",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "11232e0faed30a79b4654969b7aa5a8f0cba18ff74eee155ebf29f37a94af08b"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "7a014d7ca6091978f7d0589695fc8d55d6b184bd1c652c1f98e172693f590d56"
     },
     {
       "id": "l3-list-with-block-3",
@@ -3215,11 +3259,13 @@
           "feedback": "Use Markdown list item with a block syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -3250,8 +3296,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-3",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "594a38bba65b2207a2892eb5da39090b1808f02def9da855e1322b329545a50c"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "9ba29dbd622ac6767408e675e24772f48d8e0002e69fa307d4e2f6023ba56f3d"
     },
     {
       "id": "l3-list-with-block-4",
@@ -3287,11 +3333,13 @@
           "feedback": "Use Markdown list item with a block syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -3322,8 +3370,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-4",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "61f011ca24251d2322e56d8800cae627073dc5fbd22828efcd7d9c79bb8e284b"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "a2da7b0a0c118affa25a81ff2909a72491232eb6b9b62750db9e12205e2fd7d8"
     },
     {
       "id": "l3-list-with-block-5",
@@ -3359,11 +3407,13 @@
           "feedback": "Use Markdown list item with a block syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -3394,8 +3444,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "variant-5",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "0738de83200c2f3911e8a67e83e1901d2d331a1631a8905cfed834a9fd3af21d"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "ab5fc8e65abe9bd64fe0e7c5f48ce285ade4dfe8a61acb9b1f635de6febf3fe8"
     },
     {
       "id": "l3-mixed-escape-footnote",
@@ -3441,11 +3491,13 @@
           "feedback": "Use Markdown footnote syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -3478,8 +3530,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "escape-and-footnote",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "501958bcc1aaa319d34cd55f6237952db03766761b48c0c8c76ef8438f82d178"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "6ea70efa155c1fb679bf7d714aadc79ce07c78ab6eed1bba45f69436018134df"
     },
     {
       "id": "l3-mixed-link-title-escape",
@@ -3525,11 +3577,13 @@
           "feedback": "Use Markdown escape syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -3562,8 +3616,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "link-and-escape",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "55a09076d183182d6d2548a67e55ff6b3d1415e79705cfaaa34aef45af353537"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "21f2870f60646ef8c157a0b64bf5afe0b7e411c5aa577058d96dd1564159283d"
     },
     {
       "id": "l3-mixed-link-title-url",
@@ -3609,11 +3663,13 @@
           "feedback": "Use Markdown angle-bracket-url syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -3646,8 +3702,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "link-and-url",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "e5394fb017cf7006af3b2ab89b659ef1d701f96cc3903f3e0cb2255276f10b53"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "70bfc08b726569fc3f43ea7f759bd3eb19e2e9740dd88a8a9a60fc282dedc43e"
     },
     {
       "id": "l3-mixed-list-angle-url",
@@ -3693,11 +3749,13 @@
           "feedback": "Use Markdown angle-bracket-url syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -3730,8 +3788,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "list-and-url",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "8c3d4384e82ce8565d4a8e95c6f0df2da9c10458dd8a3da204323e36a69e6b14"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "a11954596b654f562d5fc1afe4b8d5b3049d89c33e28ef3eb16813e8197479d4"
     },
     {
       "id": "l3-mixed-list-footnote",
@@ -3777,11 +3835,13 @@
           "feedback": "Use Markdown footnote syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -3813,9 +3873,9 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "list-and-footnote",
-      "sourceBatch": "2026-08-31-l2-l3-unlock-047",
-      "candidateDigest": "6b810b07b10ed7219698ffd31b81674d66faeb7c20f2cea482de0b500b25b42b"
+      "sourceBatch": "2026-08-31-l2-l3-unlock-048",
+      "candidateDigest": "c245cc22b7dd9e0d276679ebe8e64a203ed42eb882a1a5e6199141ad25fc39ed"
     }
   ],
-  "artifactDigest": "77bf84071234e1235001abceeb7b057922d18345784b4d85145250455d5dcb99"
+  "artifactDigest": "85f96b2cc4a50114cfb91d4171449534111d6d82d7e95532dc693dc0eda5b9e3"
 }

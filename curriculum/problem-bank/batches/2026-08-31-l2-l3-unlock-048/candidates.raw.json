@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-31-l2-l3-unlock-047",
+  "batchId": "2026-08-31-l2-l3-unlock-048",
   "sequence": 28,
   "curriculumVersion": "2026-07-19",
   "generatedBy": "gpt-5.6-sol-build-time-authoring",
@@ -1539,11 +1539,13 @@
           "feedback": "Use Markdown link title syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -1611,11 +1613,13 @@
           "feedback": "Use Markdown link title syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -1683,11 +1687,13 @@
           "feedback": "Use Markdown link title syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -1755,11 +1761,13 @@
           "feedback": "Use Markdown link title syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -1827,11 +1835,13 @@
           "feedback": "Use Markdown link title syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -1899,11 +1909,13 @@
           "feedback": "Use Markdown angle-bracket URL syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -1971,11 +1983,13 @@
           "feedback": "Use Markdown angle-bracket URL syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2043,11 +2057,13 @@
           "feedback": "Use Markdown angle-bracket URL syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2115,11 +2131,13 @@
           "feedback": "Use Markdown angle-bracket URL syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2187,11 +2205,13 @@
           "feedback": "Use Markdown angle-bracket URL syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2259,11 +2279,13 @@
           "feedback": "Use Markdown escaped punctuation syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2331,11 +2353,13 @@
           "feedback": "Use Markdown escaped punctuation syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2403,11 +2427,13 @@
           "feedback": "Use Markdown escaped punctuation syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2475,11 +2501,13 @@
           "feedback": "Use Markdown escaped punctuation syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2547,11 +2575,13 @@
           "feedback": "Use Markdown escaped punctuation syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2619,11 +2649,13 @@
           "feedback": "Use Markdown list item with a block syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2689,11 +2721,13 @@
           "feedback": "Use Markdown list item with a block syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2758,11 +2792,13 @@
           "feedback": "Use Markdown list item with a block syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2828,11 +2864,13 @@
           "feedback": "Use Markdown list item with a block syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2898,11 +2936,13 @@
           "feedback": "Use Markdown list item with a block syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -2968,11 +3008,13 @@
           "feedback": "Use Markdown footnote syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -3040,11 +3082,13 @@
           "feedback": "Use Markdown footnote syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -3112,11 +3156,13 @@
           "feedback": "Use Markdown footnote syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -3184,11 +3230,13 @@
           "feedback": "Use Markdown footnote syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -3256,11 +3304,13 @@
           "feedback": "Use Markdown footnote syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -3338,11 +3388,13 @@
           "feedback": "Use Markdown escape syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -3420,11 +3472,13 @@
           "feedback": "Use Markdown angle-bracket-url syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -3502,11 +3556,13 @@
           "feedback": "Use Markdown footnote syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -3584,11 +3640,13 @@
           "feedback": "Use Markdown angle-bracket-url syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],
@@ -3666,11 +3724,13 @@
           "feedback": "Use Markdown footnote syntax."
         },
         {
-          "id": "keep-short",
+          "id": "keep-readable",
           "kind": "document-limits",
+          "minBlocks": 2,
+          "minLines": 3,
           "maxLines": 28,
           "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
+          "feedback": "Write a short document with at least two blocks and no more than 28 lines."
         }
       ],
       "editorialChecks": [],

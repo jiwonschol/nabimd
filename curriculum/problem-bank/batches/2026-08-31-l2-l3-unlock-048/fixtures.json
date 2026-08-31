@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-31-l2-l3-unlock-047",
+  "batchId": "2026-08-31-l2-l3-unlock-048",
   "fixtures": [
     {
       "id": "l2-bold-italic-1-canonical",
@@ -1434,10 +1434,10 @@
       "problemId": "l3-angle-bracket-url-1",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "<ftp://example.net/help>\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-angle-bracket-url-1-malformed",
@@ -1457,6 +1457,16 @@
       "source": "<ftp://example.net/help>\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-1-minimal-document",
+      "problemId": "l3-angle-bracket-url-1",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "<ftp:x>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-angle-bracket-url-1-missing",
@@ -1500,10 +1510,10 @@
       "problemId": "l3-angle-bracket-url-2",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "<ftp://example.net/help>\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-angle-bracket-url-2-malformed",
@@ -1523,6 +1533,16 @@
       "source": "<ftp://example.net/help>\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-2-minimal-document",
+      "problemId": "l3-angle-bracket-url-2",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "<ftp:x>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-angle-bracket-url-2-missing",
@@ -1566,10 +1586,10 @@
       "problemId": "l3-angle-bracket-url-3",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "<ftp://example.net/help>\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-angle-bracket-url-3-malformed",
@@ -1589,6 +1609,16 @@
       "source": "<ftp://example.net/help>\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-3-minimal-document",
+      "problemId": "l3-angle-bracket-url-3",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "<ftp:x>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-angle-bracket-url-3-missing",
@@ -1632,10 +1662,10 @@
       "problemId": "l3-angle-bracket-url-4",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "<ftp://example.net/help>\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-angle-bracket-url-4-malformed",
@@ -1655,6 +1685,16 @@
       "source": "<ftp://example.net/help>\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-4-minimal-document",
+      "problemId": "l3-angle-bracket-url-4",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "<ftp:x>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-angle-bracket-url-4-missing",
@@ -1698,10 +1738,10 @@
       "problemId": "l3-angle-bracket-url-5",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "<ftp://example.net/help>\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-angle-bracket-url-5-malformed",
@@ -1721,6 +1761,16 @@
       "source": "<ftp://example.net/help>\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-5-minimal-document",
+      "problemId": "l3-angle-bracket-url-5",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "<ftp:x>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-angle-bracket-url-5-missing",
@@ -1764,10 +1814,10 @@
       "problemId": "l3-escape-1",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "\\_Literal underscores\\_\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-escape-1-hidden-footnote-identifier",
@@ -1819,12 +1869,32 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l3-escape-1-minimal-document",
+      "problemId": "l3-escape-1",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "\\*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
+    },
+    {
       "id": "l3-escape-1-missing",
       "problemId": "l3-escape-1",
       "problemRevision": 1,
       "role": "missing-required",
       "exercisesCheckId": "use-escape",
       "source": "Literal underscores",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-escape-1-render-neutral-escape",
+      "problemId": "l3-escape-1",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-escape",
+      "source": "plain\\.",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-escape"
     },
@@ -1860,10 +1930,10 @@
       "problemId": "l3-escape-2",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "\\_Literal underscores\\_\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-escape-2-hidden-footnote-identifier",
@@ -1915,12 +1985,32 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l3-escape-2-minimal-document",
+      "problemId": "l3-escape-2",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "\\*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
+    },
+    {
       "id": "l3-escape-2-missing",
       "problemId": "l3-escape-2",
       "problemRevision": 1,
       "role": "missing-required",
       "exercisesCheckId": "use-escape",
       "source": "Literal underscores",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-escape-2-render-neutral-escape",
+      "problemId": "l3-escape-2",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-escape",
+      "source": "plain\\.",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-escape"
     },
@@ -1956,10 +2046,10 @@
       "problemId": "l3-escape-3",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "\\_Literal underscores\\_\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-escape-3-hidden-footnote-identifier",
@@ -2011,12 +2101,32 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l3-escape-3-minimal-document",
+      "problemId": "l3-escape-3",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "\\*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
+    },
+    {
       "id": "l3-escape-3-missing",
       "problemId": "l3-escape-3",
       "problemRevision": 1,
       "role": "missing-required",
       "exercisesCheckId": "use-escape",
       "source": "Literal underscores",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-escape-3-render-neutral-escape",
+      "problemId": "l3-escape-3",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-escape",
+      "source": "plain\\.",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-escape"
     },
@@ -2052,10 +2162,10 @@
       "problemId": "l3-escape-4",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "\\_Literal underscores\\_\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-escape-4-hidden-footnote-identifier",
@@ -2107,12 +2217,32 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l3-escape-4-minimal-document",
+      "problemId": "l3-escape-4",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "\\*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
+    },
+    {
       "id": "l3-escape-4-missing",
       "problemId": "l3-escape-4",
       "problemRevision": 1,
       "role": "missing-required",
       "exercisesCheckId": "use-escape",
       "source": "Literal underscores",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-escape-4-render-neutral-escape",
+      "problemId": "l3-escape-4",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-escape",
+      "source": "plain\\.",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-escape"
     },
@@ -2148,10 +2278,10 @@
       "problemId": "l3-escape-5",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "\\_Literal underscores\\_\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-escape-5-hidden-footnote-identifier",
@@ -2203,12 +2333,32 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l3-escape-5-minimal-document",
+      "problemId": "l3-escape-5",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "\\*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
+    },
+    {
       "id": "l3-escape-5-missing",
       "problemId": "l3-escape-5",
       "problemRevision": 1,
       "role": "missing-required",
       "exercisesCheckId": "use-escape",
       "source": "Literal underscores",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-escape-5-render-neutral-escape",
+      "problemId": "l3-escape-5",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-escape",
+      "source": "plain\\.",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-escape"
     },
@@ -2244,10 +2394,10 @@
       "problemId": "l3-footnote-1",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "Claim[^a].\n\n[^a]: Source\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-footnote-1-malformed",
@@ -2267,6 +2417,16 @@
       "source": "Claim[^a].\n\n[^a]: Source\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-1-minimal-document",
+      "problemId": "l3-footnote-1",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "x[^a]\n[^a]: y",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-footnote-1-missing",
@@ -2320,10 +2480,10 @@
       "problemId": "l3-footnote-2",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "Claim[^a].\n\n[^a]: Source\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-footnote-2-malformed",
@@ -2343,6 +2503,16 @@
       "source": "Claim[^a].\n\n[^a]: Source\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-2-minimal-document",
+      "problemId": "l3-footnote-2",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "x[^a]\n[^a]: y",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-footnote-2-missing",
@@ -2396,10 +2566,10 @@
       "problemId": "l3-footnote-3",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "Claim[^a].\n\n[^a]: Source\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-footnote-3-malformed",
@@ -2419,6 +2589,16 @@
       "source": "Claim[^a].\n\n[^a]: Source\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-3-minimal-document",
+      "problemId": "l3-footnote-3",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "x[^a]\n[^a]: y",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-footnote-3-missing",
@@ -2472,10 +2652,10 @@
       "problemId": "l3-footnote-4",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "Claim[^a].\n\n[^a]: Source\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-footnote-4-malformed",
@@ -2495,6 +2675,16 @@
       "source": "Claim[^a].\n\n[^a]: Source\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-4-minimal-document",
+      "problemId": "l3-footnote-4",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "x[^a]\n[^a]: y",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-footnote-4-missing",
@@ -2548,10 +2738,10 @@
       "problemId": "l3-footnote-5",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "Claim[^a].\n\n[^a]: Source\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-footnote-5-malformed",
@@ -2571,6 +2761,16 @@
       "source": "Claim[^a].\n\n[^a]: Source\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-5-minimal-document",
+      "problemId": "l3-footnote-5",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "x[^a]\n[^a]: y",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-footnote-5-missing",
@@ -2624,10 +2824,10 @@
       "problemId": "l3-link-title-1",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "[Help](https://example.net \"Details\")\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-link-title-1-malformed",
@@ -2647,6 +2847,16 @@
       "source": "[Help](https://example.net \"Details\")\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-1-minimal-document",
+      "problemId": "l3-link-title-1",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "[x](/ \"t\")",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-link-title-1-missing",
@@ -2690,10 +2900,10 @@
       "problemId": "l3-link-title-2",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "[Help](https://example.net \"Details\")\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-link-title-2-malformed",
@@ -2713,6 +2923,16 @@
       "source": "[Help](https://example.net \"Details\")\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-2-minimal-document",
+      "problemId": "l3-link-title-2",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "[x](/ \"t\")",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-link-title-2-missing",
@@ -2756,10 +2976,10 @@
       "problemId": "l3-link-title-3",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "[Help](https://example.net \"Details\")\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-link-title-3-malformed",
@@ -2779,6 +2999,16 @@
       "source": "[Help](https://example.net \"Details\")\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-3-minimal-document",
+      "problemId": "l3-link-title-3",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "[x](/ \"t\")",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-link-title-3-missing",
@@ -2822,10 +3052,10 @@
       "problemId": "l3-link-title-4",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "[Help](https://example.net \"Details\")\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-link-title-4-malformed",
@@ -2845,6 +3075,16 @@
       "source": "[Help](https://example.net \"Details\")\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-4-minimal-document",
+      "problemId": "l3-link-title-4",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "[x](/ \"t\")",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-link-title-4-missing",
@@ -2888,10 +3128,10 @@
       "problemId": "l3-link-title-5",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "[Help](https://example.net \"Details\")\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-link-title-5-malformed",
@@ -2911,6 +3151,16 @@
       "source": "[Help](https://example.net \"Details\")\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-5-minimal-document",
+      "problemId": "l3-link-title-5",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "[x](/ \"t\")",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-link-title-5-missing",
@@ -2954,10 +3204,10 @@
       "problemId": "l3-list-with-block-1",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "- Item\n\n  > Detail\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-list-with-block-1-invisible-definition",
@@ -2987,6 +3237,16 @@
       "source": "- Item\n\n  > Detail\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-1-minimal-document",
+      "problemId": "l3-list-with-block-1",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "- >",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-list-with-block-1-missing",
@@ -3030,10 +3290,10 @@
       "problemId": "l3-list-with-block-2",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "- Item\n\n  > Detail\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-list-with-block-2-invisible-definition",
@@ -3063,6 +3323,16 @@
       "source": "- Item\n\n  > Detail\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-2-minimal-document",
+      "problemId": "l3-list-with-block-2",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "- >",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-list-with-block-2-missing",
@@ -3106,10 +3376,10 @@
       "problemId": "l3-list-with-block-3",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "- Item\n\n  > Detail\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-list-with-block-3-invisible-definition",
@@ -3139,6 +3409,16 @@
       "source": "- Item\n\n  > Detail\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-3-minimal-document",
+      "problemId": "l3-list-with-block-3",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "- >",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-list-with-block-3-missing",
@@ -3182,10 +3462,10 @@
       "problemId": "l3-list-with-block-4",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "- Item\n\n  > Detail\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-list-with-block-4-invisible-definition",
@@ -3215,6 +3495,16 @@
       "source": "- Item\n\n  > Detail\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-4-minimal-document",
+      "problemId": "l3-list-with-block-4",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "- >",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-list-with-block-4-missing",
@@ -3258,10 +3548,10 @@
       "problemId": "l3-list-with-block-5",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "- Item\n\n  > Detail\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-list-with-block-5-invisible-definition",
@@ -3291,6 +3581,16 @@
       "source": "- Item\n\n  > Detail\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-5-minimal-document",
+      "problemId": "l3-list-with-block-5",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "- >",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-list-with-block-5-missing",
@@ -3334,10 +3634,10 @@
       "problemId": "l3-mixed-escape-footnote",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "Template\n\nType \\_owner\\_ literally.[^a]\n\n[^a]: Form guide\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-mixed-escape-footnote-malformed",
@@ -3359,12 +3659,32 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l3-mixed-escape-footnote-minimal-document",
+      "problemId": "l3-mixed-escape-footnote",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "\\*[^a]\n[^a]: y",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
+    },
+    {
       "id": "l3-mixed-escape-footnote-missing",
       "problemId": "l3-mixed-escape-footnote",
       "problemRevision": 1,
       "role": "missing-required",
       "exercisesCheckId": "use-escape",
       "source": "Template\n\nType owner literally.[^a]\n\n[^a]: Form guide",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-mixed-escape-footnote-render-neutral-escape",
+      "problemId": "l3-mixed-escape-footnote",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-escape",
+      "source": "plain\\.",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-escape"
     },
@@ -3400,10 +3720,10 @@
       "problemId": "l3-mixed-link-title-escape",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "Guide\n\nRead the [map](https://example.net \"Office map\"), then write \\*owner\\* literally.\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-mixed-link-title-escape-malformed",
@@ -3425,6 +3745,16 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l3-mixed-link-title-escape-minimal-document",
+      "problemId": "l3-mixed-link-title-escape",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "[x](/ \"t\") \\*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
+    },
+    {
       "id": "l3-mixed-link-title-escape-missing",
       "problemId": "l3-mixed-link-title-escape",
       "problemRevision": 1,
@@ -3433,6 +3763,16 @@
       "source": "Guide\n\nWrite \\*owner\\* literally.",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-link-title"
+    },
+    {
+      "id": "l3-mixed-link-title-escape-render-neutral-escape",
+      "problemId": "l3-mixed-link-title-escape",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-escape",
+      "source": "plain\\.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
     },
     {
       "id": "l3-mixed-link-title-url-canonical",
@@ -3466,10 +3806,10 @@
       "problemId": "l3-mixed-link-title-url",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "Reference\n\nRead the [guide](https://example.edu \"Guide\"), then visit <ftp://example.edu/status>.\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-mixed-link-title-url-malformed",
@@ -3489,6 +3829,16 @@
       "source": "Reference\n\nRead the [guide](https://example.edu \"Guide\"), then visit <ftp://example.edu/status>.\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-link-title-url-minimal-document",
+      "problemId": "l3-mixed-link-title-url",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "[x](/ \"t\") <ftp:x>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-mixed-link-title-url-missing",
@@ -3532,10 +3882,10 @@
       "problemId": "l3-mixed-list-angle-url",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "Reference\n\n- > Visit <ftp://example.net/help>.\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-mixed-list-angle-url-malformed",
@@ -3555,6 +3905,16 @@
       "source": "Reference\n\n- > Visit <ftp://example.net/help>.\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-list-angle-url-minimal-document",
+      "problemId": "l3-mixed-list-angle-url",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "- > <ftp:x>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-mixed-list-angle-url-missing",
@@ -3598,10 +3958,10 @@
       "problemId": "l3-mixed-list-footnote",
       "problemRevision": 1,
       "role": "edge-case",
-      "exercisesCheckId": "keep-short",
+      "exercisesCheckId": "keep-readable",
       "source": "Handoff\n\n- > Confirm the owner.[^a]\n\n[^a]: Team log\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
       "expectedStatus": "fail",
-      "expectedFeedbackId": "keep-short"
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-mixed-list-footnote-malformed",
@@ -3621,6 +3981,16 @@
       "source": "Handoff\n\n- > Confirm the owner.[^a]\n\n[^a]: Team log\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-list-footnote-minimal-document",
+      "problemId": "l3-mixed-list-footnote",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-readable",
+      "source": "- > x[^a]\n[^a]: y",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-readable"
     },
     {
       "id": "l3-mixed-list-footnote-missing",

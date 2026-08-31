@@ -1,5 +1,5 @@
 import type { FixtureRole, ProblemFixture, SyntaxPresenceKind } from "../types"
-import { levelUnlockBatch047Problems } from "./levelUnlockBatch047Problems"
+import { levelUnlockBatch048Problems } from "./levelUnlockBatch048Problems"
 
 type SupportedUnlockSyntax = Exclude<
   SyntaxPresenceKind,
@@ -26,6 +26,17 @@ const singleSources: Readonly<Record<SupportedUnlockSyntax, FixtureSources>> = {
   footnote: { different: "Claim[^a].\n\n[^a]: Source", caseVariation: "CLAIM[^A].\n\n[^A]: SOURCE", missing: "Claim with a source.", malformed: "Claim[1].\n\n[1]: Source" },
 }
 
+const minimalLevelThreeSources: Readonly<Record<
+  Extract<SupportedUnlockSyntax, "link-title" | "angle-bracket-url" | "escape" | "list-with-block" | "footnote">,
+  string
+>> = {
+  "link-title": '[x](/ "t")',
+  "angle-bracket-url": "<ftp:x>",
+  escape: "\\*",
+  "list-with-block": "- >",
+  footnote: "x[^a]\n[^a]: y",
+}
+
 function kind(role: FixtureRole): ProblemFixture["kind"] {
   if (role === "different-prose") return "alternate"
   if (role === "case-spelling-variation") return "case-variation"
@@ -47,7 +58,7 @@ function fixture(problemId: string, role: FixtureRole, source: string, expectedS
   }
 }
 
-function singleFixtures(problem: (typeof levelUnlockBatch047Problems)[number]): readonly ProblemFixture[] {
+function singleFixtures(problem: (typeof levelUnlockBatch048Problems)[number]): readonly ProblemFixture[] {
   const syntax = problem.skillIds[0] as SupportedUnlockSyntax
   const sources = singleSources[syntax]
   const checkId = `use-${syntax}`
@@ -62,7 +73,10 @@ function singleFixtures(problem: (typeof levelUnlockBatch047Problems)[number]): 
     fixture(problem.id, "matched-with-review", `${sources.different}\n\nPlain follow-up.`, "matched", matched),
   ]
   if (problem.level === 3) {
-    fixtures.push(fixture(problem.id, "edge-case", `${sources.different}\n${Array.from({ length: 28 }, (_, index) => `Plain line ${index + 1}.`).join("\n")}`, "fail", { expectedFeedbackId: "keep-short", exercisesCheckId: "keep-short" }))
+    fixtures.push(
+      fixture(problem.id, "edge-case", `${sources.different}\n${Array.from({ length: 28 }, (_, index) => `Plain line ${index + 1}.`).join("\n")}`, "fail", { expectedFeedbackId: "keep-readable", exercisesCheckId: "keep-readable" }),
+      fixture(problem.id, "edge-case", minimalLevelThreeSources[syntax as keyof typeof minimalLevelThreeSources], "fail", { expectedFeedbackId: "keep-readable", exercisesCheckId: "keep-readable" }, "minimal-document"),
+    )
   }
   if (syntax === "footnote") {
     fixtures.push(
@@ -114,12 +128,20 @@ function singleFixtures(problem: (typeof levelUnlockBatch047Problems)[number]): 
         failed,
         "hidden-footnote-identifier",
       ),
+      fixture(
+        problem.id,
+        "edge-case",
+        "plain\\.",
+        "fail",
+        failed,
+        "render-neutral-escape",
+      ),
     )
   }
   return fixtures
 }
 
-function mixedFixtures(problem: (typeof levelUnlockBatch047Problems)[number]): readonly ProblemFixture[] {
+function mixedFixtures(problem: (typeof levelUnlockBatch048Problems)[number]): readonly ProblemFixture[] {
   const [first, second] = problem.skillIds
   const sourcesById: Readonly<Record<string, FixtureSources>> = {
     "l3-mixed-link-title-escape": {
@@ -156,6 +178,13 @@ function mixedFixtures(problem: (typeof levelUnlockBatch047Problems)[number]): r
   const sources = sourcesById[problem.id]
   if (!sources) throw new Error(`Missing mixed fixture sources for ${problem.id}`)
   const matched = { expectedReviewIds: [] } as const
+  const minimalById: Readonly<Record<string, string>> = {
+    "l3-mixed-link-title-escape": '[x](/ "t") \\*',
+    "l3-mixed-list-angle-url": "- > <ftp:x>",
+    "l3-mixed-escape-footnote": "\\*[^a]\n[^a]: y",
+    "l3-mixed-link-title-url": '[x](/ "t") <ftp:x>',
+    "l3-mixed-list-footnote": "- > x[^a]\n[^a]: y",
+  }
   const fixtures = [
     fixture(problem.id, "canonical", problem.target, "matched", matched),
     fixture(problem.id, "different-prose", sources.different, "matched", matched),
@@ -163,12 +192,16 @@ function mixedFixtures(problem: (typeof levelUnlockBatch047Problems)[number]): r
     fixture(problem.id, "missing", sources.missing, "fail", { expectedFeedbackId: `use-${first}`, exercisesCheckId: `use-${first}` }),
     fixture(problem.id, "malformed", sources.malformed, "fail", { expectedFeedbackId: `use-${second}`, exercisesCheckId: `use-${second}` }),
     fixture(problem.id, "matched-with-review", `${sources.different}\n\nPlain follow-up.`, "matched", matched),
-    fixture(problem.id, "edge-case", `${sources.different}\n${Array.from({ length: 28 }, (_, index) => `Plain line ${index + 1}.`).join("\n")}`, "fail", { expectedFeedbackId: "keep-short", exercisesCheckId: "keep-short" }),
+    fixture(problem.id, "edge-case", `${sources.different}\n${Array.from({ length: 28 }, (_, index) => `Plain line ${index + 1}.`).join("\n")}`, "fail", { expectedFeedbackId: "keep-readable", exercisesCheckId: "keep-readable" }),
+    fixture(problem.id, "edge-case", minimalById[problem.id]!, "fail", { expectedFeedbackId: "keep-readable", exercisesCheckId: "keep-readable" }, "minimal-document"),
   ]
+  if (problem.skillIds.includes("escape")) {
+    fixtures.push(fixture(problem.id, "edge-case", "plain\\.", "fail", { expectedFeedbackId: "use-escape", exercisesCheckId: "use-escape" }, "render-neutral-escape"))
+  }
   return fixtures
 }
 
-export const levelUnlockBatch047Fixtures: readonly ProblemFixture[] =
-  levelUnlockBatch047Problems.flatMap((problem) =>
+export const levelUnlockBatch048Fixtures: readonly ProblemFixture[] =
+  levelUnlockBatch048Problems.flatMap((problem) =>
     problem.skillIds.length === 1 ? singleFixtures(problem) : mixedFixtures(problem),
   )
