@@ -188,7 +188,8 @@ function countEscapes(
   const literalRanges = nodes.flatMap((node) => {
     const start = node.position?.start.offset
     const end = node.position?.end.offset
-    return node.type === "inlineCode" && start !== undefined && end !== undefined
+    return (node.type === "inlineCode" || node.type === "code") &&
+      start !== undefined && end !== undefined
       ? [{ start, end }]
       : []
   })
@@ -221,12 +222,15 @@ function countEscapes(
     }
   }
   for (const node of nodes) {
-    const raw = rawSource(node, source)
+    const fullRaw = rawSource(node, source)
+    const raw = node.type === "image" || node.type === "imageReference"
+      ? fullRaw.match(/^!?\[(?:\\.|[^\]])*\]/)?.[0] ?? ""
+      : node.type === "footnoteDefinition"
+        ? fullRaw.match(/^(?: {0,3})\[\^(?:\\.|[^\]])+\]:/)?.[0] ?? ""
+        : fullRaw
     const syntaxBearingRange =
       node.type === "text" ||
-      (node.type === "link" && raw.startsWith("[")) ||
       node.type === "image" ||
-      node.type === "linkReference" ||
       node.type === "imageReference" ||
       node.type === "footnoteReference" ||
       node.type === "footnoteDefinition" ||

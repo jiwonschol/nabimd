@@ -9,7 +9,7 @@ describe("syntax presence", () => {
     expect(countSyntaxPresence(createEvaluationContext("```text\n\\# literal\n```"), "escape")).toBe(0)
     expect(
       countSyntaxPresence(createEvaluationContext("[x](foo\\(bar\\))"), "escape"),
-    ).toBe(2)
+    ).toBe(0)
     expect(
       countSyntaxPresence(
         createEvaluationContext("[x][ref]\n\n[ref]: foo\\(bar\\)"),
@@ -24,7 +24,7 @@ describe("syntax presence", () => {
         createEvaluationContext("![x](foo\\(bar\\))"),
         "escape",
       ),
-    ).toBe(2)
+    ).toBe(0)
     expect(
       countSyntaxPresence(createEvaluationContext("[`\\*`](url)"), "escape"),
     ).toBe(0)
@@ -45,10 +45,28 @@ describe("syntax presence", () => {
     ).toBe(1)
     expect(
       countSyntaxPresence(
+        createEvaluationContext("[visible](https://example.com/\\*)"),
+        "escape",
+      ),
+    ).toBe(0)
+    expect(
+      countSyntaxPresence(
+        createEvaluationContext("![a\\*](https://example.com/\\*)"),
+        "escape",
+      ),
+    ).toBe(1)
+    expect(
+      countSyntaxPresence(
         createEvaluationContext("A[^a\\*]\n\n[^a\\*]: note"),
         "escape",
       ),
     ).toBe(2)
+  })
+
+  it("ignores literal block-code backslashes inside referenced footnotes", () => {
+    const source = "Use[^a]\n\n[^a]:\n\n        \\*literal\\*"
+
+    expect(countSyntaxPresence(createEvaluationContext(source), "escape")).toBe(0)
   })
 
   it("ignores syntax hidden in unreferenced footnote definitions", () => {

@@ -236,7 +236,7 @@ function buildAcceptedForms(
     const inputIndex = checkpoint.segments
       .slice(0, segmentIndex)
       .filter((candidate) => candidate.kind === "input").length
-    return [{ family: segment.family, inputIndex, value: segment.value }]
+    return [{ family: segment.family, inputIndex, segmentIndex, value: segment.value }]
   })
   const openingFence = fenceParts.find(({ family }) => family.endsWith("-open"))
   const closingFence = fenceParts.find(({ family }) => family.endsWith("-close"))
@@ -251,9 +251,14 @@ function buildAcceptedForms(
       ? "~".repeat(openingFence.value.length)
       : "`".repeat(openingFence.value.length)
     const informationToken = language?.value ?? ""
+    const languageTouchesFence = language
+      ? checkpoint.segments
+          .slice(openingFence.segmentIndex + 1, language.segmentIndex)
+          .every((segment) => segment.kind === "input" || segment.value.length === 0)
+      : false
     expandInputForms(forms, (form) =>
       !(alternativeFence.startsWith("`") && informationToken.includes("`")) &&
-      !informationToken?.startsWith(alternativeFence[0]!) &&
+      (!languageTouchesFence || !informationToken.startsWith(alternativeFence[0]!)) &&
       form[openingFence.inputIndex] === openingFence.value &&
       form[closingFence.inputIndex] === closingFence.value
         ? form.map((part, index) =>
@@ -274,6 +279,33 @@ function buildAcceptedForms(
     if (!forms.some((form) => form[0] === alternative)) {
       forms.push([alternative])
     }
+  }
+
+  const quoteInputs = checkpoint.segments.flatMap((segment, segmentIndex) =>
+    segment.kind === "input" && QUOTE_MARKER_BLANK.test(segment.value)
+      ? [{
+          inputIndex: checkpoint.segments
+            .slice(0, segmentIndex)
+            .filter((candidate) => candidate.kind === "input").length,
+          value: segment.value,
+        }]
+      : [],
+  )
+  if (quoteInputs.length > 1) {
+    const alternative = [...canonicalParts]
+    for (const { inputIndex, value } of quoteInputs.slice(0, -1)) {
+      alternative[inputIndex] = value.replace(/[\t ]+$/, "")
+    }
+    if (alternative.some((part, index) => part !== canonicalParts[index])) {
+      forms.push(alternative)
+    }
+  }
+
+  if (
+    canonicalParts.length === 4 &&
+    canonicalParts.map((part) => part.length).join(",") === "1,2,2,1"
+  ) {
+    forms.push(["**", "_", "_", "**"], ["__", "*", "*", "__"])
   }
 
   const isSetextHeading =
@@ -1014,11 +1046,16 @@ function markEscapeSyntax(
 ): void {
   const range = nodeRange(node)
   if (!range) return
-  const raw = source.slice(range.from, range.to)
-  if (node.type === "link" && /^(?:<|https?:\/\/|www\.)/i.test(raw)) return
+  const fullRaw = source.slice(range.from, range.to)
+  if (node.type === "link" || node.type === "linkReference") return
+  const raw = node.type === "image" || node.type === "imageReference"
+    ? fullRaw.match(/^!?\[(?:\\.|[^\]])*\]/)?.[0] ?? ""
+    : node.type === "footnoteDefinition"
+      ? fullRaw.match(/^(?: {0,3})\[\^(?:\\.|[^\]])+\]:/)?.[0] ?? ""
+      : fullRaw
   const literalRanges: SourceRange[] = []
   const collectLiterals = (candidate: Nodes): void => {
-    if (candidate.type === "inlineCode") {
+    if (candidate.type === "inlineCode" || candidate.type === "code") {
       const candidateRange = nodeRange(candidate)
       if (candidateRange) literalRanges.push(candidateRange)
     }
@@ -1060,6 +1097,7 @@ function markNodeSyntax(
   groupedRanges: SourceRange[],
   families: SyntaxFamilies,
   referencedDefinitionIds: ReadonlySet<string>,
+  effectiveReferencedDefinitions: ReadonlySet<Nodes>,
   insideQuote = false,
   insideTable = false,
   insideAutolink = false,
@@ -1281,18 +1319,23 @@ function markNodeSyntax(
     case "image":
     case "imageReference":
       markLinkPunctuation(source, mask, node, families, family)
-      if (node.type === "link" || node.type === "image") {
+      if (
+        node.type === "link" ||
+        node.type === "image" ||
+        node.type === "imageReference"
+      ) {
         markEscapeSyntax(source, mask, node, families, family)
-        if (
-          range &&
-          node.title?.trim() &&
-          source.slice(range.from, range.to).includes("\n")
-        ) {
-          groupedRanges.push({
-            from: lineStartAt(source, range.from),
-            to: lineEndAt(source, range.to),
-          })
-        }
+      }
+      if (
+        range &&
+        (node.type === "link" || node.type === "image") &&
+        node.title?.trim() &&
+        source.slice(range.from, range.to).includes("\n")
+      ) {
+        groupedRanges.push({
+          from: lineStartAt(source, range.from),
+          to: lineEndAt(source, range.to),
+        })
       }
       break
     case "code": {
@@ -1353,7 +1396,7 @@ function markNodeSyntax(
       if (range) {
         const prefix = source
           .slice(range.from, lineEndAt(source, range.from))
-          .match(/^( {0,3})\[\^([^\]]+)\]:(?:[\t ]*)/)
+          .match(/^( {0,3})\[\^((?:\\.|[^\]])+)\]:(?:[\t ]*)/)
         if (prefix) {
           const markerFrom = range.from + (prefix[1]?.length ?? 0)
           markRange(
@@ -1374,7 +1417,7 @@ function markNodeSyntax(
       }
       break
     case "definition": {
-      if (!range || !referencedDefinitionIds.has(node.identifier)) break
+      if (!range || !effectiveReferencedDefinitions.has(node)) break
       const raw = source.slice(range.from, range.to)
       const title = raw.match(/\s+(?:(["'])([\s\S]*?)\1|\(([\s\S]*?)\))\s*$/)
       if (title?.index !== undefined) {
@@ -1395,6 +1438,12 @@ function markNodeSyntax(
           families,
           `${family}-title`,
         )
+        if (raw.includes("\n")) {
+          groupedRanges.push({
+            from: lineStartAt(source, range.from),
+            to: lineEndAt(source, range.to),
+          })
+        }
       }
       markEscapeSyntax(source, mask, node, families, family)
       break
@@ -1412,6 +1461,7 @@ function markNodeSyntax(
         groupedRanges,
         families,
         referencedDefinitionIds,
+        effectiveReferencedDefinitions,
         insideQuote || node.type === "blockquote",
         insideTable || node.type === "table",
         insideAutolink ||
@@ -1654,8 +1704,9 @@ export function deriveSyntaxCheckpoints(
   const groupedRanges: SourceRange[] = []
   const root = parseMarkdownSource(source)
   const referencedDefinitionIds = new Set<string>()
+  const effectiveReferencedDefinitions = new Set<Nodes>()
   const collectReferenceIds = (node: Nodes): void => {
-    if (node.type === "linkReference") {
+    if (node.type === "linkReference" || node.type === "imageReference") {
       referencedDefinitionIds.add(node.identifier)
     }
     if (isParent(node)) {
@@ -1663,6 +1714,21 @@ export function deriveSyntaxCheckpoints(
     }
   }
   collectReferenceIds(root)
+  const effectiveIdentifiers = new Set<string>()
+  const collectEffectiveDefinitions = (node: Nodes): void => {
+    if (
+      node.type === "definition" &&
+      referencedDefinitionIds.has(node.identifier) &&
+      !effectiveIdentifiers.has(node.identifier)
+    ) {
+      effectiveIdentifiers.add(node.identifier)
+      effectiveReferencedDefinitions.add(node)
+    }
+    if (isParent(node)) {
+      for (const child of node.children) collectEffectiveDefinitions(child as Nodes)
+    }
+  }
+  collectEffectiveDefinitions(root)
   markNodeSyntax(
     root,
     source,
@@ -1670,6 +1736,7 @@ export function deriveSyntaxCheckpoints(
     groupedRanges,
     families,
     referencedDefinitionIds,
+    effectiveReferencedDefinitions,
   )
   unmaskLineLeadingWhitespace(source, mask, families)
 

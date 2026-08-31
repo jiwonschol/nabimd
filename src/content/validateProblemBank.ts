@@ -469,6 +469,11 @@ function validateMatchChecks(problem: GradableProblem, errors: string[]) {
             `Problem ${problem.id} check ${check.id} requires a min`,
           )
         }
+        if (check.min === 0 && check.max === undefined) {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} requires a positive min or a max`,
+          )
+        }
         if (
           !curriculumElementIds.includes(check.syntax) ||
           !supportedSyntaxPresenceKinds.has(check.syntax)
