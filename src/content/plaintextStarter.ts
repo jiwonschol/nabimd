@@ -120,6 +120,19 @@ function projectNode(
         )
       }
       return
+    case "link":
+      for (const child of node.children) {
+        projectNode(child as Nodes, source, outputLines, literalLineIndexes)
+      }
+      if (startLine !== undefined && node.title) {
+        projectVisibleText(
+          outputLines,
+          ` (${node.title})`,
+          node.position?.end.line ?? startLine,
+          literalLineIndexes,
+        )
+      }
+      return
     case "image":
     case "imageReference":
       if (startLine !== undefined && node.alt) {

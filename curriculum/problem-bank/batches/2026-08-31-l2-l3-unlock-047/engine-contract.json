@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "policyId": "real-engine-contract-v1",
-  "policyDigest": "b4f288c06c5fa7b1b5c336a95cd1e020846cfcb56485361ccfb4ed34f1981513",
+  "policyDigest": "eb71e2210e3b514bdf679b8f7e06c9d82ff7da3c749cd46797578a3db5befbed",
   "files": [
     {
       "path": "package-lock.json",
@@ -12,8 +12,20 @@
       "sha256": "03810fafe8ed82ab6cac6199e6811d0878f00968d8b0cead6760d04852316081"
     },
     {
+      "path": "src/content/curriculumElements.ts",
+      "sha256": "cacc490ec92104db06108f513edf209072b3151e7ee6543d505a8803354049dc"
+    },
+    {
+      "path": "src/content/entryChoices.ts",
+      "sha256": "32cc8e7f3d1e6b723f0722c822bbe0f6cbaf31639047abe840f499ecd2890429"
+    },
+    {
+      "path": "src/content/mixedExercisePolicy.ts",
+      "sha256": "be367338526b5a988d0ff5ed14cdcae450e2a68bff0d57c29946a78244c281c6"
+    },
+    {
       "path": "src/content/plaintextStarter.ts",
-      "sha256": "575b0a5f7fe5a653ed1b62adb695a4d996ac88a595ffebbb8cafaf0e01844403"
+      "sha256": "b4ceda784ce8da89ae7f3adea09c71844aba1afc36c25437b85acdfa5d46208d"
     },
     {
       "path": "src/content/types.ts",
@@ -53,7 +65,7 @@
     },
     {
       "path": "src/engine/syntaxPresence.ts",
-      "sha256": "0cca0abdc510bc71523e7413e7c6791cdb3019de77ba935f44c8dc3d58f13c18"
+      "sha256": "92fcfee90c0db9508c63320499198fd31463dfbbe0d7c5d28b6a890d043e589e"
     },
     {
       "path": "src/markdown/parser.ts",
@@ -73,7 +85,15 @@
     },
     {
       "path": "src/guided/guidedSyntax.ts",
-      "sha256": "90f05f3c3cf14062f79ef0c534f8e0e81beadd303a2ea4a1593498e479d5157c"
+      "sha256": "13be6c5a7342a0a198b84d5f23bf3ce7777d6a3ac87f66e8641a739b572d073b"
+    },
+    {
+      "path": "src/selection/runComposition.ts",
+      "sha256": "3cd456317385ab5f0a1c77a89e513b795e29d1e7a9f06aa4706f37dad964dea1"
+    },
+    {
+      "path": "src/selection/runPolicy.ts",
+      "sha256": "bf52a6b4d6c82f7a7a9e92aab36df317bfad59147d247a3ef3028bca4ab03f76"
     }
   ],
   "dependencies": [
@@ -90,5 +110,5 @@
       "version": "3.0.0"
     }
   ],
-  "engineContractDigest": "980da214efe9e8b014e5f007b6c5af5afd29d8683e57ac29ecf79a63779fc489"
+  "engineContractDigest": "cb0042de6d2ecb70e0959d3aa3ed4df0e5a0bab5e9d41fec33281f4b8f1320da"
 }

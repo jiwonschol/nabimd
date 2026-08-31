@@ -4,6 +4,9 @@
   "files": [
     "package-lock.json",
     "src/content/normalizeProblem.ts",
+    "src/content/curriculumElements.ts",
+    "src/content/entryChoices.ts",
+    "src/content/mixedExercisePolicy.ts",
     "src/content/plaintextStarter.ts",
     "src/content/types.ts",
     "src/components/RenderedDocument.tsx",
@@ -19,7 +22,9 @@
     "src/engine/predicates/heading.ts",
     "src/engine/predicates/structural.ts",
     "src/engine/types.ts",
-    "src/guided/guidedSyntax.ts"
+    "src/guided/guidedSyntax.ts",
+    "src/selection/runComposition.ts",
+    "src/selection/runPolicy.ts"
   ],
   "dependencies": [
     {

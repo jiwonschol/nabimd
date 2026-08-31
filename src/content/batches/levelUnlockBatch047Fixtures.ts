@@ -1,5 +1,5 @@
 import type { FixtureRole, ProblemFixture, SyntaxPresenceKind } from "../types"
-import { levelUnlockBatch046Problems } from "./levelUnlockBatch046Problems"
+import { levelUnlockBatch047Problems } from "./levelUnlockBatch047Problems"
 
 type SupportedUnlockSyntax = Exclude<
   SyntaxPresenceKind,
@@ -47,7 +47,7 @@ function fixture(problemId: string, role: FixtureRole, source: string, expectedS
   }
 }
 
-function singleFixtures(problem: (typeof levelUnlockBatch046Problems)[number]): readonly ProblemFixture[] {
+function singleFixtures(problem: (typeof levelUnlockBatch047Problems)[number]): readonly ProblemFixture[] {
   const syntax = problem.skillIds[0] as SupportedUnlockSyntax
   const sources = singleSources[syntax]
   const checkId = `use-${syntax}`
@@ -106,12 +106,20 @@ function singleFixtures(problem: (typeof levelUnlockBatch046Problems)[number]): 
         failed,
         "hidden-link-metadata",
       ),
+      fixture(
+        problem.id,
+        "edge-case",
+        "note[^a\\*]\n\n[^a\\*]: definition",
+        "fail",
+        failed,
+        "hidden-footnote-identifier",
+      ),
     )
   }
   return fixtures
 }
 
-function mixedFixtures(problem: (typeof levelUnlockBatch046Problems)[number]): readonly ProblemFixture[] {
+function mixedFixtures(problem: (typeof levelUnlockBatch047Problems)[number]): readonly ProblemFixture[] {
   const [first, second] = problem.skillIds
   const sourcesById: Readonly<Record<string, FixtureSources>> = {
     "l3-mixed-link-title-escape": {
@@ -160,7 +168,7 @@ function mixedFixtures(problem: (typeof levelUnlockBatch046Problems)[number]): r
   return fixtures
 }
 
-export const levelUnlockBatch046Fixtures: readonly ProblemFixture[] =
-  levelUnlockBatch046Problems.flatMap((problem) =>
+export const levelUnlockBatch047Fixtures: readonly ProblemFixture[] =
+  levelUnlockBatch047Problems.flatMap((problem) =>
     problem.skillIds.length === 1 ? singleFixtures(problem) : mixedFixtures(problem),
   )

@@ -5,6 +5,11 @@ import {
 } from "./plaintextStarter"
 
 describe("derivePlaintextStarter", () => {
+  it("preserves the link-title text displayed in the rendered document", () => {
+    expect(
+      derivePlaintextStarter('[setup notes](https://example.com "Setup notes")'),
+    ).toBe("setup notes (Setup notes)")
+  })
   it("keeps learner-visible prose while removing Markdown structure", () => {
     const target = [
       "# Trip note",

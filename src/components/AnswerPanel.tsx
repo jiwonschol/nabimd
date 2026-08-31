@@ -52,6 +52,7 @@ const completeExampleLine = /^\s*(?:[-+*>]|\d+[.)]|#{1,6})\s+\S/
  * (rebuild families, levels 3+) keep one mark per row.
  */
 function isSinglePatternProblem(problem: GradableProblem): boolean {
+  if (problem.reviewTags.includes("level-unlock")) return false
   if ((problem.level ?? 1) > 2) return false
   if (problem.familyId.startsWith("rebuild")) return false
   return problem.syntaxTokens.some((token) => /[A-Za-z]/.test(token))
@@ -100,6 +101,21 @@ export function hintPatternLines(
 }
 
 function sourceExamples(problem: GradableProblem): string[] {
+  const unlockExamples: Readonly<Record<string, string>> = {
+    "bold-italic": "***Important***",
+    strikethrough: "~~Old note~~",
+    "nested-blockquote": "> Note\n> > Detail",
+    "code-block-language": "```html\n<p>Hello</p>\n```",
+    "hard-line-break": "Line one\\\nLine two",
+    "link-title": '[Help](https://example.net "More details")',
+    "angle-bracket-url": "<ftp://example.net/help>",
+    escape: "\\_Literal marks\\_",
+    "list-with-block": "- > Detail",
+    footnote: "Claim[^1]\n\n[^1]: Source",
+  }
+  if (problem.reviewTags.includes("level-unlock")) {
+    return problem.syntaxTokens.map((token) => unlockExamples[token] ?? token)
+  }
   if ((problem.level ?? 1) !== 5) return [...problem.syntaxTokens]
 
   let listIndex = 0
