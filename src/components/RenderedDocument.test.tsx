@@ -1,11 +1,25 @@
 import { render, screen } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
+import { derivePlaintextStarter } from "../content/plaintextStarter"
 import {
   RenderedDocument,
   RenderedDocumentBody,
 } from "./RenderedDocument"
 
 describe("RenderedDocument", () => {
+  it("renders an angle-bracket FTP target as a link but its starter as text", () => {
+    const target = "Open <ftp://example.com/help>."
+    const { container, rerender } = render(
+      <RenderedDocumentBody source={target} />,
+    )
+
+    expect(container.querySelectorAll(".rendered-document__link")).toHaveLength(1)
+    rerender(
+      <RenderedDocumentBody source={derivePlaintextStarter(target)} />,
+    )
+    expect(container.querySelectorAll(".rendered-document__link")).toHaveLength(0)
+  })
+
   it("uses one paper surface for Goal and Live preview", () => {
     const { rerender } = render(
       <RenderedDocument label="Goal" source="# Apple" />,

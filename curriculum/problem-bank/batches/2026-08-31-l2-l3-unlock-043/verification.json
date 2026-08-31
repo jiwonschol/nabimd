@@ -1,606 +1,556 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-31-l2-l3-unlock-042",
-  "engineContractDigest": "c4917a958922cfe8d68f1531469ba3620fc62c7358b52064be136ccb8bca8cd1",
+  "batchId": "2026-08-31-l2-l3-unlock-043",
+  "engineContractDigest": "ce897aae6aa5cd4d0f8358825dd455b18d629f330df81f50ecc0f84fd2d2eff1",
   "candidates": [
     {
       "candidateId": "l2-bold-italic-1",
       "revision": 1,
-      "candidateDigest": "9447bd67f4dc16689c55410f7f46c90c5c3c43f37fc9c958d68d7efbf97fa1d2",
-      "problemDigest": "91ea2479060a2187b0e6785a8142509e15ef48e944e10c04a9df3305ad2a476f",
+      "candidateDigest": "7bed4b72ba0408be4c3e406c61acdbc4e36fc53da9df034ff34b9f43f2cd5f0a",
+      "problemDigest": "ddf8a2fb9c2372b5013b00469fd274bbf9780eca1609c578650ff41cf0775202",
       "fixtureDefinitionDigest": "97a6d2565d6d846587afc6921bad0fe7d4ca48266cf3613fae3619ab7b1e258f",
-      "fixtureResultsDigest": "17b8f99f094adfd125e687aba96df1e56a50ff841ed57d108f4d82a316b2456f",
+      "fixtureResultsDigest": "d4318484923967417dd456ef5fa1f936c455f1e081a3c1199bfc74e4bfeb534f",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-bold-italic-2",
       "revision": 1,
-      "candidateDigest": "6c10e9680dd60b531c1a6070f865aa8ebd5b9888ce0b6db5d143d33beb6832e7",
-      "problemDigest": "6726054031c29534d249648ff10c12c494991a5003170ad4192888fdb84762c3",
+      "candidateDigest": "41c493c6e8b66ef8b160109a91c7fc0f2f0675cdd529b11b3fa00e1372417111",
+      "problemDigest": "b2017688a83ab8fda4edd8afaead0c27ff752e001695a6ec79aae4b84971ed3c",
       "fixtureDefinitionDigest": "e9d9ee6224a12187fc97a8aac0712937d2a2465211ae35bda81c514541f21e50",
-      "fixtureResultsDigest": "1c52ac226bb2d23129402597c74d846d6135eecb59b474557ce3b44c026fc2bf",
+      "fixtureResultsDigest": "32945f820645f5d50d33cc3e4f872e3e3f7f8b6b77807c88d625c72e24c49336",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-bold-italic-3",
       "revision": 1,
-      "candidateDigest": "4eebb698eb341ddcd97c82929b91e8263d400aa53940a4390ff4b49cc3d1336e",
-      "problemDigest": "b2e65a0feee5457bf18a691ef62f5edb4f5d8a2aac5a1f04c2692ca7c7b55c9d",
+      "candidateDigest": "25154142b803b946f7afa9d3ea2abda688c6f0b77c5bd0b2706f12f3e33909d9",
+      "problemDigest": "e140e946edbee3965a4dee258cb7b73e8aa6685da4c04ffd37d391c082e4f711",
       "fixtureDefinitionDigest": "7a26e33fba7d6603bfc97fa993852da3d7a45a7f5465fefc896388dccffb5ce3",
-      "fixtureResultsDigest": "092a19239e8f144bd07e0307222a4c22935b7a493ca7c243cd7e366a12510177",
+      "fixtureResultsDigest": "347f17ba89d2c2c6c64281bdd39be3a16974cab8bf8afbe4f889f336ee3cf6ee",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-bold-italic-4",
       "revision": 1,
-      "candidateDigest": "129aff12ddffb6552d7bbec6dc9aeb4fb7ae59b3e313fc25574b768bccca8272",
-      "problemDigest": "26eb185f147793263f4487e371408c2bf87662bd561bd07fc21f7ae360bb9a4d",
+      "candidateDigest": "5ccbb490bf3d646201dae0e7b3ec5c2f5a0b028fe36bf94392892dd5b39de6e9",
+      "problemDigest": "caa8b36e6283028bdeb03d98805fc832261ce272c1ffd84597e46e10ae85e0ba",
       "fixtureDefinitionDigest": "2872759b7c7bc6315251073c1e312d3f92b3ef37905a9f8f0c3fe2fc5f256599",
-      "fixtureResultsDigest": "68d587bf08ab001b696f6a72023f58e58cd6d5beb6a2fe68ba1cedfe13bf1576",
+      "fixtureResultsDigest": "45f36930bfc76c78f77b4a281a4952fa8e6e799f52fec748844044cf31149382",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-bold-italic-5",
       "revision": 1,
-      "candidateDigest": "cb7db5d83ef040c8f46d5f215c75430e826df9720eaddd919f0edd5193be78ee",
-      "problemDigest": "3f42fa892d62ca335243c13b69df7a3dead3c3be00687faf196227bf2a0d17b1",
+      "candidateDigest": "339cd25548572ad666f9881025676dbd6b3933bb6e17d94b43a8665f4f92d279",
+      "problemDigest": "d63a85545b484d9fdf38cf113479e7840ec8355f57d315570b58d5b57a23b6bb",
       "fixtureDefinitionDigest": "77ede6308c95ea35cd78eb77b1c972980b1ed9e0290ae0a797312d0d5227fbd1",
-      "fixtureResultsDigest": "1f50490918fed472a68a338296dc33e043c74a8d7d49a066d9d4a9b1d4819846",
+      "fixtureResultsDigest": "227d79ed7c782f9d9244affd26d9e71fccb1961bf8f38ce39d76681cc7e30bd1",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-code-block-language-1",
       "revision": 1,
-      "candidateDigest": "a13074e589e5c5b1b038339222040c7b75184b18ce485c79c25a278eb032cb4a",
-      "problemDigest": "9c04279af476bac2e164a9b75d69578706ac7fec7e4feccf4641626a4c56b298",
+      "candidateDigest": "5544f3723934fd7cb23c006a7b68d0f969a47432c8e9198642cef48bf9017d85",
+      "problemDigest": "c790df1b3e7a2bf595a415b02a01f3bb3a248797f7cf13aeae145118f42cc9ba",
       "fixtureDefinitionDigest": "76c3a849474019d5ce0c3cc9ee7b796b118cf24681fca8a05ebf2f33a9c2f12d",
-      "fixtureResultsDigest": "95025b7aca03c50235b73ea2f7f04aad55c94d214ee0a4ef5b4b470a36d40300",
+      "fixtureResultsDigest": "6b489f1495353534ea2ec6b1563f5441049429f839e1f50edfc15cc7ebc455f0",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-code-block-language-2",
       "revision": 1,
-      "candidateDigest": "5a83e4147143e3fb95a5d41cccc66b1436cbfe6bf0aeeeefe6d4ca4a1dfd36c2",
-      "problemDigest": "4bfa4122a0f315e4beebecf51e187e924e3fdfbf26203dcc25e4c5073893199b",
+      "candidateDigest": "036eccd574befb6d2bddc7cc919cd99439dcd8f4e4949733bad89ec3e6e475eb",
+      "problemDigest": "59caf4e8628be15355725cb6a9d34363e3a733dc9073bbf00e873af974147304",
       "fixtureDefinitionDigest": "6b3b04d0e07ff2229ae24a2c70cdfdb2fa1cabdb9e9dd33c09a9d617f5325bee",
-      "fixtureResultsDigest": "f1f19d67cddff63c7cd1206bfb492b2690f0581d0dc17dd00339aae6c1ca63da",
+      "fixtureResultsDigest": "4e8b3c1b29e92b5b09ef7a815b2cf1653a6fd464b3e1de5ecc2eb63f3df488d1",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-code-block-language-3",
       "revision": 1,
-      "candidateDigest": "cfbb32a11ff9d6c05c3be4d65f0b4bc5b52d4df740a191ab0723bd9474491ec4",
-      "problemDigest": "378f26f5a3dc78977b7af7e06475a5d3b8b8e997e1d9763d0f16d590559a5346",
+      "candidateDigest": "b0726e1f5509e3790b56ffbf071d45eb79a855c35a1cb38162fb21f0ecd66cd9",
+      "problemDigest": "bd7aecb471f426ea7290050a24aa26c689e8b06a4b167d15f90ca5b80175b220",
       "fixtureDefinitionDigest": "97360d0f7fd832bf50e039ad6cedc9bb4c31b93822d3351c9724704dcb776921",
-      "fixtureResultsDigest": "600aa73c3a98a6bf99dfcf3816eb2b9e31441e27726fafab97e2fd9cd9c6fc42",
+      "fixtureResultsDigest": "130de510cc59cf36693ebfcf24bd55536a315e1d8fb3a5e24ef00a8c825c6cc1",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-code-block-language-4",
       "revision": 1,
-      "candidateDigest": "77f65f37bb203274ec26b0b40d6da1a2387cb4097afef4b786395bb3af487c9f",
-      "problemDigest": "7d825c000474a537f21262c98fbda0cb0d0c7833c43d796932894bce0c16653e",
+      "candidateDigest": "8fe136a5b71dad0296c30c99a0e8b5c12dce39cc61e796411bd030ab6e17af1e",
+      "problemDigest": "0ceaeed281c09af6619a352f346756a3c25fb33fb7a5d688ca18e32a07f6f483",
       "fixtureDefinitionDigest": "d31a37de5d290b43e1317569bcb716bc32c37a9a996950f51c9d24d18b46011f",
-      "fixtureResultsDigest": "57684e1ce6f847805089aa3ad2cf9349cab5aa35e60aad2a6140abfa54928ae1",
+      "fixtureResultsDigest": "6927fea8eab548a022f7ff5ef8f967a2b085670a62fe2f57f4a14c622e708637",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-code-block-language-5",
       "revision": 1,
-      "candidateDigest": "8efa13b2ff97f0a58126e1f9458a799e16b0f98eb407286aa6dd6add30fd33d5",
-      "problemDigest": "d5c305dd540c2bfd95c08073a0a1ccf4a3eb388fe995218b2966409e41683b3d",
+      "candidateDigest": "d8a63dc15757ceef54497e90c7a78bc2fa0fe1053bc62f7b23b458294f0af725",
+      "problemDigest": "2906122797457398b680e6e17a7cb18852bbfa911890b47d4128d73027931dca",
       "fixtureDefinitionDigest": "50bd691dce341564b1732a83fdbbcbe83af2996638fc3e9fbc361f756ea9dd1d",
-      "fixtureResultsDigest": "5708d50bf90e8c4094d461f737e758fafaa6ef9cfc9f5a8c43e0278f9e64ae97",
+      "fixtureResultsDigest": "21cdee70fe598ad8c0fed2f639c75a2de5694d60149362f3f234126a25b20181",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-hard-line-break-1",
       "revision": 1,
-      "candidateDigest": "19a5f4a549579917a62c6a859482e8933d0aeab15e14fccb185147a0db17b74a",
-      "problemDigest": "3c0852b04e84077e653d28a194916991b6e43a17633f454708276ca703c55633",
+      "candidateDigest": "8dcdff98f73e7bd8d12743b1afdd00af61bd54be81ccf17ce1fa4542cf3f82a7",
+      "problemDigest": "f9575dc9023844813d3dc53258b2276b9efb152590fcc903d52beca55600fdf7",
       "fixtureDefinitionDigest": "e1ee58ad57461d078eed82a345a62b5320d0c5a107dae15d999883e47f602118",
-      "fixtureResultsDigest": "2751d2ba4ca929afae35a8bbe1e186caf961d1bba4959efa5b487e5f95f1b86b",
+      "fixtureResultsDigest": "f523abe142a4feefaac1acbf198aa4e907d4cdbe0d2ac499e5bfefb0f857844f",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-hard-line-break-2",
       "revision": 1,
-      "candidateDigest": "459272d760643b2b373cb7d6d13adbcae94fd2db9206c0d5ef051cfc487dd349",
-      "problemDigest": "cb2466db0f76a79a820a7de090534ec59f5740036951d231a5f013426f6d422a",
+      "candidateDigest": "fdcd167af5bbd4870ab0e58a883d3e805c27615177e62c52b2ed140e26aab2eb",
+      "problemDigest": "cc159cac4a8c1ba8632754021afa354bf2cfbce1334aa82a8f123cee8635804b",
       "fixtureDefinitionDigest": "b146e8c16b58ae16821ab109bf877dc1f08bc55109ed31da241a606373b844a6",
-      "fixtureResultsDigest": "e82dcd4db2c2d0dbfcd18d089b6db0717f1085eefb131ca0f3f634d5e750c8da",
+      "fixtureResultsDigest": "d84d812e5b36d85dd0e8f112ca42fa44b1c79752759ac0767aac09e46822ba25",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-hard-line-break-3",
       "revision": 1,
-      "candidateDigest": "d32d721c016e2ba174247191b7186b66104bc31294b56503680db8bccf328ca7",
-      "problemDigest": "8387e204630483d313f586f79c9855074c35db45258a0830244586053bbc3bf6",
+      "candidateDigest": "73542900fce6b297ace658d383a57a7afc732598cd7e9e9a123657d57730ae29",
+      "problemDigest": "3a4fb84540d8810e10e720d498847cce383b6a0535d33326b862494e78fb2dd5",
       "fixtureDefinitionDigest": "da21dc17aaf7cab6e89b5a316d4c30e76f3e263f1090f3ccd4c2708d6ab8f2a1",
-      "fixtureResultsDigest": "45a4643ded318b5576625b45b5afc3846674a4ab5d497adf92009bcdb31d3f07",
+      "fixtureResultsDigest": "82ed55992ef601a80c477ad822d4878e4575a580e9d3c2627567671e93e91957",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-hard-line-break-4",
       "revision": 1,
-      "candidateDigest": "f9650b7ba9f470b3f6d7389ac006601b057f7d0d871dc725ca36c83cf98e3784",
-      "problemDigest": "20b1e5a96cf0387d9be640c48bfb1eb0f52b835ff3ee1d522cf1a96b82607ea5",
+      "candidateDigest": "ec61ec0279026d786dd0617068d53b01293d38afc7ceaaf665cf8afe2afe367a",
+      "problemDigest": "69ac6c87b1e309de44dede3201300bc1e617d5391abafd0d7349f9e6d32ef185",
       "fixtureDefinitionDigest": "260de3ba4a996d4d8e82143691e871fbf342305093828dda48549b31879bf72b",
-      "fixtureResultsDigest": "724752e2f196f0cd8daabc363ce06cfc0e1d1295be980b5e36b0dedc9830fad4",
+      "fixtureResultsDigest": "507051a1f60fa4f75d08bebab72166c9e28b307c4b1c326cdfc1dc29e3655f1e",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-hard-line-break-5",
       "revision": 1,
-      "candidateDigest": "fee7828cd78192f5505c058297833368a31f279473507439c974b135c80079a8",
-      "problemDigest": "85e6e438e9b53ea0cbbbec2831b7d8f08dfb435db1c23dd35e09f443d32a0d89",
+      "candidateDigest": "3ad8274e2a2fa41eb50436e0ff87fcb304ba69f18043086915d3823d7e7de158",
+      "problemDigest": "26e534b159f1870f058c99bb9a927c102c249dea7253edfd2820b04c73b0ffe0",
       "fixtureDefinitionDigest": "5ecf7c57b7ce0a4b21fbf9c3fe364300cdd789db26bc9ab6302dae7a1aa7ece7",
-      "fixtureResultsDigest": "554974f7ab149a73b6c42338f2ecdee3f2c7048bb78b7979c7f6d9458f55a3c2",
+      "fixtureResultsDigest": "803bbe597ca61acda534a96458399d944c0ec4215839bb9d0ad02b4a970968b3",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-nested-blockquote-1",
       "revision": 1,
-      "candidateDigest": "22084938183f8ed5e02aae88d28b9dd54e32953a5538fb2c0d3ba84a2ad85e93",
-      "problemDigest": "9dbc603373ec68488d75a8c781bd7dbc9c1d9fe347aa846faa3ad62fd8040285",
+      "candidateDigest": "e0da4395901ac3ff38695fb5215cb3ac09ec3beef1b6aa81c74f779fe68386eb",
+      "problemDigest": "05bd4b7747cb04534307b47f58629e4d3da078eeffd4092eab52c6499daf8d49",
       "fixtureDefinitionDigest": "640a36b2dd6b7334076227be749545cd80dd5e38da3fda73a15583fb01675a82",
-      "fixtureResultsDigest": "5789dec8c0635e48853df76e361bd64bab7cba71687a03e5d040823fc331932a",
+      "fixtureResultsDigest": "bf96f2b10e3f6e6d128209970ae6ac8a5b57db4d54c45a72a1e1d0407044529b",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-nested-blockquote-2",
       "revision": 1,
-      "candidateDigest": "5d3d44182fa078944a7323a2c82c07db7b83daa61931e08d322fa0fe85dbdf6f",
-      "problemDigest": "b5c633960840d749de57cf92bd675cf5153df8b3c8e1d1d423328945bb2ee623",
+      "candidateDigest": "e4f53c3ea2e72f9ec2316035a3050099528a61cc8567d8de2c2b880f0b224599",
+      "problemDigest": "3d29ca8f473a73988ceea0d1e93f41492f148a0ce79111b4638e727f497f3f39",
       "fixtureDefinitionDigest": "d9e5541be7a70fc2825cbfbc000208d1e9b5e2f9c3f970ed26b31b071aab2427",
-      "fixtureResultsDigest": "a130f8f8aeca888b2a2d372dbb44fe772f3cbcd3630ff5525d081f50c5cb8008",
+      "fixtureResultsDigest": "8e9583237e5bb36743a8cc43a6a7c1240818621de6c29d2549dd6cf9e2b5b315",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-nested-blockquote-3",
       "revision": 1,
-      "candidateDigest": "b0f0f9a8a9ff75fc7c5318371c157274948910f0d693bd954e0f8487ec6c39f9",
-      "problemDigest": "7d09eccbb0938c7c81fb2997933d29a989009981d8dc9b3a6f84b7558efe2142",
+      "candidateDigest": "a8c614396578b3bd80f9fe2efdb24b77147eac528195445fcebf0323a1a51b8f",
+      "problemDigest": "d44a5afa521652ba307d92f49b8d0c5054afdd767ebd599c970ca5c2b5aba4a4",
       "fixtureDefinitionDigest": "7f027fc5a62a5abdb5cd18b824cf16922982ade388814d159d354969a47ec98e",
-      "fixtureResultsDigest": "d0c47b5b3e7db9654fa165272019cd5fb9dbb6e3b732d46443c058934adbe749",
+      "fixtureResultsDigest": "a05b3ea50eaf8bb5fd7408965d550c731c93db3cddc1145ade0086a0fce0a95c",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-nested-blockquote-4",
       "revision": 1,
-      "candidateDigest": "cb9d7eee783d7a78329664e46c53a1078de91c10146f9f39c368a1d296cd8a55",
-      "problemDigest": "11272f6fd7cbec8d757e1998308267ee3cc1a9a9733b0bfe6c19b1eba6b9bccb",
+      "candidateDigest": "efcfd4f63c0f987d08de0030e21cf0f86180efd5ef56826d34a2b580deb1e6d9",
+      "problemDigest": "9edec26a32404d4407a5b39510e1a6f9b707cab81fcbfbedc14b8256823541e7",
       "fixtureDefinitionDigest": "91963ec4303bd9817b11085f564896c2604dc3e0a21690e9ebdbff3851053467",
-      "fixtureResultsDigest": "a80940642ded4d43830d916853788aeb87e4fa5bd2e584ee1d43bfc26eb5c46e",
+      "fixtureResultsDigest": "dfc4a77f0b17b745048bcce37cbb307d71752a0b0b895e252bced95fbfcc68db",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-nested-blockquote-5",
       "revision": 1,
-      "candidateDigest": "488717da7ff59a91ec691d4c4e0cbbdc6ee02c8e2249c244dc7d588f44ed96f8",
-      "problemDigest": "62e2518d390d3dcf8f1dfead82317314df945f1ad43fad8b40f842eb54288a59",
+      "candidateDigest": "768e3a13a675f557dfe3ffde21f2e370d253f8f434b7e556d70c3d862917a288",
+      "problemDigest": "7b6639b879e0c69aa39cb1a44d791b4cbb3ef61d75bb8d9d0e71baa63b439b85",
       "fixtureDefinitionDigest": "6d3ddd49c4ca9c70fdf28a21ed5cdf5d773cbadde23d72298a65c32d7adf8d9a",
-      "fixtureResultsDigest": "530f3a3798a2bfcc276cf6b3cc79f83dedd477f5ff7e2e0748c33b23f8141bf7",
+      "fixtureResultsDigest": "6db76fc0d8b8862251e8b8666bb74b8cb6662c86402be604831fa27f26fbc942",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-strikethrough-1",
       "revision": 1,
-      "candidateDigest": "23d823b0be30bda5fd40938a17a36c9d66fed20cc263739d3ced3c6b41577a49",
-      "problemDigest": "725412c0d72437089b0f85e0fb845d22cb19b7123c4b339b818561e01bd97877",
+      "candidateDigest": "c56b9fa6fbf2194dce0e4054e9c346074f8f7b675dec0a2a269f531db054c93a",
+      "problemDigest": "9a730a13d6834e750863866d12113d08b04f6d76d43bf1eb767b2b3ce2ed2cc3",
       "fixtureDefinitionDigest": "d547f9234de0bb14bb54123642ab5ed50be40fad57dd43ad77225f91a0b607b1",
-      "fixtureResultsDigest": "437abbf56ec4ae4516ff44631bcd38a1f14ea1203f221d633038fb6ddf0a42d9",
+      "fixtureResultsDigest": "bb6b44fbc0597fce932e5b43622c786eae6eb1a417ae00ef6e48618cbd2e9e11",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-strikethrough-2",
       "revision": 1,
-      "candidateDigest": "0b32958014dd926915976e89598d44bd7937b1a2d3704ee151d7852c7210f784",
-      "problemDigest": "d431053bae2a37024de4556dd96f5870c836067288f9e5fcf0c21e847e1421b7",
+      "candidateDigest": "f865efe0ec7c8af27765f6373cdea2bd5e4d42f67665bd8ec6408589414f1813",
+      "problemDigest": "72f6d3984c34c12f5e7574dfe0c74ac423e0bf49ede0072a74bc610cb6765f5f",
       "fixtureDefinitionDigest": "43d1e7d10a0f9e561eec67553866b432a03ae07e5ae6b8a5f6a38e2daf68873e",
-      "fixtureResultsDigest": "9cfe6a87310860654ca1d75e689cd02f6d5fd02ad022e10bba497c19679aad9d",
+      "fixtureResultsDigest": "9645e71254c88a8b6a9aa34d75dc952dba30b9b817e931d1f2c126616f8eccd0",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-strikethrough-3",
       "revision": 1,
-      "candidateDigest": "0c1aaddd626aa617f329c7e8200a5a68e609ed4e6e8e043a527dada7bd11ffa0",
-      "problemDigest": "db7f5b14c104864f34ddc5b1fe4f90be84e3effb0f8bc1bfbff1ab8bfe4b2ea6",
+      "candidateDigest": "bda607aad8d8368e0d7de009b8e437c07fa33233bac0d1fc476953707e08ab74",
+      "problemDigest": "7125ecd02e1009ea6617f5573a6e5a421d66f76feab005598df7938cfafe9131",
       "fixtureDefinitionDigest": "e418e82227326c7765b75be753fc3d647bc7a7b3c58e953f41f737c550667761",
-      "fixtureResultsDigest": "dc0b058a86eb311d362512a7b975673b08748658642c8e91aa2a6ffb04e91338",
+      "fixtureResultsDigest": "27b023ff8f217453f95e441e220bf1112014ec57c8c6de1f4910df83f7f22764",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-strikethrough-4",
       "revision": 1,
-      "candidateDigest": "b9c09bdeadb6548b9d29caa23610043c46963ab0c6e5bd53924dc45a32805e2c",
-      "problemDigest": "1b4ae6b2aa7e6ba2138b8dd0eada83d7fe5acec99df31a505c9f139d9b862952",
+      "candidateDigest": "2fc6ff16f713fd8586e7883ec9ffbfd8b879f924041eecd726b011b93b809f05",
+      "problemDigest": "27a7081123b352a9a7249fefec20c046365eea57c5cd709408e7dbf27cd73d26",
       "fixtureDefinitionDigest": "de584e02d499f8b6e3c06b53f3f0cb8dea79d89064b45530a677444f7734a88b",
-      "fixtureResultsDigest": "460efeff63abe978964138a248dfe26db0bf51ff289c276888630a36dff70e29",
+      "fixtureResultsDigest": "de2fabebd3434e678833263ac7089e68e6c7000d83987678fd603000c4f0c67f",
       "fixtureCount": 6,
       "passed": true
     },
     {
       "candidateId": "l2-strikethrough-5",
       "revision": 1,
-      "candidateDigest": "9a9f450d47f586b527a13520b86b09ecd3c516f3361f605806664415593923a8",
-      "problemDigest": "6567d7b6a91aba8dbcda6088eb496f85893365d944824fcb4a5bcc8ff208cbc5",
+      "candidateDigest": "95f5e1b04247546fd66216489fde7bf975b1edab791bd9080f154f295b56c93d",
+      "problemDigest": "a1d9304ce80e82782744e0cbc38490982c705236e0b5126053dad5551d981c19",
       "fixtureDefinitionDigest": "7259451ad9b8c4605d58e989aba5cd422026b4aa05fcded55c6b99d272204a18",
-      "fixtureResultsDigest": "ee9cf533e56547ab54d5ba06cb305a4690aaa26e0927c82a29b29cc3e94a6d2a",
+      "fixtureResultsDigest": "cae7326aba4ad21b22f57d5b62425713994feaa377416747765bdd8857c93c34",
       "fixtureCount": 6,
-      "passed": true
-    },
-    {
-      "candidateId": "l3-angle-bracket-email-1",
-      "revision": 1,
-      "candidateDigest": "a91fbee02dddc0a14622f1c4a85f11d390952b3fe563f006220cbacea91c9351",
-      "problemDigest": "9e995f04736b55831bbe9df5174b141818d0fbecb9b31ff048f14c65a281084f",
-      "fixtureDefinitionDigest": "7231e70ba7b852e0e7550ed1999a1019688fcab8f48f7b509fb9410e82ed0d83",
-      "fixtureResultsDigest": "a7449f3165a660bde914d5301044bfe1393ca61a926d0565aff2feca586d32e2",
-      "fixtureCount": 8,
-      "passed": true
-    },
-    {
-      "candidateId": "l3-angle-bracket-email-2",
-      "revision": 1,
-      "candidateDigest": "8a7e36007499b283ec00288c596674b5c178915edf673df338c20de50a05dfa1",
-      "problemDigest": "4aed0d1d2ea5379a066ce50a41ec95c5f69cdb915e073ef44f05b15227e6a4aa",
-      "fixtureDefinitionDigest": "b8792a23bc7fada3d6beaec181e72809e1f6309f0a2fbda4b33a1542265a46ad",
-      "fixtureResultsDigest": "d11e6d851c135a2c32fc992ef5b385fcd6eceb773e496bcf419dd5224d61fed2",
-      "fixtureCount": 8,
-      "passed": true
-    },
-    {
-      "candidateId": "l3-angle-bracket-email-3",
-      "revision": 1,
-      "candidateDigest": "91289abf11ecfa75e5e0ef843274f1e7af04bcd5d270bb65c5246df018609cd1",
-      "problemDigest": "949efc8bcaaaa4d2249f5fe42671774573c475434ba9071eea7a0cf4110448bb",
-      "fixtureDefinitionDigest": "d21ec833fe7d7f6f636b3de80b44f882a68d1a43a3a4abbc99becc3ada244fef",
-      "fixtureResultsDigest": "b6f7d8388cbd482a1919d12436efa3e62dded11b7a2db43d5d95022996f177b9",
-      "fixtureCount": 8,
-      "passed": true
-    },
-    {
-      "candidateId": "l3-angle-bracket-email-4",
-      "revision": 1,
-      "candidateDigest": "bb7181dc147c84125738379b7216836515a08eec89360116eba49fec73e8c547",
-      "problemDigest": "3e39e88f24470b41164ed0b7baa31e99fdf78196783fc7de5fead136724c3b95",
-      "fixtureDefinitionDigest": "5989e7dc1f39f2edb68faed1a244753ef535ea51f94c2ed4026dec63250f4079",
-      "fixtureResultsDigest": "81114ce58da6a95dc953c8a133b7b3d8f040d594a264553be975c3cadb67be57",
-      "fixtureCount": 8,
-      "passed": true
-    },
-    {
-      "candidateId": "l3-angle-bracket-email-5",
-      "revision": 1,
-      "candidateDigest": "939a68b6d435bde994dc0c51bd32fc84ff809c20f1a5b3f2d71a145577aefc9b",
-      "problemDigest": "6af80483a3eb9c52eb661c3532307dc6324d8841cf8c1113280729597d05df1a",
-      "fixtureDefinitionDigest": "6b54095b14edbf076ceb512f5c7233ae933ef1cbf27a1277e893542ef2a8e994",
-      "fixtureResultsDigest": "d99524fed7d49e528c05bc1f4671b1c042610de670411d7738b44a073004b909",
-      "fixtureCount": 8,
       "passed": true
     },
     {
       "candidateId": "l3-angle-bracket-url-1",
       "revision": 1,
-      "candidateDigest": "2354e104addc37d12eb5e33e2d011173927f772c03719016ac73c67e2ea7074c",
-      "problemDigest": "d679b89db484586b841f4bac6b0c27941d37dad8f17c0e53069d14d0fe7e6924",
-      "fixtureDefinitionDigest": "d9bca439cf6d8a3c6b5cd35ffe57624abbceaf530a0a31d5a94f84ffd3b4b3e5",
-      "fixtureResultsDigest": "87646781e93cd152cb9be805f84d24e939c9e9aec7ec9b8bbc34e63f7ddb4e98",
+      "candidateDigest": "276091913309860b63e48e122ded2084566856fe1128c634c94a864d4db4ec16",
+      "problemDigest": "d95bba3729d53e2deacb2a142bc9dd92c719424ea81fa6e621222431243eb03f",
+      "fixtureDefinitionDigest": "9e41184ae1d4816fe83dbde20ed0ad2b1bae3e56205e730482bf235e8d96e63b",
+      "fixtureResultsDigest": "4565580b918020c816aae7857e69991120a0a365efe9c5f450ddea4e756aa39c",
       "fixtureCount": 7,
       "passed": true
     },
     {
       "candidateId": "l3-angle-bracket-url-2",
       "revision": 1,
-      "candidateDigest": "dbf2e287957a8ec011eb50d90de2bdd1a015dd1da248dbc28ddf8f27676888a7",
-      "problemDigest": "b32d06d5f22b5bcf7f5b7ae5f61e65b76025b0113406bf9c5ec91ab6e8f201c1",
-      "fixtureDefinitionDigest": "81b425cf4b60e57569432599cd87d539559e2b4f40bd887551e1ca64cf39c95b",
-      "fixtureResultsDigest": "efd2d1410f95ef66185659689a49d3f31da7b407472dd4b75250da6e20be1856",
+      "candidateDigest": "5f729b00c221c5eacbc4d5a07e21af5c20da5f226986a42e2849fae9a86863cc",
+      "problemDigest": "475a75b434ff4965bde630ce804b79fd8dd758a5de7392f8ea1ec04a63d052da",
+      "fixtureDefinitionDigest": "14f75bdedd91f57472a9c2383c369f15481afaab8f100c256e3b4319df4f0f93",
+      "fixtureResultsDigest": "c81d6b9820bf75bb5b7bb2693c3d485f52c16855a00c291e50bb577084a0d433",
       "fixtureCount": 7,
       "passed": true
     },
     {
       "candidateId": "l3-angle-bracket-url-3",
       "revision": 1,
-      "candidateDigest": "a34126c017ff837e4e656d2351e45ee02e36ac87a8f54aaf0943835f696b4b3f",
-      "problemDigest": "963259da57a4fea65744f2c5819e32b5a0ddfe61a19ae42f3f5567dec0b2efdd",
-      "fixtureDefinitionDigest": "4f08680a7d5d7b8a60e8e0006c2a5a9dad455f692160b2f4c72d7ada64ea22cc",
-      "fixtureResultsDigest": "41028a71eea9da1012ab4277e96c1c2765280288f0c890a47dfac44e59965001",
+      "candidateDigest": "e4f228f4c11096fdf7632bd7814228613772373679a580f2f867c4b23b495f4c",
+      "problemDigest": "a989f7064b5571966306a9c80361faee29d2e1b66b2d127f806528e3fef213b2",
+      "fixtureDefinitionDigest": "5d0c3e216e2e5d5b2902528a1c8a2bf0e26847f1586f43a272d096dcd8e70ccc",
+      "fixtureResultsDigest": "688f5a0fb48f4abbbfcfeb9c77c53c40b65d810e0a398c402855a4c3f2040c4e",
       "fixtureCount": 7,
       "passed": true
     },
     {
       "candidateId": "l3-angle-bracket-url-4",
       "revision": 1,
-      "candidateDigest": "9575faa94dca029541f098d2ab7618a439bad72cab23b75ce995b75cbc3d33a3",
-      "problemDigest": "6b8e28e9a00c8b502f6f1809a304563081f401b880fbf4b4c58065978737612c",
-      "fixtureDefinitionDigest": "8784b46264858127a154e659642e6fdc7810019c63479acfdf57bf937554d05f",
-      "fixtureResultsDigest": "1f4c94322a73b613cbb9849649dd225cc6625191f66c273afa1e20e61ad13be4",
+      "candidateDigest": "ce131be48d9adc3265230f068ddfee466fc8195420c9bb5920d837daa5c901c8",
+      "problemDigest": "62ba3139988e669851092ba0a08728f25359b0e2d664a1685d442223314b8b9d",
+      "fixtureDefinitionDigest": "8b7ea10f2ee600303c7a7d3b0f2da1e645505b3988b3116d833038ac93c518af",
+      "fixtureResultsDigest": "e25ad6158f93c1dc22135140e69a44426b63ea41cf0fe3b21c1b542e49be90b6",
       "fixtureCount": 7,
       "passed": true
     },
     {
       "candidateId": "l3-angle-bracket-url-5",
       "revision": 1,
-      "candidateDigest": "8894359f0528b7d0a15b16906c3a977efa4bd2040b12514d68f4867b0f979763",
-      "problemDigest": "b97a0cd7ed95a077e7bcf4803b3376941a4e956da29c49bacac6753246146f79",
-      "fixtureDefinitionDigest": "dbd04bf41c80aa20a1a6504c4e1e44a53d8ec616cdd6654266b31134c2e25dad",
-      "fixtureResultsDigest": "555e3b333172dfee5aaf7d812cf4cdff9f4b4f606684b40ccaa876cd0d2b2140",
+      "candidateDigest": "139b04ccc1933309e46b58e4c5e08423366dcb6455bb0da9a56658b325a5e69f",
+      "problemDigest": "7d29b302c757efbf7ae6402eaa80913c527b66c246c7e2c01f323442922b959f",
+      "fixtureDefinitionDigest": "2e448867a81d1907271344c7b417132e40a415b8f142bf93a7a4ecd1983b01f7",
+      "fixtureResultsDigest": "4c80e3c19043d346e9fbf7a57c30982b787524f8d07f358bd089b26641133574",
       "fixtureCount": 7,
       "passed": true
     },
     {
       "candidateId": "l3-escape-1",
       "revision": 1,
-      "candidateDigest": "31cb04c88cd959b73a1f25239ca80501c97e4452554cb4c7c6ad701e8a3ccca7",
-      "problemDigest": "ee75cf3bdc47e4da40278b8232a8353f42d163730cc0ce31ddf7b8ee63cb7754",
-      "fixtureDefinitionDigest": "13f66893fdb512893a8cd46823fd2e0a84e2f2620b94ad065044d285d079d215",
-      "fixtureResultsDigest": "9c819469a978b3cc559349d4606e6cbf266734ee3fc5bd2f1b53f0f15d0429fe",
-      "fixtureCount": 8,
+      "candidateDigest": "b5eee31e960eec3e038ea61072f5ef6316bc34a759e6f1c04e55503b4b8d74b8",
+      "problemDigest": "05269fc7e9e78827a8c4e3d03708753c5a4faeb0dfb15f4e63433a3a376f5737",
+      "fixtureDefinitionDigest": "fa54acc74007611e6e7f2e8fb20ee209c7afe15c867d73048c8bf09452a73d87",
+      "fixtureResultsDigest": "0d4aaae0f0623b1f7fd46642f47a69cbb2de3906d70674b14e6b2fd979682c91",
+      "fixtureCount": 9,
       "passed": true
     },
     {
       "candidateId": "l3-escape-2",
       "revision": 1,
-      "candidateDigest": "ae48ba7597a32072e865d7a5f3b7a3b511b0f42722e49ee344b07df37a57e172",
-      "problemDigest": "6489d5f53aafd47cfbd461c48dfc1ca2ca55c7f955f32de0bcefa687b0334e0e",
-      "fixtureDefinitionDigest": "1da8a28f5751b72d51cf9dea32f0aca9f58828a9507c9e7350b11212bf0f43bf",
-      "fixtureResultsDigest": "e6185df9949aa868786cd3cc02a8b182c042576f27d9b145c7164efd3a8e1d8b",
-      "fixtureCount": 8,
+      "candidateDigest": "48b6ad34ae6c7fe11ad4709929ecf271bbced0eb1d9b15f4ddf50f090fff18ee",
+      "problemDigest": "2dbc511da3883053b5712828f866ff414450858e3a321e31f5e7cde3af20408f",
+      "fixtureDefinitionDigest": "74247691949597e66859d2e12ce78b01ed844b6e3bce05aaf051059e241340e8",
+      "fixtureResultsDigest": "93405103f697128cb1abd7a02bb4fb276b1af4fa345c95b5dc733e4bd03d7fc7",
+      "fixtureCount": 9,
       "passed": true
     },
     {
       "candidateId": "l3-escape-3",
       "revision": 1,
-      "candidateDigest": "d015db6feb2684b27016028073328138ac0ac4b98fe1ef94d57273d1b99b095a",
-      "problemDigest": "da03ba64dec52de004d151812529b06271f8904c09164240581d3fe999a56525",
-      "fixtureDefinitionDigest": "db3d666dbe19ff9683ea2328c731f12528044b57510e02760d577ac4d24de3dd",
-      "fixtureResultsDigest": "2d30f823ed6a5cb912d33fcd0155a29453e51ef076e748dcdac21bc69bd92eba",
-      "fixtureCount": 8,
+      "candidateDigest": "da7b833cc3d529b6becd3b636d47c4dac968ba5c4332d0c4b237d7711b21aa42",
+      "problemDigest": "3845438f443202fcaa063c10bde2158b0960104e4c2ec44818adfbdab6b5d1aa",
+      "fixtureDefinitionDigest": "91326e70bbd280cce4b3dfaac8eb03c59ce5b8f03c5dddd7d7fc11ce006a4efe",
+      "fixtureResultsDigest": "a0d4e0ef6457290bc60c00126e5bae25eaaad785a844858e75409abfc2d17adc",
+      "fixtureCount": 9,
       "passed": true
     },
     {
       "candidateId": "l3-escape-4",
       "revision": 1,
-      "candidateDigest": "d4ba6177468e81e48d515094ad9e613850922aa4d46db0ba8f9415ac864d4c56",
-      "problemDigest": "ed16b17ac1b286e298b87a689b06a84e5751d2891b646e1294d0926233d51707",
-      "fixtureDefinitionDigest": "bed0e6f6cbf6aeb81dbc47740d1c9830511d13e72006095f930b48efe04cdc5b",
-      "fixtureResultsDigest": "1566f4f6924b3c653d4356a83894ed37eca53360dbc58ca206b7b54fb51ef037",
-      "fixtureCount": 8,
+      "candidateDigest": "ce191681c0aa5fe15bcd63462eb2b94b8a18a613b72a8cc683fc81c8ae93092c",
+      "problemDigest": "d4310c78f86f74d234e070bd85db7347075af33a270e9727fe589603ce573896",
+      "fixtureDefinitionDigest": "0cd18ba2efbe6a6cc327de9daf9fcf99250834b72e5285e090ff84300ebdf041",
+      "fixtureResultsDigest": "465b29ef36ba96b45ab1fa66221634ddfe5795f596cf69d68d78e7315bcb0085",
+      "fixtureCount": 9,
       "passed": true
     },
     {
       "candidateId": "l3-escape-5",
       "revision": 1,
-      "candidateDigest": "6cf22675386f3ac39bda7cfaf7e30faf2c01b93536b71e42fa5a9acff2ee6963",
-      "problemDigest": "bb70dd114c30a102cb6f46f2dc7ff7f467232309ae5843d3050d28ea1b83679c",
-      "fixtureDefinitionDigest": "5bf1fcd4222be735c9ecccaed486be094f06aef018c987aaa2cfbd688e690de6",
-      "fixtureResultsDigest": "cea8fa21adcfa2986c87978430b1fb81c45082b36cdc143a52c1f2776b46d11b",
-      "fixtureCount": 8,
+      "candidateDigest": "db1e5a9a1881ef984054f4aaec0372d0bd47ae39bfed166a3cfe4f69855ba033",
+      "problemDigest": "5a90112b04c8a6d467d82d4a3c3b5c4579d1948958407b84356c152f4abb50e5",
+      "fixtureDefinitionDigest": "23fadf4fbadab164a78e19b55230881cbb60e979fab82b649e757d48d7263422",
+      "fixtureResultsDigest": "28f1a54a046690c48227caabb9d23a2562d218c5102f3eb6aaad7c1849a25a55",
+      "fixtureCount": 9,
       "passed": true
     },
     {
       "candidateId": "l3-footnote-1",
       "revision": 1,
-      "candidateDigest": "3416bf120ca0de10b43263fcbf4ccef5f7eea48e66455423af24baa0f9ab7870",
-      "problemDigest": "65fb87654645c32075b062d8970bfccfdd91e5c4ec9f3844fc4e80668c39c0a1",
+      "candidateDigest": "e7e07828a7e6a86b5032a656651558009cd1a79fe515488771324940da793bce",
+      "problemDigest": "57c1e6d1db9dba9f8b2eaf2c11aba57c27c8df0d3f360df51fd189dd649a85c9",
       "fixtureDefinitionDigest": "c2a0a17b0cc84cd18e7178578ac00745284d6984563984bff2dba09c314d38d9",
-      "fixtureResultsDigest": "d680f30397c84ad5932822bddb69104e27e2100db1ad403df669103398fc0e40",
+      "fixtureResultsDigest": "9ed9a238996a255b52b931ad036fddba1dc46510f2191c2ceee2f525b6529101",
       "fixtureCount": 8,
       "passed": true
     },
     {
       "candidateId": "l3-footnote-2",
       "revision": 1,
-      "candidateDigest": "6a11f7e877ecf555e29c90140cfed4dc947f1123590079d73194be56859e49e3",
-      "problemDigest": "0c3e4030e3f81d0c621962afd4b11445beb4cc9a449313408a87f035b24c3740",
+      "candidateDigest": "0dd0993c310061736dc248ff4a041c2d1e74cbe838262d87908f7617138362af",
+      "problemDigest": "b20a13910f8275d9335cac83543320e58d7979259dfa216322c72ce0809ca741",
       "fixtureDefinitionDigest": "ea307c868179c5b5c4a63d7cd7ed389c5be720c25f795391db90cf0cdbade33c",
-      "fixtureResultsDigest": "df2ea2485554ffc0e6465c6872319e29df004c445b2b0127fa386539f9b2d54b",
+      "fixtureResultsDigest": "d7f599c331ce150a9476b4771f19df6b15f8ed396fcc013e65d949c87bcb59fb",
       "fixtureCount": 8,
       "passed": true
     },
     {
       "candidateId": "l3-footnote-3",
       "revision": 1,
-      "candidateDigest": "ea2f4527cc9e5b558b08710142a7c8bbfe999a6deae3fc3780bee34e4ac8f748",
-      "problemDigest": "4b8966e77a6f6749d83eece4b24215575a2bce606d27912d839b5e2ca1672d14",
+      "candidateDigest": "66b0699860cd63f447a50004d817f8ed72ee97e24515720a4acf716b4ebc6a5b",
+      "problemDigest": "9a17f41fb13bc37bf396787a86462a6ed50ddbea0db270fee4150f86ccf9ab54",
       "fixtureDefinitionDigest": "01e1256f8532afe2891e7701e981906e44f7b25de02e093c7fbc501f7946642b",
-      "fixtureResultsDigest": "4a65cd0ab0b2d8ae16acb52c596adea3b7be2b5ab9ddba5fed6121f4aa8c66a6",
+      "fixtureResultsDigest": "698bc9683963f3de21e6cdd5d6fb6b3c10bee3b0a01cf6e4d47e20064e96cdf2",
       "fixtureCount": 8,
       "passed": true
     },
     {
       "candidateId": "l3-footnote-4",
       "revision": 1,
-      "candidateDigest": "c497ec344e7126a96d9e333ec41b3d015a1533d61a15233e8cf288666bfecc49",
-      "problemDigest": "834aaca861f80e496718df6d205f69748cac586160f9a0cb57af4f99498c2ad2",
+      "candidateDigest": "43b9ee56fbfb154ef6f082fd83bd425ce1b5ac53b2fb13246ba4e9d8a357bfa1",
+      "problemDigest": "eae885fd6ad0650b41b584883df5e4a29f090c95a29920c966f4b9e598976a85",
       "fixtureDefinitionDigest": "16e4c76d38005793d0a290c1c59d58d0cdaa3d3eb585c2afaefd0201395d9c05",
-      "fixtureResultsDigest": "046f120a084f3f70226d4f12639f520602cac8621a55f7c91266991bd22f59c6",
+      "fixtureResultsDigest": "573852ed14af7803fe937a7a5ca918fdf8029ea5f6ec53b5f1c885bf53653609",
       "fixtureCount": 8,
       "passed": true
     },
     {
       "candidateId": "l3-footnote-5",
       "revision": 1,
-      "candidateDigest": "267836ba908462d6947d287cfee791f79b84a873495d03b23404e1ce529a8360",
-      "problemDigest": "ca364ead5a815f9584c58b2574beac946bebd3e505bb5d6f35db64f4a1c61ce6",
+      "candidateDigest": "2cafa8d4b4aa1a97c4c81f95433696911069bbd07f2f18cd7cdaed19e259f91e",
+      "problemDigest": "d7f00dc1e00a551e1700580c6c049de7971e5ffce16285e1266fe4be2d212f46",
       "fixtureDefinitionDigest": "2a2206c05d5d77970463443ece0eb3157819b63cfbc53a1558f0d9956da53af9",
-      "fixtureResultsDigest": "e75b197fa12338b711813000517515932eb3a7e3a43213d0ee0dfe2395bb5df5",
+      "fixtureResultsDigest": "784fb6f97e59ff250ffa16e6c97df7dbdff05990302c3fca79c0b9a2effae3a5",
       "fixtureCount": 8,
       "passed": true
     },
     {
       "candidateId": "l3-link-title-1",
       "revision": 1,
-      "candidateDigest": "a559157fcdde430bcba30b48dcae4f534bdb4fe1f671722bc90f166d7bdd539f",
-      "problemDigest": "92f91d1b60d06afa95eaae3cf1baebf42a0358d835f33977f77cf6c0964d71a3",
+      "candidateDigest": "f4172060879f9846ade4c542639cbcf5bc848cd37e294ce5574459a20b6ba97d",
+      "problemDigest": "39c0f7cdff65df38fce9965b3b1a17e0167f4e3bc366ea2f77347a53583c1c2b",
       "fixtureDefinitionDigest": "f6d1ffe2b0175f6b1a5673b1763e6463e28462fcae827e5922963a5ebafe849e",
-      "fixtureResultsDigest": "04a2d83d2d87c23a81d109df5b99dead74e0395f4394cc6663f47c6f04bf1e7d",
+      "fixtureResultsDigest": "1e4a2265acee6b231242f286ea13714847652677c6cf142013651e8cecc660a8",
       "fixtureCount": 7,
       "passed": true
     },
     {
       "candidateId": "l3-link-title-2",
       "revision": 1,
-      "candidateDigest": "1a2d7cef3f295599dca95bb89b3afa7340a1d0fdc9fb14c54df42b58fbd92419",
-      "problemDigest": "ae6a9dbf111d557532dfffe65232446353d78cf7652d4857ea29ab7455245344",
+      "candidateDigest": "71f5469012b62cbb8028d1e717eb0170df86de59b944353e0cd0d494bc01e11a",
+      "problemDigest": "335bc3150404da76b00fd8fa256b6e0ba46d62c88134d0200d59f480fb2e9a5c",
       "fixtureDefinitionDigest": "23b6912b37ee18756b3252b6536cee74bad4c7d32901713adee380587a7823b3",
-      "fixtureResultsDigest": "39818f84cd6ebe63f4f958e233ae3ae4c52f55e3fb90669bfbd5b70cc3440668",
+      "fixtureResultsDigest": "936dd342e89b117ab9843b6f11f62e524d91cc57dce342d62493da24b2ce1fb3",
       "fixtureCount": 7,
       "passed": true
     },
     {
       "candidateId": "l3-link-title-3",
       "revision": 1,
-      "candidateDigest": "d965362f09670243eae4be0612f077da363b47834dc2c5bdf488d196c85bc6a1",
-      "problemDigest": "00f34c42738b4eab6cbdd71af8f37246d78e0d5a9ca0651470017c287962e5bb",
+      "candidateDigest": "3419e7b1b10ff5f4033c8f6007d4a9ff8218e815065eb35184a5cc64484968c2",
+      "problemDigest": "93c93508c3e8e92a0c7bdbed2f687c98c44ecd1ad2cfd898fb17116acb4e3a73",
       "fixtureDefinitionDigest": "f2d61d67cb71b4c4c9d0be288bc4239f435255348b2d55903caad770f60ce845",
-      "fixtureResultsDigest": "bd91c828b5dc9d8509f447a8cf4479259e08f37d547da5fba4dbf1b4d530dabd",
+      "fixtureResultsDigest": "51a52741687adb29ecd0a9e4ac2edeb59b6e514c6110bacc444accd3d3534c16",
       "fixtureCount": 7,
       "passed": true
     },
     {
       "candidateId": "l3-link-title-4",
       "revision": 1,
-      "candidateDigest": "1970e98024c623099e047c040ef02b0f6df41d258264370531f6ad9d86582328",
-      "problemDigest": "61b30cb6d54dc5358a6fcc02e8d0bc15684170403ffc3e95389ad4f33430f4bc",
+      "candidateDigest": "6bd0e9a189f5cf384ae5ac958d216abd519df03a0bea976d31431cb32d80c56a",
+      "problemDigest": "c9ee44e5ab97aa46289b6665f3758a03e22a0b0cb205eb2efe74466a4114144b",
       "fixtureDefinitionDigest": "8fbf69933d267c95fee531e6fc28e1bf061663bf727c75ecaea659db727f6fbe",
-      "fixtureResultsDigest": "87e8f8fb24a07a2a3e4737caa37d02cc695487427992bb917f798ac669c51c8e",
+      "fixtureResultsDigest": "64ac8086f28759037a16ea8a705ef0a730e88c3636cfad93e644aeaba7771aac",
       "fixtureCount": 7,
       "passed": true
     },
     {
       "candidateId": "l3-link-title-5",
       "revision": 1,
-      "candidateDigest": "41e7027d3b0e9277797f905f2657733a025bd5460797879263a13ba43eb0d4e4",
-      "problemDigest": "d5264712bbab7c8b62be1df8af3497ab8c884b77e274a828cf12ff05e42a675b",
+      "candidateDigest": "db7c7baed0a98d7eb1d882b07648f7a5832a1ed855d9b8f37f39c5067d2b775f",
+      "problemDigest": "20a66fe5b3c0497adf9a084d58b3dc65fc91e13ac4bf997ecf3a6a16dfc4ad7d",
       "fixtureDefinitionDigest": "91d927764eff39b9219a101e5e4bab53cfcf5c53c1c31616329d6e9a8676406b",
-      "fixtureResultsDigest": "660c22a8128c449f715acb1c75059e3a45cf04ad30ef13c1a7b05b36fa1a206a",
+      "fixtureResultsDigest": "a30f12af1b8a74b9d30c1f06a6c5c9838fec855cdbf3ced78f19f2dcf7cd300f",
       "fixtureCount": 7,
       "passed": true
     },
     {
       "candidateId": "l3-list-with-block-1",
       "revision": 1,
-      "candidateDigest": "f7c1b829499e70a0f8403a6669825cb5c67b81d762c154b2619c3e77b621e29b",
-      "problemDigest": "7c31172c991ed4c633d8ddc00d2ff66ce198d529e2c9781d0189e696bc797723",
+      "candidateDigest": "96684bc4931eb9c91dc4a01f36df40ce49ec8dcc9d251081f1c2ceca41941f5b",
+      "problemDigest": "3446a9d9b0a3672370a8072ca45d26f9520b5e9642e68e8a2727398fdd8a64ae",
       "fixtureDefinitionDigest": "f6bdd8f402a8d1a927fb92132f0445878a2a4506a8cf8688c08a60f8d916eece",
-      "fixtureResultsDigest": "cf1442d94e77d515cbdb98267b33c26669342e537674ea12b509883d5f29c1e5",
+      "fixtureResultsDigest": "9ec778f1457b56057af46d2ee883f689e58b92e1497253246c7d8c2ff44222dc",
       "fixtureCount": 8,
       "passed": true
     },
     {
       "candidateId": "l3-list-with-block-2",
       "revision": 1,
-      "candidateDigest": "3e97489218575abeb0fd80416d463e036a489c4add5251438cbbca1fb5ba28d0",
-      "problemDigest": "32e440c025d135a794ef891ca73ef4876e90c4daa07c52f26d3c5171750b164c",
+      "candidateDigest": "b7fefb69b21893057774e8f400a36a0245c7d19b8740f16ba0c399f93ab8bf18",
+      "problemDigest": "c32ffc13fa20ecbeaf031b014769a5e11e20d9de581bbf71e06603f8f6666f23",
       "fixtureDefinitionDigest": "c79c44078bb14fa629908b3be2e37bd9d70dde10ab473ffa6851bd94f0a0be43",
-      "fixtureResultsDigest": "867207d0c3851a666ae8058a9410e2de5146eaa12313904f4d8642cdce855c8b",
+      "fixtureResultsDigest": "a72c0b6458187f31fe989fb4af8d137d836c89e2001acec6da9daf90dca80ec9",
       "fixtureCount": 8,
       "passed": true
     },
     {
       "candidateId": "l3-list-with-block-3",
       "revision": 1,
-      "candidateDigest": "0ae1a791043b5027e3c4caea43c093ff4bfd4e22d3e65240129c4c791b6e21b3",
-      "problemDigest": "2a24bb9a99bc8156176a93340c72e218dc5c0e575bb35e6474e6aca28133cdd7",
+      "candidateDigest": "0134c5fd2f73232736b0d11a47cf621fad2b74691167d994a58ac30352189d26",
+      "problemDigest": "c25974399315a51b7df396845c6afea0bee03f10899a6307a6505625e41780ba",
       "fixtureDefinitionDigest": "0c881406f1174426e5487f5376fbd700e85b9a1b33e48561cebd175314678204",
-      "fixtureResultsDigest": "0bd368719ee20a388d2f24d6346f49492d719c0166d78dae11ae087db0834f99",
+      "fixtureResultsDigest": "01619cb8e1cbb110f58b9159073e677107536901ec6616d563f7b3ca0450f584",
       "fixtureCount": 8,
       "passed": true
     },
     {
       "candidateId": "l3-list-with-block-4",
       "revision": 1,
-      "candidateDigest": "9109e4b51009c740cba2cdaf41743d6c9f075fec650b729f347f65d460bea9dc",
-      "problemDigest": "469c71b4957c000ec3d6bed81c9045c9b4477d19aa869d6be3481cd3cc858512",
+      "candidateDigest": "e9ec8a7112e5d0f49f595904f57291f8f50d52ad58a7290f68eb6644aee6d9c1",
+      "problemDigest": "ead07806f60af4ff9111dafcbec05b62b34718356b36597f85e3c26bcb6f0a46",
       "fixtureDefinitionDigest": "0983b6e5aac5017e97ada1827b3bacbe1aee526f8503bea0e407922628160656",
-      "fixtureResultsDigest": "9e423546a37db56e1f3dcaa8f3580a3fcc0e991ee1ec978c25821f3b23f930e9",
+      "fixtureResultsDigest": "37e5ba6f133025f7dc4d430bec516afe189e3b4255205aadcc9dbc94ae1ca6db",
       "fixtureCount": 8,
       "passed": true
     },
     {
       "candidateId": "l3-list-with-block-5",
       "revision": 1,
-      "candidateDigest": "71335c0161bdb064bbe51067dc12d016b44cbd5ada64cb746acd9fa9af880bd0",
-      "problemDigest": "2b83e99f86494cff95700fd070c59c58b6ab8cd4cea12865f53a1a90066399c4",
+      "candidateDigest": "509e44d4128af6aafd2485d1adb655b4339eab9a1e52679dc26b152855eaad2d",
+      "problemDigest": "315574ad38372ff317bfdc07ea85e0fc363d735e865ccc0fe3299df6edf9bea9",
       "fixtureDefinitionDigest": "48d3b4f0cc8a0e8c9cef410d5bd474dbd1784097d2fd4525d79c66611c470e8e",
-      "fixtureResultsDigest": "a45aa791e973f89e1707d99b7fc5b9dcccab5b138c51a8a4c42363ad370aa928",
+      "fixtureResultsDigest": "319854d9e10d58ea7157fe37ca23ad7cf038b18997f76bb743e58ed8935a6518",
       "fixtureCount": 8,
       "passed": true
     },
     {
       "candidateId": "l3-mixed-escape-footnote",
       "revision": 1,
-      "candidateDigest": "b71f8a3d18e21f8758a79acf9290cc0852ff07697d8065544f53f016707b4290",
-      "problemDigest": "ac57f48818afd7d29282a5024563fd68f1633fd3d96bc99508c52d463e5c50fb",
+      "candidateDigest": "a75d823e0b0ac97b44ab789323f56a32e5773b05cfb876eb89f0899f0a1d1fb5",
+      "problemDigest": "0712342a138cea7276b9b335bbb5934d9a3f2e98533a23274b3843dfaf2799b8",
       "fixtureDefinitionDigest": "5d00a2a6a6f88ddd61679d86d7db213d5751b7325b0e9078157a916d82f6291d",
-      "fixtureResultsDigest": "dd221e4acf5e47742653eee999cfa3edbef9a182e7e4c68f341b02bbf37ed292",
+      "fixtureResultsDigest": "470b0aaa4b01f10cfa8f7a6e658bf35fc6b851e9c8162a161941698cd56d0ff9",
       "fixtureCount": 7,
       "passed": true
     },
     {
-      "candidateId": "l3-mixed-link-title-email",
+      "candidateId": "l3-mixed-link-title-escape",
       "revision": 1,
-      "candidateDigest": "0f5ce1da39840dbc33a6a39d43af4614dbfd0116498b583d521895e94217afeb",
-      "problemDigest": "ec931da3da177296730661a833f22fa2ef772db1b5f7eb09e0249b4616241cf0",
-      "fixtureDefinitionDigest": "0d45ed343bfcbf922642095acb917bc3e22cee07dd80b2dc5bdbc76949a2a653",
-      "fixtureResultsDigest": "90d5ee7fcb7ab5b6a92c7c97f3fcc377db7601c009cbf77622c030cb1a3bee5d",
-      "fixtureCount": 8,
+      "candidateDigest": "3ce646a89971facd72e1c33a1129b42f8f6ede4dae9fb06cba04338d6d7d2bad",
+      "problemDigest": "fe983b5fd0ecd193ff3da4927a6d81976df74387501438ef3a44152dbe810856",
+      "fixtureDefinitionDigest": "5805ac9c5817854c6bba18556e7c24ebc01363ff21d122fd1ee76be4bf870938",
+      "fixtureResultsDigest": "20231c1e9c00fa7b448ca089b60e9da591c734a1464a784624f87d67f77a50ed",
+      "fixtureCount": 7,
       "passed": true
     },
     {
       "candidateId": "l3-mixed-link-title-url",
       "revision": 1,
-      "candidateDigest": "50b23ee9ad5725d82ea12da2587386cb6d38f802f9850539ec00e47f1cf5b110",
-      "problemDigest": "6de4a1e30b38e6d226cdfd13e58d475c88e31a11607ba7e2cbcf2d114d3e8c55",
-      "fixtureDefinitionDigest": "e4f34cf578e349ee527ac29532a7c6fb0c87b085f7be450ff19b84ed274eae07",
-      "fixtureResultsDigest": "e4e75b9ec3cdd2f6869f0cc09fd4cc94bafddd329b86dd1d06275bdbee898e67",
+      "candidateDigest": "0df8235415989602b2625a0f5ba63d5f55f838c8ea0e62c79c1bf90aae2b5b68",
+      "problemDigest": "32355d52ea3950a50b09d3ac96f2bd429db385510cae396b6ad47b392d2c444c",
+      "fixtureDefinitionDigest": "9b753ed0c0c0a523e267914afceb39feee4a2d9155e85eb1680e6589bb336927",
+      "fixtureResultsDigest": "5d50e5aa8b1feef158f9eb6c4afb8f1a5a46fb5bcf865057ad68fdd2cf6100a7",
       "fixtureCount": 7,
       "passed": true
     },
     {
       "candidateId": "l3-mixed-list-angle-url",
       "revision": 1,
-      "candidateDigest": "fd95c364641714b7d925502786919b432c623f130f739bf2c435ecd9c927bb40",
-      "problemDigest": "4f373a2dfbd4a7d2dd60b422511fe3b20d2017d80d96055488b92fbb8955f8c6",
-      "fixtureDefinitionDigest": "467a5be793d31c2663538619eb589d9dfacfab25f09a204a3dfae5d01b8b1f25",
-      "fixtureResultsDigest": "73e536f15664fdf6f8350b50eb76769f1f1df5f6b2c4858a9fcca9eef00082d4",
+      "candidateDigest": "eec748cace8cc048b75e79cfe081ace210ffc6f588cb67374cefcea7e5747769",
+      "problemDigest": "e5895b13b50ba8264dcd52f5c5f11189390415e30cea2d3bde5b4139485b7c5a",
+      "fixtureDefinitionDigest": "988fb7b37556bd20e13fed19870e2d6abdb8e20184a6c8484035457f84259998",
+      "fixtureResultsDigest": "e4e2a1281085c8b685f2d54147ac1e4093f591ce3748e89b50033dc9221b1f7d",
       "fixtureCount": 7,
       "passed": true
     },
     {
-      "candidateId": "l3-mixed-list-email",
+      "candidateId": "l3-mixed-list-footnote",
       "revision": 1,
-      "candidateDigest": "47834f3d1a4b9a3eacfae331aa17cdf2688d6caf3e8e44a835da1f52221fbc04",
-      "problemDigest": "2c34ef2f256d2648f61144d295f0e75261c60f578b02a7916c368c860d0a37c0",
-      "fixtureDefinitionDigest": "93c994f1d7bd0770544f570efee8bef8676da052d4999a7d159f401ef06b3308",
-      "fixtureResultsDigest": "789633a066414a6b56faaec7367b443af32eea472370c2b3cf7258638268f097",
-      "fixtureCount": 8,
+      "candidateDigest": "99c5a3e0b8c193b63379d6d96edd179dce4bbec3306ceaeaa9b8ff71a27c4be7",
+      "problemDigest": "44feb93c05e8177fa0d7d66bccb55d9c1bfd2ef13a6398e769260318112b79ef",
+      "fixtureDefinitionDigest": "fe32cfb5a4209f514d1fc8c4bf5d6e92fdb3893d7c3ef8a7ce7b32f471913dc1",
+      "fixtureResultsDigest": "e13575c9086432175595da9f627538dd3a98d2d0bc0e60a8952acad217450ab5",
+      "fixtureCount": 7,
       "passed": true
     }
   ],
@@ -2706,566 +2656,6 @@
       "passed": true
     },
     {
-      "fixtureId": "l3-angle-bracket-email-1-canonical",
-      "problemId": "l3-angle-bracket-email-1",
-      "problemRevision": 1,
-      "expected": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "actual": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-1-case-spelling-variation",
-      "problemId": "l3-angle-bracket-email-1",
-      "problemRevision": 1,
-      "expected": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "actual": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-1-different-prose",
-      "problemId": "l3-angle-bracket-email-1",
-      "problemRevision": 1,
-      "expected": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "actual": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-1-edge-case",
-      "problemId": "l3-angle-bracket-email-1",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "keep-short"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "keep-short"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-1-mailto-uri",
-      "problemId": "l3-angle-bracket-email-1",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-1-malformed",
-      "problemId": "l3-angle-bracket-email-1",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-1-matched-with-review",
-      "problemId": "l3-angle-bracket-email-1",
-      "problemRevision": 1,
-      "expected": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "actual": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-1-missing",
-      "problemId": "l3-angle-bracket-email-1",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-2-canonical",
-      "problemId": "l3-angle-bracket-email-2",
-      "problemRevision": 1,
-      "expected": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "actual": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-2-case-spelling-variation",
-      "problemId": "l3-angle-bracket-email-2",
-      "problemRevision": 1,
-      "expected": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "actual": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-2-different-prose",
-      "problemId": "l3-angle-bracket-email-2",
-      "problemRevision": 1,
-      "expected": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "actual": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-2-edge-case",
-      "problemId": "l3-angle-bracket-email-2",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "keep-short"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "keep-short"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-2-mailto-uri",
-      "problemId": "l3-angle-bracket-email-2",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-2-malformed",
-      "problemId": "l3-angle-bracket-email-2",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-2-matched-with-review",
-      "problemId": "l3-angle-bracket-email-2",
-      "problemRevision": 1,
-      "expected": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "actual": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-2-missing",
-      "problemId": "l3-angle-bracket-email-2",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-3-canonical",
-      "problemId": "l3-angle-bracket-email-3",
-      "problemRevision": 1,
-      "expected": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "actual": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-3-case-spelling-variation",
-      "problemId": "l3-angle-bracket-email-3",
-      "problemRevision": 1,
-      "expected": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "actual": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-3-different-prose",
-      "problemId": "l3-angle-bracket-email-3",
-      "problemRevision": 1,
-      "expected": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "actual": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-3-edge-case",
-      "problemId": "l3-angle-bracket-email-3",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "keep-short"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "keep-short"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-3-mailto-uri",
-      "problemId": "l3-angle-bracket-email-3",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-3-malformed",
-      "problemId": "l3-angle-bracket-email-3",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-3-matched-with-review",
-      "problemId": "l3-angle-bracket-email-3",
-      "problemRevision": 1,
-      "expected": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "actual": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-3-missing",
-      "problemId": "l3-angle-bracket-email-3",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-4-canonical",
-      "problemId": "l3-angle-bracket-email-4",
-      "problemRevision": 1,
-      "expected": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "actual": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-4-case-spelling-variation",
-      "problemId": "l3-angle-bracket-email-4",
-      "problemRevision": 1,
-      "expected": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "actual": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-4-different-prose",
-      "problemId": "l3-angle-bracket-email-4",
-      "problemRevision": 1,
-      "expected": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "actual": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-4-edge-case",
-      "problemId": "l3-angle-bracket-email-4",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "keep-short"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "keep-short"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-4-mailto-uri",
-      "problemId": "l3-angle-bracket-email-4",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-4-malformed",
-      "problemId": "l3-angle-bracket-email-4",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-4-matched-with-review",
-      "problemId": "l3-angle-bracket-email-4",
-      "problemRevision": 1,
-      "expected": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "actual": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-4-missing",
-      "problemId": "l3-angle-bracket-email-4",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-5-canonical",
-      "problemId": "l3-angle-bracket-email-5",
-      "problemRevision": 1,
-      "expected": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "actual": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-5-case-spelling-variation",
-      "problemId": "l3-angle-bracket-email-5",
-      "problemRevision": 1,
-      "expected": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "actual": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-5-different-prose",
-      "problemId": "l3-angle-bracket-email-5",
-      "problemRevision": 1,
-      "expected": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "actual": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-5-edge-case",
-      "problemId": "l3-angle-bracket-email-5",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "keep-short"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "keep-short"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-5-mailto-uri",
-      "problemId": "l3-angle-bracket-email-5",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-5-malformed",
-      "problemId": "l3-angle-bracket-email-5",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-5-matched-with-review",
-      "problemId": "l3-angle-bracket-email-5",
-      "problemRevision": 1,
-      "expected": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "actual": {
-        "status": "matched",
-        "reviewIds": []
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-angle-bracket-email-5-missing",
-      "problemId": "l3-angle-bracket-email-5",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "passed": true
-    },
-    {
       "fixtureId": "l3-angle-bracket-url-1-canonical",
       "problemId": "l3-angle-bracket-url-1",
       "problemRevision": 1,
@@ -3812,6 +3202,20 @@
       "passed": true
     },
     {
+      "fixtureId": "l3-escape-1-hidden-link-metadata",
+      "problemId": "l3-escape-1",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-escape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-escape"
+      },
+      "passed": true
+    },
+    {
       "fixtureId": "l3-escape-1-literal-code-backslashes",
       "problemId": "l3-escape-1",
       "problemRevision": 1,
@@ -3920,6 +3324,20 @@
       "actual": {
         "status": "fail",
         "feedbackId": "keep-short"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-escape-2-hidden-link-metadata",
+      "problemId": "l3-escape-2",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-escape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-escape"
       },
       "passed": true
     },
@@ -4036,6 +3454,20 @@
       "passed": true
     },
     {
+      "fixtureId": "l3-escape-3-hidden-link-metadata",
+      "problemId": "l3-escape-3",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-escape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-escape"
+      },
+      "passed": true
+    },
+    {
       "fixtureId": "l3-escape-3-literal-code-backslashes",
       "problemId": "l3-escape-3",
       "problemRevision": 1,
@@ -4148,6 +3580,20 @@
       "passed": true
     },
     {
+      "fixtureId": "l3-escape-4-hidden-link-metadata",
+      "problemId": "l3-escape-4",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-escape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-escape"
+      },
+      "passed": true
+    },
+    {
       "fixtureId": "l3-escape-4-literal-code-backslashes",
       "problemId": "l3-escape-4",
       "problemRevision": 1,
@@ -4256,6 +3702,20 @@
       "actual": {
         "status": "fail",
         "feedbackId": "keep-short"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-escape-5-hidden-link-metadata",
+      "problemId": "l3-escape-5",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-escape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-escape"
       },
       "passed": true
     },
@@ -6024,8 +5484,8 @@
       "passed": true
     },
     {
-      "fixtureId": "l3-mixed-link-title-email-canonical",
-      "problemId": "l3-mixed-link-title-email",
+      "fixtureId": "l3-mixed-link-title-escape-canonical",
+      "problemId": "l3-mixed-link-title-escape",
       "problemRevision": 1,
       "expected": {
         "status": "matched",
@@ -6038,8 +5498,8 @@
       "passed": true
     },
     {
-      "fixtureId": "l3-mixed-link-title-email-case-spelling-variation",
-      "problemId": "l3-mixed-link-title-email",
+      "fixtureId": "l3-mixed-link-title-escape-case-spelling-variation",
+      "problemId": "l3-mixed-link-title-escape",
       "problemRevision": 1,
       "expected": {
         "status": "matched",
@@ -6052,8 +5512,8 @@
       "passed": true
     },
     {
-      "fixtureId": "l3-mixed-link-title-email-different-prose",
-      "problemId": "l3-mixed-link-title-email",
+      "fixtureId": "l3-mixed-link-title-escape-different-prose",
+      "problemId": "l3-mixed-link-title-escape",
       "problemRevision": 1,
       "expected": {
         "status": "matched",
@@ -6066,8 +5526,8 @@
       "passed": true
     },
     {
-      "fixtureId": "l3-mixed-link-title-email-edge-case",
-      "problemId": "l3-mixed-link-title-email",
+      "fixtureId": "l3-mixed-link-title-escape-edge-case",
+      "problemId": "l3-mixed-link-title-escape",
       "problemRevision": 1,
       "expected": {
         "status": "fail",
@@ -6080,36 +5540,22 @@
       "passed": true
     },
     {
-      "fixtureId": "l3-mixed-link-title-email-mailto-uri",
-      "problemId": "l3-mixed-link-title-email",
+      "fixtureId": "l3-mixed-link-title-escape-malformed",
+      "problemId": "l3-mixed-link-title-escape",
       "problemRevision": 1,
       "expected": {
         "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
+        "feedbackId": "use-escape"
       },
       "actual": {
         "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
+        "feedbackId": "use-escape"
       },
       "passed": true
     },
     {
-      "fixtureId": "l3-mixed-link-title-email-malformed",
-      "problemId": "l3-mixed-link-title-email",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-mixed-link-title-email-matched-with-review",
-      "problemId": "l3-mixed-link-title-email",
+      "fixtureId": "l3-mixed-link-title-escape-matched-with-review",
+      "problemId": "l3-mixed-link-title-escape",
       "problemRevision": 1,
       "expected": {
         "status": "matched",
@@ -6122,8 +5568,8 @@
       "passed": true
     },
     {
-      "fixtureId": "l3-mixed-link-title-email-missing",
-      "problemId": "l3-mixed-link-title-email",
+      "fixtureId": "l3-mixed-link-title-escape-missing",
+      "problemId": "l3-mixed-link-title-escape",
       "problemRevision": 1,
       "expected": {
         "status": "fail",
@@ -6332,8 +5778,8 @@
       "passed": true
     },
     {
-      "fixtureId": "l3-mixed-list-email-canonical",
-      "problemId": "l3-mixed-list-email",
+      "fixtureId": "l3-mixed-list-footnote-canonical",
+      "problemId": "l3-mixed-list-footnote",
       "problemRevision": 1,
       "expected": {
         "status": "matched",
@@ -6346,8 +5792,8 @@
       "passed": true
     },
     {
-      "fixtureId": "l3-mixed-list-email-case-spelling-variation",
-      "problemId": "l3-mixed-list-email",
+      "fixtureId": "l3-mixed-list-footnote-case-spelling-variation",
+      "problemId": "l3-mixed-list-footnote",
       "problemRevision": 1,
       "expected": {
         "status": "matched",
@@ -6360,8 +5806,8 @@
       "passed": true
     },
     {
-      "fixtureId": "l3-mixed-list-email-different-prose",
-      "problemId": "l3-mixed-list-email",
+      "fixtureId": "l3-mixed-list-footnote-different-prose",
+      "problemId": "l3-mixed-list-footnote",
       "problemRevision": 1,
       "expected": {
         "status": "matched",
@@ -6374,8 +5820,8 @@
       "passed": true
     },
     {
-      "fixtureId": "l3-mixed-list-email-edge-case",
-      "problemId": "l3-mixed-list-email",
+      "fixtureId": "l3-mixed-list-footnote-edge-case",
+      "problemId": "l3-mixed-list-footnote",
       "problemRevision": 1,
       "expected": {
         "status": "fail",
@@ -6388,36 +5834,22 @@
       "passed": true
     },
     {
-      "fixtureId": "l3-mixed-list-email-mailto-uri",
-      "problemId": "l3-mixed-list-email",
+      "fixtureId": "l3-mixed-list-footnote-malformed",
+      "problemId": "l3-mixed-list-footnote",
       "problemRevision": 1,
       "expected": {
         "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
+        "feedbackId": "use-footnote"
       },
       "actual": {
         "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
+        "feedbackId": "use-footnote"
       },
       "passed": true
     },
     {
-      "fixtureId": "l3-mixed-list-email-malformed",
-      "problemId": "l3-mixed-list-email",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "use-angle-bracket-email"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l3-mixed-list-email-matched-with-review",
-      "problemId": "l3-mixed-list-email",
+      "fixtureId": "l3-mixed-list-footnote-matched-with-review",
+      "problemId": "l3-mixed-list-footnote",
       "problemRevision": 1,
       "expected": {
         "status": "matched",
@@ -6430,8 +5862,8 @@
       "passed": true
     },
     {
-      "fixtureId": "l3-mixed-list-email-missing",
-      "problemId": "l3-mixed-list-email",
+      "fixtureId": "l3-mixed-list-footnote-missing",
+      "problemId": "l3-mixed-list-footnote",
       "problemRevision": 1,
       "expected": {
         "status": "fail",
@@ -6445,5 +5877,5 @@
     }
   ],
   "errors": [],
-  "verificationDigest": "eb550e28b6550235ad69db1ab6cf2b804c350a091e5d192650c3c33c9f311f86"
+  "verificationDigest": "e64d77e48c3192b8aac8c69f31d8aa8dd5cc105e45133002726aef6fdb7d19eb"
 }

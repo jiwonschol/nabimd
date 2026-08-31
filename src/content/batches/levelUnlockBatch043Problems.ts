@@ -1,12 +1,12 @@
 import type { NormalizedProblem, SyntaxPresenceKind } from "../types"
 
-export const levelUnlockBatch042Id = "2026-08-31-l2-l3-unlock-042"
+export const levelUnlockBatch043Id = "2026-08-31-l2-l3-unlock-043"
 
 const curriculumVersion = "2026-07-19"
 
 type SupportedUnlockSyntax = Exclude<
   SyntaxPresenceKind,
-  "heading-id" | "automatic-url"
+  "heading-id" | "automatic-url" | "angle-bracket-email"
 >
 
 type SingleInput = {
@@ -101,26 +101,13 @@ export const levelUnlockSingleInputs: readonly SingleInput[] = [
     syntax: "angle-bracket-url",
     label: "angle-bracket URL",
     targets: [
-      "Project reference\n\nOpen <https://example.com> for the current plan.",
-      "Visitor information\n\nUse <https://example.org/help> before arriving.",
-      "Team calendar\n\nCheck <https://example.net/calendar> for the next date.",
-      "Release notes\n\nRead <https://example.edu/releases> before the update.",
-      "Support status\n\nVisit <https://example.info/status> for the latest notice.",
+      "Project reference\n\nOpen <ftp://example.com/plan> for the current plan.",
+      "Visitor information\n\nUse <ftp://example.org/help> before arriving.",
+      "Team archive\n\nCheck <ftp://example.net/calendar> for the next date.",
+      "Release archive\n\nRead <ftp://example.edu/releases> before the update.",
+      "Support archive\n\nVisit <ftp://example.info/status> for the latest notice.",
     ],
-    example: "<https://example.net>",
-  },
-  {
-    level: 3,
-    syntax: "angle-bracket-email",
-    label: "angle-bracket email",
-    targets: [
-      "Project contact\n\nSend questions to <hello@example.com>.",
-      "Team request\n\nEmail the details to <team@example.org>.",
-      "Office booking\n\nConfirm the room with <rooms@example.net>.",
-      "Workshop help\n\nAsk <events@example.edu> about access.",
-      "Support handoff\n\nForward the note to <help@example.info>.",
-    ],
-    example: "<help@example.net>",
+    example: "<ftp://example.net/help>",
   },
   {
     level: 3,
@@ -216,7 +203,7 @@ function createSingleProblem(input: SingleInput, variant: number): NormalizedPro
       domains: [input.level === 2 ? "everyday-notes" : "workplace-notes"],
       terms: [...new Set(target.match(/[A-Za-z]+/g) ?? [])].slice(0, 8),
     },
-    sourceBatchId: levelUnlockBatch042Id,
+    sourceBatchId: levelUnlockBatch043Id,
     revision: 1,
     curriculumVersion,
     contentVariant: `variant-${suffix}`,
@@ -229,15 +216,15 @@ const singleProblems = levelUnlockSingleInputs.flatMap((input) =>
 
 const mixedInputs = [
   {
-    id: "l3-mixed-link-title-email",
-    target: "Team guide\n\nRead the [handoff notes](https://example.com \"Team guide\"), then contact <team@example.com>.",
-    skillIds: ["link-title", "angle-bracket-email"],
-    syntaxTokens: ["link-title", "angle-bracket-email"],
-    contentVariant: "link-and-email",
+    id: "l3-mixed-link-title-escape",
+    target: "Team guide\n\nRead the [handoff notes](https://example.com \"Team guide\"), then write \\*owner\\* literally.",
+    skillIds: ["link-title", "escape"],
+    syntaxTokens: ["link-title", "escape"],
+    contentVariant: "link-and-escape",
   },
   {
     id: "l3-mixed-list-angle-url",
-    target: "Visitor checklist\n\n- > Open <https://example.org/visit> before arriving.",
+    target: "Visitor checklist\n\n- > Open <ftp://example.org/visit> before arriving.",
     skillIds: ["list-with-block", "angle-bracket-url"],
     syntaxTokens: ["list-with-block", "angle-bracket-url"],
     contentVariant: "list-and-url",
@@ -251,17 +238,17 @@ const mixedInputs = [
   },
   {
     id: "l3-mixed-link-title-url",
-    target: "Release reference\n\nRead the [update guide](https://example.net \"Update guide\"), then check <https://example.net/status>.",
+    target: "Release reference\n\nRead the [update guide](https://example.net \"Update guide\"), then check <ftp://example.net/status>.",
     skillIds: ["link-title", "angle-bracket-url"],
     syntaxTokens: ["link-title", "angle-bracket-url"],
     contentVariant: "link-and-url",
   },
   {
-    id: "l3-mixed-list-email",
-    target: "Support handoff\n\n- > Send the final note to <help@example.info>.",
-    skillIds: ["list-with-block", "angle-bracket-email"],
-    syntaxTokens: ["list-with-block", "angle-bracket-email"],
-    contentVariant: "list-and-email",
+    id: "l3-mixed-list-footnote",
+    target: "Support handoff\n\n- > Confirm the next owner.[^1]\n\n[^1]: Support log",
+    skillIds: ["list-with-block", "footnote"],
+    syntaxTokens: ["list-with-block", "footnote"],
+    contentVariant: "list-and-footnote",
   },
 ] as const
 
@@ -315,13 +302,13 @@ const mixedProblems: readonly NormalizedProblem[] = mixedInputs.map((input) => (
     domains: ["workplace-notes"],
     terms: [...new Set(input.target.match(/[A-Za-z]+/g) ?? [])].slice(0, 8),
   },
-  sourceBatchId: levelUnlockBatch042Id,
+  sourceBatchId: levelUnlockBatch043Id,
   revision: 1,
   curriculumVersion,
   contentVariant: input.contentVariant,
 }))
 
-export const levelUnlockBatch042Problems: readonly NormalizedProblem[] = [
+export const levelUnlockBatch043Problems: readonly NormalizedProblem[] = [
   ...singleProblems,
   ...mixedProblems,
 ]

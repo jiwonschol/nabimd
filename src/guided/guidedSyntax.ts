@@ -550,9 +550,10 @@ function fencedLanguageInputParts(
   checkpoint: SyntaxCheckpoint,
   value: string,
 ): readonly [string, string, string] | null {
-  const canonicalParts = checkpoint.segments.flatMap((segment) =>
-    segment.kind === "input" ? [segment.value] : [],
+  const inputSegments = checkpoint.segments.flatMap((segment, segmentIndex) =>
+    segment.kind === "input" ? [{ segmentIndex, value: segment.value }] : [],
   )
+  const canonicalParts = inputSegments.map(({ value: part }) => part)
   if (
     canonicalParts.length !== 3 ||
     !/^(?:`{3,}|~{3,})$/.test(canonicalParts[0] ?? "") ||
@@ -562,25 +563,18 @@ function fencedLanguageInputParts(
     return null
   }
 
-  const canonicalFence = canonicalParts[0]!
-  const fences = [
-    canonicalFence,
-    canonicalFence.startsWith("`")
-      ? "~".repeat(canonicalFence.length)
-      : "`".repeat(canonicalFence.length),
-  ]
-  for (const fence of fences) {
-    if (!value.startsWith(fence) || !value.endsWith(fence)) continue
-    const informationToken = value.slice(fence.length, -fence.length)
-    if (
-      /^\S+$/.test(informationToken) &&
-      !(fence.startsWith("`") && informationToken.includes("`")) &&
-      !informationToken.startsWith(fence[0]!)
-    ) {
-      return [fence, informationToken, fence]
-    }
-  }
-  return null
+  const submitted = /^(`{3,}|~{3,})(\S+)\1$/.exec(value)
+  if (!submitted) return null
+  const fence = submitted[1]!
+  const informationToken = submitted[2]!
+  const languageTouchesFence = checkpoint.segments
+    .slice(inputSegments[0]!.segmentIndex + 1, inputSegments[1]!.segmentIndex)
+    .every((segment) => segment.kind === "input" || segment.value.length === 0)
+  if (
+    (fence.startsWith("`") && informationToken.includes("`")) ||
+    (languageTouchesFence && informationToken.startsWith(fence[0]!))
+  ) return null
+  return [fence, informationToken, fence]
 }
 
 export function acceptsGuidedSyntaxInput(

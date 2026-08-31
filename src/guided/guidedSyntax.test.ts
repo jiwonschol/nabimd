@@ -848,6 +848,7 @@ describe("deriveSyntaxCheckpoints", () => {
     )
 
     expect(acceptsGuidedSyntaxInput(checkpoint!, "```python```")).toBe(true)
+    expect(acceptsGuidedSyntaxInput(checkpoint!, "````python````")).toBe(true)
     expect(acceptsGuidedSyntaxInput(checkpoint!, "~~~objective.c~~~")).toBe(true)
     expect(acceptsGuidedSyntaxInput(checkpoint!, "~~~~~~~")).toBe(false)
     expect(acceptsGuidedSyntaxInput(checkpoint!, "``````")).toBe(false)

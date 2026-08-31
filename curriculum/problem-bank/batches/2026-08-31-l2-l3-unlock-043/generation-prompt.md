@@ -1,4 +1,4 @@
-# Batch 042: Level 2 and Level 3 unlock candidates
+# Batch 043: Level 2 and Level 3 unlock candidates
 
 Prepare short, independently reviewable exercises for every Level 2 and Level 3
 syntax that the current parser, grader, guided checkpoint generator, and learner
@@ -8,7 +8,9 @@ not support them.
 ## Coverage
 
 - Create five dedicated standard problems for each of the five supported Level 2
-  elements and each of the six supported Level 3 elements. Level 3 targets must
+  elements and each of the five render-observable Level 3 elements. Do not author
+  angle-bracket email problems: GFM renders their plaintext starters as the same
+  links, so adding the brackets would not produce a visible learning task. Level 3 targets must
   be short, coherent, human-readable documents rather than isolated snippets.
 - Create five standard mixed exercises owned by Level 3. Each must combine two
   Level 3 elements, produce no more than five guided checkpoints, and avoid a

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-31-l2-l3-unlock-042",
+  "batchId": "2026-08-31-l2-l3-unlock-043",
   "sequence": 28,
   "curriculumVersion": "2026-07-19",
   "generatedBy": "gpt-5.6-sol-build-time-authoring",
@@ -1879,14 +1879,14 @@
       "teaching": {
         "concept": "Angle-bracket URL is a Markdown syntax pattern.",
         "howTo": "Type the punctuation that creates the angle-bracket URL.",
-        "example": "<https://example.net>"
+        "example": "<ftp://example.net/help>"
       },
       "syntaxTokens": [
         "angle-bracket-url"
       ],
       "title": "angle-bracket URL",
       "prompt": "Write the short document with the angle-bracket URL.",
-      "target": "Project reference\n\nOpen <https://example.com> for the current plan.",
+      "target": "Project reference\n\nOpen <ftp://example.com/plan> for the current plan.",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -1910,7 +1910,7 @@
       "hints": [
         "Look for the punctuation used by a angle-bracket URL.",
         "Add the missing angle-bracket URL marks.",
-        "Example: <https://example.net>"
+        "Example: <ftp://example.net/help>"
       ],
       "retryFamily": "level-3-angle-bracket-url",
       "reviewTags": [
@@ -1926,11 +1926,11 @@
           "Project",
           "reference",
           "Open",
-          "https",
+          "ftp",
           "example",
           "com",
-          "for",
-          "the"
+          "plan",
+          "for"
         ]
       },
       "revision": 1,
@@ -1951,14 +1951,14 @@
       "teaching": {
         "concept": "Angle-bracket URL is a Markdown syntax pattern.",
         "howTo": "Type the punctuation that creates the angle-bracket URL.",
-        "example": "<https://example.net>"
+        "example": "<ftp://example.net/help>"
       },
       "syntaxTokens": [
         "angle-bracket-url"
       ],
       "title": "angle-bracket URL",
       "prompt": "Write the short document with the angle-bracket URL.",
-      "target": "Visitor information\n\nUse <https://example.org/help> before arriving.",
+      "target": "Visitor information\n\nUse <ftp://example.org/help> before arriving.",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -1982,7 +1982,7 @@
       "hints": [
         "Look for the punctuation used by a angle-bracket URL.",
         "Add the missing angle-bracket URL marks.",
-        "Example: <https://example.net>"
+        "Example: <ftp://example.net/help>"
       ],
       "retryFamily": "level-3-angle-bracket-url",
       "reviewTags": [
@@ -1998,7 +1998,7 @@
           "Visitor",
           "information",
           "Use",
-          "https",
+          "ftp",
           "example",
           "org",
           "help",
@@ -2023,14 +2023,14 @@
       "teaching": {
         "concept": "Angle-bracket URL is a Markdown syntax pattern.",
         "howTo": "Type the punctuation that creates the angle-bracket URL.",
-        "example": "<https://example.net>"
+        "example": "<ftp://example.net/help>"
       },
       "syntaxTokens": [
         "angle-bracket-url"
       ],
       "title": "angle-bracket URL",
       "prompt": "Write the short document with the angle-bracket URL.",
-      "target": "Team calendar\n\nCheck <https://example.net/calendar> for the next date.",
+      "target": "Team archive\n\nCheck <ftp://example.net/calendar> for the next date.",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -2054,7 +2054,7 @@
       "hints": [
         "Look for the punctuation used by a angle-bracket URL.",
         "Add the missing angle-bracket URL marks.",
-        "Example: <https://example.net>"
+        "Example: <ftp://example.net/help>"
       ],
       "retryFamily": "level-3-angle-bracket-url",
       "reviewTags": [
@@ -2068,13 +2068,13 @@
         ],
         "terms": [
           "Team",
-          "calendar",
+          "archive",
           "Check",
-          "https",
+          "ftp",
           "example",
           "net",
-          "for",
-          "the"
+          "calendar",
+          "for"
         ]
       },
       "revision": 1,
@@ -2095,14 +2095,14 @@
       "teaching": {
         "concept": "Angle-bracket URL is a Markdown syntax pattern.",
         "howTo": "Type the punctuation that creates the angle-bracket URL.",
-        "example": "<https://example.net>"
+        "example": "<ftp://example.net/help>"
       },
       "syntaxTokens": [
         "angle-bracket-url"
       ],
       "title": "angle-bracket URL",
       "prompt": "Write the short document with the angle-bracket URL.",
-      "target": "Release notes\n\nRead <https://example.edu/releases> before the update.",
+      "target": "Release archive\n\nRead <ftp://example.edu/releases> before the update.",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -2126,7 +2126,7 @@
       "hints": [
         "Look for the punctuation used by a angle-bracket URL.",
         "Add the missing angle-bracket URL marks.",
-        "Example: <https://example.net>"
+        "Example: <ftp://example.net/help>"
       ],
       "retryFamily": "level-3-angle-bracket-url",
       "reviewTags": [
@@ -2140,9 +2140,9 @@
         ],
         "terms": [
           "Release",
-          "notes",
+          "archive",
           "Read",
-          "https",
+          "ftp",
           "example",
           "edu",
           "releases",
@@ -2167,14 +2167,14 @@
       "teaching": {
         "concept": "Angle-bracket URL is a Markdown syntax pattern.",
         "howTo": "Type the punctuation that creates the angle-bracket URL.",
-        "example": "<https://example.net>"
+        "example": "<ftp://example.net/help>"
       },
       "syntaxTokens": [
         "angle-bracket-url"
       ],
       "title": "angle-bracket URL",
       "prompt": "Write the short document with the angle-bracket URL.",
-      "target": "Support status\n\nVisit <https://example.info/status> for the latest notice.",
+      "target": "Support archive\n\nVisit <ftp://example.info/status> for the latest notice.",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -2198,7 +2198,7 @@
       "hints": [
         "Look for the punctuation used by a angle-bracket URL.",
         "Add the missing angle-bracket URL marks.",
-        "Example: <https://example.net>"
+        "Example: <ftp://example.net/help>"
       ],
       "retryFamily": "level-3-angle-bracket-url",
       "reviewTags": [
@@ -2212,373 +2212,13 @@
         ],
         "terms": [
           "Support",
-          "status",
+          "archive",
           "Visit",
-          "https",
+          "ftp",
           "example",
           "info",
-          "for",
-          "the"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-5"
-    },
-    {
-      "id": "l3-angle-bracket-email-1",
-      "schemaVersion": 2,
-      "level": 3,
-      "flavor": "standard",
-      "familyId": "angle-bracket-email",
-      "skillIds": [
-        "angle-bracket-email"
-      ],
-      "difficulty": "warmup",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Angle-bracket email is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the angle-bracket email.",
-        "example": "<help@example.net>"
-      },
-      "syntaxTokens": [
-        "angle-bracket-email"
-      ],
-      "title": "angle-bracket email",
-      "prompt": "Write the short document with the angle-bracket email.",
-      "target": "Project contact\n\nSend questions to <hello@example.com>.",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-angle-bracket-email",
-          "kind": "syntax-presence",
-          "syntax": "angle-bracket-email",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown angle-bracket email syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a angle-bracket email.",
-        "Add the missing angle-bracket email marks.",
-        "Example: <help@example.net>"
-      ],
-      "retryFamily": "level-3-angle-bracket-email",
-      "reviewTags": [
-        "angle-bracket-email",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "workplace-document",
-        "domains": [
-          "workplace-notes"
-        ],
-        "terms": [
-          "Project",
-          "contact",
-          "Send",
-          "questions",
-          "to",
-          "hello",
-          "example",
-          "com"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
-    },
-    {
-      "id": "l3-angle-bracket-email-2",
-      "schemaVersion": 2,
-      "level": 3,
-      "flavor": "standard",
-      "familyId": "angle-bracket-email",
-      "skillIds": [
-        "angle-bracket-email"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Angle-bracket email is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the angle-bracket email.",
-        "example": "<help@example.net>"
-      },
-      "syntaxTokens": [
-        "angle-bracket-email"
-      ],
-      "title": "angle-bracket email",
-      "prompt": "Write the short document with the angle-bracket email.",
-      "target": "Team request\n\nEmail the details to <team@example.org>.",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-angle-bracket-email",
-          "kind": "syntax-presence",
-          "syntax": "angle-bracket-email",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown angle-bracket email syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a angle-bracket email.",
-        "Add the missing angle-bracket email marks.",
-        "Example: <help@example.net>"
-      ],
-      "retryFamily": "level-3-angle-bracket-email",
-      "reviewTags": [
-        "angle-bracket-email",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "workplace-document",
-        "domains": [
-          "workplace-notes"
-        ],
-        "terms": [
-          "Team",
-          "request",
-          "Email",
-          "the",
-          "details",
-          "to",
-          "team",
-          "example"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
-    },
-    {
-      "id": "l3-angle-bracket-email-3",
-      "schemaVersion": 2,
-      "level": 3,
-      "flavor": "standard",
-      "familyId": "angle-bracket-email",
-      "skillIds": [
-        "angle-bracket-email"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Angle-bracket email is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the angle-bracket email.",
-        "example": "<help@example.net>"
-      },
-      "syntaxTokens": [
-        "angle-bracket-email"
-      ],
-      "title": "angle-bracket email",
-      "prompt": "Write the short document with the angle-bracket email.",
-      "target": "Office booking\n\nConfirm the room with <rooms@example.net>.",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-angle-bracket-email",
-          "kind": "syntax-presence",
-          "syntax": "angle-bracket-email",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown angle-bracket email syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a angle-bracket email.",
-        "Add the missing angle-bracket email marks.",
-        "Example: <help@example.net>"
-      ],
-      "retryFamily": "level-3-angle-bracket-email",
-      "reviewTags": [
-        "angle-bracket-email",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "workplace-document",
-        "domains": [
-          "workplace-notes"
-        ],
-        "terms": [
-          "Office",
-          "booking",
-          "Confirm",
-          "the",
-          "room",
-          "with",
-          "rooms",
-          "example"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-3"
-    },
-    {
-      "id": "l3-angle-bracket-email-4",
-      "schemaVersion": 2,
-      "level": 3,
-      "flavor": "standard",
-      "familyId": "angle-bracket-email",
-      "skillIds": [
-        "angle-bracket-email"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Angle-bracket email is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the angle-bracket email.",
-        "example": "<help@example.net>"
-      },
-      "syntaxTokens": [
-        "angle-bracket-email"
-      ],
-      "title": "angle-bracket email",
-      "prompt": "Write the short document with the angle-bracket email.",
-      "target": "Workshop help\n\nAsk <events@example.edu> about access.",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-angle-bracket-email",
-          "kind": "syntax-presence",
-          "syntax": "angle-bracket-email",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown angle-bracket email syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a angle-bracket email.",
-        "Add the missing angle-bracket email marks.",
-        "Example: <help@example.net>"
-      ],
-      "retryFamily": "level-3-angle-bracket-email",
-      "reviewTags": [
-        "angle-bracket-email",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "workplace-document",
-        "domains": [
-          "workplace-notes"
-        ],
-        "terms": [
-          "Workshop",
-          "help",
-          "Ask",
-          "events",
-          "example",
-          "edu",
-          "about",
-          "access"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-4"
-    },
-    {
-      "id": "l3-angle-bracket-email-5",
-      "schemaVersion": 2,
-      "level": 3,
-      "flavor": "standard",
-      "familyId": "angle-bracket-email",
-      "skillIds": [
-        "angle-bracket-email"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Angle-bracket email is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the angle-bracket email.",
-        "example": "<help@example.net>"
-      },
-      "syntaxTokens": [
-        "angle-bracket-email"
-      ],
-      "title": "angle-bracket email",
-      "prompt": "Write the short document with the angle-bracket email.",
-      "target": "Support handoff\n\nForward the note to <help@example.info>.",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-angle-bracket-email",
-          "kind": "syntax-presence",
-          "syntax": "angle-bracket-email",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown angle-bracket email syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a angle-bracket email.",
-        "Add the missing angle-bracket email marks.",
-        "Example: <help@example.net>"
-      ],
-      "retryFamily": "level-3-angle-bracket-email",
-      "reviewTags": [
-        "angle-bracket-email",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "workplace-document",
-        "domains": [
-          "workplace-notes"
-        ],
-        "terms": [
-          "Support",
-          "handoff",
-          "Forward",
-          "the",
-          "note",
-          "to",
-          "help",
-          "example"
+          "status",
+          "for"
         ]
       },
       "revision": 1,
@@ -3655,29 +3295,29 @@
       "contentVariant": "variant-5"
     },
     {
-      "id": "l3-mixed-link-title-email",
+      "id": "l3-mixed-link-title-escape",
       "schemaVersion": 2,
       "level": 3,
       "flavor": "standard",
       "familyId": "level-3-mixed-syntax",
       "skillIds": [
         "link-title",
-        "angle-bracket-email"
+        "escape"
       ],
       "difficulty": "mixed",
       "teachingMode": "recall",
       "teaching": {
         "concept": "A short Markdown document can combine more than one syntax pattern.",
         "howTo": "Add each requested mark while keeping the document readable.",
-        "example": "Team guide\n\nRead the [handoff notes](https://example.com \"Team guide\"), then contact <team@example.com>."
+        "example": "Team guide\n\nRead the [handoff notes](https://example.com \"Team guide\"), then write \\*owner\\* literally."
       },
       "syntaxTokens": [
         "link-title",
-        "angle-bracket-email"
+        "escape"
       ],
       "title": "Combined Markdown patterns",
       "prompt": "Write the short document with both Markdown patterns.",
-      "target": "Team guide\n\nRead the [handoff notes](https://example.com \"Team guide\"), then contact <team@example.com>.",
+      "target": "Team guide\n\nRead the [handoff notes](https://example.com \"Team guide\"), then write \\*owner\\* literally.",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -3690,12 +3330,12 @@
           "feedback": "Use Markdown link-title syntax."
         },
         {
-          "id": "use-angle-bracket-email",
+          "id": "use-escape",
           "kind": "syntax-presence",
-          "syntax": "angle-bracket-email",
+          "syntax": "escape",
           "min": 1,
           "priority": 11,
-          "feedback": "Use Markdown angle-bracket-email syntax."
+          "feedback": "Use Markdown escape syntax."
         },
         {
           "id": "keep-short",
@@ -3734,7 +3374,7 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "link-and-email"
+      "contentVariant": "link-and-escape"
     },
     {
       "id": "l3-mixed-list-angle-url",
@@ -3751,7 +3391,7 @@
       "teaching": {
         "concept": "A short Markdown document can combine more than one syntax pattern.",
         "howTo": "Add each requested mark while keeping the document readable.",
-        "example": "Visitor checklist\n\n- > Open <https://example.org/visit> before arriving."
+        "example": "Visitor checklist\n\n- > Open <ftp://example.org/visit> before arriving."
       },
       "syntaxTokens": [
         "list-with-block",
@@ -3759,7 +3399,7 @@
       ],
       "title": "Combined Markdown patterns",
       "prompt": "Write the short document with both Markdown patterns.",
-      "target": "Visitor checklist\n\n- > Open <https://example.org/visit> before arriving.",
+      "target": "Visitor checklist\n\n- > Open <ftp://example.org/visit> before arriving.",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -3807,7 +3447,7 @@
           "Visitor",
           "checklist",
           "Open",
-          "https",
+          "ftp",
           "example",
           "org",
           "visit",
@@ -3915,7 +3555,7 @@
       "teaching": {
         "concept": "A short Markdown document can combine more than one syntax pattern.",
         "howTo": "Add each requested mark while keeping the document readable.",
-        "example": "Release reference\n\nRead the [update guide](https://example.net \"Update guide\"), then check <https://example.net/status>."
+        "example": "Release reference\n\nRead the [update guide](https://example.net \"Update guide\"), then check <ftp://example.net/status>."
       },
       "syntaxTokens": [
         "link-title",
@@ -3923,7 +3563,7 @@
       ],
       "title": "Combined Markdown patterns",
       "prompt": "Write the short document with both Markdown patterns.",
-      "target": "Release reference\n\nRead the [update guide](https://example.net \"Update guide\"), then check <https://example.net/status>.",
+      "target": "Release reference\n\nRead the [update guide](https://example.net \"Update guide\"), then check <ftp://example.net/status>.",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -3983,29 +3623,29 @@
       "contentVariant": "link-and-url"
     },
     {
-      "id": "l3-mixed-list-email",
+      "id": "l3-mixed-list-footnote",
       "schemaVersion": 2,
       "level": 3,
       "flavor": "standard",
       "familyId": "level-3-mixed-syntax",
       "skillIds": [
         "list-with-block",
-        "angle-bracket-email"
+        "footnote"
       ],
       "difficulty": "mixed",
       "teachingMode": "recall",
       "teaching": {
         "concept": "A short Markdown document can combine more than one syntax pattern.",
         "howTo": "Add each requested mark while keeping the document readable.",
-        "example": "Support handoff\n\n- > Send the final note to <help@example.info>."
+        "example": "Support handoff\n\n- > Confirm the next owner.[^1]\n\n[^1]: Support log"
       },
       "syntaxTokens": [
         "list-with-block",
-        "angle-bracket-email"
+        "footnote"
       ],
       "title": "Combined Markdown patterns",
       "prompt": "Write the short document with both Markdown patterns.",
-      "target": "Support handoff\n\n- > Send the final note to <help@example.info>.",
+      "target": "Support handoff\n\n- > Confirm the next owner.[^1]\n\n[^1]: Support log",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -4018,12 +3658,12 @@
           "feedback": "Use Markdown list-with-block syntax."
         },
         {
-          "id": "use-angle-bracket-email",
+          "id": "use-footnote",
           "kind": "syntax-presence",
-          "syntax": "angle-bracket-email",
+          "syntax": "footnote",
           "min": 1,
           "priority": 11,
-          "feedback": "Use Markdown angle-bracket-email syntax."
+          "feedback": "Use Markdown footnote syntax."
         },
         {
           "id": "keep-short",
@@ -4052,17 +3692,16 @@
         "terms": [
           "Support",
           "handoff",
-          "Send",
+          "Confirm",
           "the",
-          "final",
-          "note",
-          "to",
-          "help"
+          "next",
+          "owner",
+          "log"
         ]
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "list-and-email"
+      "contentVariant": "list-and-footnote"
     }
   ]
 }

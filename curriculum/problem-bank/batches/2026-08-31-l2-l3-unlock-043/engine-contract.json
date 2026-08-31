@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "policyId": "real-engine-contract-v1",
-  "policyDigest": "c368349016a5e732f1ad717b580ee985e39140c0979577bbc98f4505882f87a8",
+  "policyDigest": "b4f288c06c5fa7b1b5c336a95cd1e020846cfcb56485361ccfb4ed34f1981513",
   "files": [
     {
       "path": "package-lock.json",
@@ -18,6 +18,10 @@
     {
       "path": "src/content/types.ts",
       "sha256": "1c571de9955d9ce6edce7f7a3d95dbd305775c6f2eb74ae4178b22d471bb238f"
+    },
+    {
+      "path": "src/components/RenderedDocument.tsx",
+      "sha256": "79f45d1fe50f54a45a9eab11eeceb84e46496e316a6c7a51b98d0c3d917ffa53"
     },
     {
       "path": "src/editor/renderedMarkdown.ts",
@@ -49,7 +53,7 @@
     },
     {
       "path": "src/engine/syntaxPresence.ts",
-      "sha256": "da09046f1ba27078ef62f94b34d8a015404b7389dae2c592c0877e290fd314df"
+      "sha256": "5ff0f590ec6bff5409a9db2d68c7f8df1ed3a5800836d697d446b99960fab297"
     },
     {
       "path": "src/markdown/parser.ts",
@@ -69,7 +73,7 @@
     },
     {
       "path": "src/guided/guidedSyntax.ts",
-      "sha256": "a440d0d4638a5264ffbf881aa35a56f0da61d40c111863a5b3035d183f55ee3b"
+      "sha256": "856d238974badcf804ead4b3ed9e93efe6b960527887b63728d39ccc4fda11cc"
     }
   ],
   "dependencies": [
@@ -86,5 +90,5 @@
       "version": "3.0.0"
     }
   ],
-  "engineContractDigest": "c4917a958922cfe8d68f1531469ba3620fc62c7358b52064be136ccb8bca8cd1"
+  "engineContractDigest": "ce897aae6aa5cd4d0f8358825dd455b18d629f330df81f50ecc0f84fd2d2eff1"
 }
