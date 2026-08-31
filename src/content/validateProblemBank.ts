@@ -464,6 +464,11 @@ function validateMatchChecks(problem: GradableProblem, errors: string[]) {
       }
       case "syntax-presence":
         validateRange(problem.id, check, check.min, check.max, errors)
+        if (check.min === undefined) {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} requires a min`,
+          )
+        }
         if (
           !curriculumElementIds.includes(check.syntax) ||
           !supportedSyntaxPresenceKinds.has(check.syntax)

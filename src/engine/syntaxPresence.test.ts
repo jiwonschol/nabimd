@@ -43,6 +43,12 @@ describe("syntax presence", () => {
         "escape",
       ),
     ).toBe(1)
+    expect(
+      countSyntaxPresence(
+        createEvaluationContext("A[^a\\*]\n\n[^a\\*]: note"),
+        "escape",
+      ),
+    ).toBe(2)
   })
 
   it("ignores syntax hidden in unreferenced footnote definitions", () => {
@@ -58,6 +64,17 @@ describe("syntax presence", () => {
         "nested-blockquote",
       ),
     ).toBe(0)
+  })
+
+  it("ignores syntax in duplicate footnote definitions after the first", () => {
+    const source = [
+      "Use[^a]",
+      "",
+      "[^a]: first",
+      "[^a]: ***ignored***",
+    ].join("\n")
+
+    expect(countSyntaxPresence(createEvaluationContext(source), "bold-italic")).toBe(0)
   })
 
   it("counts each matched footnote identifier once", () => {

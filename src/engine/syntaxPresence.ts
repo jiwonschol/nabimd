@@ -27,27 +27,41 @@ function rawSource(node: PositionedSyntaxNode, source: string): string {
 
 function countBoldItalicSegments(
   nodes: readonly AstNode[],
-  referencedFootnotes: ReadonlySet<string>,
+  effectiveFootnoteDefinitions: ReadonlySet<AstNode>,
   insideStrong = false,
   insideEmphasis = false,
 ): number {
   return nodes.reduce((count, node) => {
-    const positioned = node as PositionedSyntaxNode
     if (
       node.type === "footnoteDefinition" &&
-      positioned.identifier &&
-      !referencedFootnotes.has(positioned.identifier)
+      !effectiveFootnoteDefinitions.has(node)
     ) return count
     const segment =
       (node.type === "strong" && insideEmphasis) ||
       (node.type === "emphasis" && insideStrong)
     return count + (segment ? 1 : 0) + countBoldItalicSegments(
       node.children ?? [],
-      referencedFootnotes,
+      effectiveFootnoteDefinitions,
       insideStrong || node.type === "strong",
       insideEmphasis || node.type === "emphasis",
     )
   }, 0)
+}
+
+function effectiveReferencedFootnoteDefinitions(root: AstNode): Set<AstNode> {
+  const referencedFootnotes = referencedFootnoteIdentifiers(root)
+  const definitions = new Map<string, AstNode>()
+  for (const node of descendants(root.children ?? []) as PositionedSyntaxNode[]) {
+    if (
+      node.type === "footnoteDefinition" &&
+      node.identifier &&
+      referencedFootnotes.has(node.identifier) &&
+      !definitions.has(node.identifier)
+    ) {
+      definitions.set(node.identifier, node)
+    }
+  }
+  return new Set(definitions.values())
 }
 
 function referencedFootnoteIdentifiers(root: AstNode): Set<string> {
@@ -96,13 +110,18 @@ function referencedFootnoteIdentifiers(root: AstNode): Set<string> {
 
 function syntaxNodes(root: AstNode): PositionedSyntaxNode[] {
   const all = descendants(root.children ?? []) as PositionedSyntaxNode[]
-  const referencedFootnotes = referencedFootnoteIdentifiers(root)
+  const effectiveFootnoteDefinitions = effectiveReferencedFootnoteDefinitions(root)
+  const hiddenDefinitions = new Set(
+    all.filter(
+      (node) =>
+        node.type === "footnoteDefinition" &&
+        !effectiveFootnoteDefinitions.has(node),
+    ),
+  )
   const hiddenRanges = all.flatMap((node) => {
     const start = node.position?.start.offset
     const end = node.position?.end.offset
-    return node.type === "footnoteDefinition" &&
-      node.identifier &&
-      !referencedFootnotes.has(node.identifier) &&
+    return hiddenDefinitions.has(node) &&
       start !== undefined &&
       end !== undefined
       ? [{ start, end }]
@@ -111,23 +130,23 @@ function syntaxNodes(root: AstNode): PositionedSyntaxNode[] {
   return all.filter((node) => {
     const start = node.position?.start.offset
     const end = node.position?.end.offset
-    return start === undefined || end === undefined || !hiddenRanges.some(
+    return !hiddenDefinitions.has(node) && (
+      start === undefined || end === undefined || !hiddenRanges.some(
       (range) => start >= range.start && end <= range.end,
+      )
     )
   })
 }
 
 function countNestedBlockquotes(
   nodes: readonly AstNode[],
-  referencedFootnotes: ReadonlySet<string>,
+  effectiveFootnoteDefinitions: ReadonlySet<AstNode>,
   insideBlockquote = false,
 ): number {
   return nodes.reduce((count, node) => {
-    const positioned = node as PositionedSyntaxNode
     if (
       node.type === "footnoteDefinition" &&
-      positioned.identifier &&
-      !referencedFootnotes.has(positioned.identifier)
+      !effectiveFootnoteDefinitions.has(node)
     ) return count
     const isNested = node.type === "blockquote" && insideBlockquote
     return (
@@ -135,7 +154,7 @@ function countNestedBlockquotes(
       (isNested ? 1 : 0) +
       countNestedBlockquotes(
         node.children ?? [],
-        referencedFootnotes,
+        effectiveFootnoteDefinitions,
         insideBlockquote || node.type === "blockquote",
       )
     )
@@ -206,6 +225,8 @@ function countEscapes(
       node.type === "image" ||
       node.type === "linkReference" ||
       node.type === "imageReference" ||
+      node.type === "footnoteReference" ||
+      node.type === "footnoteDefinition" ||
       (node.type === "definition" &&
         Boolean(node.identifier) &&
         referencedDefinitionIdentifiers.has(node.identifier!) &&
@@ -258,14 +279,14 @@ export function countSyntaxPresence(
     case "bold-italic":
       return countBoldItalicSegments(
         context.root.children as AstNode[],
-        referencedFootnoteIdentifiers(context.root as AstNode),
+        effectiveReferencedFootnoteDefinitions(context.root as AstNode),
       )
     case "strikethrough":
       return nodes.filter((node) => node.type === "delete").length
     case "nested-blockquote":
       return countNestedBlockquotes(
         context.root.children as AstNode[],
-        referencedFootnoteIdentifiers(context.root as AstNode),
+        effectiveReferencedFootnoteDefinitions(context.root as AstNode),
       )
     case "code-block-language":
       return nodes.filter(
