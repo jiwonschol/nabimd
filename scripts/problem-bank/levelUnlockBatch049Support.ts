@@ -20,27 +20,27 @@ export const levelUnlockBatch049Config = {
   requiredIndependentReviews: 2,
 } as const satisfies AuthoredBatchConfig
 
-export function buildLevelUnlockBatch048Artifacts({ repositoryRoot }: { repositoryRoot: string }) {
+export function buildLevelUnlockBatch049Artifacts({ repositoryRoot }: { repositoryRoot: string }) {
   return buildAuthoredBatchArtifacts({ repositoryRoot, config: levelUnlockBatch049Config, problems: levelUnlockBatch049Problems, fixtures: levelUnlockBatch049Fixtures })
 }
 
-export function writeLevelUnlockBatch048Artifacts({ repositoryRoot, computed }: { repositoryRoot: string; computed: Awaited<ReturnType<typeof buildLevelUnlockBatch048Artifacts>> }) {
+export function writeLevelUnlockBatch049Artifacts({ repositoryRoot, computed }: { repositoryRoot: string; computed: Awaited<ReturnType<typeof buildLevelUnlockBatch049Artifacts>> }) {
   return writeAuthoredBatchArtifacts({ repositoryRoot, computed })
 }
 
-export function readCommittedLevelUnlockBatch048({ repositoryRoot }: { repositoryRoot: string }) {
+export function readCommittedLevelUnlockBatch049({ repositoryRoot }: { repositoryRoot: string }) {
   return readCommittedAuthoredBatch({ repositoryRoot, config: levelUnlockBatch049Config })
 }
 
-export function checkLevelUnlockBatch048State({ computed, committed }: { computed: Awaited<ReturnType<typeof buildLevelUnlockBatch048Artifacts>>; committed: Awaited<ReturnType<typeof readCommittedLevelUnlockBatch048>> }) {
+export function checkLevelUnlockBatch049State({ computed, committed }: { computed: Awaited<ReturnType<typeof buildLevelUnlockBatch049Artifacts>>; committed: Awaited<ReturnType<typeof readCommittedLevelUnlockBatch049>> }) {
   return checkAuthoredBatchState({ computed, committed })
 }
 
-export function buildLevelUnlockBatch048Publication({ computed, committed }: { computed: Awaited<ReturnType<typeof buildLevelUnlockBatch048Artifacts>>; committed: Awaited<ReturnType<typeof readCommittedLevelUnlockBatch048>> }) {
+export function buildLevelUnlockBatch049Publication({ computed, committed }: { computed: Awaited<ReturnType<typeof buildLevelUnlockBatch049Artifacts>>; committed: Awaited<ReturnType<typeof readCommittedLevelUnlockBatch049>> }) {
   return buildAuthoredBatchPublication({ computed, committed })
 }
 
-export function publishLevelUnlockBatch048Artifacts({ repositoryRoot, computed }: { repositoryRoot: string; computed: Awaited<ReturnType<typeof buildLevelUnlockBatch048Artifacts>> }) {
+export function publishLevelUnlockBatch049Artifacts({ repositoryRoot, computed }: { repositoryRoot: string; computed: Awaited<ReturnType<typeof buildLevelUnlockBatch049Artifacts>> }) {
   return publishAuthoredBatchArtifacts({ repositoryRoot, computed })
 }
 
@@ -48,9 +48,9 @@ async function main() {
   const action = process.argv[2]
   if (action !== "prepare" && action !== "publish") throw new Error("Usage: levelUnlockBatch049Support.ts <prepare|publish>")
   const repositoryRoot = process.cwd()
-  const computed = await buildLevelUnlockBatch048Artifacts({ repositoryRoot })
-  if (action === "prepare") return writeLevelUnlockBatch048Artifacts({ repositoryRoot, computed })
-  return publishLevelUnlockBatch048Artifacts({ repositoryRoot, computed })
+  const computed = await buildLevelUnlockBatch049Artifacts({ repositoryRoot })
+  if (action === "prepare") return writeLevelUnlockBatch049Artifacts({ repositoryRoot, computed })
+  return publishLevelUnlockBatch049Artifacts({ repositoryRoot, computed })
 }
 
 const entryPath = process.argv[1]
