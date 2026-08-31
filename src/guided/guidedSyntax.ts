@@ -244,12 +244,21 @@ function buildAcceptedForms(
   if (
     openingFence &&
     closingFence &&
-    openingFence.value === closingFence.value &&
-    /^(?:`{3,}|~{3,})$/.test(openingFence.value)
+    /^(?:`{3,}|~{3,})$/.test(openingFence.value) &&
+    closingFence.value.startsWith(openingFence.value[0]!) &&
+    closingFence.value.length >= openingFence.value.length
   ) {
-    const alternativeFence = openingFence.value.startsWith("`")
+    const alternativeOpening = openingFence.value.startsWith("`")
       ? "~".repeat(openingFence.value.length)
       : "`".repeat(openingFence.value.length)
+    const alternativeClosing = openingFence.value.startsWith("`")
+      ? "~".repeat(closingFence.value.length)
+      : "`".repeat(closingFence.value.length)
+    const information = checkpoint.segments
+      .slice(openingFence.segmentIndex + 1)
+      .map((segment) => segment.value)
+      .join("")
+      .split("\n", 1)[0] ?? ""
     const informationToken = language?.value ?? ""
     const languageTouchesFence = language
       ? checkpoint.segments
@@ -257,28 +266,39 @@ function buildAcceptedForms(
           .every((segment) => segment.kind === "input" || segment.value.length === 0)
       : false
     expandInputForms(forms, (form) =>
-      !(alternativeFence.startsWith("`") && informationToken.includes("`")) &&
-      (!languageTouchesFence || !informationToken.startsWith(alternativeFence[0]!)) &&
+      !(alternativeOpening.startsWith("`") && information.includes("`")) &&
+      (!languageTouchesFence || !informationToken.startsWith(alternativeOpening[0]!)) &&
       form[openingFence.inputIndex] === openingFence.value &&
       form[closingFence.inputIndex] === closingFence.value
         ? form.map((part, index) =>
             index === openingFence.inputIndex || index === closingFence.inputIndex
-              ? alternativeFence
+              ? index === openingFence.inputIndex
+                ? alternativeOpening
+                : alternativeClosing
               : part,
           )
         : null,
     )
   }
 
-  const hardBreakInput = checkpoint.segments.find(
-    (segment): segment is Extract<GuidedSyntaxSegment, { kind: "input" }> =>
-      segment.kind === "input" && Boolean(segment.family?.startsWith("break@")),
-  )
-  if (canonicalParts.length === 1 && hardBreakInput) {
+  const hardBreakInput = checkpoint.segments.flatMap((segment, segmentIndex) =>
+    segment.kind === "input" && Boolean(segment.family?.startsWith("break@"))
+      ? [{
+          inputIndex: checkpoint.segments
+            .slice(0, segmentIndex)
+            .filter((candidate) => candidate.kind === "input").length,
+          value: segment.value,
+        }]
+      : [],
+  )[0]
+  if (hardBreakInput) {
     const alternative = hardBreakInput.value === "\\" ? "  " : "\\"
-    if (!forms.some((form) => form[0] === alternative)) {
-      forms.push([alternative])
-    }
+    expandInputForms(forms, (form) => {
+      if (form[hardBreakInput.inputIndex] !== hardBreakInput.value) return null
+      const replaced = [...form]
+      replaced[hardBreakInput.inputIndex] = alternative
+      return replaced
+    })
   }
 
   const quoteInputs = checkpoint.segments.flatMap((segment, segmentIndex) =>
@@ -1133,11 +1153,16 @@ function markNodeSyntax(
   families: SyntaxFamilies,
   referencedDefinitionIds: ReadonlySet<string>,
   effectiveReferencedDefinitions: ReadonlySet<Nodes>,
+  effectiveFootnoteDefinitions: ReadonlySet<Nodes>,
   insideQuote = false,
   insideTable = false,
   insideAutolink = false,
 ): void {
   const range = nodeRange(node)
+  if (
+    node.type === "footnoteDefinition" &&
+    !effectiveFootnoteDefinitions.has(node)
+  ) return
   // Two sibling nodes of the same type can sit side by side (`[a](b)[c](d)`).
   // Keying the family by node type *and* start offset keeps their marks in
   // separate input groups.
@@ -1364,7 +1389,8 @@ function markNodeSyntax(
       if (
         range &&
         (node.type === "link" || node.type === "image") &&
-        node.title?.trim() &&
+        node.title !== null &&
+        node.title !== undefined &&
         source.slice(range.from, range.to).includes("\n")
       ) {
         groupedRanges.push({
@@ -1454,7 +1480,9 @@ function markNodeSyntax(
     case "definition": {
       if (!range || !effectiveReferencedDefinitions.has(node)) break
       const raw = source.slice(range.from, range.to)
-      const title = raw.match(/\s+(?:(["'])([\s\S]*?)\1|\(([\s\S]*?)\))\s*$/)
+      const title = node.title === null || node.title === undefined
+        ? null
+        : raw.match(/\s+(?:(["'])([\s\S]*?)\1|\(([\s\S]*?)\))\s*$/)
       if (title?.index !== undefined) {
         const titleSource = title[0]
         const opening = title[1] ?? "("
@@ -1497,6 +1525,7 @@ function markNodeSyntax(
         families,
         referencedDefinitionIds,
         effectiveReferencedDefinitions,
+        effectiveFootnoteDefinitions,
         insideQuote || node.type === "blockquote",
         insideTable || node.type === "table",
         insideAutolink ||
@@ -1740,6 +1769,7 @@ export function deriveSyntaxCheckpoints(
   const root = parseMarkdownSource(source)
   const referencedDefinitionIds = new Set<string>()
   const effectiveReferencedDefinitions = new Set<Nodes>()
+  const effectiveFootnoteDefinitions = new Set<Nodes>()
   const collectReferenceIds = (node: Nodes): void => {
     if (node.type === "linkReference" || node.type === "imageReference") {
       referencedDefinitionIds.add(node.identifier)
@@ -1764,6 +1794,48 @@ export function deriveSyntaxCheckpoints(
     }
   }
   collectEffectiveDefinitions(root)
+  const footnoteDefinitions = new Map<string, Nodes>()
+  const referencedFootnoteIds = new Set<string>()
+  const collectFootnotes = (node: Nodes, insideDefinition = false): void => {
+    if (
+      node.type === "footnoteDefinition" &&
+      !footnoteDefinitions.has(node.identifier)
+    ) {
+      footnoteDefinitions.set(node.identifier, node)
+    }
+    if (
+      node.type === "footnoteReference" &&
+      !insideDefinition
+    ) referencedFootnoteIds.add(node.identifier)
+    if (isParent(node)) {
+      for (const child of node.children) {
+        collectFootnotes(
+          child as Nodes,
+          insideDefinition || node.type === "footnoteDefinition",
+        )
+      }
+    }
+  }
+  collectFootnotes(root)
+  const footnoteQueue = [...referencedFootnoteIds]
+  for (let index = 0; index < footnoteQueue.length; index += 1) {
+    const definition = footnoteDefinitions.get(footnoteQueue[index]!)
+    if (!definition || effectiveFootnoteDefinitions.has(definition)) continue
+    effectiveFootnoteDefinitions.add(definition)
+    const collectNestedReferences = (node: Nodes): void => {
+      if (
+        node.type === "footnoteReference" &&
+        !referencedFootnoteIds.has(node.identifier)
+      ) {
+        referencedFootnoteIds.add(node.identifier)
+        footnoteQueue.push(node.identifier)
+      }
+      if (isParent(node)) {
+        for (const child of node.children) collectNestedReferences(child as Nodes)
+      }
+    }
+    collectNestedReferences(definition)
+  }
   markNodeSyntax(
     root,
     source,
@@ -1772,6 +1844,7 @@ export function deriveSyntaxCheckpoints(
     families,
     referencedDefinitionIds,
     effectiveReferencedDefinitions,
+    effectiveFootnoteDefinitions,
   )
   unmaskLineLeadingWhitespace(source, mask, families)
 

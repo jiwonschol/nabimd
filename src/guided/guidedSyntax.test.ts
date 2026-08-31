@@ -1271,6 +1271,62 @@ describe("deriveSyntaxCheckpoints", () => {
       "~~~foo`bar~~~",
     ])
   })
+
+  it("checks locked fence metadata before offering a backtick alternative", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints(
+      "~~~js foo`bar\nvalue\n~~~",
+      "value",
+    )
+
+    expect(acceptedGuidedSyntaxInputs(checkpoint!)).not.toContain("```js```")
+  })
+
+  it("preserves unequal valid fence lengths in delimiter alternatives", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints(
+      "````js\nvalue\n`````",
+      "value",
+    )
+
+    expect(acceptedGuidedSyntaxInputs(checkpoint!)).toContain("~~~~js~~~~~")
+  })
+
+  it("offers hard-break alternatives inside mixed checkpoints", () => {
+    const checkpoint = deriveSyntaxCheckpoints(
+      "**First**  \nSecond",
+      "First\nSecond",
+    ).find((candidate) => syntaxCheckpointTerms(candidate).includes("line break"))!
+
+    expect(acceptedGuidedSyntaxInputs(checkpoint)).toContain("****\\")
+  })
+
+  it("skips unused footnote definitions and everything inside them", () => {
+    expect(
+      deriveSyntaxCheckpoints("[^unused]: Hidden", ""),
+    ).toHaveLength(0)
+
+    const checkpoints = deriveSyntaxCheckpoints(
+      "Used[^a]\n\n[^a]: Kept\n\n[^unused]: Hidden[^nested]\n\n[^nested]: Hidden too",
+      "Used\n\nKept",
+    )
+
+    expect(
+      checkpoints.filter((checkpoint) =>
+        syntaxCheckpointTerms(checkpoint).includes("footnote")),
+    ).toHaveLength(1)
+  })
+
+  it("does not mistake quoted or parenthesized definition URLs for titles", () => {
+    for (const target of [
+      '[x][a]\n\n[a]: "foo"',
+      "[x][a]\n\n[a]: (foo)",
+    ]) {
+      expect(
+        deriveSyntaxCheckpoints(target, "")
+          .flatMap((checkpoint) => syntaxCheckpointTerms(checkpoint)),
+        target,
+      ).not.toContain("link title")
+    }
+  })
 })
 
 describe("card teaching projections", () => {

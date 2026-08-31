@@ -313,7 +313,7 @@ export function countSyntaxPresence(
           (node) =>
             node.type === "link" &&
             rawSource(node, context.source).startsWith("[") &&
-            Boolean(node.title?.trim()),
+            node.title !== null && node.title !== undefined,
         ).length
         const referencedIdentifiers = new Set<string>(
           nodes
@@ -327,7 +327,10 @@ export function countSyntaxPresence(
           }
         }
         const referencedDefinitionTitles = [...referencedIdentifiers].filter(
-          (identifier) => Boolean(effectiveDefinitions.get(identifier)?.title?.trim()),
+          (identifier) => {
+            const title = effectiveDefinitions.get(identifier)?.title
+            return title !== null && title !== undefined
+          },
         ).length
         return inlineTitles + referencedDefinitionTitles
       }
