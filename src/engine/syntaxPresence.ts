@@ -204,24 +204,6 @@ function countEscapes(
       ? [{ start, end }]
       : []
   })
-  const referencedDefinitionIdentifiers = new Set(
-    nodes.flatMap((node) =>
-      (node.type === "linkReference" || node.type === "imageReference") &&
-      node.identifier
-        ? [node.identifier]
-        : [],
-    ),
-  )
-  const effectiveDefinitions = new Map<string, PositionedSyntaxNode>()
-  for (const node of nodes) {
-    if (
-      node.type === "definition" &&
-      node.identifier &&
-      !effectiveDefinitions.has(node.identifier)
-    ) {
-      effectiveDefinitions.set(node.identifier, node)
-    }
-  }
   for (const node of nodes) {
     const fullRaw = rawSource(node, source)
     const raw = node.type === "image" || node.type === "imageReference"
@@ -234,11 +216,7 @@ function countEscapes(
     const syntaxBearingRange =
       node.type === "text" ||
       node.type === "image" ||
-      node.type === "imageReference" ||
-      (node.type === "definition" &&
-        Boolean(node.identifier) &&
-        referencedDefinitionIdentifiers.has(node.identifier!) &&
-        effectiveDefinitions.get(node.identifier!) === node)
+      node.type === "imageReference"
     if (!syntaxBearingRange) continue
     const start = node.position?.start.offset
     if (start === undefined) continue
