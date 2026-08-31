@@ -141,6 +141,25 @@ describe("schema-v2 problem-bank validation", () => {
     )
   })
 
+  it("rejects an unbounded zero-minimum syntax-presence check", () => {
+    const ineffective = problem("syntax-presence-zero-min", {
+      matchChecks: [
+        {
+          id: "use-escape",
+          kind: "syntax-presence",
+          syntax: "escape",
+          min: 0,
+          priority: 10,
+          feedback: "Use an escape.",
+        },
+      ],
+    })
+
+    expect(validate([ineffective])).toContain(
+      "Problem syntax-presence-zero-min check use-escape requires a positive min or a max",
+    )
+  })
+
   it("accepts unique fixtures and multiple edge cases per role", () => {
     const problems = [problem("first"), problem("second")]
     const problemFixtures = [

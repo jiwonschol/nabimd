@@ -363,8 +363,14 @@ describe("deriveSyntaxCheckpoints", () => {
     // second.
     const cards = deriveSyntaxCheckpoints(">> one\n\n> > two", "")
     expect(cards).toHaveLength(2)
-    expect(acceptedGuidedSyntaxInputs(cards[0]!)).toEqual([">> "])
-    expect(acceptedGuidedSyntaxInputs(cards[1]!)).toEqual(["> > "])
+    expect(acceptedGuidedSyntaxInputs(cards[0]!)).toContain(">> ")
+    expect(acceptedGuidedSyntaxInputs(cards[1]!)).toContain(">> ")
+  })
+
+  it("accepts compact nested quote markers", () => {
+    const checkpoint = deriveSyntaxCheckpoints("> > Reply", "Reply")[0]!
+
+    expect(acceptedGuidedSyntaxInputs(checkpoint)).toContain(">> ")
   })
 
   it("keeps a plain quote and a nested quote on separate cards", () => {
@@ -585,6 +591,17 @@ describe("deriveSyntaxCheckpoints", () => {
       "* ____",
       "+ ____",
     ])
+  })
+
+  it("accepts either bold-italic nesting order", () => {
+    const checkpoint = deriveSyntaxCheckpoints(
+      "***Read this first***",
+      "Read this first",
+    )[0]!
+
+    expect(acceptedGuidedSyntaxInputs(checkpoint)).toEqual(
+      expect.arrayContaining(["**__**", "__**__"]),
+    )
   })
 
   it.each([
@@ -910,10 +927,8 @@ describe("deriveSyntaxCheckpoints", () => {
     ])
   })
 
-  it("asks for escapes stored on link, image, and definition leaf ranges", () => {
+  it("asks for escapes stored on effective definition leaf ranges", () => {
     for (const target of [
-      "[x](foo\\(bar\\))",
-      "![x](foo\\(bar\\))",
       "[x][a]\n\n[a]: foo\\(bar\\)",
     ]) {
       expect(
@@ -922,6 +937,56 @@ describe("deriveSyntaxCheckpoints", () => {
         target,
       ).toContain("escape")
     }
+    expect(
+      deriveSyntaxCheckpoints("[x](foo\\(bar\\))", "")
+        .flatMap((checkpoint) => syntaxCheckpointTerms(checkpoint)),
+    ).not.toContain("escape")
+  })
+
+  it("asks for visible image-reference escapes and the effective image definition", () => {
+    const checkpoints = deriveSyntaxCheckpoints(
+      "![a\\*][ref]\n\n[ref]: /foo\\(bar\\)",
+      "a",
+    )
+
+    expect(checkpoints.map((checkpoint) => checkpoint.canonicalInput).join(""))
+      .toContain("\\")
+    expect(
+      checkpoints.flatMap((checkpoint) => syntaxCheckpointTerms(checkpoint)),
+    ).toContain("escape")
+  })
+
+  it("ignores duplicate reference definitions after the first", () => {
+    const checkpoints = deriveSyntaxCheckpoints(
+      "[x][a]\n\n[a]: /first\\(ok\\)\n[a]: /ignored\\*",
+      "x",
+    )
+    const escapeInputs = checkpoints
+      .flatMap((checkpoint) => checkpoint.segments)
+      .filter((segment) => segment.kind === "input" && segment.value === "\\")
+
+    expect(escapeInputs).toHaveLength(2)
+  })
+
+  it("groups multiline reference titles and accepts equivalent delimiters", () => {
+    const title = deriveSyntaxCheckpoints(
+      "[x][r]\n\n[r]: /url \"multi\n  line\"",
+      "x\n\nmulti\nline",
+    ).find((checkpoint) => syntaxCheckpointTerms(checkpoint).includes("link title"))!
+
+    expect(acceptedGuidedSyntaxInputs(title)).toEqual(expect.arrayContaining(['""', "''", "()"]))
+  })
+
+  it("asks for escaped closing brackets in both footnote markers", () => {
+    const checkpoints = deriveSyntaxCheckpoints(
+      "A[^a\\]]\n\n[^a\\]]: note",
+      "A\n\nnote",
+    )
+    expect(
+      checkpoints.flatMap((checkpoint) => checkpoint.segments).filter(
+        (segment) => segment.kind === "input" && segment.value === "\\",
+      ),
+    ).toHaveLength(2)
   })
 
   it("asks for escape syntax inside GFM table cells", () => {
@@ -1184,6 +1249,15 @@ describe("deriveSyntaxCheckpoints", () => {
         `${fence}${language}${fence}`,
       ])
     }
+  })
+
+  it("allows a tilde-prefixed info token when locked whitespace separates it", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints(
+      "``` ~foo\nvalue\n```",
+      "value",
+    )
+
+    expect(acceptedGuidedSyntaxInputs(checkpoint!)).toContain("~~~~foo~~~")
   })
 
   it("does not offer a backtick fence around an info token containing a backtick", () => {
