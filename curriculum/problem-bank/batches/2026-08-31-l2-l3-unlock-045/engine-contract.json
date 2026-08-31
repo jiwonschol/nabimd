@@ -73,7 +73,7 @@
     },
     {
       "path": "src/guided/guidedSyntax.ts",
-      "sha256": "7ab5740b5153df31e37f53e35a6ca3028f43a1558d8810fcc5e55f36fcb09460"
+      "sha256": "43e05924a1673a685a8aadcdf074b8e52822afc40997bdae59d2e6e6e1a78717"
     }
   ],
   "dependencies": [
@@ -90,5 +90,5 @@
       "version": "3.0.0"
     }
   ],
-  "engineContractDigest": "991d6d0516ec6e0f99f6efd60802640972d3f3cc28a3597d45ee4a1df10c8bb0"
+  "engineContractDigest": "3feb630157b4be8495118c901a40b629143cd95cb382e7510540d1aaf8f9f45d"
 }

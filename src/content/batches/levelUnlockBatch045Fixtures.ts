@@ -1,5 +1,5 @@
 import type { FixtureRole, ProblemFixture, SyntaxPresenceKind } from "../types"
-import { levelUnlockBatch044Problems } from "./levelUnlockBatch044Problems"
+import { levelUnlockBatch045Problems } from "./levelUnlockBatch045Problems"
 
 type SupportedUnlockSyntax = Exclude<
   SyntaxPresenceKind,
@@ -47,7 +47,7 @@ function fixture(problemId: string, role: FixtureRole, source: string, expectedS
   }
 }
 
-function singleFixtures(problem: (typeof levelUnlockBatch044Problems)[number]): readonly ProblemFixture[] {
+function singleFixtures(problem: (typeof levelUnlockBatch045Problems)[number]): readonly ProblemFixture[] {
   const syntax = problem.skillIds[0] as SupportedUnlockSyntax
   const sources = singleSources[syntax]
   const checkId = `use-${syntax}`
@@ -111,7 +111,7 @@ function singleFixtures(problem: (typeof levelUnlockBatch044Problems)[number]): 
   return fixtures
 }
 
-function mixedFixtures(problem: (typeof levelUnlockBatch044Problems)[number]): readonly ProblemFixture[] {
+function mixedFixtures(problem: (typeof levelUnlockBatch045Problems)[number]): readonly ProblemFixture[] {
   const [first, second] = problem.skillIds
   const sourcesById: Readonly<Record<string, FixtureSources>> = {
     "l3-mixed-link-title-escape": {
@@ -160,7 +160,7 @@ function mixedFixtures(problem: (typeof levelUnlockBatch044Problems)[number]): r
   return fixtures
 }
 
-export const levelUnlockBatch044Fixtures: readonly ProblemFixture[] =
-  levelUnlockBatch044Problems.flatMap((problem) =>
+export const levelUnlockBatch045Fixtures: readonly ProblemFixture[] =
+  levelUnlockBatch045Problems.flatMap((problem) =>
     problem.skillIds.length === 1 ? singleFixtures(problem) : mixedFixtures(problem),
   )
