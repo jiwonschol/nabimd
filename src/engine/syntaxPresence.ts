@@ -165,7 +165,10 @@ function isListWithBlock(node: AstNode): boolean {
   if (node.type !== "listItem" || !node.children) return false
   return node.children.some(
     (child, index) =>
-      child.type !== "list" && (index > 0 || child.type !== "paragraph"),
+      child.type !== "list" &&
+      child.type !== "definition" &&
+      child.type !== "footnoteDefinition" &&
+      (index > 0 || child.type !== "paragraph"),
   )
 }
 

@@ -265,6 +265,17 @@ function buildAcceptedForms(
     )
   }
 
+  const hardBreakInput = checkpoint.segments.find(
+    (segment): segment is Extract<GuidedSyntaxSegment, { kind: "input" }> =>
+      segment.kind === "input" && Boolean(segment.family?.startsWith("break@")),
+  )
+  if (canonicalParts.length === 1 && hardBreakInput) {
+    const alternative = hardBreakInput.value === "\\" ? "  " : "\\"
+    if (!forms.some((form) => form[0] === alternative)) {
+      forms.push([alternative])
+    }
+  }
+
   const isSetextHeading =
     canonicalParts.length === 1 &&
     /^(?:=+|-+)$/.test(canonicalParts[0] ?? "") &&
