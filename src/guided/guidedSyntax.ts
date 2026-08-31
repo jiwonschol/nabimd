@@ -281,7 +281,7 @@ function buildAcceptedForms(
     )
   }
 
-  const hardBreakInput = checkpoint.segments.flatMap((segment, segmentIndex) =>
+  const hardBreakInputs = checkpoint.segments.flatMap((segment, segmentIndex) =>
     segment.kind === "input" && Boolean(segment.family?.startsWith("break@"))
       ? [{
           inputIndex: checkpoint.segments
@@ -290,8 +290,8 @@ function buildAcceptedForms(
           value: segment.value,
         }]
       : [],
-  )[0]
-  if (hardBreakInput) {
+  )
+  for (const hardBreakInput of hardBreakInputs) {
     const alternative = hardBreakInput.value === "\\" ? "  " : "\\"
     expandInputForms(forms, (form) => {
       if (form[hardBreakInput.inputIndex] !== hardBreakInput.value) return null
@@ -566,7 +566,7 @@ export function syntaxCheckpointTerms(
   return [...new Set(syntaxGroupTermsInOrder(checkpoint))]
 }
 
-function fencedLanguageInputParts(
+function fencedCodeInputParts(
   checkpoint: SyntaxCheckpoint,
   value: string,
 ): readonly [string, string, string] | null {
@@ -577,31 +577,36 @@ function fencedLanguageInputParts(
   if (
     canonicalParts.length !== 3 ||
     !/^(?:`{3,}|~{3,})$/.test(canonicalParts[0] ?? "") ||
-    canonicalParts[0] !== canonicalParts[2] ||
+    !/^(?:`{3,}|~{3,})$/.test(canonicalParts[2] ?? "") ||
+    canonicalParts[0]![0] !== canonicalParts[2]![0] ||
+    canonicalParts[2]!.length < canonicalParts[0]!.length ||
     !/^\S+$/.test(canonicalParts[1] ?? "")
   ) {
     return null
   }
 
-  const submitted = /^(`{3,}|~{3,})(\S+)\1$/.exec(value)
+  const submitted = /^(`{3,}|~{3,})(\S+?)(`{3,}|~{3,})$/.exec(value)
   if (!submitted) return null
-  const fence = submitted[1]!
+  const openingFence = submitted[1]!
   const informationToken = submitted[2]!
+  const closingFence = submitted[3]!
   const languageTouchesFence = checkpoint.segments
     .slice(inputSegments[0]!.segmentIndex + 1, inputSegments[1]!.segmentIndex)
     .every((segment) => segment.kind === "input" || segment.value.length === 0)
   if (
-    (fence.startsWith("`") && informationToken.includes("`")) ||
-    (languageTouchesFence && informationToken.startsWith(fence[0]!))
+    closingFence[0] !== openingFence[0] ||
+    closingFence.length < openingFence.length ||
+    (openingFence.startsWith("`") && informationToken.includes("`")) ||
+    (languageTouchesFence && informationToken.startsWith(openingFence[0]!))
   ) return null
-  return [fence, informationToken, fence]
+  return [openingFence, informationToken, closingFence]
 }
 
 export function acceptsGuidedSyntaxInput(
   checkpoint: SyntaxCheckpoint,
   value: string,
 ): boolean {
-  if (fencedLanguageInputParts(checkpoint, value) !== null) return true
+  if (fencedCodeInputParts(checkpoint, value) !== null) return true
   const folded = foldTaskBoxCase(value)
   return acceptedGuidedSyntaxInputs(checkpoint).some(
     (accepted) => foldTaskBoxCase(accepted) === folded,
@@ -614,11 +619,11 @@ function renderCheckpointWithInput(
 ): string {
   let inputOffset = 0
   let inputIndex = 0
-  const fencedLanguageParts = fencedLanguageInputParts(checkpoint, value)
+  const fencedParts = fencedCodeInputParts(checkpoint, value)
   return checkpoint.segments
     .map((segment) => {
       if (segment.kind === "locked") return segment.value
-      if (fencedLanguageParts) return fencedLanguageParts[inputIndex++]!
+      if (fencedParts) return fencedParts[inputIndex++]!
       const replacement = value.slice(
         inputOffset,
         inputOffset + segment.value.length,
@@ -1770,30 +1775,6 @@ export function deriveSyntaxCheckpoints(
   const referencedDefinitionIds = new Set<string>()
   const effectiveReferencedDefinitions = new Set<Nodes>()
   const effectiveFootnoteDefinitions = new Set<Nodes>()
-  const collectReferenceIds = (node: Nodes): void => {
-    if (node.type === "linkReference" || node.type === "imageReference") {
-      referencedDefinitionIds.add(node.identifier)
-    }
-    if (isParent(node)) {
-      for (const child of node.children) collectReferenceIds(child as Nodes)
-    }
-  }
-  collectReferenceIds(root)
-  const effectiveIdentifiers = new Set<string>()
-  const collectEffectiveDefinitions = (node: Nodes): void => {
-    if (
-      node.type === "definition" &&
-      referencedDefinitionIds.has(node.identifier) &&
-      !effectiveIdentifiers.has(node.identifier)
-    ) {
-      effectiveIdentifiers.add(node.identifier)
-      effectiveReferencedDefinitions.add(node)
-    }
-    if (isParent(node)) {
-      for (const child of node.children) collectEffectiveDefinitions(child as Nodes)
-    }
-  }
-  collectEffectiveDefinitions(root)
   const footnoteDefinitions = new Map<string, Nodes>()
   const referencedFootnoteIds = new Set<string>()
   const collectFootnotes = (node: Nodes, insideDefinition = false): void => {
@@ -1836,6 +1817,34 @@ export function deriveSyntaxCheckpoints(
     }
     collectNestedReferences(definition)
   }
+  const collectReferenceIds = (node: Nodes): void => {
+    if (
+      node.type === "footnoteDefinition" &&
+      !effectiveFootnoteDefinitions.has(node)
+    ) return
+    if (node.type === "linkReference" || node.type === "imageReference") {
+      referencedDefinitionIds.add(node.identifier)
+    }
+    if (isParent(node)) {
+      for (const child of node.children) collectReferenceIds(child as Nodes)
+    }
+  }
+  collectReferenceIds(root)
+  const effectiveIdentifiers = new Set<string>()
+  const collectEffectiveDefinitions = (node: Nodes): void => {
+    if (
+      node.type === "definition" &&
+      referencedDefinitionIds.has(node.identifier) &&
+      !effectiveIdentifiers.has(node.identifier)
+    ) {
+      effectiveIdentifiers.add(node.identifier)
+      effectiveReferencedDefinitions.add(node)
+    }
+    if (isParent(node)) {
+      for (const child of node.children) collectEffectiveDefinitions(child as Nodes)
+    }
+  }
+  collectEffectiveDefinitions(root)
   markNodeSyntax(
     root,
     source,
