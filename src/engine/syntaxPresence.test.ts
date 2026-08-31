@@ -203,10 +203,16 @@ describe("syntax presence", () => {
     expect(countSyntaxPresence(createEvaluationContext(source), "list-with-block")).toBe(1)
   })
 
-  it("ignores invisible definitions inside a list item", () => {
+  it("ignores invisible definitions and HTML inside a list item", () => {
     expect(
       countSyntaxPresence(
         createEvaluationContext("- item\n\n  [a]: /url"),
+        "list-with-block",
+      ),
+    ).toBe(0)
+    expect(
+      countSyntaxPresence(
+        createEvaluationContext("- item\n\n  <!-- hidden -->"),
         "list-with-block",
       ),
     ).toBe(0)
