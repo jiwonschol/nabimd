@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "policyId": "real-engine-contract-v1",
-  "policyDigest": "eb71e2210e3b514bdf679b8f7e06c9d82ff7da3c749cd46797578a3db5befbed",
+  "policyDigest": "97677fd51549a4e7b27ad2beb4c464728fa9ebb0b6a517a02ecb44e32b74ae6e",
   "files": [
     {
       "path": "package-lock.json",
@@ -30,6 +30,10 @@
     {
       "path": "src/content/types.ts",
       "sha256": "1c571de9955d9ce6edce7f7a3d95dbd305775c6f2eb74ae4178b22d471bb238f"
+    },
+    {
+      "path": "src/components/AnswerPanel.tsx",
+      "sha256": "b010f12c89b2a10830f4e91db680ad8832cb8da48d10d6c6c1eefa0ad0d486d6"
     },
     {
       "path": "src/components/RenderedDocument.tsx",
@@ -65,7 +69,7 @@
     },
     {
       "path": "src/engine/syntaxPresence.ts",
-      "sha256": "f11a217b39337fac118c81ad5888107f5f2ba9f17ea798b85e88e75db65e0400"
+      "sha256": "40b08706b31dba197590624cbddd75241ae7ad934f79d5b95098ecc9fd0eadfb"
     },
     {
       "path": "src/markdown/parser.ts",
@@ -110,5 +114,5 @@
       "version": "3.0.0"
     }
   ],
-  "engineContractDigest": "a3d642561e2ebe8140786f267970fea166cd4046b94876079e1c9e79abbbf82c"
+  "engineContractDigest": "f93e96abc2e295da7f6483e97bef031bc6726632adf29d0e01330d77caf09c3c"
 }

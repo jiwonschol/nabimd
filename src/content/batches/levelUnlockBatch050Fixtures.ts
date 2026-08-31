@@ -1,5 +1,5 @@
 import type { FixtureRole, ProblemFixture, SyntaxPresenceKind } from "../types"
-import { levelUnlockBatch049Problems } from "./levelUnlockBatch049Problems"
+import { levelUnlockBatch050Problems } from "./levelUnlockBatch050Problems"
 
 type SupportedUnlockSyntax = Exclude<
   SyntaxPresenceKind,
@@ -58,7 +58,7 @@ function fixture(problemId: string, role: FixtureRole, source: string, expectedS
   }
 }
 
-function singleFixtures(problem: (typeof levelUnlockBatch049Problems)[number]): readonly ProblemFixture[] {
+function singleFixtures(problem: (typeof levelUnlockBatch050Problems)[number]): readonly ProblemFixture[] {
   const syntax = problem.skillIds[0] as SupportedUnlockSyntax
   const sources = singleSources[syntax]
   const checkId = `use-${syntax}`
@@ -137,6 +137,14 @@ function singleFixtures(problem: (typeof levelUnlockBatch049Problems)[number]): 
       fixture(
         problem.id,
         "edge-case",
+        "[visible][a\\*]\n\n[a\\*]: /url",
+        "fail",
+        failed,
+        "hidden-reference-identifier",
+      ),
+      fixture(
+        problem.id,
+        "edge-case",
         "plain\\.",
         "fail",
         failed,
@@ -147,7 +155,7 @@ function singleFixtures(problem: (typeof levelUnlockBatch049Problems)[number]): 
   return fixtures
 }
 
-function mixedFixtures(problem: (typeof levelUnlockBatch049Problems)[number]): readonly ProblemFixture[] {
+function mixedFixtures(problem: (typeof levelUnlockBatch050Problems)[number]): readonly ProblemFixture[] {
   const [first, second] = problem.skillIds
   const sourcesById: Readonly<Record<string, FixtureSources>> = {
     "l3-mixed-link-title-escape": {
@@ -206,11 +214,15 @@ function mixedFixtures(problem: (typeof levelUnlockBatch049Problems)[number]): r
       ? '[x](/ "t") plain\\.\n\nPlain follow-up.'
       : "plain\\.[^a]\n\n[^a]: Source"
     fixtures.push(fixture(problem.id, "edge-case", renderNeutralSource, "fail", { expectedFeedbackId: "use-escape", exercisesCheckId: "use-escape" }, "render-neutral-escape"))
+    const hiddenReferenceSource = problem.skillIds.includes("link-title")
+      ? '[visible][a\\*]\n\n[a\\*]: /url "title"'
+      : "[visible][a\\*]\n\n[a\\*]: /url\n\nClaim[^b]\n\n[^b]: Source"
+    fixtures.push(fixture(problem.id, "edge-case", hiddenReferenceSource, "fail", { expectedFeedbackId: "use-escape", exercisesCheckId: "use-escape" }, "hidden-reference-identifier"))
   }
   return fixtures
 }
 
-export const levelUnlockBatch049Fixtures: readonly ProblemFixture[] =
-  levelUnlockBatch049Problems.flatMap((problem) =>
+export const levelUnlockBatch050Fixtures: readonly ProblemFixture[] =
+  levelUnlockBatch050Problems.flatMap((problem) =>
     problem.skillIds.length === 1 ? singleFixtures(problem) : mixedFixtures(problem),
   )

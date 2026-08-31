@@ -1,19 +1,19 @@
 import { describe, expect, it } from "vitest"
 import { readFile } from "node:fs/promises"
-import { levelUnlockBatch049Fixtures } from "../../src/content/batches/levelUnlockBatch049Fixtures"
-import { levelUnlockBatch049Problems } from "../../src/content/batches/levelUnlockBatch049Problems"
+import { levelUnlockBatch050Fixtures } from "../../src/content/batches/levelUnlockBatch050Fixtures"
+import { levelUnlockBatch050Problems } from "../../src/content/batches/levelUnlockBatch050Problems"
 import { evaluateProblem } from "../../src/engine/evaluateProblem"
 import { buildGuidedDraft, deriveSyntaxCheckpoints } from "../../src/guided/guidedSyntax"
 import {
-  buildLevelUnlockBatch049Artifacts,
-  buildLevelUnlockBatch049Publication,
-  checkLevelUnlockBatch049State,
-  readCommittedLevelUnlockBatch049,
-  writeLevelUnlockBatch049Artifacts,
-} from "./levelUnlockBatch049Support"
+  buildLevelUnlockBatch050Artifacts,
+  buildLevelUnlockBatch050Publication,
+  checkLevelUnlockBatch050State,
+  readCommittedLevelUnlockBatch050,
+  writeLevelUnlockBatch050Artifacts,
+} from "./levelUnlockBatch050Support"
 
 const repositoryRoot = process.cwd()
-const computed = await buildLevelUnlockBatch049Artifacts({ repositoryRoot })
+const computed = await buildLevelUnlockBatch050Artifacts({ repositoryRoot })
 
 type ReviewPhase = {
   reviews: readonly unknown[]
@@ -31,7 +31,7 @@ function expectReviewPhase({ editorial, state, publication }: ReviewPhase) {
     ]).toContain(state.status)
     expect(state.errors).toEqual([])
     expect(publication.errors).toContain(
-      "Batch 2026-08-31-l2-l3-unlock-049 requires separate editorial evidence",
+      "Batch 2026-08-31-l2-l3-unlock-050 requires separate editorial evidence",
     )
     return
   }
@@ -39,10 +39,10 @@ function expectReviewPhase({ editorial, state, publication }: ReviewPhase) {
   expect(["ready-to-publish", "published"]).toContain(state.status)
 }
 
-describe("schema-v2 Level 2 and 3 unlock batch 049", () => {
+describe("schema-v2 Level 2 and 3 unlock batch 050", () => {
   it("normalizes all candidates and verifies every real-engine fixture", () => {
     expect(computed.normalized.candidateCount).toBe(55)
-    expect(computed.fixtureArtifact.fixtures).toHaveLength(levelUnlockBatch049Fixtures.length)
+    expect(computed.fixtureArtifact.fixtures).toHaveLength(levelUnlockBatch050Fixtures.length)
     expect(computed.regressionVerification.errors).toEqual([])
     expect(computed.regressionVerification.candidates).toHaveLength(55)
     expect(computed.regressionVerification.candidates.every((candidate: { passed: boolean }) => candidate.passed)).toBe(true)
@@ -55,11 +55,11 @@ describe("schema-v2 Level 2 and 3 unlock batch 049", () => {
     expect(computed.engineContract.files.map(({ path }: { path: string }) => path)).toContain("src/components/RenderedDocument.tsx")
     expect(computed.engineContract.files.map(({ path }: { path: string }) => path)).toContain("src/content/plaintextStarter.ts")
     expect(computed.engineContract.files.map(({ path }: { path: string }) => path)).toContain("src/guided/guidedSyntax.ts")
-    expect(computed.manifest.entries).toHaveLength(levelUnlockBatch049Problems.length)
+    expect(computed.manifest.entries).toHaveLength(levelUnlockBatch050Problems.length)
   })
 
   it("replays every completed guided draft through the real evaluator", () => {
-    for (const problem of levelUnlockBatch049Problems) {
+    for (const problem of levelUnlockBatch050Problems) {
       const checkpoints = deriveSyntaxCheckpoints(problem.target, problem.starterText)
       const completed = buildGuidedDraft(problem.target, checkpoints, checkpoints.length)
       expect(evaluateProblem(problem, completed).status, problem.id).not.toBe(
@@ -70,7 +70,7 @@ describe("schema-v2 Level 2 and 3 unlock batch 049", () => {
 
   it("tracks the empty review directory without forging review JSON", async () => {
     const reviewReadme = await readFile(
-      `${repositoryRoot}/curriculum/problem-bank/batches/2026-08-31-l2-l3-unlock-049/reviews/README.md`,
+      `${repositoryRoot}/curriculum/problem-bank/batches/2026-08-31-l2-l3-unlock-050/reviews/README.md`,
       "utf8",
     )
     expect(reviewReadme).toContain("two sealed JSON review records")
@@ -78,8 +78,8 @@ describe("schema-v2 Level 2 and 3 unlock batch 049", () => {
   })
 
   it("keeps committed mechanical evidence deterministic in every review phase", async () => {
-    const committed = await readCommittedLevelUnlockBatch049({ repositoryRoot })
-    const state = checkLevelUnlockBatch049State({ computed, committed })
+    const committed = await readCommittedLevelUnlockBatch050({ repositoryRoot })
+    const state = checkLevelUnlockBatch050State({ computed, committed })
     expect(
       state.errors.filter((error) => error.includes("deterministic drift")),
     ).toEqual([])
@@ -87,9 +87,9 @@ describe("schema-v2 Level 2 and 3 unlock batch 049", () => {
   })
 
   it("keeps publication closed until every independent seal exists", async () => {
-    const committed = await readCommittedLevelUnlockBatch049({ repositoryRoot })
-    const state = checkLevelUnlockBatch049State({ computed, committed })
-    const publication = buildLevelUnlockBatch049Publication({ computed, committed })
+    const committed = await readCommittedLevelUnlockBatch050({ repositoryRoot })
+    const state = checkLevelUnlockBatch050State({ computed, committed })
+    const publication = buildLevelUnlockBatch050Publication({ computed, committed })
     expectReviewPhase({
       reviews: committed.reviews,
       editorial: committed.editorial,
@@ -113,7 +113,7 @@ describe("schema-v2 Level 2 and 3 unlock batch 049", () => {
           state: { status: sample.status, errors: [] },
           publication: {
             errors: sample.editorial === null
-              ? ["Batch 2026-08-31-l2-l3-unlock-049 requires separate editorial evidence"]
+              ? ["Batch 2026-08-31-l2-l3-unlock-050 requires separate editorial evidence"]
               : [],
           },
         }),
@@ -122,15 +122,15 @@ describe("schema-v2 Level 2 and 3 unlock batch 049", () => {
   })
 
   it("refuses to rewrite evidence after review begins", async () => {
-    const committed = await readCommittedLevelUnlockBatch049({ repositoryRoot })
+    const committed = await readCommittedLevelUnlockBatch050({ repositoryRoot })
     if (committed.reviews.length === 0 && committed.editorial === null) {
       await expect(
-        writeLevelUnlockBatch049Artifacts({ repositoryRoot, computed }),
+        writeLevelUnlockBatch050Artifacts({ repositoryRoot, computed }),
       ).resolves.toBeUndefined()
       return
     }
     await expect(
-      writeLevelUnlockBatch049Artifacts({ repositoryRoot, computed }),
+      writeLevelUnlockBatch050Artifacts({ repositoryRoot, computed }),
     ).rejects.toThrow("immutable after review or editorial evidence exists")
   })
 })
