@@ -1,6 +1,6 @@
 import { pathToFileURL } from "node:url"
-import { levelUnlockBatch048Fixtures } from "../../src/content/batches/levelUnlockBatch048Fixtures"
-import { levelUnlockBatch048Id, levelUnlockBatch048Problems } from "../../src/content/batches/levelUnlockBatch048Problems"
+import { levelUnlockBatch049Fixtures } from "../../src/content/batches/levelUnlockBatch049Fixtures"
+import { levelUnlockBatch049Id, levelUnlockBatch049Problems } from "../../src/content/batches/levelUnlockBatch049Problems"
 import {
   buildAuthoredBatchArtifacts,
   buildAuthoredBatchPublication,
@@ -11,8 +11,8 @@ import {
   type AuthoredBatchConfig,
 } from "./batchArtifactSupport"
 
-export const levelUnlockBatch048Config = {
-  batchId: levelUnlockBatch048Id,
+export const levelUnlockBatch049Config = {
+  batchId: levelUnlockBatch049Id,
   sequence: 28,
   curriculumVersion: "2026-07-19",
   generatedBy: "gpt-5.6-sol-build-time-authoring",
@@ -21,7 +21,7 @@ export const levelUnlockBatch048Config = {
 } as const satisfies AuthoredBatchConfig
 
 export function buildLevelUnlockBatch048Artifacts({ repositoryRoot }: { repositoryRoot: string }) {
-  return buildAuthoredBatchArtifacts({ repositoryRoot, config: levelUnlockBatch048Config, problems: levelUnlockBatch048Problems, fixtures: levelUnlockBatch048Fixtures })
+  return buildAuthoredBatchArtifacts({ repositoryRoot, config: levelUnlockBatch049Config, problems: levelUnlockBatch049Problems, fixtures: levelUnlockBatch049Fixtures })
 }
 
 export function writeLevelUnlockBatch048Artifacts({ repositoryRoot, computed }: { repositoryRoot: string; computed: Awaited<ReturnType<typeof buildLevelUnlockBatch048Artifacts>> }) {
@@ -29,7 +29,7 @@ export function writeLevelUnlockBatch048Artifacts({ repositoryRoot, computed }: 
 }
 
 export function readCommittedLevelUnlockBatch048({ repositoryRoot }: { repositoryRoot: string }) {
-  return readCommittedAuthoredBatch({ repositoryRoot, config: levelUnlockBatch048Config })
+  return readCommittedAuthoredBatch({ repositoryRoot, config: levelUnlockBatch049Config })
 }
 
 export function checkLevelUnlockBatch048State({ computed, committed }: { computed: Awaited<ReturnType<typeof buildLevelUnlockBatch048Artifacts>>; committed: Awaited<ReturnType<typeof readCommittedLevelUnlockBatch048>> }) {
@@ -46,7 +46,7 @@ export function publishLevelUnlockBatch048Artifacts({ repositoryRoot, computed }
 
 async function main() {
   const action = process.argv[2]
-  if (action !== "prepare" && action !== "publish") throw new Error("Usage: levelUnlockBatch048Support.ts <prepare|publish>")
+  if (action !== "prepare" && action !== "publish") throw new Error("Usage: levelUnlockBatch049Support.ts <prepare|publish>")
   const repositoryRoot = process.cwd()
   const computed = await buildLevelUnlockBatch048Artifacts({ repositoryRoot })
   if (action === "prepare") return writeLevelUnlockBatch048Artifacts({ repositoryRoot, computed })

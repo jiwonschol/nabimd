@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 import { problemBank } from "../content/problemBank"
-import { levelUnlockBatch048Problems } from "../content/batches/levelUnlockBatch048Problems"
+import { levelUnlockBatch049Problems } from "../content/batches/levelUnlockBatch049Problems"
 import type { GradableProblem } from "../content/types"
 import { hintPatternLines } from "./AnswerPanel"
 
@@ -86,7 +86,7 @@ describe("hintPatternLines", () => {
   })
 
   it("shows learner-typable Markdown instead of curriculum family IDs", () => {
-    for (const problem of levelUnlockBatch048Problems) {
+    for (const problem of levelUnlockBatch049Problems) {
       const lines = hintPatternLines(problem)
       expect(lines.some(({ text }) => /[\\`*_[\]<>~>]/.test(text)), problem.id)
         .toBe(true)

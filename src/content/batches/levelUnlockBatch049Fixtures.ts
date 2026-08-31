@@ -1,5 +1,5 @@
 import type { FixtureRole, ProblemFixture, SyntaxPresenceKind } from "../types"
-import { levelUnlockBatch048Problems } from "./levelUnlockBatch048Problems"
+import { levelUnlockBatch049Problems } from "./levelUnlockBatch049Problems"
 
 type SupportedUnlockSyntax = Exclude<
   SyntaxPresenceKind,
@@ -58,16 +58,22 @@ function fixture(problemId: string, role: FixtureRole, source: string, expectedS
   }
 }
 
-function singleFixtures(problem: (typeof levelUnlockBatch048Problems)[number]): readonly ProblemFixture[] {
+function singleFixtures(problem: (typeof levelUnlockBatch049Problems)[number]): readonly ProblemFixture[] {
   const syntax = problem.skillIds[0] as SupportedUnlockSyntax
   const sources = singleSources[syntax]
   const checkId = `use-${syntax}`
   const matched = { expectedReviewIds: [] } as const
   const failed = { expectedFeedbackId: checkId, exercisesCheckId: checkId } as const
+  const different = problem.level === 3
+    ? `${sources.different}\n\nPlain follow-up.`
+    : sources.different
+  const caseVariation = problem.level === 3
+    ? `${sources.caseVariation}\n\nPlain follow-up.`
+    : sources.caseVariation
   const fixtures = [
     fixture(problem.id, "canonical", problem.target, "matched", matched),
-    fixture(problem.id, "different-prose", sources.different, "matched", matched),
-    fixture(problem.id, "case-spelling-variation", sources.caseVariation, "matched", matched),
+    fixture(problem.id, "different-prose", different, "matched", matched),
+    fixture(problem.id, "case-spelling-variation", caseVariation, "matched", matched),
     fixture(problem.id, "missing", sources.missing, "fail", failed),
     fixture(problem.id, "malformed", sources.malformed, "fail", failed),
     fixture(problem.id, "matched-with-review", `${sources.different}\n\nPlain follow-up.`, "matched", matched),
@@ -141,7 +147,7 @@ function singleFixtures(problem: (typeof levelUnlockBatch048Problems)[number]): 
   return fixtures
 }
 
-function mixedFixtures(problem: (typeof levelUnlockBatch048Problems)[number]): readonly ProblemFixture[] {
+function mixedFixtures(problem: (typeof levelUnlockBatch049Problems)[number]): readonly ProblemFixture[] {
   const [first, second] = problem.skillIds
   const sourcesById: Readonly<Record<string, FixtureSources>> = {
     "l3-mixed-link-title-escape": {
@@ -179,9 +185,9 @@ function mixedFixtures(problem: (typeof levelUnlockBatch048Problems)[number]): r
   if (!sources) throw new Error(`Missing mixed fixture sources for ${problem.id}`)
   const matched = { expectedReviewIds: [] } as const
   const minimalById: Readonly<Record<string, string>> = {
-    "l3-mixed-link-title-escape": '[x](/ "t") \\*',
+    "l3-mixed-link-title-escape": '[x](/ "t") \\*literal\\*',
     "l3-mixed-list-angle-url": "- > <ftp:x>",
-    "l3-mixed-escape-footnote": "\\*[^a]\n[^a]: y",
+    "l3-mixed-escape-footnote": "\\*literal\\*[^a]\n[^a]: y",
     "l3-mixed-link-title-url": '[x](/ "t") <ftp:x>',
     "l3-mixed-list-footnote": "- > x[^a]\n[^a]: y",
   }
@@ -196,12 +202,15 @@ function mixedFixtures(problem: (typeof levelUnlockBatch048Problems)[number]): r
     fixture(problem.id, "edge-case", minimalById[problem.id]!, "fail", { expectedFeedbackId: "keep-readable", exercisesCheckId: "keep-readable" }, "minimal-document"),
   ]
   if (problem.skillIds.includes("escape")) {
-    fixtures.push(fixture(problem.id, "edge-case", "plain\\.", "fail", { expectedFeedbackId: "use-escape", exercisesCheckId: "use-escape" }, "render-neutral-escape"))
+    const renderNeutralSource = problem.skillIds.includes("link-title")
+      ? '[x](/ "t") plain\\.\n\nPlain follow-up.'
+      : "plain\\.[^a]\n\n[^a]: Source"
+    fixtures.push(fixture(problem.id, "edge-case", renderNeutralSource, "fail", { expectedFeedbackId: "use-escape", exercisesCheckId: "use-escape" }, "render-neutral-escape"))
   }
   return fixtures
 }
 
-export const levelUnlockBatch048Fixtures: readonly ProblemFixture[] =
-  levelUnlockBatch048Problems.flatMap((problem) =>
+export const levelUnlockBatch049Fixtures: readonly ProblemFixture[] =
+  levelUnlockBatch049Problems.flatMap((problem) =>
     problem.skillIds.length === 1 ? singleFixtures(problem) : mixedFixtures(problem),
   )

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-31-l2-l3-unlock-048",
+  "batchId": "2026-08-31-l2-l3-unlock-049",
   "fixtures": [
     {
       "id": "l2-bold-italic-1-canonical",
@@ -1416,7 +1416,7 @@
       "problemId": "l3-angle-bracket-url-1",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "<FTP://EXAMPLE.NET/HELP>",
+      "source": "<FTP://EXAMPLE.NET/HELP>\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -1425,7 +1425,7 @@
       "problemId": "l3-angle-bracket-url-1",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "<ftp://example.net/help>",
+      "source": "<ftp://example.net/help>\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -1492,7 +1492,7 @@
       "problemId": "l3-angle-bracket-url-2",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "<FTP://EXAMPLE.NET/HELP>",
+      "source": "<FTP://EXAMPLE.NET/HELP>\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -1501,7 +1501,7 @@
       "problemId": "l3-angle-bracket-url-2",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "<ftp://example.net/help>",
+      "source": "<ftp://example.net/help>\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -1568,7 +1568,7 @@
       "problemId": "l3-angle-bracket-url-3",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "<FTP://EXAMPLE.NET/HELP>",
+      "source": "<FTP://EXAMPLE.NET/HELP>\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -1577,7 +1577,7 @@
       "problemId": "l3-angle-bracket-url-3",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "<ftp://example.net/help>",
+      "source": "<ftp://example.net/help>\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -1644,7 +1644,7 @@
       "problemId": "l3-angle-bracket-url-4",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "<FTP://EXAMPLE.NET/HELP>",
+      "source": "<FTP://EXAMPLE.NET/HELP>\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -1653,7 +1653,7 @@
       "problemId": "l3-angle-bracket-url-4",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "<ftp://example.net/help>",
+      "source": "<ftp://example.net/help>\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -1720,7 +1720,7 @@
       "problemId": "l3-angle-bracket-url-5",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "<FTP://EXAMPLE.NET/HELP>",
+      "source": "<FTP://EXAMPLE.NET/HELP>\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -1729,7 +1729,7 @@
       "problemId": "l3-angle-bracket-url-5",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "<ftp://example.net/help>",
+      "source": "<ftp://example.net/help>\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -1796,7 +1796,7 @@
       "problemId": "l3-escape-1",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "\\_LITERAL UNDERSCORES\\_",
+      "source": "\\_LITERAL UNDERSCORES\\_\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -1805,7 +1805,7 @@
       "problemId": "l3-escape-1",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "\\_Literal underscores\\_",
+      "source": "\\_Literal underscores\\_\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -1912,7 +1912,7 @@
       "problemId": "l3-escape-2",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "\\_LITERAL UNDERSCORES\\_",
+      "source": "\\_LITERAL UNDERSCORES\\_\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -1921,7 +1921,7 @@
       "problemId": "l3-escape-2",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "\\_Literal underscores\\_",
+      "source": "\\_Literal underscores\\_\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2028,7 +2028,7 @@
       "problemId": "l3-escape-3",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "\\_LITERAL UNDERSCORES\\_",
+      "source": "\\_LITERAL UNDERSCORES\\_\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2037,7 +2037,7 @@
       "problemId": "l3-escape-3",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "\\_Literal underscores\\_",
+      "source": "\\_Literal underscores\\_\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2144,7 +2144,7 @@
       "problemId": "l3-escape-4",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "\\_LITERAL UNDERSCORES\\_",
+      "source": "\\_LITERAL UNDERSCORES\\_\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2153,7 +2153,7 @@
       "problemId": "l3-escape-4",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "\\_Literal underscores\\_",
+      "source": "\\_Literal underscores\\_\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2260,7 +2260,7 @@
       "problemId": "l3-escape-5",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "\\_LITERAL UNDERSCORES\\_",
+      "source": "\\_LITERAL UNDERSCORES\\_\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2269,7 +2269,7 @@
       "problemId": "l3-escape-5",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "\\_Literal underscores\\_",
+      "source": "\\_Literal underscores\\_\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2376,7 +2376,7 @@
       "problemId": "l3-footnote-1",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "CLAIM[^A].\n\n[^A]: SOURCE",
+      "source": "CLAIM[^A].\n\n[^A]: SOURCE\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2385,7 +2385,7 @@
       "problemId": "l3-footnote-1",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "Claim[^a].\n\n[^a]: Source",
+      "source": "Claim[^a].\n\n[^a]: Source\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2462,7 +2462,7 @@
       "problemId": "l3-footnote-2",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "CLAIM[^A].\n\n[^A]: SOURCE",
+      "source": "CLAIM[^A].\n\n[^A]: SOURCE\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2471,7 +2471,7 @@
       "problemId": "l3-footnote-2",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "Claim[^a].\n\n[^a]: Source",
+      "source": "Claim[^a].\n\n[^a]: Source\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2548,7 +2548,7 @@
       "problemId": "l3-footnote-3",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "CLAIM[^A].\n\n[^A]: SOURCE",
+      "source": "CLAIM[^A].\n\n[^A]: SOURCE\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2557,7 +2557,7 @@
       "problemId": "l3-footnote-3",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "Claim[^a].\n\n[^a]: Source",
+      "source": "Claim[^a].\n\n[^a]: Source\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2634,7 +2634,7 @@
       "problemId": "l3-footnote-4",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "CLAIM[^A].\n\n[^A]: SOURCE",
+      "source": "CLAIM[^A].\n\n[^A]: SOURCE\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2643,7 +2643,7 @@
       "problemId": "l3-footnote-4",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "Claim[^a].\n\n[^a]: Source",
+      "source": "Claim[^a].\n\n[^a]: Source\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2720,7 +2720,7 @@
       "problemId": "l3-footnote-5",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "CLAIM[^A].\n\n[^A]: SOURCE",
+      "source": "CLAIM[^A].\n\n[^A]: SOURCE\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2729,7 +2729,7 @@
       "problemId": "l3-footnote-5",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "Claim[^a].\n\n[^a]: Source",
+      "source": "Claim[^a].\n\n[^a]: Source\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2806,7 +2806,7 @@
       "problemId": "l3-link-title-1",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "[HELP](https://EXAMPLE.NET \"DETAILS\")",
+      "source": "[HELP](https://EXAMPLE.NET \"DETAILS\")\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2815,7 +2815,7 @@
       "problemId": "l3-link-title-1",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "[Help](https://example.net \"Details\")",
+      "source": "[Help](https://example.net \"Details\")\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2882,7 +2882,7 @@
       "problemId": "l3-link-title-2",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "[HELP](https://EXAMPLE.NET \"DETAILS\")",
+      "source": "[HELP](https://EXAMPLE.NET \"DETAILS\")\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2891,7 +2891,7 @@
       "problemId": "l3-link-title-2",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "[Help](https://example.net \"Details\")",
+      "source": "[Help](https://example.net \"Details\")\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2958,7 +2958,7 @@
       "problemId": "l3-link-title-3",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "[HELP](https://EXAMPLE.NET \"DETAILS\")",
+      "source": "[HELP](https://EXAMPLE.NET \"DETAILS\")\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2967,7 +2967,7 @@
       "problemId": "l3-link-title-3",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "[Help](https://example.net \"Details\")",
+      "source": "[Help](https://example.net \"Details\")\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -3034,7 +3034,7 @@
       "problemId": "l3-link-title-4",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "[HELP](https://EXAMPLE.NET \"DETAILS\")",
+      "source": "[HELP](https://EXAMPLE.NET \"DETAILS\")\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -3043,7 +3043,7 @@
       "problemId": "l3-link-title-4",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "[Help](https://example.net \"Details\")",
+      "source": "[Help](https://example.net \"Details\")\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -3110,7 +3110,7 @@
       "problemId": "l3-link-title-5",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "[HELP](https://EXAMPLE.NET \"DETAILS\")",
+      "source": "[HELP](https://EXAMPLE.NET \"DETAILS\")\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -3119,7 +3119,7 @@
       "problemId": "l3-link-title-5",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "[Help](https://example.net \"Details\")",
+      "source": "[Help](https://example.net \"Details\")\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -3186,7 +3186,7 @@
       "problemId": "l3-list-with-block-1",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "- ITEM\n\n  > DETAIL",
+      "source": "- ITEM\n\n  > DETAIL\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -3195,7 +3195,7 @@
       "problemId": "l3-list-with-block-1",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "- Item\n\n  > Detail",
+      "source": "- Item\n\n  > Detail\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -3272,7 +3272,7 @@
       "problemId": "l3-list-with-block-2",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "- ITEM\n\n  > DETAIL",
+      "source": "- ITEM\n\n  > DETAIL\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -3281,7 +3281,7 @@
       "problemId": "l3-list-with-block-2",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "- Item\n\n  > Detail",
+      "source": "- Item\n\n  > Detail\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -3358,7 +3358,7 @@
       "problemId": "l3-list-with-block-3",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "- ITEM\n\n  > DETAIL",
+      "source": "- ITEM\n\n  > DETAIL\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -3367,7 +3367,7 @@
       "problemId": "l3-list-with-block-3",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "- Item\n\n  > Detail",
+      "source": "- Item\n\n  > Detail\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -3444,7 +3444,7 @@
       "problemId": "l3-list-with-block-4",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "- ITEM\n\n  > DETAIL",
+      "source": "- ITEM\n\n  > DETAIL\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -3453,7 +3453,7 @@
       "problemId": "l3-list-with-block-4",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "- Item\n\n  > Detail",
+      "source": "- Item\n\n  > Detail\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -3530,7 +3530,7 @@
       "problemId": "l3-list-with-block-5",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "- ITEM\n\n  > DETAIL",
+      "source": "- ITEM\n\n  > DETAIL\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -3539,7 +3539,7 @@
       "problemId": "l3-list-with-block-5",
       "problemRevision": 1,
       "role": "alternate-prose",
-      "source": "- Item\n\n  > Detail",
+      "source": "- Item\n\n  > Detail\n\nPlain follow-up.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -3664,7 +3664,7 @@
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "keep-readable",
-      "source": "\\*[^a]\n[^a]: y",
+      "source": "\\*literal\\*[^a]\n[^a]: y",
       "expectedStatus": "fail",
       "expectedFeedbackId": "keep-readable"
     },
@@ -3684,7 +3684,7 @@
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "use-escape",
-      "source": "plain\\.",
+      "source": "plain\\.[^a]\n\n[^a]: Source",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-escape"
     },
@@ -3750,7 +3750,7 @@
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "keep-readable",
-      "source": "[x](/ \"t\") \\*",
+      "source": "[x](/ \"t\") \\*literal\\*",
       "expectedStatus": "fail",
       "expectedFeedbackId": "keep-readable"
     },
@@ -3770,7 +3770,7 @@
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "use-escape",
-      "source": "plain\\.",
+      "source": "[x](/ \"t\") plain\\.\n\nPlain follow-up.",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-escape"
     },

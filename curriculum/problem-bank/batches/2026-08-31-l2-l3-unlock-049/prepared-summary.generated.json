@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-08-31-l2-l3-unlock-049",
+  "status": "awaiting-independent-review",
+  "candidateCount": 55,
+  "fixtureCount": 422,
+  "passingCandidateCount": 55,
+  "normalizedArtifactDigest": "079eaa88795ac0b2f035ebd7efa409a8b330b2380536e2bc84809f13eecd514c",
+  "verificationDigest": "f2bb8bd7882f1aea752730655acd06b9634c264c1514194fe0d4b98cbf3a9562",
+  "manifestDigest": "4de0b90d53e038e6e1d05b30f7428e9f56ea6bab5693de9fdfeb7d5096138a53",
+  "engineContractDigest": "a3d642561e2ebe8140786f267970fea166cd4046b94876079e1c9e79abbbf82c",
+  "requiredIndependentReviews": 2,
+  "committedIndependentReviews": 0,
+  "editorialPresent": false,
+  "publishedAcceptedTotal": 396,
+  "preparedSummaryDigest": "a27954bc0e68bf256f2ec6d541e59b5dcc26ff8ad88aad025b667804464886ea"
+}

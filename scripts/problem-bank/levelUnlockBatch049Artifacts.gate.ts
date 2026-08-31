@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { readFile } from "node:fs/promises"
-import { levelUnlockBatch048Fixtures } from "../../src/content/batches/levelUnlockBatch048Fixtures"
-import { levelUnlockBatch048Problems } from "../../src/content/batches/levelUnlockBatch048Problems"
+import { levelUnlockBatch049Fixtures } from "../../src/content/batches/levelUnlockBatch049Fixtures"
+import { levelUnlockBatch049Problems } from "../../src/content/batches/levelUnlockBatch049Problems"
 import { evaluateProblem } from "../../src/engine/evaluateProblem"
 import { buildGuidedDraft, deriveSyntaxCheckpoints } from "../../src/guided/guidedSyntax"
 import {
@@ -10,7 +10,7 @@ import {
   checkLevelUnlockBatch048State,
   readCommittedLevelUnlockBatch048,
   writeLevelUnlockBatch048Artifacts,
-} from "./levelUnlockBatch048Support"
+} from "./levelUnlockBatch049Support"
 
 const repositoryRoot = process.cwd()
 const computed = await buildLevelUnlockBatch048Artifacts({ repositoryRoot })
@@ -31,7 +31,7 @@ function expectReviewPhase({ editorial, state, publication }: ReviewPhase) {
     ]).toContain(state.status)
     expect(state.errors).toEqual([])
     expect(publication.errors).toContain(
-      "Batch 2026-08-31-l2-l3-unlock-048 requires separate editorial evidence",
+      "Batch 2026-08-31-l2-l3-unlock-049 requires separate editorial evidence",
     )
     return
   }
@@ -39,10 +39,10 @@ function expectReviewPhase({ editorial, state, publication }: ReviewPhase) {
   expect(["ready-to-publish", "published"]).toContain(state.status)
 }
 
-describe("schema-v2 Level 2 and 3 unlock batch 048", () => {
+describe("schema-v2 Level 2 and 3 unlock batch 049", () => {
   it("normalizes all candidates and verifies every real-engine fixture", () => {
     expect(computed.normalized.candidateCount).toBe(55)
-    expect(computed.fixtureArtifact.fixtures).toHaveLength(levelUnlockBatch048Fixtures.length)
+    expect(computed.fixtureArtifact.fixtures).toHaveLength(levelUnlockBatch049Fixtures.length)
     expect(computed.regressionVerification.errors).toEqual([])
     expect(computed.regressionVerification.candidates).toHaveLength(55)
     expect(computed.regressionVerification.candidates.every((candidate: { passed: boolean }) => candidate.passed)).toBe(true)
@@ -55,11 +55,11 @@ describe("schema-v2 Level 2 and 3 unlock batch 048", () => {
     expect(computed.engineContract.files.map(({ path }: { path: string }) => path)).toContain("src/components/RenderedDocument.tsx")
     expect(computed.engineContract.files.map(({ path }: { path: string }) => path)).toContain("src/content/plaintextStarter.ts")
     expect(computed.engineContract.files.map(({ path }: { path: string }) => path)).toContain("src/guided/guidedSyntax.ts")
-    expect(computed.manifest.entries).toHaveLength(levelUnlockBatch048Problems.length)
+    expect(computed.manifest.entries).toHaveLength(levelUnlockBatch049Problems.length)
   })
 
   it("replays every completed guided draft through the real evaluator", () => {
-    for (const problem of levelUnlockBatch048Problems) {
+    for (const problem of levelUnlockBatch049Problems) {
       const checkpoints = deriveSyntaxCheckpoints(problem.target, problem.starterText)
       const completed = buildGuidedDraft(problem.target, checkpoints, checkpoints.length)
       expect(evaluateProblem(problem, completed).status, problem.id).not.toBe(
@@ -70,7 +70,7 @@ describe("schema-v2 Level 2 and 3 unlock batch 048", () => {
 
   it("tracks the empty review directory without forging review JSON", async () => {
     const reviewReadme = await readFile(
-      `${repositoryRoot}/curriculum/problem-bank/batches/2026-08-31-l2-l3-unlock-048/reviews/README.md`,
+      `${repositoryRoot}/curriculum/problem-bank/batches/2026-08-31-l2-l3-unlock-049/reviews/README.md`,
       "utf8",
     )
     expect(reviewReadme).toContain("two sealed JSON review records")
@@ -113,7 +113,7 @@ describe("schema-v2 Level 2 and 3 unlock batch 048", () => {
           state: { status: sample.status, errors: [] },
           publication: {
             errors: sample.editorial === null
-              ? ["Batch 2026-08-31-l2-l3-unlock-048 requires separate editorial evidence"]
+              ? ["Batch 2026-08-31-l2-l3-unlock-049 requires separate editorial evidence"]
               : [],
           },
         }),
