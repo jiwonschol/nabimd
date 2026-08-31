@@ -169,6 +169,7 @@ function isListWithBlock(node: AstNode): boolean {
       child.type !== "list" &&
       child.type !== "definition" &&
       child.type !== "footnoteDefinition" &&
+      child.type !== "html" &&
       (index > 0 || child.type !== "paragraph"),
   )
 }
