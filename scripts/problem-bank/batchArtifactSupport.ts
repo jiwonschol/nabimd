@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process"
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises"
 import { resolve } from "node:path"
 import { normalizeProblem } from "../../src/content/normalizeProblem"
@@ -23,6 +24,18 @@ import { canonicalJson, sha256 } from "./pipeline.mjs"
 
 const DEFAULT_BANK_ROOT = "curriculum/problem-bank"
 const DEFAULT_POLICY_FILE = `${DEFAULT_BANK_ROOT}/engine-contract-policy.json`
+
+// Nostr event ids are 64-character lowercase hex; git commit SHAs are 40. Reviews and
+// editorial evidence carry both, so they must be checked with different patterns —
+// checking reviewedHead against the 64-char pattern lets every reviewedHead through.
+const SOURCE_BUZZ_EVENT_ID_PATTERN = /^[0-9a-f]{64}$/
+const REVIEWED_HEAD_PATTERN = /^[0-9a-f]{40}$/
+
+// Batch 027 (2026-08-28-l1-images-027, sequence 23; sequence 22 was never authored) is
+// the first authored batch whose review/editorial evidence carries sourceBuzzEventId and
+// reviewedHead. Earlier batches predate the fields and are not required to backfill them
+// — see issue #170.
+const PROVENANCE_MIN_SEQUENCE = 23
 
 const fixtureRoleMap = {
   canonical: "canonical",
@@ -133,6 +146,129 @@ function prettyJson(value: unknown) {
 
 function withoutDigest(value: JsonRecord, field: string) {
   return Object.fromEntries(Object.entries(value).filter(([key]) => key !== field))
+}
+
+function requiresProvenance(sequence: unknown) {
+  return typeof sequence === "number" && sequence >= PROVENANCE_MIN_SEQUENCE
+}
+
+// True when reviewedHead is reachable from HEAD — the normal state whether a batch is
+// still under review or has been published but not yet squash-merged (both live on the
+// reviewed branch until merge). See provenanceErrors below for what happens when it is
+// not reachable.
+function isAncestorOfHead(repositoryRoot: string, reviewedHead: string) {
+  try {
+    execFileSync("git", ["merge-base", "--is-ancestor", reviewedHead, "HEAD"], {
+      cwd: repositoryRoot,
+      stdio: "ignore",
+    })
+    return true
+  } catch {
+    return false
+  }
+}
+
+function evidenceOnMain({
+  repositoryRoot,
+  batchPath,
+  record,
+}: {
+  repositoryRoot: string
+  batchPath: string
+  record: JsonRecord
+}) {
+  try {
+    execFileSync("git", ["rev-parse", "--verify", "origin/main"], {
+      cwd: repositoryRoot,
+      stdio: "ignore",
+    })
+  } catch {
+    return {
+      present: false,
+      error: "origin/main is unavailable; cannot verify merged provenance evidence",
+    }
+  }
+
+  let paths: string[]
+  try {
+    if ("editorialActor" in record) {
+      paths = [`${batchPath}/editorial.json`]
+    } else {
+      paths = execFileSync(
+        "git",
+        ["ls-tree", "-r", "--name-only", "origin/main", "--", `${batchPath}/reviews`],
+        { cwd: repositoryRoot, encoding: "utf8" },
+      )
+        .split("\n")
+        .filter((path) => path.endsWith(".json"))
+    }
+  } catch {
+    return { present: false, error: null }
+  }
+
+  for (const path of paths) {
+    try {
+      const committed = JSON.parse(
+        execFileSync("git", ["show", `origin/main:${path}`], {
+          cwd: repositoryRoot,
+          encoding: "utf8",
+          stdio: ["ignore", "pipe", "ignore"],
+        }),
+      )
+      if (canonicalJson(committed) === canonicalJson(record)) {
+        return { present: true, error: null }
+      }
+    } catch {
+      // A missing or unreadable candidate is not proof that this record merged.
+    }
+  }
+  return { present: false, error: null }
+}
+
+// Checks sourceBuzzEventId format (64-char hex) and reviewedHead format (40-char hex)
+// plus reachability: reviewedHead must be an ancestor of HEAD, UNLESS this repo has
+// already squash-merged the batch into origin/main (single-parent commits only,
+// verified against jiwonschol/nabimd's merged history) — a squash rewrites main so the
+// reviewer's original branch commit stops being an ancestor, which is normal history
+// compaction, not the rebase/force-push-during-review this check exists to catch. That
+// exemption is checked against the exact evidence record on origin/main, not inferred
+// from a local summary file. A stale/premature summary therefore cannot disable the
+// check, while an unchanged record remains valid after squash-merge removes its branch
+// commit from main ancestry. An unavailable origin/main fails closed.
+// Identity of sourceBuzzEventId (does this event id really belong to the named
+// reviewer?) is NOT checked here — the gate has no network access to query the relay,
+// and must not gain one, so that stays a human cross-check against the signed event.
+export function provenanceErrors({
+  record,
+  label,
+  repositoryRoot,
+  batchPath,
+}: {
+  record: JsonRecord
+  label: string
+  repositoryRoot: string
+  batchPath: string
+}) {
+  const errors: string[] = []
+  const mergedEvidence = evidenceOnMain({ repositoryRoot, batchPath, record })
+  if (mergedEvidence.error) errors.push(`${label} ${mergedEvidence.error}`)
+  const sourceBuzzEventId = record.sourceBuzzEventId
+  if (
+    typeof sourceBuzzEventId !== "string" ||
+    !SOURCE_BUZZ_EVENT_ID_PATTERN.test(sourceBuzzEventId)
+  ) {
+    errors.push(`${label} sourceBuzzEventId must be a 64-character lowercase hex string`)
+  }
+  const reviewedHead = record.reviewedHead
+  if (typeof reviewedHead !== "string" || !REVIEWED_HEAD_PATTERN.test(reviewedHead)) {
+    errors.push(`${label} reviewedHead must be a 40-character lowercase hex string`)
+  } else if (
+    !isAncestorOfHead(repositoryRoot, reviewedHead) &&
+    !mergedEvidence.present
+  ) {
+    errors.push(`${label} reviewedHead ${reviewedHead} is not an ancestor of HEAD`)
+  }
+  return errors
 }
 
 function toBatchFixture(fixture: ProblemFixture) {
@@ -401,6 +537,7 @@ export async function buildAuthoredBatchArtifacts({
   }
 
   return {
+    repositoryRoot,
     config: { ...config, requiredIndependentReviews },
     raw,
     normalized,
@@ -526,9 +663,11 @@ function mechanicalDriftErrors({
 function validateCommittedReviews({
   computed,
   reviews,
+  batchPath,
 }: {
   computed: Awaited<ReturnType<typeof buildAuthoredBatchArtifacts>>
   reviews: JsonRecord[]
+  batchPath: string
 }) {
   const errors: string[] = []
   const reviewerIds = new Set<string>()
@@ -573,6 +712,16 @@ function validateCommittedReviews({
       review.reviewDigest !== sha256(withoutDigest(review, "reviewDigest"))
     ) {
       errors.push(`Stale review digest: ${String(reviewerId ?? "<unknown>")}`)
+    }
+    if (requiresProvenance(computed.normalized.sequence)) {
+      errors.push(
+        ...provenanceErrors({
+          record: review,
+          label: `Review ${String(reviewerId ?? "<unknown>")}`,
+          repositoryRoot: computed.repositoryRoot,
+          batchPath,
+        }),
+      )
     }
 
     const verdicts = Array.isArray(review.verdicts)
@@ -639,9 +788,14 @@ export function buildAuthoredBatchPublication({
   computed: Awaited<ReturnType<typeof buildAuthoredBatchArtifacts>>
   committed: Awaited<ReturnType<typeof readCommittedAuthoredBatch>>
 }) {
+  const batchPath = batchDirectory(computed.config)
   const errors = [
     ...mechanicalDriftErrors({ computed, committed }),
-    ...validateCommittedReviews({ computed, reviews: committed.reviews }),
+    ...validateCommittedReviews({
+      computed,
+      reviews: committed.reviews,
+      batchPath,
+    }),
   ]
   const requiredReviews = computed.config.requiredIndependentReviews ?? 2
   if (committed.reviews.length < requiredReviews) {
@@ -651,12 +805,24 @@ export function buildAuthoredBatchPublication({
   }
   if (committed.editorial === null) {
     errors.push(`Batch ${computed.config.batchId} requires separate editorial evidence`)
-  } else if (
-    committed.reviews.some(
-      (review) => review.reviewerId === committed.editorial?.editorialActor,
-    )
-  ) {
-    errors.push("Editorial actor must differ from every reviewer")
+  } else {
+    if (
+      committed.reviews.some(
+        (review) => review.reviewerId === committed.editorial?.editorialActor,
+      )
+    ) {
+      errors.push("Editorial actor must differ from every reviewer")
+    }
+    if (requiresProvenance(computed.normalized.sequence)) {
+      errors.push(
+        ...provenanceErrors({
+          record: committed.editorial,
+          label: "Editorial",
+          repositoryRoot: computed.repositoryRoot,
+          batchPath,
+        }),
+      )
+    }
   }
 
   for (const review of committed.reviews) {
@@ -747,7 +913,11 @@ export function checkAuthoredBatchState({
 }) {
   const errors = [
     ...mechanicalDriftErrors({ computed, committed }),
-    ...validateCommittedReviews({ computed, reviews: committed.reviews }),
+    ...validateCommittedReviews({
+      computed,
+      reviews: committed.reviews,
+      batchPath: batchDirectory(computed.config),
+    }),
   ]
   const committedIndependentReviews = committed.reviews.length
   if (errors.length > 0) {
