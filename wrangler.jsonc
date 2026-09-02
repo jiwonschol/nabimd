@@ -1,0 +1,32 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "nabimd",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-09-02",
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "onsoonlabs.com/nabimd*",
+      "zone_name": "onsoonlabs.com"
+    }
+  ],
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": true
+  },
+  "r2_buckets": [
+    {
+      "binding": "NABIMD_ASSETS",
+      "bucket_name": "onsoonlabs-nabimd-assets-prod"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "NABIMD_DB",
+      "database_name": "nabimd-production",
+      "database_id": "3fff40d2-9ebf-4284-9c53-d9ecfab80d20"
+    }
+  ]
+}

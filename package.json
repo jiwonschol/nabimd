@@ -18,6 +18,8 @@
     "third-party-notices:check": "node scripts/generate-third-party-notices.mjs --check",
     "prebuild": "npm run third-party-notices:generate",
     "build": "tsc -b && vite build",
+    "build:cloudflare": "NABI_BASE_PATH=/nabimd/ npm run build",
+    "deploy:cloudflare": "npm run build:cloudflare && wrangler deploy",
     "bank:generate": "node scripts/problem-bank/normalize.mjs",
     "bank:generate:check": "node scripts/problem-bank/normalize.mjs --check",
     "bank:review-manifest": "vitest run scripts/problem-bank/reviewManifest.report.ts --config vitest.gate.config.ts --reporter=verbose",
@@ -141,6 +143,7 @@
     "tsx": "4.23.12",
     "typescript": "7.0.2",
     "vite": "8.2.0",
-    "vitest": "4.1.10"
+    "vitest": "4.1.10",
+    "wrangler": "^4.128.0"
   }
 }

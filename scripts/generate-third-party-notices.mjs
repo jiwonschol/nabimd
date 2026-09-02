@@ -378,18 +378,18 @@ const renderLicensesHtml = (entries) => `<!doctype html>
       content="Licenses and acknowledgements for Nabi Markdown and its third-party software."
     />
     <title>Licenses &amp; acknowledgements · Nabi Markdown</title>
-    <link rel="icon" type="image/png" href="/brand/bfly-favicon.png" />
-    <link rel="stylesheet" href="/licenses.css" />
+    <link rel="icon" type="image/png" href="./brand/bfly-favicon.png" />
+    <link rel="stylesheet" href="./licenses.css" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to licenses</a>
     <main class="licenses-page" id="main-content">
       <header class="licenses-hero">
-        <a class="brand" href="/" aria-label="Nabi Markdown home">
+        <a class="brand" href="./" aria-label="Nabi Markdown home">
           <img
             alt=""
             height="48"
-            src="/brand/bfly-wordmark.png"
+            src="./brand/bfly-wordmark.png"
             width="48"
           />
           <span>Nabi Markdown</span>
@@ -436,15 +436,15 @@ const renderLicensesHtml = (entries) => `<!doctype html>
             <dt>Typefaces</dt>
             <dd>
               SIL OFL 1.1 ·
-              <a href="/fonts/source-serif-4/LICENSE.md">Source Serif 4</a>
+              <a href="./fonts/source-serif-4/LICENSE.md">Source Serif 4</a>
               and
-              <a href="/fonts/jetbrains-mono/LICENSE.txt">JetBrains Mono</a>
+              <a href="./fonts/jetbrains-mono/LICENSE.txt">JetBrains Mono</a>
             </dd>
           </div>
           <div>
             <dt>Interface sounds</dt>
             <dd>
-              <a href="/audio/LICENSE.md">Mixkit Sound Effects Free License</a>
+              <a href="./audio/LICENSE.md">Mixkit Sound Effects Free License</a>
             </dd>
           </div>
         </dl>
@@ -463,7 +463,7 @@ const renderLicensesHtml = (entries) => `<!doctype html>
           <a
             class="raw-notices-link"
             download
-            href="/THIRD-PARTY-NOTICES.txt"
+            href="./THIRD-PARTY-NOTICES.txt"
           >Download full notices <span aria-hidden="true">.txt</span></a>
         </div>
 ${renderLicenseGroups(entries)}
@@ -472,13 +472,13 @@ ${renderLicenseGroups(entries)}
       <footer class="licenses-footer">
         <p>Thank you to every maintainer and contributor represented here.</p>
         <nav aria-label="License page links">
-          <a href="/">Return to Nabi Markdown</a>
+          <a href="./">Return to Nabi Markdown</a>
           <a
             href="https://github.com/jiwonschol/nabimd"
             rel="noopener noreferrer"
             target="_blank"
           >Source code</a>
-          <a href="/THIRD-PARTY-NOTICES.txt">Raw notices</a>
+          <a href="./THIRD-PARTY-NOTICES.txt">Raw notices</a>
         </nav>
       </footer>
     </main>

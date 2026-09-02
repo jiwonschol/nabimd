@@ -2,7 +2,7 @@
 
 **Learn Markdown by rebuilding real documents — one short quest at a time.**
 
-**Live demo:** [nabimd.vercel.app](https://nabimd.vercel.app)
+**Live demo:** [onsoonlabs.com/nabimd/](https://onsoonlabs.com/nabimd/)
 
 ![Nabi Markdown practice with a rendered Goal and Markdown answer sheet](docs/design/qa/restore-practice-1280x800.png)
 

@@ -158,7 +158,7 @@ async function completeProblemAndAdvance(page: Page) {
 }
 
 async function resetToLanding(page: Page) {
-  await page.goto("/")
+  await page.goto("./")
   await page.evaluate((storageKey) => {
     window.sessionStorage.removeItem(storageKey)
   }, progressStorageKey)
@@ -196,8 +196,8 @@ test("opens third-party licenses in a new tab and keeps the landing open", async
   const licensesPage = await popupPromise
   await licensesPage.waitForLoadState("domcontentloaded")
 
-  expect(new URL(licensesPage.url()).pathname).toBe(
-    "/third-party-licenses.html",
+  expect(new URL(licensesPage.url()).pathname).toMatch(
+    /\/third-party-licenses(?:\.html)?$/,
   )
   expect(page.url()).toBe(landingUrl)
   await licensesPage.close()
