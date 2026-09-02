@@ -44,14 +44,14 @@ jobs:
         id: smoke
         continue-on-error: true
         env:
-          E2E_BASE_URL: https://nabimd.vercel.app
+          E2E_BASE_URL: https://onsoonlabs.com/nabimd/
           # The commit that should be live. On a schedule run this is the tip
           # of the default branch, so a mismatch means deployments stopped.
           EXPECTED_SHA: ${{ github.sha }}
         shell: bash
         run: |
           if [[ "${{ github.event_name }}" == "push" ]]; then
-            echo "Waiting for the Vercel production deployment."
+            echo "Waiting for the Cloudflare Worker deployment."
             sleep 45
           fi
 

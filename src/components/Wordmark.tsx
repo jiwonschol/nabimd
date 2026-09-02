@@ -9,7 +9,7 @@ function WordmarkContents() {
         <img
           alt=""
           height="128"
-          src="/brand/bfly-wordmark.png"
+          src={`${import.meta.env.BASE_URL}brand/bfly-wordmark.png`}
           width="128"
         />
       </span>
