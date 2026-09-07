@@ -17,7 +17,7 @@ const packageJson = JSON.parse(
  */
 function resolveBuildSha(): string {
   const fromCi =
-    process.env.VERCEL_GIT_COMMIT_SHA?.trim() || process.env.GITHUB_SHA?.trim()
+    process.env.NABI_BUILD_SHA?.trim() || process.env.GITHUB_SHA?.trim()
   if (fromCi) return fromCi
 
   try {
@@ -28,6 +28,9 @@ function resolveBuildSha(): string {
 }
 
 export default defineConfig({
+  // Production is mounted under onsoonlabs.com/nabimd/. Local development
+  // remains at / so the existing test and development commands keep working.
+  base: process.env.NABI_BASE_PATH?.trim() || "/",
   plugins: [react()],
   define: {
     __APP_VERSION__: JSON.stringify(packageJson.version),

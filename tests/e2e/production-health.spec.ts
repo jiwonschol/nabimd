@@ -54,7 +54,7 @@ function practiceShell(page: Page): Locator {
 }
 
 async function resetFreshSession(page: Page) {
-  await page.goto("/")
+  await page.goto("./")
   await page.evaluate(
     ({ progressKey, seedKey }) => {
       window.sessionStorage.removeItem(progressKey)
@@ -91,7 +91,7 @@ test("production serves the commit this workflow expects", async ({ page }) => {
     "Set EXPECTED_SHA to the commit that should be live (CI supplies it)",
   )
 
-  await page.goto("/")
+  await page.goto("./")
 
   const deployed = await page
     .locator("html")
@@ -107,7 +107,7 @@ test("production serves the commit this workflow expects", async ({ page }) => {
     deployed,
     `Production serves ${deployed}, but ${expected} should be live. The most ` +
       "likely cause is that deployments are no longer being triggered — check " +
-      "the Vercel project's Git connection.",
+      "the Cloudflare Worker deployment.",
   ).toBe(expected)
 })
 

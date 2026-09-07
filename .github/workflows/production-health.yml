@@ -1,20 +1,22 @@
 name: Production health
 
 on:
-  push:
-    branches:
-      - main
   schedule:
     # Avoid the top-of-hour congestion window for scheduled Actions.
     - cron: "17 * * * *"
   workflow_dispatch:
+    inputs:
+      expected_sha:
+        description: Commit deployed to production
+        required: true
+        type: string
 
 permissions:
   contents: read
   issues: write
 
 concurrency:
-  group: production-health
+  group: production-health-${{ github.event_name }}
   cancel-in-progress: true
 
 jobs:
@@ -23,10 +25,35 @@ jobs:
     timeout-minutes: 18
 
     steps:
+      - name: Resolve the deployed revision
+        id: revision
+        continue-on-error: true
+        env:
+          DISPATCH_SHA: ${{ inputs.expected_sha }}
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            sha="${DISPATCH_SHA}"
+          else
+            sha="$(curl --fail --silent --show-error --location --head \
+              https://onsoonlabs.com/nabimd/ \
+              | tr -d '\r' \
+              | awk 'tolower($1) == "x-nabi-build-sha:" { print $2 }' \
+              | tail -n 1)"
+          fi
+
+          if [[ ! "${sha}" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "Could not resolve a 40-character deployed commit." >&2
+            exit 1
+          fi
+
+          echo "sha=${sha}" >> "${GITHUB_OUTPUT}"
+
       - name: Check out repository
         uses: actions/checkout@v7
         with:
           persist-credentials: false
+          ref: ${{ steps.revision.outputs.sha || github.sha }}
 
       - name: Use Node.js 22
         uses: actions/setup-node@v7
@@ -44,15 +71,12 @@ jobs:
         id: smoke
         continue-on-error: true
         env:
-          E2E_BASE_URL: https://nabimd.vercel.app
-          # The commit that should be live. On a schedule run this is the tip
-          # of the default branch, so a mismatch means deployments stopped.
-          EXPECTED_SHA: ${{ github.sha }}
+          E2E_BASE_URL: https://onsoonlabs.com/nabimd/
+          EXPECTED_SHA: ${{ steps.revision.outputs.sha }}
         shell: bash
         run: |
-          if [[ "${{ github.event_name }}" == "push" ]]; then
-            echo "Waiting for the Vercel production deployment."
-            sleep 45
+          if [[ "${{ steps.revision.outcome }}" != "success" ]]; then
+            exit 1
           fi
 
           for attempt in 1 2 3; do
@@ -78,10 +102,17 @@ jobs:
       - name: Open or update the production alert
         if: steps.smoke.outcome == 'failure'
         uses: actions/github-script@v9
+        env:
+          EXPECTED_SHA: ${{ steps.revision.outputs.sha }}
         with:
           script: |
-            const title = "Production health check is failing";
-            const marker = "<!-- nabimd-production-health -->";
+            const revisionCheck = context.eventName === "workflow_dispatch";
+            const title = revisionCheck
+              ? "Production revision check is failing"
+              : "Production health check is failing";
+            const marker = revisionCheck
+              ? "<!-- nabimd-production-revision -->"
+              : "<!-- nabimd-production-health -->";
             const runUrl =
               `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}` +
               `/actions/runs/${context.runId}`;
@@ -90,7 +121,9 @@ jobs:
               "The automated browser could not complete Nabi Markdown's production learning flow.",
               "",
               `- Event: \`${context.eventName}\``,
-              `- Commit: \`${context.sha}\``,
+              revisionCheck
+                ? `- Expected commit: \`${process.env.EXPECTED_SHA}\``
+                : "- Mode: scheduled health",
               `- Evidence: ${runUrl}`,
               "",
               "The check uses authored problem-bank text only. It does not inspect or collect learner input.",
@@ -135,8 +168,13 @@ jobs:
         uses: actions/github-script@v9
         with:
           script: |
-            const title = "Production health check is failing";
-            const marker = "<!-- nabimd-production-health -->";
+            const revisionCheck = context.eventName === "workflow_dispatch";
+            const title = revisionCheck
+              ? "Production revision check is failing"
+              : "Production health check is failing";
+            const marker = revisionCheck
+              ? "<!-- nabimd-production-revision -->"
+              : "<!-- nabimd-production-health -->";
             const issues = await github.paginate(
               github.rest.issues.listForRepo,
               { ...context.repo, state: "open", per_page: 100 },

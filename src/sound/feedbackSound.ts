@@ -1,7 +1,7 @@
 export const FEEDBACK_SOUND_ASSETS = {
-  matched: "/audio/matched.mp3",
-  retry: "/audio/try-again.mp3",
-  summary: "/audio/summary.mp3",
+  matched: `${import.meta.env.BASE_URL}audio/matched.mp3`,
+  retry: `${import.meta.env.BASE_URL}audio/try-again.mp3`,
+  summary: `${import.meta.env.BASE_URL}audio/summary.mp3`,
 } as const
 
 export type FeedbackSoundCue = keyof typeof FEEDBACK_SOUND_ASSETS

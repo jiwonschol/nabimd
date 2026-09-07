@@ -64,7 +64,7 @@ function findCaptureRotation() {
 
 async function openSeededLevelOne(page: Page) {
   const { runNumber, seed } = findCaptureRotation()
-  await page.goto("/")
+  await page.goto("./")
   await page.evaluate(
     ({ progressKey, seedKey, seedValue, nextRunNumber }) => {
       const persisted = window.sessionStorage.getItem(progressKey)

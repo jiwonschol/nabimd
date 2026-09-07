@@ -121,7 +121,7 @@ export function OpenBookLanding({
             <a
               aria-label="Third-party licenses (opens in a new tab)"
               className="open-book-legal-links__link"
-              href="/third-party-licenses.html"
+              href={`${import.meta.env.BASE_URL}third-party-licenses.html`}
               rel="noopener noreferrer"
               target="_blank"
             >

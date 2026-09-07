@@ -128,7 +128,7 @@ async function openMultiSlotLevelOne(page: Page) {
       // on a problem that teaches more than one syntax.
       if (deriveSyntaxCheckpoints(problem.target, "").length < 2) continue
 
-      await page.goto("/")
+      await page.goto("./")
       await page.evaluate(
         ({ progressKey, seedKey, seedValue, nextRunNumber }) => {
           const persisted = window.sessionStorage.getItem(progressKey)

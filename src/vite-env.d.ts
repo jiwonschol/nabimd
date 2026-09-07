@@ -8,7 +8,7 @@ declare const __APP_VERSION__: string
 
 interface ImportMetaEnv {
   /**
-   * Sentry DSN. Set on Vercel for Production only, so local dev and preview
+   * Sentry DSN. Set in the Cloudflare production build only, so local dev and preview
    * deployments run without error monitoring.
    */
   readonly VITE_SENTRY_DSN?: string
