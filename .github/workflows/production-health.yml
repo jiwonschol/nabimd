@@ -42,9 +42,10 @@ jobs:
         continue-on-error: true
         env:
           E2E_BASE_URL: https://onsoonlabs.com/nabimd/
-          # The commit that should be live. On a schedule run this is the tip
-          # of the default branch, so a mismatch means deployments stopped.
-          EXPECTED_SHA: ${{ github.sha }}
+          # Manual dispatch follows a deploy of this exact main revision.
+          # Scheduled checks exercise production without guessing which
+          # manually deployed revision should be live.
+          EXPECTED_SHA: ${{ github.event_name == 'workflow_dispatch' && github.sha || '' }}
         shell: bash
         run: |
           for attempt in 1 2 3; do

@@ -18,6 +18,10 @@ Playwright browser:
 5. reaches Summary with a `5 / 5` result and `5` completed pages; and
 6. fails on uncaught page errors, console errors, or HTTP 5xx responses.
 
+The manual check also confirms that production serves the dispatched `main`
+commit. The hourly check skips that assertion because deployments are manual;
+the tip of `main` may legitimately be newer than the deployed revision.
+
 The check retries three times so that normal propagation does not create an
 immediate false alarm. It does not deploy production: a maintainer deploys the
 reviewed `main` commit, then explicitly dispatches the workflow so the check
