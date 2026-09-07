@@ -332,6 +332,14 @@ function validateMatchChecks(problem: GradableProblem, errors: string[]) {
           )
         }
         if (
+          runtimeCheck.requireTaskItems !== undefined &&
+          typeof runtimeCheck.requireTaskItems !== "boolean"
+        ) {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} has invalid task-items flag`,
+          )
+        }
+        if (
           runtimeCheck.descendantsOnly !== undefined &&
           typeof runtimeCheck.descendantsOnly !== "boolean"
         ) {

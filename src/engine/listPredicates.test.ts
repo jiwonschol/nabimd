@@ -160,3 +160,48 @@ describe("unordered-list predicates", () => {
     })
   })
 })
+
+describe("task-list predicates", () => {
+  const taskListProblem: GradableProblem = {
+    ...bulletListProblem,
+    id: "task-list-predicate-test",
+    familyId: "task-lists",
+    skillIds: ["task-list"],
+    matchChecks: [
+      {
+        id: "use-task-list",
+        kind: "list-shape",
+        scope: { kind: "document" },
+        ordered: false,
+        minItems: 2,
+        requireTaskItems: true,
+        priority: 10,
+        feedback: "Add a task list with at least two checkbox items.",
+      },
+    ],
+  }
+
+  it("requires every item to carry a checkbox when opted in", () => {
+    expect(
+      evaluateProblem(taskListProblem, "- [ ] Buy milk\n- [x] Post the letter"),
+    ).toMatchObject({ status: "matched" })
+    expect(
+      evaluateProblem(taskListProblem, "- [X] Buy milk\n- [ ] Post the letter"),
+    ).toMatchObject({ status: "matched" })
+    expect(
+      evaluateProblem(taskListProblem, "- Buy milk\n- Post the letter"),
+    ).toMatchObject({ status: "fail", feedbackId: "use-task-list" })
+    expect(
+      evaluateProblem(taskListProblem, "- [ ] Buy milk\n- Post the letter"),
+    ).toMatchObject({ status: "fail", feedbackId: "use-task-list" })
+  })
+
+  it("does not change list checks that omit the option", () => {
+    expect(
+      evaluateProblem(
+        { ...taskListProblem, matchChecks: bulletListProblem.matchChecks },
+        "- One\n- Two\n- Three",
+      ),
+    ).toMatchObject({ status: "matched" })
+  })
+})

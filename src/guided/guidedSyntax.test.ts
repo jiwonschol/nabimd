@@ -72,6 +72,35 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(terms("~~gone~~ here")).toEqual(["strikethrough text"])
   })
 
+  it.each([
+    ["> - plain", ["block quote", "bullet item"], ["> ", "- "]],
+    ["> 1. step", ["block quote", "numbered step"], ["> ", "1. "]],
+    [
+      "> - [ ] Buy",
+      ["block quote", "bullet item", "checkbox item"],
+      ["> ", "- ", "[ ]"],
+    ],
+    [
+      "> > - [ ] Buy",
+      ["block quote", "quote inside a quote", "bullet item", "checkbox item"],
+      ["> ", "> ", "- ", "[ ]"],
+    ],
+  ] as const)(
+    "opens every quoted-list marker shape: %s",
+    (source, expectedTerms, expectedInputs) => {
+      const checkpoint = deriveSyntaxCheckpoints(source, "")[0]!
+      expect(syntaxCheckpointTerms(checkpoint)).toEqual(expectedTerms)
+      expect(
+        checkpoint.segments.flatMap((segment) =>
+          segment.kind === "input" ? [segment.value] : [],
+        ),
+      ).toEqual(expectedInputs)
+      expect(
+        acceptsGuidedSyntaxInput(checkpoint, checkpoint.canonicalInput),
+      ).toBe(true)
+    },
+  )
+
   it("accepts either spelling of a checked task box", () => {
     const checkpointFor = (source: string) =>
       deriveSyntaxCheckpoints(source, "")[0]!

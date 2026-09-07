@@ -658,7 +658,7 @@ function markPrefix(
   families: SyntaxFamilies,
   family: string,
 ): number | null {
-  const start = lineStartAt(source, offset)
+  const start = Math.max(lineStartAt(source, offset), offset)
   const end = lineEndAt(source, offset)
   const match = source.slice(start, end).match(pattern)
   if (!match?.[0]) return null
@@ -939,7 +939,7 @@ function markNodeSyntax(
         const marker =
           markerEnd === null
             ? ""
-            : source.slice(lineStartAt(source, range.from), markerEnd)
+            : source.slice(range.from, markerEnd)
         const checkbox =
           markerEnd === null ||
           node.checked === null ||
