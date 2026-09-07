@@ -1,9 +1,6 @@
 name: Production health
 
 on:
-  push:
-    branches:
-      - main
   schedule:
     # Avoid the top-of-hour congestion window for scheduled Actions.
     - cron: "17 * * * *"
@@ -50,11 +47,6 @@ jobs:
           EXPECTED_SHA: ${{ github.sha }}
         shell: bash
         run: |
-          if [[ "${{ github.event_name }}" == "push" ]]; then
-            echo "Waiting for the Cloudflare Worker deployment."
-            sleep 45
-          fi
-
           for attempt in 1 2 3; do
             echo "Production health attempt ${attempt} of 3"
             if npm run test:e2e:production; then

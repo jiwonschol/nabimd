@@ -6,7 +6,7 @@ a learner; the application bundle has no monitoring SDK.
 
 ## What it verifies
 
-On every push to `main`, once an hour at minute 17, and on manual dispatch, a
+Once an hour at minute 17, and on manual dispatch after a production deploy, a
 Playwright browser:
 
 1. opens `https://onsoonlabs.com/nabimd/`;
@@ -18,10 +18,11 @@ Playwright browser:
 5. reaches Summary with a `5 / 5` result and `5` completed pages; and
 6. fails on uncaught page errors, console errors, or HTTP 5xx responses.
 
-The push check waits for the Cloudflare Worker and retries three times so that
-normal deployment propagation does not create an immediate false alarm. It
-does not deploy production: a maintainer deploys the reviewed `main` commit,
-then confirms the manual or rerun health check reports that exact commit.
+The check retries three times so that normal propagation does not create an
+immediate false alarm. It does not deploy production: a maintainer deploys the
+reviewed `main` commit, then explicitly dispatches the workflow so the check
+compares production with that exact commit. A `main` push does not start the
+check before the manual deployment exists.
 
 ## Deploy and rollback
 
@@ -33,6 +34,7 @@ git rev-parse HEAD
 NABI_BUILD_SHA="$(git rev-parse HEAD)" npm run deploy:cloudflare
 E2E_BASE_URL=https://onsoonlabs.com/nabimd/ \
   EXPECTED_SHA="$(git rev-parse HEAD)" npm run test:e2e:production
+gh workflow run production-health.yml --ref main
 ```
 
 Before deploying, record the current version with
