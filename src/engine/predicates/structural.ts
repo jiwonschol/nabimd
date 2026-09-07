@@ -188,9 +188,14 @@ function listShapePasses(
         (!check.requireVisibleItems ||
           list.children.every((item) =>
             listItemHasVisibleContent(item, context.source),
-          ))
+          )) &&
+        (!check.requireTaskItems || list.children.every(isTaskItem))
       )
     })
+}
+
+function isTaskItem(item: ListItem): boolean {
+  return item.checked === true || item.checked === false
 }
 
 function collectListCandidates(nodes: readonly AstNode[]) {

@@ -116,6 +116,7 @@ export type MatchCheck =
       requireNonemptyItems?: boolean
       descendantsOnly?: boolean
       requireVisibleItems?: boolean
+      requireTaskItems?: boolean
     })
   | (MatchCheckBase & {
       kind: "blockquote-shape"
