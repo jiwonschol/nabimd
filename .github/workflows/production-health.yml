@@ -102,6 +102,8 @@ jobs:
       - name: Open or update the production alert
         if: steps.smoke.outcome == 'failure'
         uses: actions/github-script@v9
+        env:
+          EXPECTED_SHA: ${{ steps.revision.outputs.sha }}
         with:
           script: |
             const revisionCheck = context.eventName === "workflow_dispatch";
@@ -120,7 +122,7 @@ jobs:
               "",
               `- Event: \`${context.eventName}\``,
               revisionCheck
-                ? `- Expected commit: \`${context.sha}\``
+                ? `- Expected commit: \`${process.env.EXPECTED_SHA}\``
                 : "- Mode: scheduled health",
               `- Evidence: ${runUrl}`,
               "",
