@@ -18,9 +18,11 @@ Playwright browser:
 5. reaches Summary with a `5 / 5` result and `5` completed pages; and
 6. fails on uncaught page errors, console errors, or HTTP 5xx responses.
 
-The manual check also confirms that production serves the dispatched `main`
-commit. The hourly check skips that assertion because deployments are manual;
-the tip of `main` may legitimately be newer than the deployed revision.
+The Worker publishes its build SHA in the `X-Nabi-Build-Sha` response header.
+The hourly check reads that header and checks out the exact revision before
+deriving exercise answers. The manual check receives the deployed SHA
+explicitly. Both modes therefore exercise the source that belongs to the
+deployed bundle even when the tip of `main` is newer.
 
 The check retries three times so that normal propagation does not create an
 immediate false alarm. It does not deploy production: a maintainer deploys the
@@ -40,7 +42,8 @@ npx playwright install --with-deps chromium
 NABI_BUILD_SHA="$(git rev-parse HEAD)" npm run deploy:cloudflare
 E2E_BASE_URL=https://onsoonlabs.com/nabimd/ \
   EXPECTED_SHA="$(git rev-parse HEAD)" npm run test:e2e:production
-gh workflow run production-health.yml --ref main
+gh workflow run production-health.yml --ref main \
+  -f expected_sha="$(git rev-parse HEAD)"
 ```
 
 Before deploying, record the current version with

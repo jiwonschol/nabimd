@@ -5,13 +5,18 @@ on:
     # Avoid the top-of-hour congestion window for scheduled Actions.
     - cron: "17 * * * *"
   workflow_dispatch:
+    inputs:
+      expected_sha:
+        description: Commit deployed to production
+        required: true
+        type: string
 
 permissions:
   contents: read
   issues: write
 
 concurrency:
-  group: production-health
+  group: production-health-${{ github.event_name }}
   cancel-in-progress: true
 
 jobs:
@@ -20,10 +25,35 @@ jobs:
     timeout-minutes: 18
 
     steps:
+      - name: Resolve the deployed revision
+        id: revision
+        continue-on-error: true
+        env:
+          DISPATCH_SHA: ${{ inputs.expected_sha }}
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            sha="${DISPATCH_SHA}"
+          else
+            sha="$(curl --fail --silent --show-error --location --head \
+              https://onsoonlabs.com/nabimd/ \
+              | tr -d '\r' \
+              | awk 'tolower($1) == "x-nabi-build-sha:" { print $2 }' \
+              | tail -n 1)"
+          fi
+
+          if [[ ! "${sha}" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "Could not resolve a 40-character deployed commit." >&2
+            exit 1
+          fi
+
+          echo "sha=${sha}" >> "${GITHUB_OUTPUT}"
+
       - name: Check out repository
         uses: actions/checkout@v7
         with:
           persist-credentials: false
+          ref: ${{ steps.revision.outputs.sha || github.sha }}
 
       - name: Use Node.js 22
         uses: actions/setup-node@v7
@@ -42,12 +72,13 @@ jobs:
         continue-on-error: true
         env:
           E2E_BASE_URL: https://onsoonlabs.com/nabimd/
-          # Manual dispatch follows a deploy of this exact main revision.
-          # Scheduled checks exercise production without guessing which
-          # manually deployed revision should be live.
-          EXPECTED_SHA: ${{ github.event_name == 'workflow_dispatch' && github.sha || '' }}
+          EXPECTED_SHA: ${{ steps.revision.outputs.sha }}
         shell: bash
         run: |
+          if [[ "${{ steps.revision.outcome }}" != "success" ]]; then
+            exit 1
+          fi
+
           for attempt in 1 2 3; do
             echo "Production health attempt ${attempt} of 3"
             if npm run test:e2e:production; then

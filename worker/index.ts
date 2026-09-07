@@ -6,6 +6,7 @@ type AssetFetcher = {
 
 type Env = {
   ASSETS: AssetFetcher
+  NABI_BUILD_SHA: string
   // These bindings are intentionally not exposed through a public endpoint
   // until score identity, abuse prevention, and retention rules are designed.
   NABIMD_ASSETS: unknown
@@ -53,6 +54,12 @@ export default {
       return new Response(response.body, { headers, status: response.status })
     }
 
-    return response
+    const headers = new Headers(response.headers)
+    headers.set("X-Nabi-Build-Sha", env.NABI_BUILD_SHA)
+    return new Response(response.body, {
+      headers,
+      status: response.status,
+      statusText: response.statusText,
+    })
   },
 }
