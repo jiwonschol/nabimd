@@ -31,6 +31,8 @@ passed for the reviewed `main` commit. From a clean checkout of that commit:
 
 ```bash
 git rev-parse HEAD
+npm ci
+npx playwright install --with-deps chromium
 NABI_BUILD_SHA="$(git rev-parse HEAD)" npm run deploy:cloudflare
 E2E_BASE_URL=https://onsoonlabs.com/nabimd/ \
   EXPECTED_SHA="$(git rev-parse HEAD)" npm run test:e2e:production
