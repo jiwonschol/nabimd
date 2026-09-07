@@ -260,7 +260,7 @@ order. Levels 1–2 are guided learning modes; Levels 3–5 are useful document
 contexts rather than locked ranks. The public tracker, not a marketing
 estimate, is the source of truth as the inspected problem bank grows.
 
-**Live demo:** [nabimd.vercel.app](https://nabimd.vercel.app)
+**Live demo:** [onsoonlabs.com/nabimd](https://onsoonlabs.com/nabimd/)
 
 ### Current scope
 
@@ -365,7 +365,7 @@ npm run test:e2e
 Run the same browser suite against a deployment:
 
 ```bash
-E2E_BASE_URL=https://nabimd.vercel.app npm run test:e2e
+E2E_BASE_URL=https://onsoonlabs.com/nabimd/ npm run test:e2e
 ```
 
 Or run the non-browser checks together:
@@ -389,7 +389,7 @@ npm run check
 - [Five-level problem-bank execution plan](superpowers/plans/2026-07-19-five-level-problem-bank.md)
 - [Problem-bank pipeline](../curriculum/problem-bank/README.md)
 - [Anonymized Level 5 reference](examples/level-5-agent-work-order-reference.md)
-- [Public demo](https://nabimd.vercel.app)
+- [Public demo](https://onsoonlabs.com/nabimd/)
 - Primary Codex task and `/feedback` Session ID:
   `019f7290-4f9c-7c01-beaa-bc106cbdd874`
 

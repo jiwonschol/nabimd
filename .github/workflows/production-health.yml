@@ -73,8 +73,13 @@ jobs:
         uses: actions/github-script@v9
         with:
           script: |
-            const title = "Production health check is failing";
-            const marker = "<!-- nabimd-production-health -->";
+            const revisionCheck = context.eventName === "workflow_dispatch";
+            const title = revisionCheck
+              ? "Production revision check is failing"
+              : "Production health check is failing";
+            const marker = revisionCheck
+              ? "<!-- nabimd-production-revision -->"
+              : "<!-- nabimd-production-health -->";
             const runUrl =
               `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}` +
               `/actions/runs/${context.runId}`;
@@ -83,7 +88,9 @@ jobs:
               "The automated browser could not complete Nabi Markdown's production learning flow.",
               "",
               `- Event: \`${context.eventName}\``,
-              `- Commit: \`${context.sha}\``,
+              revisionCheck
+                ? `- Expected commit: \`${context.sha}\``
+                : "- Mode: scheduled health",
               `- Evidence: ${runUrl}`,
               "",
               "The check uses authored problem-bank text only. It does not inspect or collect learner input.",
@@ -128,8 +135,13 @@ jobs:
         uses: actions/github-script@v9
         with:
           script: |
-            const title = "Production health check is failing";
-            const marker = "<!-- nabimd-production-health -->";
+            const revisionCheck = context.eventName === "workflow_dispatch";
+            const title = revisionCheck
+              ? "Production revision check is failing"
+              : "Production health check is failing";
+            const marker = revisionCheck
+              ? "<!-- nabimd-production-revision -->"
+              : "<!-- nabimd-production-health -->";
             const issues = await github.paginate(
               github.rest.issues.listForRepo,
               { ...context.repo, state: "open", per_page: 100 },
