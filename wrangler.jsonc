@@ -6,7 +6,11 @@
   "workers_dev": false,
   "routes": [
     {
-      "pattern": "onsoonlabs.com/nabimd*",
+      "pattern": "onsoonlabs.com/nabimd",
+      "zone_name": "onsoonlabs.com"
+    },
+    {
+      "pattern": "onsoonlabs.com/nabimd/*",
       "zone_name": "onsoonlabs.com"
     }
   ],

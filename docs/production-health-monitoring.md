@@ -9,7 +9,7 @@ a learner; the application bundle has no monitoring SDK.
 On every push to `main`, once an hour at minute 17, and on manual dispatch, a
 Playwright browser:
 
-1. opens `https://nabimd.vercel.app`;
+1. opens `https://onsoonlabs.com/nabimd/`;
 2. shows all `3` levels, with levels that have fewer than `5` implemented
    syntax elements marked Coming soon and disabled;
 3. selects each available level and confirms that every problem belongs to
@@ -18,8 +18,31 @@ Playwright browser:
 5. reaches Summary with a `5 / 5` result and `5` completed pages; and
 6. fails on uncaught page errors, console errors, or HTTP 5xx responses.
 
-The push check waits for Vercel and retries three times so that normal
-deployment propagation does not create an immediate false alarm.
+The push check waits for the Cloudflare Worker and retries three times so that
+normal deployment propagation does not create an immediate false alarm. It
+does not deploy production: a maintainer deploys the reviewed `main` commit,
+then confirms the manual or rerun health check reports that exact commit.
+
+## Deploy and rollback
+
+Keep the Vercel deployment available until the Cloudflare production check has
+passed for the reviewed `main` commit. From a clean checkout of that commit:
+
+```bash
+git rev-parse HEAD
+NABI_BUILD_SHA="$(git rev-parse HEAD)" npm run deploy:cloudflare
+E2E_BASE_URL=https://onsoonlabs.com/nabimd/ \
+  EXPECTED_SHA="$(git rev-parse HEAD)" npm run test:e2e:production
+```
+
+Before deploying, record the current version with
+`npx wrangler deployments list --config wrangler.jsonc`. If the new Worker code
+or assets break production, restore that version with
+`npx wrangler rollback <version-id> --config wrangler.jsonc`, then repeat the
+production browser check. A version rollback does not prove that route or
+binding changes were restored; for a configuration failure, deploy the last
+known-good repository commit and verify the public route again. Do not retire
+the Vercel project until this rollback path and the Cloudflare check both pass.
 
 ## Alert and recovery
 
