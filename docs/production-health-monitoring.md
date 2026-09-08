@@ -30,14 +30,29 @@ reviewed `main` commit, then explicitly dispatches the workflow so the check
 compares production with that exact commit. A `main` push does not start the
 check before the manual deployment exists.
 
-## Deploy and rollback
+## Before deployment
 
-Keep the Vercel deployment available until the Cloudflare production check has
-passed for the reviewed `main` commit. From a clean checkout of that commit:
+Check out the reviewed commit and finish the local verification before changing
+production:
 
 ```bash
 git rev-parse HEAD
 npm ci
+npm run check
+NABI_BUILD_SHA="$(git rev-parse HEAD)" npm run build:cloudflare
+```
+
+The local build proves that the Worker and its assets can be produced. It does
+not prove that the public route reaches that Worker.
+
+## Deploy, live verification, and rollback
+
+Keep the Vercel deployment available until the Cloudflare production check has
+passed for the reviewed `main` commit. After deployment is approved, use the
+same clean checkout:
+
+```bash
+git rev-parse HEAD
 npx playwright install --with-deps chromium
 NABI_BUILD_SHA="$(git rev-parse HEAD)" npm run deploy:cloudflare
 E2E_BASE_URL=https://onsoonlabs.com/nabimd/ \
@@ -45,6 +60,12 @@ E2E_BASE_URL=https://onsoonlabs.com/nabimd/ \
 gh workflow run production-health.yml --ref main \
   -f expected_sha="$(git rev-parse HEAD)"
 ```
+
+`deploy:cloudflare` now polls the public route after Wrangler finishes and
+requires a successful response whose `X-Nabi-Build-Sha` exactly matches the
+deployed commit. A missing header catches a route that still bypasses the
+Worker; a different header catches a stale Worker deployment. Only after this
+live check succeeds should the browser check and manual workflow dispatch run.
 
 Before deploying, record the current version with
 `npx wrangler deployments list --config wrangler.jsonc`. If the new Worker code
