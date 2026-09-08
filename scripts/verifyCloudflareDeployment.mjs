@@ -11,6 +11,7 @@ export async function verifyCloudflareDeployment({
   url = defaultUrl,
   attempts = 6,
   retryDelayMs = 10_000,
+  requestTimeoutMs = 10_000,
   fetchImpl = fetch,
 }) {
   if (!/^[0-9a-f]{40}$/.test(expectedSha)) {
@@ -20,6 +21,9 @@ export async function verifyCloudflareDeployment({
   let lastError
 
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), requestTimeoutMs)
+
     try {
       const requestUrl = new URL(url)
       requestUrl.searchParams.set("deployment-sha", expectedSha)
@@ -27,6 +31,7 @@ export async function verifyCloudflareDeployment({
         method: "HEAD",
         redirect: "follow",
         cache: "no-store",
+        signal: controller.signal,
       })
       if (!response.ok) {
         throw new Error(`production returned HTTP ${response.status}`)
@@ -46,9 +51,16 @@ export async function verifyCloudflareDeployment({
 
       return deployedSha
     } catch (error) {
-      lastError = error
-      if (attempt < attempts) await sleep(retryDelayMs)
+      lastError = controller.signal.aborted
+        ? new Error(`deployment probe timed out after ${requestTimeoutMs}ms`, {
+            cause: error,
+          })
+        : error
+    } finally {
+      clearTimeout(timeout)
     }
+
+    if (attempt < attempts) await sleep(retryDelayMs)
   }
 
   throw lastError

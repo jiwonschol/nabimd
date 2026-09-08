@@ -57,3 +57,25 @@ test("waits for route propagation", async () => {
   expect(requests).toBe(2)
   expect(revision).toBe(expectedSha)
 })
+
+test(
+  "abandons a stalled deployment probe",
+  async () => {
+    await expect(
+      verifyCloudflareDeployment({
+        expectedSha,
+        attempts: 1,
+        requestTimeoutMs: 1,
+        fetchImpl: async (_url, { signal }) =>
+          new Promise((_resolve, reject) => {
+            signal.addEventListener(
+              "abort",
+              () => reject(new Error("aborted")),
+              { once: true },
+            )
+          }),
+      }),
+    ).rejects.toThrow(/timed out after 1ms/)
+  },
+  100,
+)
