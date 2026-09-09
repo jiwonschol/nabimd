@@ -18,11 +18,17 @@ Playwright browser:
 5. reaches Summary with a `5 / 5` result and `5` completed pages; and
 6. fails on uncaught page errors, console errors, or HTTP 5xx responses.
 
-The Worker publishes its build SHA in the `X-Nabi-Build-Sha` response header.
-The hourly check reads that header and checks out the exact revision before
-deriving exercise answers. The manual check receives the deployed SHA
-explicitly. Both modes therefore exercise the source that belongs to the
-deployed bundle even when the tip of `main` is newer.
+The hourly check exercises the public learning flow without requiring deployment
+metadata. It checks out the workflow's `main` revision and skips the separate
+revision assertion, so a route that does not expose `X-Nabi-Build-Sha` can still
+be monitored for learner-visible failures.
+
+The manual post-deploy check receives the deployed SHA explicitly, checks out
+that exact revision before deriving exercise answers, and verifies the bundle's
+`data-build-sha`. The deployment command separately requires the public
+`X-Nabi-Build-Sha` response header to match that SHA. This keeps deployment
+identity strict without making the hourly health monitor depend on header
+routing.
 
 The check retries three times so that normal propagation does not create an
 immediate false alarm. It does not deploy production: a maintainer deploys the

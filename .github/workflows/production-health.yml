@@ -27,20 +27,13 @@ jobs:
     steps:
       - name: Resolve the deployed revision
         id: revision
+        if: github.event_name == 'workflow_dispatch'
         continue-on-error: true
         env:
           DISPATCH_SHA: ${{ inputs.expected_sha }}
         shell: bash
         run: |
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            sha="${DISPATCH_SHA}"
-          else
-            sha="$(curl --fail --silent --show-error --location --head \
-              https://onsoonlabs.com/nabimd/ \
-              | tr -d '\r' \
-              | awk 'tolower($1) == "x-nabi-build-sha:" { print $2 }' \
-              | tail -n 1)"
-          fi
+          sha="${DISPATCH_SHA}"
 
           if [[ ! "${sha}" =~ ^[0-9a-f]{40}$ ]]; then
             echo "Could not resolve a 40-character deployed commit." >&2
@@ -75,7 +68,8 @@ jobs:
           EXPECTED_SHA: ${{ steps.revision.outputs.sha }}
         shell: bash
         run: |
-          if [[ "${{ steps.revision.outcome }}" != "success" ]]; then
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && \
+                "${{ steps.revision.outcome }}" != "success" ]]; then
             exit 1
           fi
 
