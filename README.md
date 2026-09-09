@@ -32,7 +32,7 @@
 
 ## Run locally
 
-Requires Node.js `22.13` or later.
+Requires Node.js `22.13`–`22.x`, `24.x`, or `26` or later.
 
 ```bash
 npm ci
