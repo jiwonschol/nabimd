@@ -5,7 +5,7 @@
   "license": "AGPL-3.0-or-later",
   "type": "module",
   "engines": {
-    "node": ">=22.13"
+    "node": "^22.13.0 || ^24.0.0 || >=26.0.0"
   },
   "scripts": {
     "dev": "vite",
@@ -144,7 +144,7 @@
     "tsx": "4.23.12",
     "typescript": "7.0.2",
     "vite": "8.2.0",
-    "vitest": "4.1.10",
+    "vitest": "5.0.0",
     "wrangler": "^4.128.0"
   }
 }
