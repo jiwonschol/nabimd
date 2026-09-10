@@ -25,6 +25,23 @@ jobs:
     timeout-minutes: 18
 
     steps:
+      - name: Check out workflow revision
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install workflow dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
       - name: Resolve the deployed revision
         id: revision
         continue-on-error: true
@@ -35,11 +52,31 @@ jobs:
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             sha="${DISPATCH_SHA}"
           else
-            sha="$(curl --fail --silent --show-error --location --head \
-              https://onsoonlabs.com/nabimd/ \
-              | tr -d '\r' \
-              | awk 'tolower($1) == "x-nabi-build-sha:" { print $2 }' \
-              | tail -n 1)"
+            sha="$(node --input-type=module <<'NODE'
+          import { chromium } from "playwright"
+
+          const browser = await chromium.launch({ headless: true })
+          try {
+            const page = await browser.newPage()
+            await page.goto("https://onsoonlabs.com/nabimd/", {
+              waitUntil: "domcontentloaded",
+              timeout: 30_000,
+            })
+            await page.waitForFunction(
+              () => /^[0-9a-f]{40}$/.test(
+                document.documentElement.dataset.buildSha ?? "",
+              ),
+              undefined,
+              { timeout: 30_000 },
+            )
+            process.stdout.write(
+              await page.locator("html").getAttribute("data-build-sha"),
+            )
+          } finally {
+            await browser.close()
+          }
+          NODE
+            )"
           fi
 
           if [[ ! "${sha}" =~ ^[0-9a-f]{40}$ ]]; then
@@ -49,22 +86,16 @@ jobs:
 
           echo "sha=${sha}" >> "${GITHUB_OUTPUT}"
 
-      - name: Check out repository
+      - name: Check out deployed revision
         uses: actions/checkout@v7
         with:
           persist-credentials: false
-          ref: ${{ steps.revision.outputs.sha || github.sha }}
+          ref: ${{ steps.revision.outputs.sha }}
 
-      - name: Use Node.js 22
-        uses: actions/setup-node@v7
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install dependencies
+      - name: Install deployed revision dependencies
         run: npm ci
 
-      - name: Install Chromium
+      - name: Install deployed revision Chromium
         run: npx playwright install --with-deps chromium
 
       - name: Exercise the deployed app
