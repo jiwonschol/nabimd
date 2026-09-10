@@ -95,6 +95,9 @@ jobs:
       - name: Install deployed revision dependencies
         run: npm ci
 
+      - name: Install deployed revision Chromium
+        run: npx playwright install --with-deps chromium
+
       - name: Exercise the deployed app
         id: smoke
         continue-on-error: true
