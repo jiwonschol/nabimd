@@ -18,10 +18,9 @@ Playwright browser:
 5. reaches Summary with a `5 / 5` result and `5` completed pages; and
 6. fails on uncaught page errors, console errors, or HTTP 5xx responses.
 
-The hourly check exercises the public learning flow without requiring deployment
-metadata. It checks out the workflow's `main` revision and skips the separate
-revision assertion, so a route that does not expose `X-Nabi-Build-Sha` can still
-be monitored for learner-visible failures.
+The hourly check reads `data-build-sha` from the running app in a browser, checks
+out that exact revision, and derives exercise answers from the matching problem
+bank. It does not depend on the route publishing `X-Nabi-Build-Sha`.
 
 The manual post-deploy check receives the deployed SHA explicitly, checks out
 that exact revision before deriving exercise answers, and verifies the bundle's
