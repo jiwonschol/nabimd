@@ -66,11 +66,14 @@ gh workflow run production-health.yml --ref main \
   -f expected_sha="$(git rev-parse HEAD)"
 ```
 
-`deploy:cloudflare` now polls the public route after Wrangler finishes and
-requires a successful response whose `X-Nabi-Build-Sha` exactly matches the
-deployed commit. A missing header catches a route that still bypasses the
-Worker; a different header catches a stale Worker deployment. Only after this
-live check succeeds should the browser check and manual workflow dispatch run.
+`deploy:cloudflare` builds the assets, applies pending D1 migrations to the
+`NABIMD_DB` binding, and only then deploys the Worker. The command stops before
+the Worker deployment if a migration fails, so new code cannot begin using a
+schema that was not applied. It then polls the public route and requires a
+successful response whose `X-Nabi-Build-Sha` exactly matches the deployed
+commit. A missing header catches a route that still bypasses the Worker; a
+different header catches a stale Worker deployment. Only after this live check
+succeeds should the browser check and manual workflow dispatch run.
 
 Before deploying, record the current version with
 `npx wrangler deployments list --config wrangler.jsonc`. If the new Worker code
@@ -80,6 +83,9 @@ production browser check. A version rollback does not prove that route or
 binding changes were restored; for a configuration failure, deploy the last
 known-good repository commit and verify the public route again. Do not retire
 the Vercel project until this rollback path and the Cloudflare check both pass.
+D1 migrations are not reversed by a Worker rollback. Keep schema changes
+backward-compatible with the previous Worker or use a separately reviewed D1
+rollback plan.
 
 ## Alert and recovery
 

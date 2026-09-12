@@ -7,8 +7,10 @@ afterEach(() => {
   vi.unstubAllGlobals()
 })
 
-function createEnv(options: { limited?: boolean } = {}) {
-  const run = vi.fn().mockResolvedValue({ success: true })
+function createEnv(options: { limited?: boolean; databaseError?: Error } = {}) {
+  const run = options.databaseError
+    ? vi.fn().mockRejectedValue(options.databaseError)
+    : vi.fn().mockResolvedValue({ success: true })
   const bind = vi.fn()
   const statement = new TestD1PreparedStatement(bind, run)
   const database = new TestD1Database(statement)
@@ -176,6 +178,29 @@ describe("Cloudflare worker", () => {
     )
   })
 
+  it("returns 503 when the feedback table is unavailable", async () => {
+    const { env } = createEnv({
+      databaseError: new Error("no such table: learner_feedback"),
+    })
+
+    const response = await worker.fetch(
+      feedbackRequest({
+        message: "The last card felt clear.",
+        level: 3,
+        score: 5,
+        total: 6,
+        appRevision: "b".repeat(40),
+        website: "",
+      }),
+      env,
+    )
+
+    expect(response.status).toBe(503)
+    await expect(response.json()).resolves.toEqual({
+      error: "feedback-unavailable",
+    })
+  })
+
   it("rejects cross-origin and rate-limited submissions before D1", async () => {
     const crossOrigin = createEnv()
     const request = feedbackRequest({ message: "Hello" })
@@ -212,5 +237,15 @@ describe("Cloudflare worker", () => {
       "DELETE FROM learner_feedback WHERE expires_at <= ?",
     )
     expect(bind).toHaveBeenCalledWith(1_800_000_000)
+  })
+
+  it("fails scheduled retention when the feedback table is unavailable", async () => {
+    const { env } = createEnv({
+      databaseError: new Error("no such table: learner_feedback"),
+    })
+
+    await expect(
+      worker.scheduled({} as ScheduledController, env),
+    ).rejects.toThrow("no such table: learner_feedback")
   })
 })
