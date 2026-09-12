@@ -3111,6 +3111,10 @@ button:focus-visible,
   .run-summary__work-compare {
     grid-template-columns: minmax(0, 1fr);
   }
+
+  .run-summary__feedback-footer {
+    flex-direction: column;
+  }
 }
 
 .run-summary__sprig {
@@ -3310,6 +3314,102 @@ button:focus-visible,
   align-items: center;
   gap: 1.25rem;
   justify-self: start;
+}
+
+.run-summary__footer {
+  display: grid;
+  gap: 1rem;
+}
+
+.run-summary__feedback {
+  display: grid;
+  gap: 0.65rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--book-line);
+  font-family: var(--sans);
+}
+
+.run-summary__feedback-heading,
+.run-summary__feedback-footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.run-summary__feedback h3,
+.run-summary__feedback p {
+  margin: 0;
+}
+
+.run-summary__feedback h3 {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.run-summary__feedback-heading p,
+.run-summary__feedback-footer p,
+.run-summary__feedback-heading > span,
+.run-summary__feedback-status {
+  color: var(--muted);
+  font-size: 0.7rem;
+  line-height: 1.45;
+}
+
+.run-summary__feedback-heading > span {
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+}
+
+.run-summary__feedback textarea {
+  width: 100%;
+  min-height: 4.5rem;
+  resize: vertical;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--book-line);
+  border-radius: 0.3rem;
+  background: rgb(255 255 255 / 24%);
+  color: var(--ink);
+  font: inherit;
+  line-height: 1.45;
+}
+
+.run-summary__feedback textarea:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.run-summary__feedback-footer p {
+  max-width: 42rem;
+}
+
+.run-summary__feedback-submit {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.run-summary__feedback-submit:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.run-summary__feedback-status {
+  color: var(--ink);
+}
+
+.run-summary__feedback--sent {
+  min-height: 7rem;
+  align-content: center;
+}
+
+.run-summary__feedback-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .run-summary__practice-again {

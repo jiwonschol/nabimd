@@ -989,7 +989,7 @@ describe("App", () => {
     expect(practiceAgain).toBeVisible()
     expect(screen.getByRole("button", { name: "Change level" })).toBeVisible()
     // The finished work is handed back on the page itself: no viewer to open,
-    // nothing to type into, and a clean run carries no correction marks.
+    // and the optional team note is the only typing surface.
     expect(screen.getByLabelText("Your work")).toBeVisible()
     expect(screen.getByRole("article")).toHaveAccessibleName(
       `Completed exercise 1 of 5: ${firstCompletedProblem.title}`,
@@ -998,7 +998,11 @@ describe("App", () => {
       firstCompletedProblem.prompt,
     )
     expect(screen.queryByRole("dialog")).toBeNull()
-    expect(screen.queryByRole("textbox")).toBeNull()
+    expect(
+      screen.getByRole("textbox", {
+        name: "Bug report, improvement, or impression",
+      }),
+    ).toBeVisible()
     expect(screen.queryByLabelText(/^Correction /)).toBeNull()
     expect(
       screen.getByText("A clean page — nothing to correct."),

@@ -19,7 +19,7 @@
     "prebuild": "npm run third-party-notices:generate",
     "build": "tsc -b && vite build",
     "build:cloudflare": "NABI_BASE_PATH=/nabimd/ npm run build",
-    "deploy:cloudflare": "npm run build:cloudflare && wrangler deploy --var NABI_BUILD_SHA:${NABI_BUILD_SHA:?Set NABI_BUILD_SHA} && EXPECTED_SHA=${NABI_BUILD_SHA} npm run verify:production-deployment",
+    "deploy:cloudflare": "NABI_BUILD_SHA=${NABI_BUILD_SHA:?Set NABI_BUILD_SHA} npm run build:cloudflare && wrangler d1 migrations apply NABIMD_DB --remote && wrangler deploy --var NABI_BUILD_SHA:${NABI_BUILD_SHA} && EXPECTED_SHA=${NABI_BUILD_SHA} npm run verify:production-deployment",
     "verify:production-deployment": "node scripts/verifyCloudflareDeployment.mjs",
     "bank:generate": "node scripts/problem-bank/normalize.mjs",
     "bank:generate:check": "node scripts/problem-bank/normalize.mjs --check",

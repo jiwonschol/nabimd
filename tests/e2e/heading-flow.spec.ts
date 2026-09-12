@@ -921,6 +921,14 @@ test("uses the same card without horizontal overflow at phone width", async ({
 test("completes a run and reveals full documents only from Summary", async ({
   page,
 }) => {
+  let submittedFeedback: Record<string, unknown> | null = null
+  await page.route("**/api/feedback", async (route) => {
+    submittedFeedback = route.request().postDataJSON() as Record<
+      string,
+      unknown
+    >
+    await route.fulfill({ status: 201, json: { accepted: true } })
+  })
   await page.setViewportSize({ width: 1280, height: 800 })
   await resetToLanding(page)
   await page.keyboard.press("Tab")
@@ -948,7 +956,11 @@ test("completes a run and reveals full documents only from Summary", async ({
     }),
   ).toEqual({ backgroundColor: "rgba(0, 0, 0, 0)", outlineStyle: "none" })
   await expect(page.getByLabel("Score")).toContainText("5 / 5")
-  await expect(page.getByRole("textbox")).toHaveCount(0)
+  await expect(
+    page.getByRole("textbox", {
+      name: "Bug report, improvement, or impression",
+    }),
+  ).toBeVisible()
   await expect(work.getByRole("article")).toHaveCount(1)
   await expect(work.getByRole("article")).toHaveAccessibleName(
     /^Completed exercise 1 of 5: /,
@@ -972,6 +984,12 @@ test("completes a run and reveals full documents only from Summary", async ({
       page
         .getByRole("heading", { name: "Well done." })
         .evaluate((element) => getComputedStyle(element).opacity),
+    )
+    .toBe("1")
+  const feedbackForm = page.locator("form.run-summary__feedback")
+  await expect
+    .poll(() =>
+      feedbackForm.evaluate((element) => getComputedStyle(element).opacity),
     )
     .toBe("1")
 
@@ -1010,7 +1028,24 @@ test("completes a run and reveals full documents only from Summary", async ({
   const teacherNote = page.getByRole("region", { name: "Well done." })
   await teacherNote.scrollIntoViewIfNeeded()
   await expect(teacherNote).toBeVisible()
+  await feedbackForm.scrollIntoViewIfNeeded()
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth),
   ).toBeLessThanOrEqual(390)
+
+  await page
+    .getByRole("textbox", {
+      name: "Bug report, improvement, or impression",
+    })
+    .fill("The last card felt clear.")
+  await page.getByRole("button", { name: "Send note" }).click()
+  await expect(page.getByRole("heading", { name: "Thank you." })).toBeVisible()
+  expect(submittedFeedback).toEqual({
+    message: "The last card felt clear.",
+    level: 1,
+    score: 5,
+    total: 5,
+    appRevision: expect.any(String),
+    website: "",
+  })
 })
