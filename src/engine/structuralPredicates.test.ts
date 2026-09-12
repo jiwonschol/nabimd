@@ -1104,6 +1104,18 @@ describe("structural match predicates", () => {
     expect(
       evaluateProblem(link, '[Guide](/guide "title ]()")'),
     ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(image, "![A blue umbrella][photo]\n\n[photo]: /photos/umbrella.jpg"),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(link, "[Guide][guide]\n\n[guide]: /guide"),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(image, "![A blue umbrella][photo]\n\n[photo]: <>"),
+    ).toMatchObject({ status: "fail", feedbackId: "image-address" })
+    expect(
+      evaluateProblem(link, "[Guide][guide]\n\n[guide]: <>"),
+    ).toMatchObject({ status: "fail", feedbackId: "link-address" })
   })
 
   it("can require meaningful image alt text", () => {

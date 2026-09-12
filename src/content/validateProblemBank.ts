@@ -647,43 +647,43 @@ function validConvention(problem: GradableProblem): boolean {
 export function targetUsesTabAsMarkerWhitespace(target: string): boolean {
   let found = false
   const tree = parseMarkdownSource(target)
-  const literalPayloadRanges: { from: number; to: number }[] = []
-  const collectLiteralPayloadRanges = (node: Nodes) => {
-    const from = node.position?.start.offset
-    const to = node.position?.end.offset
-    if (
-      (node.type === "code" || node.type === "html") &&
-      from !== undefined &&
-      to !== undefined
-    ) {
-      literalPayloadRanges.push({ from, to })
+  const quoteDepthByLine = new Map<number, number>()
+  const collectParserRanges = (node: Nodes, quoteDepth = 0) => {
+    const nodeQuoteDepth = quoteDepth + (node.type === "blockquote" ? 1 : 0)
+    if (node.type === "blockquote" && node.position) {
+      for (
+        let line = node.position.start.line;
+        line <= node.position.end.line;
+        line += 1
+      ) {
+        quoteDepthByLine.set(
+          line,
+          Math.max(quoteDepthByLine.get(line) ?? 0, nodeQuoteDepth),
+        )
+      }
     }
     if ("children" in node) {
-      ;(node as Parents).children.forEach(collectLiteralPayloadRanges)
+      ;(node as Parents).children.forEach((child) =>
+        collectParserRanges(child, nodeQuoteDepth),
+      )
     }
   }
-  collectLiteralPayloadRanges(tree)
-  const overlapsLiteralPayload = (from: number, to: number) =>
-    literalPayloadRanges.some((range) => from < range.to && to > range.from)
+  collectParserRanges(tree)
+
+  for (const [index, line] of target.split("\n").entries()) {
+    let remainder = line
+    const quoteDepth = quoteDepthByLine.get(index + 1) ?? 0
+    for (let depth = 0; depth < quoteDepth; depth += 1) {
+      const marker = remainder.match(/^ {0,3}>([ \t]?)/)
+      if (!marker) break
+      if (marker[1] === "\t") return true
+      remainder = remainder.slice(marker[0].length)
+    }
+  }
+
   const visit = (node: Nodes) => {
     const offset = node.position?.start.offset
     if (offset !== undefined) {
-      if (node.type === "blockquote") {
-        const end = node.position?.end.offset ?? target.length
-        let lineFrom = offset
-        for (const line of target.slice(offset, end).split("\n")) {
-          const lineTo = lineFrom + line.length
-          if (
-            /^ {0,3}>\t/.test(line) ||
-            (!overlapsLiteralPayload(lineFrom, lineTo) &&
-              /^(?: {0,3}>[ \t]?)* {0,3}>\t/.test(line))
-          ) {
-            found = true
-            break
-          }
-          lineFrom = lineTo + 1
-        }
-      }
       const lineEnd = target.indexOf("\n", offset)
       const source = target.slice(offset, lineEnd < 0 ? target.length : lineEnd)
       const nodeEnd = node.position?.end.offset

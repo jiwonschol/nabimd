@@ -4,6 +4,7 @@ import type {
   Definition,
   Heading,
   Image,
+  ImageReference,
   InlineCode,
   Link,
   LinkReference,
@@ -122,13 +123,20 @@ export function countInlineNodes(
   requireNonemptyContent = false,
   requireNonemptyDestination = false,
 ) {
+  const definitions = requireNonemptyDestination
+    ? firstDefinitionsByIdentifier(context)
+    : undefined
   return descendants(nodesInScope(context, scope) as AstNode[]).filter(
     (node) =>
       (nodeTypesByInline[inline] as readonly AstNode["type"][]).includes(node.type) &&
       (!requireNonemptyContent ||
         nodeHasMeaningfulInlineContent(node, context.source)) &&
       (!requireNonemptyDestination ||
-        nodeHasMeaningfulInlineDestination(node, context.source)),
+        nodeHasMeaningfulInlineDestination(
+          node,
+          context.source,
+          definitions,
+        )),
   ).length
 }
 
@@ -145,7 +153,20 @@ function nodeHasMeaningfulInlineContent(
 function nodeHasMeaningfulInlineDestination(
   node: AstNode,
   source: string,
+  definitions: DefinitionIndex | undefined,
 ): boolean {
+  if (node.type === "linkReference" || node.type === "imageReference") {
+    const definition = definitions?.get(
+      (node as LinkReference | ImageReference).identifier,
+    )
+    return Boolean(
+      definition &&
+      hasMeaningfulDestination(
+        definition.url,
+        definitionDestinationSource(definition, source),
+      ),
+    )
+  }
   if (node.type !== "link" && node.type !== "image") return false
   const destination = (node as Link | Image).url
   const rawDestination =

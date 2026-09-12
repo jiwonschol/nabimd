@@ -161,6 +161,9 @@ describe("schema-v2 problem-bank validation", () => {
     expect(
       targetUsesTabAsMarkerWhitespace("> ~~~text\n> >\tcode\n> ~~~"),
     ).toBe(false)
+    expect(
+      targetUsesTabAsMarkerWhitespace("> > ~~~\n> >\tcode\n> > ~~~"),
+    ).toBe(true)
     expect(targetUsesTabAsMarkerWhitespace("> ~~~\n>\tcode\n> ~~~")).toBe(true)
   })
 
