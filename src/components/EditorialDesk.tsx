@@ -6,7 +6,7 @@ import {
   useRef,
 } from "react"
 import type { useLearningSession } from "../session/useLearningSession"
-import { createRunProblemIds } from "../content/entryChoices"
+import { createRunProblemIds, getEntryChoice } from "../content/entryChoices"
 import { getProblem } from "../content/problemBank"
 import { CardFirstPractice } from "./CardFirstPractice"
 import { getElapsedMs } from "./ElapsedTime"
@@ -185,6 +185,7 @@ export function EditorialDesk({
         <RunSummary
           completedPages={completedPages}
           elapsedMs={elapsedMs}
+          level={getEntryChoice(session.entryId!).level}
           onChangeLevel={changeLevel}
           onPracticeAgain={practiceAgain}
           score={score}

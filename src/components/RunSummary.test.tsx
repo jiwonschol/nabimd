@@ -88,8 +88,14 @@ describe("RunSummary as a teacher's return", () => {
     expect(
       screen.queryByRole("button", { name: /completed pages/i }),
     ).toBeNull()
-    // Review only: nothing on this page takes typing.
-    expect(screen.queryAllByRole("textbox")).toHaveLength(0)
+    // The work itself stays read-only; the only typing surface is the optional
+    // note to the team.
+    expect(screen.getAllByRole("textbox")).toHaveLength(1)
+    expect(
+      screen.getByRole("textbox", {
+        name: "Bug report, improvement, or impression",
+      }),
+    ).toBeVisible()
     expect(
       screen.getByRole("article", {
         name: "Completed exercise 1 of 2: Grocery list",
