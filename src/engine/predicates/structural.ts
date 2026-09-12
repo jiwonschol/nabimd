@@ -144,7 +144,7 @@ function nodeHasMeaningfulInlineContent(
   node: AstNode,
   source: string,
 ): boolean {
-  if (node.type === "image") {
+  if (node.type === "image" || node.type === "imageReference") {
     return hasMeaningfulParsedCharacters(node.alt, rawImageAlt(node, source))
   }
   return nodeHasVisibleLinkLabel(node, source)

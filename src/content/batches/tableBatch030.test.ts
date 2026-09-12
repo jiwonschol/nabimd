@@ -150,7 +150,7 @@ describe("Level 1 table batch 030", () => {
     ).toEqual(tableBatch030Problems.map((problem) => problem.id).sort())
   })
 
-  it("keeps all twelve IDs in publication, runtime, turns, and Try another reach", () => {
+  it("keeps all twelve IDs in publication, runtime, and Try another reach", () => {
     const candidateIds = new Set(tableBatch030Problems.map((problem) => problem.id))
     const projectedBank = [...problemBank, ...tableBatch030Problems]
     const runtimeIds = new Set(
@@ -159,19 +159,6 @@ describe("Level 1 table batch 030", () => {
         .filter((problem) => candidateIds.has(problem.id))
         .map((problem) => problem.id),
     )
-    const scheduledIds = new Set<string>()
-    for (let seed = 0; seed < 40; seed += 1) {
-      for (let run = 0; run < 10; run += 1) {
-        for (const id of createRunProblemIdsForBank(
-          "level-1",
-          run,
-          projectedBank,
-          seed,
-        )) {
-          if (candidateIds.has(id)) scheduledIds.add(id)
-        }
-      }
-    }
     const first = tableBatch030Problems[0]!
     const reachableIds = new Set(
       tableBatch030Problems
@@ -185,9 +172,37 @@ describe("Level 1 table batch 030", () => {
 
     expect(candidateIds.size).toBe(12)
     expect(runtimeIds).toEqual(candidateIds)
-    expect(scheduledIds).toEqual(candidateIds)
     expect(reachableIds).toEqual(candidateIds)
   })
+
+  it.each([
+    { startSeed: 0, endSeed: 20 },
+    { startSeed: 20, endSeed: 40 },
+  ])(
+    "keeps all twelve IDs in turns for seeds $startSeed through $endSeed",
+    ({ startSeed, endSeed }) => {
+      const candidateIds = new Set(
+        tableBatch030Problems.map((problem) => problem.id),
+      )
+      const projectedBank = [...problemBank, ...tableBatch030Problems]
+      const scheduledIds = new Set<string>()
+
+      for (let seed = startSeed; seed < endSeed; seed += 1) {
+        for (let run = 0; run < 10; run += 1) {
+          for (const id of createRunProblemIdsForBank(
+            "level-1",
+            run,
+            projectedBank,
+            seed,
+          )) {
+            if (candidateIds.has(id)) scheduledIds.add(id)
+          }
+        }
+      }
+
+      expect(scheduledIds).toEqual(candidateIds)
+    },
+  )
 
   it("binds every fixture role and direct evidence for the table check", () => {
     expect(tableBatch030Fixtures).toHaveLength(192)

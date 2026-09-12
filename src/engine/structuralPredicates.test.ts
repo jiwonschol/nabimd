@@ -1133,6 +1133,27 @@ describe("structural match predicates", () => {
     expect(
       evaluateProblem(image, "![A blue umbrella](/photos/umbrella.jpg)"),
     ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(
+        image,
+        "![A blue umbrella][photo]\n\n[photo]: /photos/umbrella.jpg",
+      ),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(image, "![][photo]\n\n[photo]: /photos/umbrella.jpg"),
+    ).toMatchObject({
+      status: "fail",
+      feedbackId: "image-alt",
+    })
+    expect(
+      evaluateProblem(
+        image,
+        "![\u200b][photo]\n\n[photo]: /photos/umbrella.jpg",
+      ),
+    ).toMatchObject({
+      status: "fail",
+      feedbackId: "image-alt",
+    })
     expect(evaluateProblem(image, "![](/photos/umbrella.jpg)")).toMatchObject({
       status: "fail",
       feedbackId: "image-alt",
