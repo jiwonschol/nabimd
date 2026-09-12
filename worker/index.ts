@@ -11,7 +11,7 @@ export type WorkerEnv = Pick<
 const feedbackPath = `${basePath}/api/feedback`
 const maxFeedbackBytes = 4_096
 const maxFeedbackLength = 500
-const retentionSeconds = 90 * 24 * 60 * 60
+const feedbackExpirySeconds = 89 * 24 * 60 * 60
 
 type FeedbackPayload = {
   message: string
@@ -164,7 +164,7 @@ async function handleFeedback(
         payload.total,
         payload.appRevision,
         createdAt,
-        createdAt + retentionSeconds,
+        createdAt + feedbackExpirySeconds,
       )
       .run()
   } catch {

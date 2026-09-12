@@ -63,4 +63,9 @@ describe("SummaryFeedbackForm", () => {
       }),
     ).toHaveAttribute("maxlength", "500")
   })
+
+  it("states the maximum feedback retention", () => {
+    render(<SummaryFeedbackForm level={1} score={6} total={6} />)
+    expect(screen.getByText(/for up to 90 days/)).toBeVisible()
+  })
 })

@@ -145,9 +145,13 @@ describe("Cloudflare worker", () => {
     await expect(response.text()).resolves.toBe("app")
   })
 
-  it("stores only the approved feedback fields with a 90-day expiry", async () => {
+  it("expires feedback after 89 days so daily cleanup stays under 90 days", async () => {
     const { env, bind, prepare } = createEnv()
-    vi.spyOn(Date, "now").mockReturnValue(1_800_000_000_000)
+    const daySeconds = 24 * 60 * 60
+    const createdAt = Date.UTC(2030, 0, 1, 3, 0, 1) / 1_000
+    const expiresAt = createdAt + 89 * daySeconds
+    const nextCleanupAt = Date.UTC(2030, 3, 1, 3, 0, 0) / 1_000
+    vi.spyOn(Date, "now").mockReturnValue(createdAt * 1_000)
     vi.stubGlobal("crypto", { randomUUID: () => "feedback-id" })
 
     const response = await worker.fetch(
@@ -173,9 +177,11 @@ describe("Cloudflare worker", () => {
       5,
       6,
       "b".repeat(40),
-      1_800_000_000,
-      1_807_776_000,
+      createdAt,
+      expiresAt,
     )
+    expect(expiresAt).toBeLessThan(nextCleanupAt)
+    expect(nextCleanupAt - createdAt).toBeLessThan(90 * daySeconds)
   })
 
   it("returns 503 when the feedback table is unavailable", async () => {

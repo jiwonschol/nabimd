@@ -106,4 +106,8 @@ learner input, set analytics identifiers, or send application data to an
 external monitoring vendor. Failure artifacts contain only the synthetic
 browser session and are retained in GitHub Actions for seven days.
 
+Summary feedback rows expire after 89 days. The daily 03:00 UTC cleanup removes
+them by the next run, keeping the user-facing maximum below 90 days even for a
+note created immediately after cleanup.
+
 Sentry and similar client instrumentation remain deliberately out of scope.

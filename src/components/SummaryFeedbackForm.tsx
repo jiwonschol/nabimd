@@ -92,9 +92,9 @@ export function SummaryFeedbackForm({
 
       <div className="run-summary__feedback-footer">
         <p>
-          We keep your note, level, score, and app revision for 90 days. Your
-          answer and account are not sent, and your IP is not saved with the
-          note.
+          We keep your note, level, score, and app revision for up to 90 days.
+          Your answer and account are not sent, and your IP is not saved with
+          the note.
         </p>
         <button
           className="text-button run-summary__feedback-submit"

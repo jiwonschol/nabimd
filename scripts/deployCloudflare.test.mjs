@@ -4,6 +4,9 @@ import { describe, expect, it } from "vitest"
 const packageJson = JSON.parse(
   await readFile("package.json", "utf8"),
 )
+const wranglerConfig = JSON.parse(
+  await readFile("wrangler.jsonc", "utf8"),
+)
 
 describe("Cloudflare deployment", () => {
   it("applies the feedback database migration before deploying its consumers", () => {
@@ -22,5 +25,9 @@ describe("Cloudflare deployment", () => {
     expect(migrate).toBeGreaterThanOrEqual(0)
     expect(migrate).toBeGreaterThan(build)
     expect(deploy).toBeGreaterThan(migrate)
+  })
+
+  it("keeps the daily feedback cleanup at 03:00 UTC", () => {
+    expect(wranglerConfig.triggers.crons).toContain("0 3 * * *")
   })
 })
