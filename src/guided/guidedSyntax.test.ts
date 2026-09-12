@@ -72,6 +72,11 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(terms("~~gone~~ here")).toEqual(["strikethrough text"])
   })
 
+  it("keeps two thematic breaks named as breaks instead of a Setext heading", () => {
+    const checkpoint = deriveSyntaxCheckpoints("---\n\n---", "")[0]!
+    expect(syntaxCheckpointTerms(checkpoint)).toEqual(["section break"])
+  })
+
   it.each([
     ["> - plain", ["block quote", "bullet item"], ["> ", "- "]],
     ["> 1. step", ["block quote", "numbered step"], ["> ", "1. "]],
@@ -347,6 +352,11 @@ describe("deriveSyntaxCheckpoints", () => {
 
     const setext = deriveSyntaxCheckpoints("Title\n---", "")[0]!
     expect(syntaxGroupTermAt(setext, 0)).toBe("level 2 Setext heading")
+
+    const formattedSetext = deriveSyntaxCheckpoints("*Heading*\n---", "")[0]!
+    expect(syntaxGroupTermAt(formattedSetext, 2)).toBe(
+      "level 2 Setext heading",
+    )
   })
 
   it("keeps every line of one quote on a single card", () => {
