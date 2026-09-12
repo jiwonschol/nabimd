@@ -974,6 +974,7 @@ describe("App", () => {
 
   it("completes a run with one primary replay choice", async () => {
     const { user } = await openLevel(1)
+    const firstCompletedProblem = currentProblem()
 
     for (let step = 0; step < 5; step += 1) {
       completeProblemViaCard()
@@ -990,6 +991,12 @@ describe("App", () => {
     // The finished work is handed back on the page itself: no viewer to open,
     // nothing to type into, and a clean run carries no correction marks.
     expect(screen.getByLabelText("Your work")).toBeVisible()
+    expect(screen.getByRole("article")).toHaveAccessibleName(
+      `Completed exercise 1 of 5: ${firstCompletedProblem.title}`,
+    )
+    expect(screen.getByRole("article")).not.toHaveAccessibleName(
+      firstCompletedProblem.prompt,
+    )
     expect(screen.queryByRole("dialog")).toBeNull()
     expect(screen.queryByRole("textbox")).toBeNull()
     expect(screen.queryByLabelText(/^Correction /)).toBeNull()

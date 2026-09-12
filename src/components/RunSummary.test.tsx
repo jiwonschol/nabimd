@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react"
+import { fireEvent, render, screen, within } from "@testing-library/react"
 import { StrictMode } from "react"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import type { SyntaxMistake } from "../guided/guidedSyntax"
@@ -66,12 +66,23 @@ describe("RunSummary as a teacher's return", () => {
     vi.unstubAllGlobals()
   })
 
-  it("shows the finished work directly, with no viewer to open", () => {
+  it("shows rendered work and its Markdown together, one completed exercise at a time", () => {
     renderSummary()
 
     const work = screen.getByLabelText("Your work")
     expect(work).toHaveTextContent("Grocery list")
-    expect(work).toHaveTextContent("Paper boat")
+    expect(
+      screen.getByRole("region", { name: "Rendered document" }),
+    ).toHaveTextContent("Grocery list")
+    expect(
+      screen.getByRole("region", { name: "Rendered document" }),
+    ).toHaveAttribute("tabindex", "0")
+    expect(
+      screen.getByRole("region", { name: "Markdown source" }),
+    ).toHaveTextContent("# Grocery list")
+    expect(
+      screen.getByRole("region", { name: "Markdown source" }),
+    ).toHaveAttribute("tabindex", "0")
     // The completed pages are the page now, not a dialog behind a button.
     expect(screen.queryByRole("dialog")).toBeNull()
     expect(
@@ -80,18 +91,61 @@ describe("RunSummary as a teacher's return", () => {
     // Review only: nothing on this page takes typing.
     expect(screen.queryAllByRole("textbox")).toHaveLength(0)
     expect(
-      screen.getByRole("article", { name: "Grocery list" }),
+      screen.getByRole("article", {
+        name: "Completed exercise 1 of 2: Grocery list",
+      }),
+    ).toBeVisible()
+    expect(screen.queryByText("Paper boat")).toBeNull()
+
+    fireEvent.click(
+      screen.getByRole("button", { name: "Next completed exercise" }),
+    )
+    expect(
+      screen.getByRole("article", {
+        name: "Completed exercise 2 of 2: Paper boat",
+      }),
     ).toBeVisible()
     expect(
-      screen.getByRole("article", { name: "Paper boat" }),
-    ).toBeVisible()
+      screen.getByRole("region", { name: "Markdown source" }),
+    ).toHaveTextContent("*Paper boat*")
+  })
+
+  it("waits for the page turn before playing the Summary cue", () => {
+    const { rerender } = render(
+      <RunSummary
+        elapsedMs={1_000}
+        motionReady={false}
+        onChangeLevel={vi.fn()}
+        onPracticeAgain={vi.fn()}
+        score={1}
+        total={1}
+      />,
+    )
+
+    expect(playFeedbackSound).not.toHaveBeenCalled()
+
+    rerender(
+      <RunSummary
+        elapsedMs={1_000}
+        motionReady
+        onChangeLevel={vi.fn()}
+        onPracticeAgain={vi.fn()}
+        score={1}
+        total={1}
+      />,
+    )
+
+    expect(playFeedbackSound).toHaveBeenCalledOnce()
+    expect(playFeedbackSound).toHaveBeenCalledWith("summary")
   })
 
   it("marks the missed line and prints the matching numbered note", () => {
     renderSummary([mistake()])
 
     // The mark sits on the line that was missed — the heading, not the body.
-    const heading = screen.getByRole("heading", { name: /Grocery list/ })
+    const heading = within(
+      screen.getByRole("region", { name: "Rendered document" }),
+    ).getByRole("heading", { name: /Grocery list/ })
     expect(heading).toHaveAttribute("data-corrected", "true")
     expect(screen.getByText("Correction 1")).toBeVisible()
 
@@ -106,6 +160,48 @@ describe("RunSummary as a teacher's return", () => {
     renderSummary([mistake()])
 
     expect(document.querySelectorAll("[data-corrected]")).toHaveLength(1)
+  })
+
+  it("keeps keyboard focus on completed-exercise navigation", () => {
+    renderSummary()
+    const next = screen.getByRole("button", {
+      name: "Next completed exercise",
+    })
+    next.focus()
+
+    fireEvent.click(next)
+
+    expect(next).toHaveFocus()
+    expect(screen.getByRole("status")).toHaveTextContent(
+      "Showing completed exercise 2 of 2: Paper boat",
+    )
+    const previous = screen.getByRole("button", {
+      name: "Previous completed exercise",
+    })
+    previous.focus()
+    fireEvent.click(previous)
+    expect(previous).toHaveFocus()
+  })
+
+  it("starts both review panes at the top when changing exercises", () => {
+    renderSummary()
+    const rendered = screen.getByRole("region", { name: "Rendered document" })
+    const source = screen.getByRole("region", { name: "Markdown source" })
+    rendered.scrollTop = 180
+    source.scrollTop = 240
+
+    fireEvent.click(
+      screen.getByRole("button", { name: "Next completed exercise" }),
+    )
+
+    const nextRendered = screen.getByRole("region", {
+      name: "Rendered document",
+    })
+    const nextSource = screen.getByRole("region", { name: "Markdown source" })
+    expect(nextRendered).not.toBe(rendered)
+    expect(nextSource).not.toBe(source)
+    expect(nextRendered.scrollTop).toBe(0)
+    expect(nextSource.scrollTop).toBe(0)
   })
 
   it("numbers corrections down the page rather than by when they happened", () => {
@@ -124,6 +220,9 @@ describe("RunSummary as a teacher's return", () => {
     expect(notes[0]).toHaveTextContent("Level 1 heading needs these marks.")
     expect(notes[1]).toHaveTextContent("Italic text needs these marks.")
     expect(screen.getByText("Correction 1")).toBeVisible()
+    fireEvent.click(
+      screen.getByRole("button", { name: "Next completed exercise" }),
+    )
     expect(screen.getByText("Correction 2")).toBeVisible()
   })
 
@@ -166,12 +265,27 @@ describe("RunSummary as a teacher's return", () => {
     renderSummary()
 
     const replay = screen.getByRole("button", { name: "Practice again" })
-    expect(screen.getByRole("heading", { name: "Well done." })).toHaveFocus()
+    const workTitle = screen.getByRole("heading", {
+      level: 3,
+      name: "Grocery list",
+    })
+    const next = screen.getByRole("button", {
+      name: "Next completed exercise",
+    })
+    expect(workTitle).toHaveFocus()
+    expect(workTitle).toHaveAttribute("data-quiet-focus", "true")
+    expect(workTitle.compareDocumentPosition(next)).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
+    )
     expect(replay).not.toHaveFocus()
     expect(replay.parentElement).toHaveClass(
       "summary-ink",
       "summary-ink--actions",
     )
+
+    fireEvent.blur(workTitle)
+    fireEvent.focus(workTitle)
+    expect(workTitle).not.toHaveAttribute("data-quiet-focus")
   })
 
   it("runs both quiet actions", () => {
@@ -228,7 +342,9 @@ describe("RunSummary as a teacher's return", () => {
 
     renderSummary()
 
-    expect(screen.getByRole("heading", { name: "Well done." })).toHaveFocus()
+    expect(
+      screen.getByRole("heading", { level: 3, name: "Grocery list" }),
+    ).toHaveFocus()
     expect(
       screen.getByRole("button", { name: "Practice again" }),
     ).not.toHaveFocus()

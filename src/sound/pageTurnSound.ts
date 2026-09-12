@@ -1,10 +1,29 @@
-import { readSoundMuted, SOUND_VOLUME } from "./feedbackSound"
+import {
+  readSoundMuted,
+  SOUND_VOLUME,
+  subscribeSoundMuted,
+} from "./feedbackSound"
 import pageTurnSoundAsset from "./nabi-page-turn.mp3?url"
 
 export const PAGE_TURN_SOUND_ASSET = pageTurnSoundAsset
 
 let pageTurnAudio: HTMLAudioElement | null = null
 let pageTurnUnlocked = false
+let pageTurnPriming: Promise<void> | null = null
+
+subscribeSoundMuted((muted) => {
+  if (!pageTurnAudio) return
+  pageTurnAudio.muted = muted || pageTurnPriming !== null
+  if (muted) {
+    pageTurnAudio.pause()
+    pageTurnAudio.currentTime = 0
+  } else if (!pageTurnUnlocked && pageTurnPriming === null) {
+    // The sound toggle is itself a user gesture. If muting aborted the first
+    // browser unlock attempt, use this later gesture to make the channel
+    // retryable instead of leaving Summary turns silent for the whole run.
+    playPageTurnAudio(true, true)
+  }
+})
 
 function getPageTurnAudio(): HTMLAudioElement | null {
   if (pageTurnAudio) return pageTurnAudio
@@ -16,28 +35,35 @@ function getPageTurnAudio(): HTMLAudioElement | null {
   return pageTurnAudio
 }
 
-function playPageTurnAudio(unlockOnSuccess: boolean) {
+function playPageTurnAudio(unlockOnSuccess: boolean, primeSilently = false) {
   const muted = readSoundMuted()
   if (muted && !unlockOnSuccess) return
 
   const audio = getPageTurnAudio()
   if (!audio) return
 
-  audio.muted = muted
+  audio.muted = muted || primeSilently
   audio.currentTime = 0
   try {
     const playback = Promise.resolve(audio.play())
     if (unlockOnSuccess) {
+      pageTurnPriming = playback
       void playback.then(
         () => {
+          if (pageTurnPriming !== playback) return
+          pageTurnPriming = null
           pageTurnUnlocked = true
-          if (muted) {
+          if (muted || primeSilently) {
             audio.pause()
             audio.currentTime = 0
-            audio.muted = readSoundMuted()
           }
+          audio.muted = readSoundMuted()
         },
-        () => {},
+        () => {
+          if (pageTurnPriming !== playback) return
+          pageTurnPriming = null
+          audio.muted = readSoundMuted()
+        },
       )
     } else {
       void playback.catch(() => {})
@@ -65,4 +91,5 @@ export function playPageTurnSound() {
 export function __resetPageTurnSoundForTesting() {
   pageTurnAudio = null
   pageTurnUnlocked = false
+  pageTurnPriming = null
 }
