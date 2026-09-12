@@ -9,7 +9,10 @@ import type {
   ProblemFixture,
   VocabularyProfile,
 } from "./types"
-import { validateProblemBank } from "./validateProblemBank"
+import {
+  targetUsesTabAsMarkerWhitespace,
+  validateProblemBank,
+} from "./validateProblemBank"
 
 const requiredRoles: readonly FixtureRole[] = [
   "canonical",
@@ -127,6 +130,66 @@ describe("schema-v2 problem-bank validation", () => {
     expect(validate([invalid])).toContain(
       "Problem literal-newline-escape teaching howTo contains a literal \\n escape",
     )
+  })
+
+  it.each([
+    ">\tdeep",
+    "-\titem",
+    "- \titem",
+    "#\tTitle",
+    "# \tTitle",
+    "1.\tstep",
+    "1. \tstep",
+    "-\t-\t-",
+    "---\t ",
+  ])(
+    "rejects an invisible tab in target marker whitespace: %s",
+    (target) => {
+      const invalid = problem("tab-marker", { target })
+      expect(targetUsesTabAsMarkerWhitespace(target)).toBe(true)
+      expect(validate([invalid])).toContain(
+        "Problem tab-marker target uses a tab as Markdown marker whitespace",
+      )
+    },
+  )
+
+  it("checks parser markers but ignores marker-like text inside fenced code", () => {
+    expect(targetUsesTabAsMarkerWhitespace("> \t-\titem")).toBe(true)
+    expect(
+      targetUsesTabAsMarkerWhitespace("```text\n-\titem\n#\tTitle\n```"),
+    ).toBe(false)
+    expect(
+      targetUsesTabAsMarkerWhitespace("> ~~~text\n> >\tcode\n> ~~~"),
+    ).toBe(false)
+    expect(
+      targetUsesTabAsMarkerWhitespace("> > ~~~\n> >\tcode\n> > ~~~"),
+    ).toBe(true)
+    expect(targetUsesTabAsMarkerWhitespace("> ~~~\n>\tcode\n> ~~~")).toBe(true)
+  })
+
+  it("checks outer quote markers but ignores marker-like text inside raw HTML", () => {
+    expect(
+      targetUsesTabAsMarkerWhitespace("> <div>\n> >\tfoo\n> </div>"),
+    ).toBe(false)
+    expect(targetUsesTabAsMarkerWhitespace("> <div>\n>\tfoo\n> </div>")).toBe(true)
+  })
+
+  it("checks every parser-recognized line of a multiline quote", () => {
+    expect(targetUsesTabAsMarkerWhitespace("> first\n>\tsecond")).toBe(true)
+    expect(targetUsesTabAsMarkerWhitespace("> first\n  >\tsecond")).toBe(true)
+  })
+
+  it.each(["Title\n---\t", "Title\n=\t"])(
+    "checks tab whitespace on a Setext underline: %s",
+    (target) => {
+      expect(targetUsesTabAsMarkerWhitespace(target)).toBe(true)
+    },
+  )
+
+  it("does not mistake prose or layout tabs for marker whitespace", () => {
+    for (const target of ["Word\tword", "    code\tword", "> text\tword"]) {
+      expect(targetUsesTabAsMarkerWhitespace(target), target).toBe(false)
+    }
   })
 
   it.each([

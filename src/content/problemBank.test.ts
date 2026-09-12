@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 import runtimeProjections from "../../curriculum/problem-bank/runtime-projections.generated.json"
 import tracker from "../../curriculum/problem-bank/tracker.generated.json"
+import { targetUsesTabAsMarkerWhitespace } from "./validateProblemBank"
 import { blockquoteBatch006Fixtures } from "./batches/blockquoteBatch006Fixtures"
 import { advancedDocumentBatch017Fixtures } from "./batches/advancedDocumentBatch017Fixtures"
 import { advancedDocumentReplacementBatch018Fixtures } from "./batches/advancedDocumentReplacementBatch018Fixtures"
@@ -189,6 +190,22 @@ describe("compiled problem bank", () => {
     expect(problemBank.map(withoutStarterText)).toEqual(
       generatedProblems.map(withoutStarterText),
     )
+  })
+
+  it("keeps invisible tab-marker targets unreachable in the served bank", () => {
+    const servedProblems = [
+      ...runtimeProjections.levels[1],
+      ...runtimeProjections.levels[2],
+      ...runtimeProjections.levels[3],
+      ...runtimeProjections.levels[4],
+      ...runtimeProjections.levels[5],
+    ]
+    expect(servedProblems).toHaveLength(396)
+    expect(
+      servedProblems.filter((problem) =>
+        targetUsesTabAsMarkerWhitespace(problem.target),
+      ),
+    ).toEqual([])
   })
 
   it("pre-fills every problem with deterministic visible prose and exact line topology", () => {

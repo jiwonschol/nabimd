@@ -203,8 +203,8 @@ describe("deriveSyntaxCheckpoints", () => {
       )
     const cards = deriveSyntaxCheckpoints(">\tplain\n> > nested", "")
     expect(cards).toHaveLength(2)
-    // The plain line keeps the tab it always had — that is #204's axis.
-    expect(blanks(cards[0]!)).toEqual([">\t"])
+    // The tab stays locked instead of becoming an invisible answer.
+    expect(blanks(cards[0]!)).toEqual([">"])
     // The nested line does not.
     expect(blanks(cards[1]!)).toEqual(["> ", "> "])
   })
@@ -279,25 +279,49 @@ describe("deriveSyntaxCheckpoints", () => {
         }
       }
     }
-    // The sweep has to reach the shape it guards — a guard that walks past its
-    // own case is not a guard. The number is not arbitrary: a tab in the
-    // *outer* separator stops the nesting from being recognised at all, while
-    // a tab in the inner one does not. Three of the seven separators hold no
-    // tab, so 3 x 7 = 21 spellings nest and the other 28 stay plain (#204).
-    // Read that way, this asserts "every spelling whose outer marker has no
-    // tab", not "21 of 49" — if you are here to change the number, check which
-    // of those two moved.
-    expect(nested).toBe(21)
+    // Forty-two spellings produce two blockquote nodes. Seven of those put a
+    // tab in the outer marker's whitespace, which the product deliberately
+    // leaves locked because the visible answer would be ambiguous.
+    expect(nested).toBe(35)
   })
 
-  it("leaves a tab-indented nested quote as a plain quote", () => {
-    // `> \t> deep` is a nested quote to the parser. Opening the inner marker
-    // would put the tab between the two blanks as locked prose that looks
-    // like a space, so they would no longer touch and the nesting could only
-    // be recovered by loosening what "adjacent" means for every family. The
-    // same reason keeps a tab task box locked.
+  it("teaches parser-recognized tab-separated nested quotes without blanking the tab", () => {
     const checkpoint = deriveSyntaxCheckpoints("> \t> deep", "")[0]!
-    expect(syntaxCheckpointTerms(checkpoint)).toEqual(["block quote"])
+    expect(syntaxCheckpointTerms(checkpoint)).toEqual([
+      "block quote",
+      "quote inside a quote",
+    ])
+    expect(checkpoint.canonicalInput).toBe("> > ")
+    expect(checkpoint.canonicalInput).not.toMatch(/\t/)
+  })
+
+  it("leaves an indented lazy-continuation greater-than sign as prose", () => {
+    const checkpoints = deriveSyntaxCheckpoints("> first\n    > literal", "")
+
+    expect(checkpoints).toHaveLength(1)
+    expect(checkpoints[0]!.canonicalInput).toBe("> ")
+    expect(buildGuidedDraft("> first\n    > literal", checkpoints, 1)).toBe(
+      "> first\n    > literal",
+    )
+  })
+
+  it("opens list and task markers behind every parser-recognized quote prefix", () => {
+    const cases = [
+      ["> - plain", ["block quote", "bullet item"]],
+      ["> 1. step", ["block quote", "numbered step"]],
+      ["> - [ ] Buy", ["block quote", "bullet item", "checkbox item"]],
+      ["> > - [ ] Buy", ["block quote", "quote inside a quote", "bullet item", "checkbox item"]],
+      [">\t- [ ] Buy", ["block quote", "bullet item", "checkbox item"]],
+    ] as const
+    for (const [source, terms] of cases) {
+      const checkpoint = deriveSyntaxCheckpoints(source, "")[0]!
+      expect(syntaxCheckpointTerms(checkpoint), source).toEqual(terms)
+      expect(checkpoint.canonicalInput, source).not.toMatch(/\t/)
+      expect(
+        acceptsGuidedSyntaxInput(checkpoint, checkpoint.canonicalInput),
+        source,
+      ).toBe(true)
+    }
   })
 
   it("lets only one place assemble the naming context", () => {
@@ -673,11 +697,9 @@ describe("deriveSyntaxCheckpoints", () => {
     ])
   })
 
-  it("keeps one marker across cards at the same level and none across levels", () => {
-    // Two lists at the same level are one list to Markdown once the blank line
-    // between them is answered, so an answer typed on the second card is
-    // normalised to agree with the first. A nested list is a separate list and
-    // keeps whatever the learner typed.
+  it("scopes one marker to one parsed list and never across lists", () => {
+    // Marker coherence belongs to the containing AST list. Separate lists at
+    // the same indentation and a nested list both keep their own marker.
     const sameLevel = "- Apples\n\nThen rest.\n\n- Pears"
     const cards = deriveSyntaxCheckpoints(sameLevel, "")
     expect(cards).toHaveLength(2)
@@ -686,7 +708,7 @@ describe("deriveSyntaxCheckpoints", () => {
         [cards[0]!.id]: "* ",
         [cards[1]!.id]: "- ",
       }),
-    ).toBe("* Apples\n\nThen rest.\n\n* Pears")
+    ).toBe("* Apples\n\nThen rest.\n\n- Pears")
 
     const nested = "- Parent\n  * Child"
     const nestedCards = deriveSyntaxCheckpoints(nested, "")
@@ -696,6 +718,66 @@ describe("deriveSyntaxCheckpoints", () => {
         [nestedCards[1]!.id]: "* ",
       }),
     ).toBe("+ Parent\n  * Child")
+  })
+
+  it("does not normalize a quoted list against a top-level list", () => {
+    const target = "> - quoted\n\n* top"
+    const cards = deriveSyntaxCheckpoints(target, "")
+
+    expect(cards).toHaveLength(2)
+    expect(buildGuidedDraft(target, cards, cards.length)).toBe(target)
+  })
+
+  it("keeps one marker across quoted-list checkpoints", () => {
+    const target = "> - [ ] task\n> - plain"
+    const cards = deriveSyntaxCheckpoints(target, "")
+
+    expect(cards).toHaveLength(2)
+    expect(
+      buildGuidedDraft(target, cards, cards.length, {
+        [cards[0]!.id]: "> + [ ]",
+        [cards[1]!.id]: "> * ",
+      }),
+    ).toBe("> + [ ] task\n> + plain")
+  })
+
+  it("groups quoted list markers by semantic depth, not optional spacing", () => {
+    const target = "> - [ ] task\n>  - plain"
+    const cards = deriveSyntaxCheckpoints(target, "")
+
+    expect(cards).toHaveLength(2)
+    expect(
+      buildGuidedDraft(target, cards, cards.length, {
+        [cards[0]!.id]: "> + [ ]",
+        [cards[1]!.id]: ">  * ",
+      }),
+    ).toBe("> + [ ] task\n>  + plain")
+  })
+
+  it("preserves separate quoted lists at the same semantic depth", () => {
+    const target = "> - a\n> * b"
+    const cards = deriveSyntaxCheckpoints(target, "")
+
+    expect(cards).toHaveLength(2)
+    expect(buildGuidedDraft(target, cards, cards.length)).toBe(target)
+    expect(
+      buildGuidedDraft(target, cards, cards.length, {
+        [cards[0]!.id]: "> + ",
+        [cards[1]!.id]: "> - ",
+      }),
+    ).toBe("> + a\n> - b")
+  })
+
+  it("normalizes an outer marker while preserving a distinct nested marker", () => {
+    const target = "- [ ] task\n- * nested"
+    const cards = deriveSyntaxCheckpoints(target, "")
+
+    expect(
+      buildGuidedDraft(target, cards, cards.length, {
+        [cards[0]!.id]: "* [ ]",
+        [cards[1]!.id]: "- * ",
+      }),
+    ).toBe("* [ ] task\n* * nested")
   })
 
   it("lets every emphasis pair on a joined card choose its own delimiter", () => {
@@ -726,6 +808,14 @@ describe("deriveSyntaxCheckpoints", () => {
       ),
     ).toEqual(["- - - "])
   })
+
+  it.each(["- * item", "1. 1) item"])(
+    "preserves nested list marker styles on one source line: %s",
+    (target) => {
+      const checkpoints = deriveSyntaxCheckpoints(target, "")
+      expect(buildGuidedDraft(target, checkpoints, checkpoints.length)).toBe(target)
+    },
+  )
 
   it("never surfaces line-leading whitespace in any published problem", () => {
     for (const problem of problemBank) {
@@ -878,9 +968,16 @@ describe("buildGuidedDraft", () => {
     ].join("\n")
     const checkpoints = deriveSyntaxCheckpoints(target, starter)
 
-    expect(buildGuidedDraft(target, checkpoints, 0)).toBe("")
-    expect(buildGuidedDraft(target, checkpoints, 1)).toBe(
+    // The title and the prose under it are given, not asked for, so they are
+    // on the page before the first answer (#198). They used to appear only
+    // after the first card was answered, which stopped being survivable once
+    // the title itself became given — a given title nobody can see is a
+    // deleted one.
+    expect(buildGuidedDraft(target, checkpoints, 0)).toBe(
       "# Packing note\n\nBring only what you need.\n\n",
+    )
+    expect(buildGuidedDraft(target, checkpoints, 1)).toBe(
+      "# Packing note\n\nBring only what you need.\n\n## Checklist\n\n",
     )
     expect(buildGuidedDraft(target, checkpoints, checkpoints.length)).toBe(
       target,
@@ -973,13 +1070,17 @@ describe("one card teaches one syntax", () => {
   it("keeps different syntaxes on their own cards", () => {
     // The pass case: grouping must not collapse a problem into one card. A
     // heading above a list is two lessons and stays two.
+    //
+    // The heading is `##`. An opening `#` is the document's title and is given
+    // rather than asked for (#198), which would have left one card here and
+    // quietly turned this pass case into a fixture that proves nothing.
     const checkpoints = deriveSyntaxCheckpoints(
-      "# Packing\n\n- Socks\n- Towel",
+      "## Packing\n\n- Socks\n- Towel",
       "Packing\nSocks\nTowel",
     )
 
     expect(checkpoints.map((checkpoint) => checkpoint.canonicalInput)).toEqual([
-      "# ",
+      "## ",
       "- - ",
     ])
   })
@@ -1014,6 +1115,7 @@ describe("one card teaches one syntax", () => {
 
     let compared = 0
     let nestedExceptions = 0
+    const nestedExceptionProblems = new Set<string>()
     let tableRowBoundaries = 0
     for (const problem of served) {
       const source = problem.target.replace(/\r\n?/g, "\n")
@@ -1053,10 +1155,17 @@ describe("one card teaches one syntax", () => {
           `${problem.id} card ${index + 1} repeats card ${index} at the same level`,
         ).not.toBe(indentOf(checkpoints[index - 1]!))
         nestedExceptions += 1
+        nestedExceptionProblems.add(problem.id)
       }
     }
     // Named so the exception cannot quietly become the rule.
-    expect(nestedExceptions).toBeLessThan(compared / 4)
+    //
+    // Counted over problems rather than card boundaries. The boundary count
+    // is not a property of the exception: giving the opening title removed one
+    // card from every mixed exercise (#198), which took boundaries from 132 to
+    // 81 without a single new nested list. A ratio against that denominator
+    // reports a change in card structure as a spread of the exception.
+    expect(nestedExceptionProblems.size).toBeLessThan(served.length / 10)
     expect(tableRowBoundaries).toBe(24)
     // Guards the loop against passing by never comparing anything. Most served
     // problems are a single card now, so the floor is the number of card
@@ -1067,6 +1176,7 @@ describe("one card teaches one syntax", () => {
     ).length
     expect(multiCard).toBeGreaterThan(20)
     expect(compared).toBeGreaterThanOrEqual(multiCard)
+    expect(nestedExceptions).toBeGreaterThan(0)
   })
 })
 
@@ -1131,5 +1241,49 @@ describe("published problem-bank coverage", () => {
         }
       }
     }
+  })
+})
+
+describe("a document that opens on a title", () => {
+  // Every mixed exercise in the bank begins with an ATX h1, and every run
+  // serves one, so `# ` was the first card of 400 measured runs out of 400.
+  // No scheduling choice can reach a card that every candidate carries, which
+  // is why #197 could not move run-to-run repeat and this can.
+  const inputsOf = (source: string) =>
+    deriveSyntaxCheckpoints(source, "").map((checkpoint) =>
+      checkpoint.segments
+        .filter((segment) => segment.kind === "input")
+        .map((segment) => segment.value),
+    )
+
+  it("gives the title when the document continues below it", () => {
+    expect(inputsOf("# Title\n\n- one")).toEqual([["- "]])
+  })
+
+  it("still asks for a heading that is the whole exercise", () => {
+    expect(inputsOf("# Title")).toEqual([["# "]])
+  })
+
+  it("keeps the cards for marks inside the title", () => {
+    // The title is given, not deleted: what it teaches beyond being a title
+    // is still asked for.
+    expect(inputsOf("# The **big** day\n\n- one")).toEqual([
+      ["**", "**"],
+      ["- "],
+    ])
+  })
+
+  it("only gives a level 1 title", () => {
+    // A document opening on `##` is not opening on its title.
+    expect(inputsOf("## Sub\n\n- one")).toEqual([["## "], ["- "]])
+  })
+
+  it("leaves a Setext title alone", () => {
+    // Its mark is an underline on the following line, so "the prefix of the
+    // first line" is not the same shape. No exercise in the bank opens with
+    // one, and this says what happens if one ever does.
+    const inputs = inputsOf("Title\n=====\n\n- one")
+    expect(inputs).toContainEqual(["- "])
+    expect(inputs.length).toBeGreaterThan(1)
   })
 })
