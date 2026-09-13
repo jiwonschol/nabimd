@@ -1,5 +1,7 @@
 import { normalizeProblem } from "./normalizeProblem"
 import { BLOCK_KINDS } from "./types"
+import { parseMarkdownSource } from "../markdown/parser"
+import type { Nodes, Parents } from "mdast"
 import type {
   FixtureKind,
   FixtureRole,
@@ -641,6 +643,77 @@ function validConvention(problem: GradableProblem): boolean {
   )
 }
 
+/** Whether a target asks Markdown marker whitespace to be a literal tab. */
+export function targetUsesTabAsMarkerWhitespace(target: string): boolean {
+  let found = false
+  const tree = parseMarkdownSource(target)
+  const quoteDepthByLine = new Map<number, number>()
+  const collectParserRanges = (node: Nodes, quoteDepth = 0) => {
+    const nodeQuoteDepth = quoteDepth + (node.type === "blockquote" ? 1 : 0)
+    if (node.type === "blockquote" && node.position) {
+      for (
+        let line = node.position.start.line;
+        line <= node.position.end.line;
+        line += 1
+      ) {
+        quoteDepthByLine.set(
+          line,
+          Math.max(quoteDepthByLine.get(line) ?? 0, nodeQuoteDepth),
+        )
+      }
+    }
+    if ("children" in node) {
+      ;(node as Parents).children.forEach((child) =>
+        collectParserRanges(child, nodeQuoteDepth),
+      )
+    }
+  }
+  collectParserRanges(tree)
+
+  for (const [index, line] of target.split("\n").entries()) {
+    let remainder = line
+    const quoteDepth = quoteDepthByLine.get(index + 1) ?? 0
+    for (let depth = 0; depth < quoteDepth; depth += 1) {
+      const marker = remainder.match(/^ {0,3}>([ \t]?)/)
+      if (!marker) break
+      if (marker[1] === "\t") return true
+      remainder = remainder.slice(marker[0].length)
+    }
+  }
+
+  const visit = (node: Nodes) => {
+    const offset = node.position?.start.offset
+    if (offset !== undefined) {
+      const lineEnd = target.indexOf("\n", offset)
+      const source = target.slice(offset, lineEnd < 0 ? target.length : lineEnd)
+      const nodeEnd = node.position?.end.offset
+      if (node.type === "heading" && nodeEnd !== undefined) {
+        const underlineStart = target.lastIndexOf("\n", Math.max(offset, nodeEnd - 1)) + 1
+        const underline = target.slice(underlineStart, nodeEnd)
+        if (/^ {0,3}(?:=+|-+)[ \t]*$/.test(underline) && underline.includes("\t")) {
+          found = true
+        }
+      }
+      const whitespace =
+        node.type === "blockquote"
+          ? source.match(/^>([ \t]?)/)?.[1]
+          : node.type === "listItem"
+            ? source.match(/^(?:[-+*]|\d+[.)])([ \t]+)/)?.[1]
+            : node.type === "heading"
+              ? source.match(/^#{1,6}([ \t]+)/)?.[1]
+              : node.type === "thematicBreak" && source.includes("\t")
+                ? "\t"
+              : undefined
+      if (whitespace?.includes("\t")) found = true
+    }
+    if ("children" in node) {
+      ;(node as Parents).children.forEach(visit)
+    }
+  }
+  visit(tree)
+  return found
+}
+
 export function validateProblemBank(
   problems: readonly GradableProblem[],
   fixtures: readonly ProblemFixture[],
@@ -715,6 +788,11 @@ export function validateProblemBank(
         )
       }
     })
+    if (targetUsesTabAsMarkerWhitespace(problem.target)) {
+      errors.push(
+        `Problem ${problem.id} target uses a tab as Markdown marker whitespace`,
+      )
+    }
     for (const field of ["concept", "howTo", "example"] as const) {
       if (!problem.teaching[field].trim()) {
         errors.push(`Problem ${problem.id} has blank teaching ${field}`)

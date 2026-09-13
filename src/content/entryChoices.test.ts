@@ -306,6 +306,10 @@ describe("three-level entry choices", () => {
       skillIds: ["heading-h1", "unordered-list"],
       syntaxTokens: ["# ", "- ", "- "],
     }
+    // Six cards the learner is asked for. The opening title is given rather
+    // than asked for (#198), so it no longer spends a checkpoint and this
+    // fixture needs a sixth taught block to still sit over the ceiling — it
+    // held five taught blocks plus the title before, and passed.
     const sixUniqueCheckpoints = {
       ...mixed,
       id: "synthetic-six-unique-checkpoints",
@@ -321,6 +325,8 @@ describe("three-level entry choices", () => {
         "1. Leave",
         "",
         "> Be safe",
+        "",
+        "Run `deploy` first",
       ].join("\n"),
       starterText: [
         "Plan",
@@ -334,6 +340,8 @@ describe("three-level entry choices", () => {
         "Leave",
         "",
         "Be safe",
+        "",
+        "Run deploy first",
       ].join("\n"),
       skillIds: [
         "heading-h1",
@@ -342,8 +350,22 @@ describe("three-level entry choices", () => {
         "unordered-list",
         "ordered-list",
         "blockquote",
+        "inline-code",
       ],
-      syntaxTokens: ["# ", "**", "*", "- ", "1. ", "> "],
+      syntaxTokens: ["# ", "**", "*", "- ", "1. ", "> ", "`"],
+    }
+    // The same document without its last block: five asked-for cards under a
+    // given title. Before #198 this was six checkpoints and refused.
+    const titleDoesNotSpendACheckpoint = {
+      ...sixUniqueCheckpoints,
+      id: "synthetic-title-plus-five",
+      target: sixUniqueCheckpoints.target.split("\n\n").slice(0, -1).join("\n\n"),
+      starterText: sixUniqueCheckpoints.starterText
+        .split("\n\n")
+        .slice(0, -1)
+        .join("\n\n"),
+      skillIds: sixUniqueCheckpoints.skillIds.slice(0, -1),
+      syntaxTokens: sixUniqueCheckpoints.syntaxTokens.slice(0, -1),
     }
 
     expect(() =>
@@ -361,6 +383,12 @@ describe("three-level entry choices", () => {
         sixUniqueCheckpoints,
       ]),
     ).toThrow("Level 1 is not available yet")
+    expect(
+      createRunProblemIdsForBank("level-1", 0, [
+        ...representatives,
+        titleDoesNotSpendACheckpoint,
+      ]),
+    ).toHaveLength(5)
     expect(
       createRunProblemIdsForBank("level-1", 0, [
         ...representatives,
@@ -422,9 +450,16 @@ describe("how often a run repeats a syntax the learner just practised", () => {
   const SEEDS = 40
   const FIRST_RUN = 0
   const LAST_RUN = 41
-  const MAX_SAME_RUN_REPEATS_PER_RUN = 1.2
-  const MAX_RUN_TO_RUN_REPEAT_RATE = 0.38
-  const MAX_CARDS_PER_RUN = 8.1
+  // Tightened when the document title stopped being asked for (#198). The
+  // ceilings before that change were 1.166 same-run cards, 37.58% run-to-run
+  // and 7.990 cards; these sit under all three, so putting the title card back
+  // fails here rather than passing quietly.
+  const MAX_SAME_RUN_REPEATS_PER_RUN = 0.9
+  const MAX_RUN_TO_RUN_REPEAT_RATE = 0.27
+  const MAX_CARDS_PER_RUN = 7.1
+  // The card that made run-to-run repeat unreachable by scheduling: every
+  // mixed exercise opened on it, and one mixed exercise is served every run.
+  const MAX_RUNS_TEACHING_THE_TITLE = 0.4
 
   // The grid walks 1,680 runs, and a problem's cards do not depend on the run
   // that served them. Deriving per appearance parses the same 364 targets
@@ -449,6 +484,7 @@ describe("how often a run repeats a syntax the learner just practised", () => {
   it("keeps a sitting off the syntax it just taught", () => {
     let runs = 0
     let cards = 0
+    let runsTeachingTheTitle = 0
     let sameRunRepeats = 0
     let returningSyntaxes = 0
     let comparedSyntaxes = 0
@@ -470,6 +506,7 @@ describe("how often a run repeats a syntax the learner just practised", () => {
             if (previous.has(term)) returningSyntaxes += 1
           }
         }
+        if (distinct.has("level 1 heading")) runsTeachingTheTitle += 1
         previous = distinct
         runs += 1
         cards += terms.length
@@ -485,6 +522,9 @@ describe("how often a run repeats a syntax the learner just practised", () => {
       MAX_RUN_TO_RUN_REPEAT_RATE,
     )
     expect(cards / runs).toBeLessThanOrEqual(MAX_CARDS_PER_RUN)
+    expect(runsTeachingTheTitle / runs).toBeLessThanOrEqual(
+      MAX_RUNS_TEACHING_THE_TITLE,
+    )
     // Declared rather than inherited. Memoised the grid runs about a second
     // warm, but the default five is close enough to a cold parse that this
     // gate went red once on a first run and green on the second — and a gate

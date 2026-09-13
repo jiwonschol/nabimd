@@ -348,17 +348,30 @@ export function syntaxGroupTerm(
 function syntaxGroupTermsInOrder(
   checkpoint: SyntaxCheckpoint,
 ): readonly string[] {
-  return checkpoint.segments.flatMap((segment, index) => {
-    if (segment.kind !== "input") return []
+  const terms: string[] = []
+  let previousQuoteMarker = false
+  checkpoint.segments.forEach((segment, index) => {
+    if (segment.kind !== "input") {
+      // Whitespace can sit between two markers on the same source line
+      // (`> \t> deep`) and still make the second marker a nested quote. A
+      // line break or prose ends that relationship: carrying it across
+      // `> one\n> two` called the second line a quote-inside-a-quote and kept
+      // otherwise identical lines from sharing one card.
+      if (!/^[\t ]*$/.test(segment.value)) previousQuoteMarker = false
+      return
+    }
     const previous = checkpoint.segments[index - 1]
-    return [
+    const quoteMarker = QUOTE_MARKER_BLANK.test(segment.value)
+    terms.push(
       syntaxGroupTerm(
         segment.value,
         previous?.kind === "locked" && /\n[\t ]*$/.test(previous.value),
-        previous?.kind === "input" && QUOTE_MARKER_BLANK.test(previous.value),
+        quoteMarker && previousQuoteMarker,
       ),
-    ]
+    )
+    previousQuoteMarker = quoteMarker
   })
+  return terms
 }
 
 /** The name of one input group, as the card and the Missed summary say it. */
@@ -528,6 +541,22 @@ function listStyleFromInput(value: string): GuidedListStyle {
   return {}
 }
 
+function listStyleFromCheckpointInput(
+  checkpoint: SyntaxCheckpoint,
+  value: string,
+): GuidedListStyle {
+  let inputOffset = 0
+  for (const segment of checkpoint.segments) {
+    if (segment.kind !== "input") continue
+    const width = segment.value.length
+    if (Object.keys(listStyleFromInput(segment.value)).length > 0) {
+      return listStyleFromInput(value.slice(inputOffset, inputOffset + width))
+    }
+    inputOffset += width
+  }
+  return {}
+}
+
 /**
  * One coherent marker per indentation level, not one for the document.
  *
@@ -544,16 +573,48 @@ function coherentListStyles(
 ): Map<string, GuidedListStyle> {
   const styles = new Map<string, GuidedListStyle>()
   for (const checkpoint of checkpoints) {
-    const indentation = indentationOf(source, checkpoint)
+    const indentation = listStyleScopeKey(source, checkpoint)
     const style = styles.get(indentation) ?? {}
     if (style.unorderedMarker && style.orderedDelimiter) continue
     const value = completedValues[checkpoint.id] ?? checkpoint.canonicalInput
-    const candidate = listStyleFromInput(value)
+    const candidate = listStyleFromCheckpointInput(checkpoint, value)
     style.unorderedMarker ??= candidate.unorderedMarker
     style.orderedDelimiter ??= candidate.orderedDelimiter
     styles.set(indentation, style)
   }
   return styles
+}
+
+function listStyleScopeKey(source: string, checkpoint: SyntaxCheckpoint): string {
+  let markerOffset = checkpoint.targetFrom
+  for (const segment of checkpoint.segments) {
+    if (
+      segment.kind === "input" &&
+      Object.keys(listStyleFromInput(segment.value)).length > 0
+    ) {
+      break
+    }
+    markerOffset += segment.value.length
+  }
+
+  let semanticDepth = "quote:0;list:0"
+  let containingList = "none"
+  const visit = (node: Nodes, quoteDepth: number, listDepth: number): void => {
+    const from = node.position?.start.offset
+    const to = node.position?.end.offset
+    if (from === undefined || to === undefined || markerOffset < from || markerOffset >= to) {
+      return
+    }
+    const nextQuoteDepth = quoteDepth + (node.type === "blockquote" ? 1 : 0)
+    const nextListDepth = listDepth + (node.type === "list" ? 1 : 0)
+    if (node.type === "list") containingList = `${from}:${to}`
+    semanticDepth = `quote:${nextQuoteDepth};list:${nextListDepth}`
+    if (isParent(node)) {
+      node.children.forEach((child) => visit(child, nextQuoteDepth, nextListDepth))
+    }
+  }
+  visit(parseMarkdownSource(source), 0, 0)
+  return `${semanticDepth};node:${containingList}`
 }
 
 function normalizeGroupListStyle(
@@ -592,9 +653,20 @@ function normalizeListStyle(
   const widths = checkpoint.segments.flatMap((segment) =>
     segment.kind === "input" ? [segment.value.length] : [],
   )
+  const markerStyles = checkpoint.segments.flatMap((segment) =>
+    segment.kind === "input" ? [listStyleFromInput(segment.value)] : [],
+  )
+  const markerSignatures = new Set(
+    markerStyles
+      .map((candidate) =>
+        candidate.unorderedMarker ?? candidate.orderedDelimiter ?? "",
+      )
+      .filter(Boolean),
+  )
   if (widths.length <= 1) return normalizeGroupListStyle(value, style)
 
   let offset = 0
+  let normalizedOuterMarker = false
   return widths
     .map((width, index) => {
       const group =
@@ -602,7 +674,15 @@ function normalizeListStyle(
           ? value.slice(offset)
           : value.slice(offset, offset + width)
       offset += width
-      return normalizeGroupListStyle(group, style)
+      if (markerSignatures.size <= 1) return normalizeGroupListStyle(group, style)
+      if (
+        !normalizedOuterMarker &&
+        Object.keys(markerStyles[index] ?? {}).length > 0
+      ) {
+        normalizedOuterMarker = true
+        return normalizeGroupListStyle(group, style)
+      }
+      return group
     })
     .join("")
 }
@@ -802,7 +882,6 @@ function markNodeSyntax(
   mask: boolean[],
   groupedRanges: SourceRange[],
   families: SyntaxFamilies,
-  insideQuote = false,
 ): void {
   const range = nodeRange(node)
   // Two sibling nodes of the same type can sit side by side (`[a](b)[c](d)`).
@@ -850,34 +929,16 @@ function markNodeSyntax(
       }
       break
     case "blockquote": {
-      // A marker that is part of a nesting never swallows a tab. The two
-      // levels of `>>\tdeep` are `>` and `>\t`, and the sentence that names
-      // them can only say "marks" or "marks and space(s)" — a tab is neither,
-      // and on screen it is the same picture as a space, so the card cannot
-      // be solved from what the learner sees. This is the third time the same
-      // trade came up (`- [\t] Buy`, `> \t> deep`) and it is settled the same
-      // way: the tab stays locked prose. A tab after a *lone* marker is a
-      // different question and belongs to #203.
+      // Tabs are valid parser whitespace but never a visible answer. Keep a
+      // tab locked between quote-marker blanks and teach only the `>` (plus a
+      // literal following space, when present). The AST decides whether a
+      // second marker is nesting; source spacing no longer decides whether
+      // the deriver notices the child node.
       // Per line, not per node. One quote can hold a plain line and a nested
       // one — `>\tplain` above `> > nested` — and applying the rule to the
       // whole node took the tab out of a marker that is not part of any
       // nesting, leaving a card that asks for a mark and a space and then
       // refuses `> `.
-      const nestedChildLines = new Set<number>()
-      if (isParent(node)) {
-        for (const child of node.children) {
-          if (child.type !== "blockquote") continue
-          const childRange = nodeRange(child as Nodes)
-          if (!childRange) continue
-          let childLine = lineStartAt(source, childRange.from)
-          while (childLine < childRange.to) {
-            nestedChildLines.add(childLine)
-            const childLineEnd = lineEndAt(source, childLine)
-            if (childLineEnd >= source.length) break
-            childLine = childLineEnd + 1
-          }
-        }
-      }
       if (range) {
         let lineStart = lineStartAt(source, range.from)
         while (lineStart < range.to) {
@@ -888,24 +949,33 @@ function markNodeSyntax(
           // its parent has not masked yet: matching from the line start again
           // re-claimed the outer `>`, so the nested marker never became a
           // blank and a two-level quote read as a plain one.
-          // Past the markers this node's parent already took — and no
-          // further. `> \t> deep` is a nested quote to the parser, but the tab
-          // between the markers would sit in the card as locked prose that
-          // looks like a space, so the two blanks would no longer touch and
-          // the nesting could only be recovered by loosening what "adjacent"
-          // means for every family. The same reason keeps a tab task box
-          // locked; a tab-indented nested quote is a shape to open with the
-          // content that needs it.
+          // Past the markers this node's parent already took and any locked
+          // parser whitespace between them. Do not scan into prose: after
+          // whitespace, the next character still has to be this node's `>`.
           let markStart = lineStart
-          while (markStart < lineEnd && mask[markStart]) markStart += 1
-          const nesting = insideQuote || nestedChildLines.has(lineStart)
-          const marker = source
-            .slice(markStart, lineEnd)
-            .match(nesting ? /^ {0,3}>[ ]?/ : /^ {0,3}>[\t ]?/)
-          if (marker?.[0]) {
+          let column = 0
+          let indentation = 0
+          while (
+            markStart < lineEnd &&
+            (mask[markStart] || source[markStart] === " " || source[markStart] === "\t")
+          ) {
+            const character = source[markStart]
+            const nextColumn = character === "\t"
+              ? column + (4 - (column % 4))
+              : column + 1
+            if (mask[markStart]) indentation = 0
+            else {
+              indentation += nextColumn - column
+              if (indentation > 3) break
+            }
+            column = nextColumn
+            markStart += 1
+          }
+          if (indentation <= 3 && source[markStart] === ">") {
+            const markEnd = markStart + 1 + (source[markStart + 1] === " " ? 1 : 0)
             markRange(
               mask,
-              { from: markStart, to: markStart + marker[0].length },
+              { from: markStart, to: markEnd },
               families,
               `${family}-${markStart}`,
             )
@@ -1076,7 +1146,6 @@ function markNodeSyntax(
         mask,
         groupedRanges,
         families,
-        insideQuote || node.type === "blockquote",
       )
     }
   }
@@ -1177,6 +1246,16 @@ function lineNumberAt(source: string, offset: number): number {
  * refuses answers the learner could give before.
  */
 function indentationOf(source: string, checkpoint: SyntaxCheckpoint): string {
+  let offset = checkpoint.targetFrom
+  for (const segment of checkpoint.segments) {
+    if (
+      segment.kind === "input" &&
+      Object.keys(listStyleFromInput(segment.value)).length > 0
+    ) {
+      return source.slice(lineStartAt(source, offset), offset)
+    }
+    offset += segment.value.length
+  }
   return source.slice(lineStartAt(source, checkpoint.targetFrom), checkpoint.targetFrom)
 }
 
@@ -1221,6 +1300,27 @@ function sameSyntax(
   )
 }
 
+function sameParsedList(
+  source: string,
+  left: SyntaxCheckpoint,
+  right: SyntaxCheckpoint,
+): boolean {
+  const hasListMarker = (checkpoint: SyntaxCheckpoint) =>
+    checkpoint.segments.some(
+      (segment) =>
+        segment.kind === "input" &&
+        Object.keys(listStyleFromInput(segment.value)).length > 0,
+    )
+  const leftHasListMarker = hasListMarker(left)
+  const rightHasListMarker = hasListMarker(right)
+  if (!leftHasListMarker && !rightHasListMarker) return true
+  return (
+    leftHasListMarker &&
+    rightHasListMarker &&
+    listStyleScopeKey(source, left) === listStyleScopeKey(source, right)
+  )
+}
+
 /** A table's rows are never joined: see the `table` case in `markNodeSyntax`. */
 const TABLE_ROW_FAMILY = "table-row"
 
@@ -1245,6 +1345,7 @@ function mergeAdjacentSameSyntax(
       between === null ||
       !/^[\t ]*\n[\n\t ]*$/.test(between) ||
       indentationOf(source, previous) !== indentationOf(source, checkpoint) ||
+      !sameParsedList(source, previous, checkpoint) ||
       !sameSyntax(previous, checkpoint)
     ) {
       merged.push(checkpoint)
@@ -1284,6 +1385,65 @@ function mergeAdjacentSameSyntax(
   return merged
 }
 
+/**
+ * A document that opens on a title and keeps going gives that title rather
+ * than asking for it.
+ *
+ * Every mixed exercise in the bank begins with an ATX h1, and every run serves
+ * one mixed exercise, so `# ` was the first card of 400 runs out of 400. That
+ * one card is most of what "the same grammar keeps coming" was: it repeats in
+ * this sitting and the one before it no matter which exercise is chosen, so no
+ * scheduling choice can reach it (#197, #198).
+ *
+ * Only the heading's own prefix is given. Marks inside the title text carry
+ * their own families and keep their own cards.
+ *
+ * A single-syntax heading exercise is one block on its own, so the sibling
+ * requirement leaves it alone — a bank test holds that no problem teaching
+ * `heading` by itself spans more than one block, because one that did would
+ * quietly stop teaching anything at all.
+ *
+ * Setext titles are excluded. Their mark is an underline on the next line, so
+ * "the prefix of the first line" is not the same shape, and no exercise in the
+ * bank opens with one.
+ */
+export function hasGivenDocumentTitle(target: string): boolean {
+  const source = target.replace(/\r\n?/g, "\n")
+  const root = parseMarkdownSource(source)
+  if (!isParent(root) || root.children.length < 2) return false
+
+  const title = root.children[0]
+  if (!title || title.type !== "heading" || title.depth !== 1) return false
+
+  const from = title.position?.start.offset
+  if (from === undefined) return false
+  return /^ {0,3}#{1,6}[\t ]+/.test(source.slice(from, lineEndAt(source, from)))
+}
+
+function unmaskGivenDocumentTitle(
+  root: Nodes,
+  source: string,
+  mask: boolean[],
+  families: SyntaxFamilies,
+): void {
+  if (!hasGivenDocumentTitle(source) || !isParent(root)) return
+
+  const title = root.children[0]
+  if (!title || title.type !== "heading") return
+
+  const from = title.position?.start.offset
+  const to = title.position?.end.offset
+  if (from === undefined || to === undefined) return
+  // `markNodeSyntax` keys a node's family by type and start offset, so this
+  // clears the title's own prefix and cannot reach a mark that shares the line.
+  const family = `heading@${from}`
+  for (let index = from; index < Math.min(to, mask.length); index += 1) {
+    if (families[index] !== family) continue
+    mask[index] = false
+    families[index] = null
+  }
+}
+
 export function deriveSyntaxCheckpoints(
   target: string,
   _starterText: string,
@@ -1295,8 +1455,10 @@ export function deriveSyntaxCheckpoints(
     () => null,
   )
   const groupedRanges: SourceRange[] = []
-  markNodeSyntax(parseMarkdownSource(source), source, mask, groupedRanges, families)
+  const root = parseMarkdownSource(source)
+  markNodeSyntax(root, source, mask, groupedRanges, families)
   unmaskLineLeadingWhitespace(source, mask, families)
+  unmaskGivenDocumentTitle(root, source, mask, families)
 
   // Grouped ranges are looked up by the line they start on, and the loop skips
   // past a whole group once it takes one. Two multiline deletions can share a
@@ -1389,7 +1551,14 @@ export function buildGuidedDraft(
   completedCount: number,
   completedValues: Readonly<Record<string, string>> = {},
 ): string {
-  if (completedCount <= 0 || checkpoints.length === 0) return ""
+  if (checkpoints.length === 0) return ""
+  // Everything before the first card is Goal text the exercise never asks
+  // for, so it belongs on the page from the start. It used to appear only
+  // after the first card was answered, which was survivable while the first
+  // card sat at the top of the document — and stopped being survivable when
+  // the opening title became given rather than asked for (#198), because a
+  // given title nobody can see is a deleted one.
+  if (completedCount <= 0) return target.slice(0, checkpoints[0]!.targetFrom)
   const boundedCount = Math.min(completedCount, checkpoints.length)
   const nextCheckpoint = checkpoints[boundedCount]
   const draftEnd = nextCheckpoint?.targetFrom ?? target.length
@@ -1416,7 +1585,7 @@ export function buildGuidedDraft(
         normalizeListStyle(
           checkpoint,
           acceptedValue,
-          listStyles.get(indentationOf(target, checkpoint)) ?? {},
+          listStyles.get(listStyleScopeKey(target, checkpoint)) ?? {},
         ),
       ),
     )
