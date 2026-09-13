@@ -62,7 +62,7 @@ export function EditorialDesk({
       return [
         {
           problemId,
-          title: completedProblem.prompt,
+          title: completedProblem.title,
           source:
             session.progress.draftByProblemId[problemId] ??
             completedProblem.target,

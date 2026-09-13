@@ -350,7 +350,8 @@ function syntaxGroupTermsInOrder(
 ): readonly string[] {
   const terms: string[] = []
   let previousQuoteMarker = false
-  checkpoint.segments.forEach((segment, index) => {
+  let precedingSource = ""
+  checkpoint.segments.forEach((segment) => {
     if (segment.kind !== "input") {
       // Whitespace can sit between two markers on the same source line
       // (`> \t> deep`) and still make the second marker a nested quote. A
@@ -358,18 +359,19 @@ function syntaxGroupTermsInOrder(
       // `> one\n> two` called the second line a quote-inside-a-quote and kept
       // otherwise identical lines from sharing one card.
       if (!/^[\t ]*$/.test(segment.value)) previousQuoteMarker = false
+      precedingSource += segment.value
       return
     }
-    const previous = checkpoint.segments[index - 1]
     const quoteMarker = QUOTE_MARKER_BLANK.test(segment.value)
     terms.push(
       syntaxGroupTerm(
         segment.value,
-        previous?.kind === "locked" && /\n[\t ]*$/.test(previous.value),
+        /[^\n]\n[\t ]*$/.test(precedingSource),
         quoteMarker && previousQuoteMarker,
       ),
     )
     previousQuoteMarker = quoteMarker
+    precedingSource += segment.value
   })
   return terms
 }

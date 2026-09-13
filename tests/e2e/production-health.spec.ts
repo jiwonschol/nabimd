@@ -200,7 +200,10 @@ test("production serves five distinct syntax elements for every available level"
       await expect(page.getByLabel("Score")).toContainText("5 / 5")
       await expect(
         page.getByRole("region", { name: "Your work" }).getByRole("article"),
-      ).toHaveCount(5)
+      ).toHaveCount(1)
+      await expect(
+        page.getByRole("region", { name: "Markdown source" }),
+      ).toBeVisible()
       expect(servedSingleElements.size).toBe(4)
       expect(mixedExerciseCount).toBe(1)
     })
