@@ -30,7 +30,21 @@
     {
       "binding": "NABIMD_DB",
       "database_name": "nabimd-production",
-      "database_id": "3fff40d2-9ebf-4284-9c53-d9ecfab80d20"
+      "database_id": "3fff40d2-9ebf-4284-9c53-d9ecfab80d20",
+      "migrations_dir": "migrations"
     }
-  ]
+  ],
+  "ratelimits": [
+    {
+      "name": "FEEDBACK_RATE_LIMITER",
+      "namespace_id": "12091",
+      "simple": {
+        "limit": 3,
+        "period": 60
+      }
+    }
+  ],
+  "triggers": {
+    "crons": ["0 3 * * *"]
+  }
 }

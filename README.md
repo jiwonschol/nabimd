@@ -17,7 +17,7 @@
   simple?" — five reasons to learn Markdown drift in below the motto, so the
   payoff is clear before the first quest. Reduced-motion visitors see the full
   list at once, and the motto keeps the page.
-- **A short visit:** No login, server, ads, streak, or persistent learner
+- **A short visit:** No login, ads, streak, or persistent learner
   profile. Progress lasts for the current browser session and clears when that
   session ends.
 - **Deterministic grading:** Local AST checks grade Markdown structure rather

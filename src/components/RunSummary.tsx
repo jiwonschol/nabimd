@@ -3,6 +3,7 @@ import type { SyntaxMistake } from "../guided/guidedSyntax"
 import { playFeedbackSound } from "../sound/feedbackSound"
 import { formatElapsedTime } from "./ElapsedTime"
 import { RenderedDocumentBody } from "./RenderedDocument"
+import { SummaryFeedbackForm } from "./SummaryFeedbackForm"
 import {
   buildTeachersReturn,
   type CompletedPracticePage,
@@ -19,6 +20,7 @@ type RunSummaryProps = {
   completedPages?: readonly CompletedPracticePage[]
   syntaxMistakes?: readonly SyntaxMistake[]
   motionReady?: boolean
+  level?: number
 }
 
 export function joinSyntaxTokens(tokens: readonly string[]): string {
@@ -43,6 +45,7 @@ export function RunSummary({
   completedPages = [],
   syntaxMistakes = [],
   motionReady = true,
+  level = 1,
 }: RunSummaryProps) {
   const playedSummarySound = useRef(false)
   const completionTitleRef = useRef<HTMLHeadingElement>(null)
@@ -226,31 +229,35 @@ export function RunSummary({
           )}
         </div>
 
-        <div className="run-summary__actions summary-ink summary-ink--actions">
-          <button
-            className="primary-button run-summary__practice-again"
-            onClick={onPracticeAgain}
-            type="button"
-          >
-            Practice again
-          </button>
-          <button className="text-button" onClick={onChangeLevel} type="button">
-            Change level
-          </button>
-        </div>
+        <div className="run-summary__footer">
+          <SummaryFeedbackForm level={level} score={score} total={total} />
 
-        <dl className="run-summary__metrics summary-ink summary-ink--actions">
-          <div aria-label="Score">
-            <dt>Score</dt>
-            <dd>
-              {score} <small>/ {total}</small>
-            </dd>
+          <div className="run-summary__actions summary-ink summary-ink--actions">
+            <button
+              className="primary-button run-summary__practice-again"
+              onClick={onPracticeAgain}
+              type="button"
+            >
+              Practice again
+            </button>
+            <button className="text-button" onClick={onChangeLevel} type="button">
+              Change level
+            </button>
           </div>
-          <div aria-label="Total time">
-            <dt>Time</dt>
-            <dd>{formatElapsedTime(elapsedMs)}</dd>
-          </div>
-        </dl>
+
+          <dl className="run-summary__metrics summary-ink summary-ink--actions">
+            <div aria-label="Score">
+              <dt>Score</dt>
+              <dd>
+                {score} <small>/ {total}</small>
+              </dd>
+            </div>
+            <div aria-label="Total time">
+              <dt>Time</dt>
+              <dd>{formatElapsedTime(elapsedMs)}</dd>
+            </div>
+          </dl>
+        </div>
       </section>
     </section>
   )
