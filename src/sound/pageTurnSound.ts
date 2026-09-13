@@ -10,18 +10,24 @@ export const PAGE_TURN_SOUND_ASSET = pageTurnSoundAsset
 let pageTurnAudio: HTMLAudioElement | null = null
 let pageTurnUnlocked = false
 let pageTurnPriming: Promise<void> | null = null
+let pageTurnRetryAfterPriming = false
 
 subscribeSoundMuted((muted) => {
   if (!pageTurnAudio) return
   pageTurnAudio.muted = muted || pageTurnPriming !== null
   if (muted) {
+    pageTurnRetryAfterPriming = false
     pageTurnAudio.pause()
     pageTurnAudio.currentTime = 0
-  } else if (!pageTurnUnlocked && pageTurnPriming === null) {
-    // The sound toggle is itself a user gesture. If muting aborted the first
-    // browser unlock attempt, use this later gesture to make the channel
-    // retryable instead of leaving Summary turns silent for the whole run.
-    playPageTurnAudio(true, true)
+  } else if (!pageTurnUnlocked) {
+    if (pageTurnPriming === null) {
+      // The sound toggle is itself a user gesture. If muting aborted the first
+      // browser unlock attempt, use this later gesture to make the channel
+      // retryable instead of leaving Summary turns silent for the whole run.
+      playPageTurnAudio(true, true)
+    } else {
+      pageTurnRetryAfterPriming = true
+    }
   }
 })
 
@@ -52,6 +58,7 @@ function playPageTurnAudio(unlockOnSuccess: boolean, primeSilently = false) {
         () => {
           if (pageTurnPriming !== playback) return
           pageTurnPriming = null
+          pageTurnRetryAfterPriming = false
           pageTurnUnlocked = true
           if (muted || primeSilently) {
             audio.pause()
@@ -61,8 +68,12 @@ function playPageTurnAudio(unlockOnSuccess: boolean, primeSilently = false) {
         },
         () => {
           if (pageTurnPriming !== playback) return
+          const shouldRetry =
+            pageTurnRetryAfterPriming && !readSoundMuted()
           pageTurnPriming = null
+          pageTurnRetryAfterPriming = false
           audio.muted = readSoundMuted()
+          if (shouldRetry) playPageTurnAudio(true, true)
         },
       )
     } else {
@@ -92,4 +103,5 @@ export function __resetPageTurnSoundForTesting() {
   pageTurnAudio = null
   pageTurnUnlocked = false
   pageTurnPriming = null
+  pageTurnRetryAfterPriming = false
 }
