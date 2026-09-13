@@ -3111,7 +3111,6 @@ button:focus-visible,
   .run-summary__work-compare {
     grid-template-columns: minmax(0, 1fr);
   }
-
   .run-summary__feedback-footer {
     flex-direction: column;
   }

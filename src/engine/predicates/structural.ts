@@ -4,6 +4,7 @@ import type {
   Definition,
   Heading,
   Image,
+  ImageReference,
   InlineCode,
   Link,
   LinkReference,
@@ -48,13 +49,16 @@ const nodeTypeByBlock: Readonly<Record<BlockKind, RootContent["type"]>> = {
   table: "table",
 }
 
-const nodeTypeByInline = {
-  emphasis: "emphasis",
-  strong: "strong",
-  "inline-code": "inlineCode",
-  link: "link",
-  image: "image",
-} as const
+const nodeTypesByInline = {
+  emphasis: ["emphasis"],
+  strong: ["strong"],
+  "inline-code": ["inlineCode"],
+  // A reference spelling is the same learner-visible link or image after the
+  // parser resolves its definition. Counting only direct nodes let a learner
+  // bypass max-inline-count by changing `[label](url)` to `[label][id]`.
+  link: ["link", "linkReference"],
+  image: ["image", "imageReference"],
+} as const satisfies Readonly<Record<InlineKind, readonly AstNode["type"][]>>
 
 function inRange(value: number, min?: number, max?: number): boolean {
   return (min === undefined || value >= min) && (max === undefined || value <= max)
@@ -119,13 +123,20 @@ export function countInlineNodes(
   requireNonemptyContent = false,
   requireNonemptyDestination = false,
 ) {
+  const definitions = requireNonemptyDestination
+    ? firstDefinitionsByIdentifier(context)
+    : undefined
   return descendants(nodesInScope(context, scope) as AstNode[]).filter(
     (node) =>
-      node.type === nodeTypeByInline[inline] &&
+      (nodeTypesByInline[inline] as readonly AstNode["type"][]).includes(node.type) &&
       (!requireNonemptyContent ||
         nodeHasMeaningfulInlineContent(node, context.source)) &&
       (!requireNonemptyDestination ||
-        nodeHasMeaningfulInlineDestination(node, context.source)),
+        nodeHasMeaningfulInlineDestination(
+          node,
+          context.source,
+          definitions,
+        )),
   ).length
 }
 
@@ -133,7 +144,7 @@ function nodeHasMeaningfulInlineContent(
   node: AstNode,
   source: string,
 ): boolean {
-  if (node.type === "image") {
+  if (node.type === "image" || node.type === "imageReference") {
     return hasMeaningfulParsedCharacters(node.alt, rawImageAlt(node, source))
   }
   return nodeHasVisibleLinkLabel(node, source)
@@ -142,7 +153,20 @@ function nodeHasMeaningfulInlineContent(
 function nodeHasMeaningfulInlineDestination(
   node: AstNode,
   source: string,
+  definitions: DefinitionIndex | undefined,
 ): boolean {
+  if (node.type === "linkReference" || node.type === "imageReference") {
+    const definition = definitions?.get(
+      (node as LinkReference | ImageReference).identifier,
+    )
+    return Boolean(
+      definition &&
+      hasMeaningfulDestination(
+        definition.url,
+        definitionDestinationSource(definition, source),
+      ),
+    )
+  }
   if (node.type !== "link" && node.type !== "image") return false
   const destination = (node as Link | Image).url
   const rawDestination =

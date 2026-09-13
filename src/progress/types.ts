@@ -5,6 +5,7 @@ export type ProgressV5 = {
   version: 5
   bankRevision: string
   runScheduleRevision: string
+  checkpointProjectionRevision: string
   entryId: EntryId | null
   runNumber: number
   runSeed: number

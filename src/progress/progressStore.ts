@@ -12,16 +12,21 @@ import {
   problemBankRevision,
 } from "../content/problemBank"
 import { deriveLegacyPlaintextStarter } from "../content/plaintextStarter"
-import type { SyntaxMistake } from "../guided/guidedSyntax"
-import { isReachableRunSchedule } from "../session/runSchedule"
+import {
+  hasGivenDocumentTitle,
+  type SyntaxMistake,
+} from "../guided/guidedSyntax"
+import { RUN_POLICY } from "../selection/runPolicy"
 import type { ProgressV5 } from "./types"
 
 export const PROGRESS_STORAGE_KEY = "nabimd.progress.v5"
+export const CHECKPOINT_PROJECTION_REVISION = "given-document-title@1"
 // A browser session cannot legitimately reach this many five-problem turns.
 // Cap untrusted storage before deterministic schedule reconstruction.
 export const MAX_PERSISTED_RUN_NUMBER = 10_000
 const MAX_PERSISTED_SYNTAX_MISTAKES = 128
 const MAX_PERSISTED_MARK_LENGTH = 256
+export const MAX_PERSISTED_RUN_PROBLEM_IDS = RUN_POLICY.turnSize * 2
 
 export function createDefaultProgress(
   currentProblemId: string,
@@ -32,6 +37,7 @@ export function createDefaultProgress(
     version: 5,
     bankRevision,
     runScheduleRevision,
+    checkpointProjectionRevision: CHECKPOINT_PROJECTION_REVISION,
     entryId: null,
     runNumber: 0,
     runSeed,
@@ -102,14 +108,7 @@ function isValidRunProblemIds(
   entryId: ProgressV5["entryId"],
   runNumber: number,
   runSeed: number,
-  runStepIndex: number,
-  scheduledStepIndex: number,
-  currentIsTransfer: boolean,
   validProblemIds: ReadonlySet<string>,
-  isEligibleTransferProblem: (
-    currentProblemId: string,
-    candidateProblemId: string,
-  ) => boolean,
 ): value is string[] {
   if (!Array.isArray(value)) return false
   if (entryId === null) return value.length === 0
@@ -119,15 +118,7 @@ function isValidRunProblemIds(
 
   return (
     value.length >= expectedRunProblemIds.length &&
-    isKnownIdList(value, validProblemIds, maximumRunLength) &&
-    isReachableRunSchedule({
-      baselineProblemIds: expectedRunProblemIds,
-      persistedProblemIds: value,
-      persistedStepIndex: runStepIndex,
-      persistedScheduledStepIndex: scheduledStepIndex,
-      persistedCurrentIsTransfer: currentIsTransfer,
-      isEligibleTransferProblem,
-    })
+    isKnownIdList(value, validProblemIds, maximumRunLength)
   )
 }
 
@@ -212,10 +203,6 @@ function isProgressV5(
   value: unknown,
   validProblemIds: ReadonlySet<string>,
   validDraftProblemIds: ReadonlySet<string>,
-  isEligibleTransferProblem: (
-    currentProblemId: string,
-    candidateProblemId: string,
-  ) => boolean,
   expectedBankRevision: string,
   expectedRunSeed: number,
 ): value is ProgressV5 {
@@ -225,6 +212,7 @@ function isProgressV5(
     value.version !== 5 ||
     value.bankRevision !== expectedBankRevision ||
     value.runScheduleRevision !== runScheduleRevision ||
+    value.checkpointProjectionRevision !== CHECKPOINT_PROJECTION_REVISION ||
     (value.entryId !== null &&
       (!isEntryId(value.entryId) || !getEntryChoice(value.entryId).available)) ||
     !isNonnegativeSafeInteger(value.runNumber) ||
@@ -256,6 +244,7 @@ function isProgressV5(
   if (
     scheduledStepIndex === null ||
     scheduledStepIndex > scheduledRunLength ||
+    scheduledStepIndex > value.runStepIndex ||
     !isUniqueIntegerList(
       value.failedScheduledStepIndexes,
       scheduledRunLength,
@@ -283,12 +272,10 @@ function isProgressV5(
       entryId,
       value.runNumber,
       value.runSeed,
-      value.runStepIndex,
-      scheduledStepIndex,
-      value.currentIsTransfer,
       validProblemIds,
-      isEligibleTransferProblem,
     ) &&
+    value.runProblemIds.length - scheduledRunLength ===
+      value.runStepIndex - scheduledStepIndex &&
     value.runStepIndex <= value.runProblemIds.length &&
     typeof value.currentProblemId === "string" &&
     validProblemIds.has(value.currentProblemId) &&
@@ -376,6 +363,83 @@ function migrateSyntaxMistakes(value: unknown): unknown {
   return {
     ...value,
     syntaxMistakes: [],
+  }
+}
+
+function migrateCheckpointProjection(value: unknown): unknown {
+  if (
+    !isRecord(value) ||
+    value.version !== 5 ||
+    value.checkpointProjectionRevision === CHECKPOINT_PROJECTION_REVISION
+  ) {
+    return value
+  }
+
+  // Only the absent field names the one known legacy projection. A nonempty
+  // unknown revision may have been written by a newer client and must fail the
+  // regular validator instead of being silently downgraded.
+  if ("checkpointProjectionRevision" in value) return value
+
+  // Do not parse untrusted problem ids until the same cheap bounds enforced by
+  // the v5 validator have passed. A legitimate run has five scheduled slots
+  // and at most one transfer after each slot. Duplicates are legitimate when
+  // repair practice selects content that also appears in a later scheduled
+  // slot, so reachability validation below owns that decision.
+  if (
+    !Array.isArray(value.runProblemIds) ||
+    value.runProblemIds.length > MAX_PERSISTED_RUN_PROBLEM_IDS ||
+    !Array.isArray(value.syntaxMistakes) ||
+    value.syntaxMistakes.length > MAX_PERSISTED_SYNTAX_MISTAKES
+  ) {
+    return value
+  }
+
+  const changedProblemIds = new Set<string>()
+  const rememberIfChanged = (problemId: unknown) => {
+    if (typeof problemId !== "string") return
+    try {
+      if (hasGivenDocumentTitle(getProblem(problemId).target)) {
+        changedProblemIds.add(problemId)
+      }
+    } catch {
+      // Unknown ids remain untouched here so the structural validator below
+      // can reject the whole record rather than turning it into valid state.
+    }
+  }
+  if (Array.isArray(value.runProblemIds)) {
+    value.runProblemIds.forEach(rememberIfChanged)
+  }
+  rememberIfChanged(value.pendingSlotRetryProblemId)
+  if (Array.isArray(value.syntaxMistakes)) {
+    value.syntaxMistakes.forEach((mistake) => {
+      if (isRecord(mistake)) rememberIfChanged(mistake.problemId)
+    })
+  }
+
+  const pendingSlotRetryProblemId = changedProblemIds.has(
+    String(value.pendingSlotRetryProblemId),
+  )
+    ? null
+    : value.pendingSlotRetryProblemId
+  const syntaxMistakes = Array.isArray(value.syntaxMistakes)
+    ? value.syntaxMistakes.filter(
+        (mistake) =>
+          !isRecord(mistake) ||
+          typeof mistake.problemId !== "string" ||
+          !changedProblemIds.has(mistake.problemId),
+      )
+    : value.syntaxMistakes
+
+  // Checkpoint ids are positions in the derived card sequence. Giving the
+  // opening document title removes its card and shifts every later id, so a
+  // persisted retry or mistake would otherwise be attached to syntax the
+  // learner never attempted. Drafts and run position are document-scoped and
+  // remain valid; only checkpoint-scoped evidence is invalidated.
+  return {
+    ...value,
+    checkpointProjectionRevision: CHECKPOINT_PROJECTION_REVISION,
+    pendingSlotRetryProblemId,
+    syntaxMistakes,
   }
 }
 
@@ -556,6 +620,32 @@ function migrateRunScheduleRevision(
     value.runNumber <= MAX_PERSISTED_RUN_NUMBER
       ? value.runNumber
       : 0
+  const expectedRunLength = createRunProblemIds(
+    value.entryId,
+    runNumber,
+    expectedRunSeed,
+  ).length
+  const canPreserveSchedule =
+    isNonnegativeSafeInteger(value.runStepIndex) &&
+    isNonnegativeSafeInteger(value.scheduledStepIndex) &&
+    isValidRunProblemIds(
+      value.runProblemIds,
+      value.entryId,
+      runNumber,
+      expectedRunSeed,
+      validProblemIds,
+    ) &&
+    value.runProblemIds.length - expectedRunLength ===
+      value.runStepIndex - value.scheduledStepIndex
+
+  if (canPreserveSchedule) {
+    return {
+      ...value,
+      runScheduleRevision,
+      draftByProblemId,
+    }
+  }
+
   const runProblemIds = createRunProblemIds(
     value.entryId,
     runNumber,
@@ -600,7 +690,7 @@ export function readPersistedRunSeed(storage: Storage): number | null {
 export function loadProgress(
   storage: Storage,
   validProblemIds: ReadonlySet<string>,
-  isEligibleTransferProblem: (
+  _isEligibleTransferProblem: (
     currentProblemId: string,
     candidateProblemId: string,
   ) => boolean = () => false,
@@ -619,26 +709,40 @@ export function loadProgress(
     const saved = storage.getItem(PROGRESS_STORAGE_KEY)
     if (!saved) return fallback
 
-    const parsed: unknown = migrateSyntaxMistakes(
-      migratePendingSlotRetry(
-        migrateRunScheduleRevision(
-          migrateLegacyRunSeed(
-            migrateStarterProjectionRevision(
-              migratePreChapterRevision(
-                JSON.parse(saved),
+    const stored: unknown = JSON.parse(saved)
+    if (
+      isRecord(stored) &&
+      "checkpointProjectionRevision" in stored &&
+      stored.checkpointProjectionRevision !== CHECKPOINT_PROJECTION_REVISION
+    ) {
+      // A newer client owns both the checkpoint ids and the drafts stored
+      // beside them. Do not reinterpret or overwrite either with this older
+      // projection, even through the generic corrupt-record draft recovery.
+      return fallback
+    }
+
+    const parsed: unknown = migrateCheckpointProjection(
+      migrateSyntaxMistakes(
+        migratePendingSlotRetry(
+          migrateRunScheduleRevision(
+            migrateLegacyRunSeed(
+              migrateStarterProjectionRevision(
+                migratePreChapterRevision(
+                  stored,
+                  validProblemIds,
+                  validDraftProblemIds,
+                  expectedBankRevision,
+                  expectedRunSeed,
+                ),
                 validProblemIds,
-                validDraftProblemIds,
                 expectedBankRevision,
-                expectedRunSeed,
               ),
-              validProblemIds,
-              expectedBankRevision,
             ),
+            validProblemIds,
+            validDraftProblemIds,
+            expectedBankRevision,
+            expectedRunSeed,
           ),
-          validProblemIds,
-          validDraftProblemIds,
-          expectedBankRevision,
-          expectedRunSeed,
         ),
       ),
     )
@@ -646,7 +750,6 @@ export function loadProgress(
       parsed,
       validProblemIds,
       validDraftProblemIds,
-      isEligibleTransferProblem,
       expectedBankRevision,
       expectedRunSeed,
     )
@@ -657,6 +760,21 @@ export function loadProgress(
         }
   } catch {
     return fallback
+  }
+}
+
+export function hasUnknownCheckpointProjection(storage: Storage): boolean {
+  try {
+    const saved = storage.getItem(PROGRESS_STORAGE_KEY)
+    if (!saved) return false
+    const stored: unknown = JSON.parse(saved)
+    return (
+      isRecord(stored) &&
+      "checkpointProjectionRevision" in stored &&
+      stored.checkpointProjectionRevision !== CHECKPOINT_PROJECTION_REVISION
+    )
+  } catch {
+    return false
   }
 }
 

@@ -632,6 +632,50 @@ describe("structural match predicates", () => {
     ).toEqual({ status: "matched", reviewItems: [] })
   })
 
+  it.each([
+    [
+      "image",
+      "![Direct](/one.png) and ![Reference][two]\n\n[two]: /two.png",
+      "![Reference][one]\n\n[one]: /one.png",
+    ],
+    [
+      "link",
+      "[Direct](/one) and [Reference][two]\n\n[two]: /two",
+      "[Reference][one]\n\n[one]: /one",
+    ],
+  ] as const)(
+    "counts direct and reference %s spellings for max-inline-count",
+    (inline, overLimit, oneReference) => {
+      const withInlineReview: GradableProblem = {
+        ...problem([]),
+        editorialChecks: [
+          {
+            id: `keep-one-${inline}`,
+            kind: "max-inline-count",
+            scope: { kind: "document" },
+            inline,
+            max: 1,
+            review: `Keep one ${inline} as the focus.`,
+          },
+        ],
+      }
+
+      expect(evaluateProblem(withInlineReview, overLimit)).toEqual({
+        status: "matched",
+        reviewItems: [
+          {
+            id: `keep-one-${inline}`,
+            message: `Keep one ${inline} as the focus.`,
+          },
+        ],
+      })
+      expect(evaluateProblem(withInlineReview, oneReference)).toEqual({
+        status: "matched",
+        reviewItems: [],
+      })
+    },
+  )
+
   it("targets a section by heading depth and occurrence, never heading prose", () => {
     const sectionList = problem([
       {
@@ -1060,6 +1104,18 @@ describe("structural match predicates", () => {
     expect(
       evaluateProblem(link, '[Guide](/guide "title ]()")'),
     ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(image, "![A blue umbrella][photo]\n\n[photo]: /photos/umbrella.jpg"),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(link, "[Guide][guide]\n\n[guide]: /guide"),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(image, "![A blue umbrella][photo]\n\n[photo]: <>"),
+    ).toMatchObject({ status: "fail", feedbackId: "image-address" })
+    expect(
+      evaluateProblem(link, "[Guide][guide]\n\n[guide]: <>"),
+    ).toMatchObject({ status: "fail", feedbackId: "link-address" })
   })
 
   it("can require meaningful image alt text", () => {
@@ -1077,6 +1133,27 @@ describe("structural match predicates", () => {
     expect(
       evaluateProblem(image, "![A blue umbrella](/photos/umbrella.jpg)"),
     ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(
+        image,
+        "![A blue umbrella][photo]\n\n[photo]: /photos/umbrella.jpg",
+      ),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(image, "![][photo]\n\n[photo]: /photos/umbrella.jpg"),
+    ).toMatchObject({
+      status: "fail",
+      feedbackId: "image-alt",
+    })
+    expect(
+      evaluateProblem(
+        image,
+        "![\u200b][photo]\n\n[photo]: /photos/umbrella.jpg",
+      ),
+    ).toMatchObject({
+      status: "fail",
+      feedbackId: "image-alt",
+    })
     expect(evaluateProblem(image, "![](/photos/umbrella.jpg)")).toMatchObject({
       status: "fail",
       feedbackId: "image-alt",
