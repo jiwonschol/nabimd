@@ -18,5 +18,5 @@
     "types": ["vitest/globals"]
   },
   "include": ["src"],
-  "exclude": ["src/worker.test.ts"]
+  "exclude": ["src/worker.test.ts", "src/feedbackRetry.test.ts"]
 }

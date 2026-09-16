@@ -14,6 +14,7 @@ const maxFeedbackLength = 500
 const feedbackExpirySeconds = 89 * 24 * 60 * 60
 
 type FeedbackPayload = {
+  submissionId?: string
   message: string
   level: number
   score: number
@@ -35,8 +36,11 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 function parseFeedbackPayload(value: unknown): FeedbackPayload | null {
   if (!isRecord(value)) return null
-  const { message, level, score, total, appRevision, website } = value
+  const { submissionId, message, level, score, total, appRevision, website } = value
   if (
+    (submissionId !== undefined &&
+      (typeof submissionId !== "string" ||
+        !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(submissionId))) ||
     typeof message !== "string" ||
     message.trim().length === 0 ||
     message.trim().length > maxFeedbackLength ||
@@ -57,6 +61,7 @@ function parseFeedbackPayload(value: unknown): FeedbackPayload | null {
   }
 
   return {
+    submissionId: typeof submissionId === "string" ? submissionId.toLowerCase() : undefined,
     message: message.trim(),
     level: Number(level),
     score: Number(score),
@@ -151,13 +156,19 @@ async function handleFeedback(
 
   const createdAt = Math.floor(Date.now() / 1_000)
   try {
-    await env.NABIMD_DB.prepare(
+    const result = await env.NABIMD_DB.prepare(
       `INSERT INTO learner_feedback
         (id, message, level, score, total, app_revision, created_at, expires_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+       ON CONFLICT(id) DO UPDATE SET id = excluded.id
+       WHERE learner_feedback.message = excluded.message
+         AND learner_feedback.level = excluded.level
+         AND learner_feedback.score = excluded.score
+         AND learner_feedback.total = excluded.total
+         AND learner_feedback.app_revision = excluded.app_revision`,
     )
       .bind(
-        crypto.randomUUID(),
+        payload.submissionId ?? crypto.randomUUID(),
         payload.message,
         payload.level,
         payload.score,
@@ -167,6 +178,11 @@ async function handleFeedback(
         createdAt + feedbackExpirySeconds,
       )
       .run()
+    // A matching replay only touches the ID, preserving the original expiry.
+    // A conflicting payload cannot overwrite an existing note or claim success.
+    if (payload.submissionId && result.meta.changes === 0) {
+      return jsonResponse({ error: "feedback-id-conflict" }, 409)
+    }
   } catch {
     console.error(
       JSON.stringify({ event: "feedback_insert_failed", createdAt }),
