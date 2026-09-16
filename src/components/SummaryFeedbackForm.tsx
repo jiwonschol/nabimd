@@ -1,4 +1,4 @@
-import { type FormEvent, useState } from "react"
+import { type FormEvent, useRef, useState } from "react"
 import {
   SUMMARY_FEEDBACK_MAX_LENGTH,
   submitSummaryFeedback,
@@ -19,6 +19,7 @@ export function SummaryFeedbackForm({
 }: SummaryFeedbackFormProps) {
   const [message, setMessage] = useState("")
   const [website, setWebsite] = useState("")
+  const lastSubmission = useRef<{ content: string; id: string } | null>(null)
   const [submissionState, setSubmissionState] =
     useState<SubmissionState>("idle")
   const trimmedMessage = message.trim()
@@ -29,14 +30,23 @@ export function SummaryFeedbackForm({
 
     setSubmissionState("submitting")
     try {
-      await submitSummaryFeedback({
+      const payload = {
         message: trimmedMessage,
         level,
         score,
         total,
         appRevision: __BUILD_SHA__,
+      }
+      const content = JSON.stringify(payload)
+      if (lastSubmission.current?.content !== content) {
+        lastSubmission.current = { content, id: crypto.randomUUID() }
+      }
+      const request = {
+        ...payload,
         website,
-      })
+        submissionId: lastSubmission.current.id,
+      }
+      await submitSummaryFeedback(request)
       setSubmissionState("sent")
     } catch (error) {
       setSubmissionState(
@@ -78,6 +88,7 @@ export function SummaryFeedbackForm({
         Bug report, improvement, or impression
       </label>
       <textarea
+        aria-describedby="summary-feedback-privacy"
         disabled={submissionState === "submitting"}
         id="summary-feedback"
         maxLength={SUMMARY_FEEDBACK_MAX_LENGTH}
@@ -91,7 +102,7 @@ export function SummaryFeedbackForm({
       />
 
       <div className="run-summary__feedback-footer">
-        <p>
+        <p id="summary-feedback-privacy">
           We keep your note, level, score, and app revision for up to 90 days.
           Your answer and account are not sent, and your IP is not saved with
           the note.
@@ -113,7 +124,7 @@ export function SummaryFeedbackForm({
       ) : null}
       {submissionState === "error" ? (
         <p aria-live="polite" className="run-summary__feedback-status">
-          Your note was not sent. Please try again.
+          We couldn’t confirm whether your note was sent. Your text is still here.
         </p>
       ) : null}
 
