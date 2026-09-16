@@ -921,12 +921,13 @@ test("uses the same card without horizontal overflow at phone width", async ({
 test("completes a run and reveals full documents only from Summary", async ({
   page,
 }) => {
-  let submittedFeedback: Record<string, unknown> | null = null
+  const submittedFeedback: Record<string, unknown>[] = []
   await page.route("**/api/feedback", async (route) => {
-    submittedFeedback = route.request().postDataJSON() as Record<
-      string,
-      unknown
-    >
+    submittedFeedback.push(route.request().postDataJSON())
+    if (submittedFeedback.length === 1) {
+      await route.abort("failed")
+      return
+    }
     await route.fulfill({ status: 201, json: { accepted: true } })
   })
   await page.setViewportSize({ width: 1280, height: 800 })
@@ -1039,13 +1040,27 @@ test("completes a run and reveals full documents only from Summary", async ({
     })
     .fill("The last card felt clear.")
   await page.getByRole("button", { name: "Send note" }).click()
+  await expect(page.getByText(
+    "We couldn’t confirm whether your note was sent. Your text is still here.",
+  )).toBeVisible()
+  await expect(page.getByRole("textbox", {
+    name: "Bug report, improvement, or impression",
+  })).toHaveValue("The last card felt clear.")
+  await page.screenshot({ path: test.info().outputPath("feedback-mobile-unconfirmed.png") })
+  await page.setViewportSize({ width: 1280, height: 800 })
+  await feedbackForm.scrollIntoViewIfNeeded()
+  await page.screenshot({ path: test.info().outputPath("feedback-desktop-unconfirmed.png") })
+  await page.getByRole("button", { name: "Send note" }).click()
   await expect(page.getByRole("heading", { name: "Thank you." })).toBeVisible()
-  expect(submittedFeedback).toEqual({
+  expect(submittedFeedback).toHaveLength(2)
+  expect(submittedFeedback[1]).toEqual(submittedFeedback[0])
+  expect(submittedFeedback[0]).toEqual({
     message: "The last card felt clear.",
     level: 1,
     score: 5,
     total: 5,
     appRevision: expect.any(String),
     website: "",
+    submissionId: expect.any(String),
   })
 })
