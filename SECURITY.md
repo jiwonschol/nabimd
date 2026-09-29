@@ -20,6 +20,19 @@ Nabi Markdown runs learning exercises in your browser, without accounts or
 client analytics. Learning progress and draft answers stay in browser session
 storage, with an in-memory fallback when that storage is unavailable.
 
+Builds configured with `VITE_SENTRY_DSN` send filtered browser error reports to
+Sentry. This includes uncaught errors and rejected promises, React render
+failures, and grading failures. Reports may contain the build revision,
+exception type, allowed error messages, stack locations, and problem/boundary
+tags. The app filters out draft bodies, request and user objects, interaction
+breadcrumbs, and arbitrary extra data;
+it does not enable session replay or performance tracing. This filtering is
+not a guarantee that every error field is free of personal information.
+SDK diagnostic metadata and discarded-event counts may also be sent. Sentry
+retention and network/infrastructure handling are separate from the Summary
+feedback policy below. See [monitoring details](docs/production-health-monitoring.md#client-error-reporting)
+for the activation condition, filters, and limits of this notice.
+
 Optional Summary notes are sent to a Cloudflare Worker API and stored in D1.
 Each feedback row contains a submission ID, the note, level, score, total number
 of questions, app revision, and creation and expiry timestamps. Feedback
@@ -52,6 +65,17 @@ security@overwater.app)으로 알려주세요. 1인 유지보수 프로젝트라
 학습은 계정과 클라이언트 분석 도구 없이 브라우저에서 실행됩니다. 학습 진행과
 작성 중인 답안은 브라우저 세션 저장소에 남으며, 저장소를 사용할 수 없으면
 메모리에만 유지됩니다.
+
+`VITE_SENTRY_DSN`을 설정한 빌드는 필터링한 브라우저 오류 보고를 Sentry로
+보냅니다. 처리되지 않은 오류와 Promise 거부, React 렌더링 실패, 채점 실패가
+대상입니다. 보고에는 빌드 리비전, 예외 유형, 허용된 오류 메시지, 스택 위치,
+문제·오류 경계 태그가 포함될 수 있습니다. 앱은 답안 본문, 요청·사용자 객체,
+상호작용 기록과 임의의 추가 데이터를 걸러내며, 세션 녹화나
+성능 추적은 켜지 않습니다. 이 필터가 모든 오류 필드에 개인정보가 없음을
+보장하지는 않습니다. SDK 진단 메타데이터와 폐기된 이벤트 집계도 전송될 수
+있습니다. Sentry 보관 기간과 네트워크·인프라 처리는 아래 소감 보관 정책과
+별개입니다. 활성 조건, 필터와 고지의 한계는
+[모니터링 문서](docs/production-health-monitoring.md#client-error-reporting)를 참고하세요.
 
 Summary에서 선택적으로 보내는 소감은 Cloudflare Worker API를 통해 D1에
 저장됩니다. 소감 행에는 전송 ID, 소감 내용, 레벨, 점수, 총 문항 수, 앱 리비전,
