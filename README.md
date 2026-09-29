@@ -56,6 +56,13 @@ Primary Codex task and `/feedback` Session ID:
 
 Follow the public [release tracker](https://github.com/jiwonschol/nabimd/issues/2).
 
+## Data and error reporting
+
+Learning progress and drafts use browser session storage. Optional Summary
+notes are stored on the server, and builds configured with a Sentry DSN send
+filtered error reports to Sentry. See the [security and data notice](SECURITY.md#scope)
+and [monitoring details](docs/production-health-monitoring.md#client-error-reporting).
+
 ## Licensing
 
 - **Code:** [GNU Affero General Public License v3.0 or later](LICENSE).

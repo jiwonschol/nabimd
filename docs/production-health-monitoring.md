@@ -1,8 +1,9 @@
 # Production health monitoring
 
-Nabi Markdown uses an external synthetic browser check instead of runtime
-error instrumentation. The check opens the public deployment and behaves like
-a learner; the application bundle has no monitoring SDK.
+Nabi Markdown has an external synthetic browser check and optional Sentry
+client error reporting. The check opens the public deployment and behaves like
+a learner. Client reporting is enabled when the build supplies a Sentry DSN;
+it is a separate path from the scheduled health check.
 
 ## What it verifies
 
@@ -100,11 +101,13 @@ under GitHub notification settings.
 
 ## Privacy boundary
 
-The monitor sends only test-authored Markdown marks derived from the public
-problem bank. It does not observe real visitors, read learner sessions, capture
-learner input, set analytics identifiers, or send application data to an
-external monitoring vendor. Failure artifacts contain only the synthetic
-browser session and are retained in GitHub Actions for seven days.
+The synthetic monitor enters only test-authored Markdown marks derived from
+the public problem bank. It does not observe real visitors, read learner sessions, capture
+real learner input, or set analytics identifiers. Its browser loads the deployed
+app, so a build with client reporting enabled can send synthetic-session errors
+to Sentry. Failure artifacts contain only the synthetic browser session and are
+retained in GitHub Actions for seven days. These properties of the test do not
+describe error reporting from real visitors.
 
 Summary feedback rows expire after 89 days. When the daily 03:00 UTC cleanup
 runs successfully, it removes them by the next run, keeping retention below
@@ -113,4 +116,52 @@ cleanup. Expiry is a timestamp, not automatic database deletion. A failed or
 missed cleanup can exceed that policy and requires investigation; the browser
 health check above does not verify cleanup execution.
 
-Sentry and similar client instrumentation remain deliberately out of scope.
+## Client error reporting
+
+[`src/main.tsx`](../src/main.tsx) starts
+[`errorMonitoring.ts`](../src/monitoring/errorMonitoring.ts) before the first
+React render. A truthy build-time `VITE_SENTRY_DSN` enables the dynamically
+imported SDK. There is no production-mode or hostname check: development and
+preview builds also enable it if given a DSN, and every enabled client is
+labelled `production`. Leave the variable unset for builds that should not
+report. A missing DSN or SDK load failure disables reporting without blocking
+the app. The root-element check happens before initialization, so that failure
+is not captured by this path.
+
+[`sentryClient.ts`](../src/monitoring/sentryClient.ts) retains the SDK's global
+error and unhandled-rejection handlers. The app also reports React render
+failures from [`ErrorBoundary`](../src/components/ErrorBoundary.tsx) and caught
+grading failures from [`useLearningSession`](../src/session/useLearningSession.ts).
+At most three explicit reports are queued while the SDK loads. The `beforeSend`
+hook allows at most five scrubbed error events per page load; delivery can still
+fail. This is not a limit on all SDK network requests.
+
+The client sets `sendDefaultPii: false` and `tracesSampleRate: 0`, does not add
+replay or tracing integrations, and removes `Breadcrumbs`, `HttpContext`, and
+`BrowserSession`. It also drops every breadcrumb. The event filter in
+[`scrubEvent.ts`](../src/monitoring/scrubEvent.ts) rebuilds error events from
+allowed fields: event identity/time, platform/severity, release/environment,
+exception type and allowed message, mechanism, up to 40 stack frames per
+exception, and selected problem/boundary/level tags and context. The grading
+caller supplies only draft length, line count, and code-fence presence as
+context, not the draft text. With the pinned `@sentry/browser` 10.70.0 and
+`normalizeDepth: 1`, however, the SDK converts the nested `nabi` context to a
+string before `beforeSend`; the filter then drops it. The current wire event
+therefore omits those draft-shape facts, while problem/boundary tags survive.
+Unrecognized messages are redacted; allowed messages are capped at 300
+characters. Request/user objects, arbitrary extra fields, frame variables and
+source excerpts are dropped.
+
+The filter is a field allowlist, not complete anonymization of retained strings.
+The SDK can add its own metadata after filtering and has discarded-event
+diagnostic reporting enabled by default. Neither those reports nor network
+metadata are covered by the five-error-event limit. `sendDefaultPii: false`
+does not establish how every receiving infrastructure layer handles requests.
+
+This document describes repository behavior, not proof that a deployed build
+has a DSN or that Sentry accepted any events. Sentry project settings, retention,
+server-side scrubbing, and access controls require separate operational
+verification. The feedback retention period above and the synthetic artifact
+retention period do not apply to Sentry. The public data notice is in
+[`SECURITY.md`](../SECURITY.md#scope); the current app screens have no dedicated
+Sentry notice or consent control.
