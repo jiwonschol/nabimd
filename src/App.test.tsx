@@ -656,6 +656,11 @@ describe("App", () => {
     vi.useFakeTimers()
 
     completeProblemViaCard()
+    expect(
+      fireEvent.keyDown(screen.getByRole("button", { name: "Exit" }), {
+        key: "Enter",
+      }),
+    ).toBe(true)
     fireEvent.keyDown(firstBoxInput(), { key: "Enter", isComposing: true })
     fireEvent.keyDown(firstBoxInput(), { key: "Enter", repeat: true })
     expect(

@@ -135,6 +135,8 @@ export function EditorialDesk({
       if (
         event.key === "Enter" &&
         !event.isComposing &&
+        event.target instanceof HTMLInputElement &&
+        event.target.classList.contains("center-card__boxinput") &&
         advancePendingRef.current
       ) {
         event.preventDefault()
