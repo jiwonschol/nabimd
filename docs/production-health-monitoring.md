@@ -144,7 +144,7 @@ allowed fields: event identity/time, platform/severity, release/environment,
 exception type and allowed message, mechanism, up to 40 stack frames per
 exception, and selected problem/boundary/level tags and context. The grading
 caller supplies only draft length, line count, and code-fence presence as
-context, not the draft text. With the pinned `@sentry/browser` 10.70.0 and
+context, not the draft text. With the pinned `@sentry/browser` 10.75.0 and
 `normalizeDepth: 1`, however, the SDK converts the nested `nabi` context to a
 string before `beforeSend`; the filter then drops it. The current wire event
 therefore omits those draft-shape facts, while problem/boundary tags survive.
