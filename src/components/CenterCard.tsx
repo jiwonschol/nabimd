@@ -251,7 +251,7 @@ export function CenterCard({
     if (!interactive) return
     if (event.key === "Enter") {
       // An Enter that finishes an IME composition is not a submission.
-      if (event.nativeEvent.isComposing) return
+      if (event.nativeEvent.isComposing || event.repeat) return
       event.preventDefault()
       onSubmit()
       return

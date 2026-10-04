@@ -646,28 +646,38 @@ describe("App", () => {
     await waitFor(() => expect(firstBoxInput()).toHaveFocus())
   })
 
-  it("advances exactly once even when Enter keeps being pressed in the beat", async () => {
+  it("skips Matched on a fresh Enter without grading or advancing twice", async () => {
     useSessionSeedForFirstProblem(
       1,
       (problem) =>
         problem.skillIds.length === 1 && problem.skillIds[0] === "heading-h1",
     )
     await openLevel(1)
+    vi.useFakeTimers()
 
     completeProblemViaCard()
-    fireEvent.keyDown(document.body, { key: "Enter" })
+    expect(
+      fireEvent.keyDown(screen.getByRole("button", { name: "Exit" }), {
+        key: "Enter",
+      }),
+    ).toBe(true)
+    fireEvent.keyDown(firstBoxInput(), { key: "Enter", isComposing: true })
+    fireEvent.keyDown(firstBoxInput(), { key: "Enter", repeat: true })
     expect(
       screen.getByRole("progressbar", { name: "Practice progress, 1 of 5" }),
     ).toBeVisible()
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getByRole("progressbar", { name: "Practice progress, 2 of 5" }),
-        ).toBeVisible(),
-      { timeout: 3000 },
+    fireEvent.keyDown(firstBoxInput(), { key: "Enter" })
+    expect(
+      screen.getByRole("progressbar", { name: "Practice progress, 2 of 5" }),
+    ).toBeVisible()
+    expect(screen.queryByRole("status")).toBeNull()
+    expect(firstBoxInput()).toHaveFocus()
+    fireEvent.keyDown(firstBoxInput(), { key: "Enter", repeat: true })
+    expect(screen.getByRole("button", { name: "Hint" })).toHaveAttribute(
+      "aria-expanded", "false",
     )
-    await act(() => new Promise((resolve) => setTimeout(resolve, 1100)))
+    act(() => vi.advanceTimersByTime(1100))
     expect(
       screen.getByRole("progressbar", { name: "Practice progress, 2 of 5" }),
     ).toBeVisible()

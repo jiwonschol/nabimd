@@ -80,6 +80,7 @@ export function EditorialDesk({
   // revisited step (a visited step exists ahead) never auto-advances, so
   // browsing back through the run stays safe.
   const advancePendingRef = useRef(false)
+  const advanceTimerRef = useRef<number | null>(null)
   const autoAdvance =
     interactive &&
     session.phase === "evaluated" &&
@@ -98,9 +99,11 @@ export function EditorialDesk({
     }
     advancePendingRef.current = true
     const timer = window.setTimeout(advanceAfterBeat, VERDICT_BEAT_MS)
+    advanceTimerRef.current = timer
     return () => {
       advancePendingRef.current = false
       window.clearTimeout(timer)
+      advanceTimerRef.current = null
     }
   }, [autoAdvance, session.evaluation])
 
@@ -127,6 +130,25 @@ export function EditorialDesk({
   useEffect(() => {
     if (!interactive || session.phase === "complete") return
     const navigateSteps = (event: KeyboardEvent) => {
+      // A fresh Enter skips the Matched beat. Consume held Enter repeats so
+      // the submission key cannot also submit the next exercise.
+      if (
+        event.key === "Enter" &&
+        !event.isComposing &&
+        event.target instanceof HTMLInputElement &&
+        event.target.classList.contains("center-card__boxinput") &&
+        advancePendingRef.current
+      ) {
+        event.preventDefault()
+        event.stopPropagation()
+        if (!event.repeat) {
+          if (advanceTimerRef.current !== null) {
+            window.clearTimeout(advanceTimerRef.current)
+          }
+          advanceAfterBeat()
+        }
+        return
+      }
       if (
         !event.altKey ||
         event.ctrlKey ||
