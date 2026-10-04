@@ -9,7 +9,7 @@ Production dependency packages: 125
 
 ================================================================================
 Package: @codemirror/commands
-Version: 6.10.4
+Version: 6.11.1
 SPDX license: MIT
 Copyright / author: Copyright (C) 2018-2021 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
 License file(s): LICENSE
@@ -67,7 +67,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ================================================================================
 Package: @codemirror/search
-Version: 6.7.1
+Version: 6.7.2
 SPDX license: MIT
 Copyright / author: Copyright (C) 2018-2021 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
 License file(s): LICENSE
@@ -96,7 +96,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ================================================================================
 Package: @codemirror/state
-Version: 6.7.1
+Version: 6.7.6
 SPDX license: MIT
 Copyright / author: Copyright (C) 2018-2021 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
 License file(s): LICENSE
@@ -125,7 +125,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ================================================================================
 Package: @codemirror/view
-Version: 6.43.8
+Version: 6.43.13
 SPDX license: MIT
 Copyright / author: Copyright (C) 2018-2021 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
 License file(s): LICENSE
@@ -270,7 +270,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ================================================================================
 Package: @sentry/browser
-Version: 10.70.0
+Version: 10.75.0
 SPDX license: MIT
 Copyright / author: Copyright (c) 2019 Functional Software, Inc. dba Sentry
 License file(s): LICENSE
@@ -299,7 +299,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ================================================================================
 Package: @sentry/browser-utils
-Version: 10.70.0
+Version: 10.75.0
 SPDX license: MIT
 Copyright / author: Copyright (c) 2020 Functional Software, Inc. dba Sentry
 License file(s): LICENSE
@@ -357,7 +357,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ================================================================================
 Package: @sentry/core
-Version: 10.70.0
+Version: 10.75.0
 SPDX license: MIT
 Copyright / author: Copyright (c) 2019 Functional Software, Inc. dba Sentry
 License file(s): LICENSE
@@ -386,7 +386,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ================================================================================
 Package: @sentry/feedback
-Version: 10.70.0
+Version: 10.75.0
 SPDX license: MIT
 Copyright / author: Copyright (c) 2023 Functional Software, Inc. dba Sentry
 License file(s): LICENSE
@@ -415,7 +415,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ================================================================================
 Package: @sentry/replay
-Version: 10.70.0
+Version: 10.75.0
 SPDX license: MIT
 Copyright / author: Copyright (c) 2022 Functional Software, Inc. dba Sentry
 License file(s): LICENSE
@@ -444,7 +444,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ================================================================================
 Package: @sentry/replay-canvas
-Version: 10.70.0
+Version: 10.75.0
 SPDX license: MIT
 Copyright / author: Copyright (c) 2024 Functional Software, Inc. dba Sentry
 License file(s): LICENSE
@@ -647,7 +647,7 @@ MIT License
     SOFTWARE
 ================================================================================
 Package: @types/react
-Version: 19.2.18
+Version: 19.3.0
 SPDX license: MIT
 Copyright / author: Copyright (c) Microsoft Corporation.
 License file(s): LICENSE
@@ -1487,7 +1487,7 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ================================================================================
 Package: lucide-react
-Version: 1.28.0
+Version: 1.46.0
 SPDX license: ISC
 Copyright / author: Copyright (c) 2026 Lucide Icons and Contributors | copyright notice and this permission notice appear in all copies. | Copyright (c) 2013-present Cole Bemis
 License file(s): LICENSE
@@ -2948,7 +2948,7 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ================================================================================
 Package: react
-Version: 19.2.8
+Version: 19.3.0
 SPDX license: MIT
 Copyright / author: Copyright (c) Meta Platforms, Inc. and affiliates.
 License file(s): LICENSE
@@ -2977,7 +2977,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ================================================================================
 Package: react-dom
-Version: 19.2.8
+Version: 19.3.0
 SPDX license: MIT
 Copyright / author: Copyright (c) Meta Platforms, Inc. and affiliates.
 License file(s): LICENSE
@@ -3153,7 +3153,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ================================================================================
 Package: scheduler
-Version: 0.27.0
+Version: 0.28.0
 SPDX license: MIT
 Copyright / author: Copyright (c) Meta Platforms, Inc. and affiliates.
 License file(s): LICENSE
