@@ -9,6 +9,18 @@ Nabi teaches Markdown by typing, not workplace writing by reading. Realistic con
 
 **REQUIRED:** Use `superpowers:test-driven-development` while authoring and `superpowers:verification-before-completion` before handoff.
 
+## Authoring model
+
+Use GPT-6 Astra (`gpt-6-astra`) for new, unsealed problem-bank generation and
+refinement. Preserve the current effective reasoning effort; if the previous
+workflow used `none` or `minimal`, start with `low`. If API automation is added,
+use the Responses API and omit `temperature`, `top_p`, `top_logprobs`, and
+`message.output_text.logprobs`.
+
+This is a build-time authoring policy. Nabi makes no runtime AI calls. Keep the
+recorded `generatedBy` value and prompt of every frozen batch unchanged so its
+provenance and review digests remain truthful.
+
 ## Budgets
 
 | Level | Shape | Goal budget | Lists |

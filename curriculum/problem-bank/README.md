@@ -47,6 +47,16 @@ The earlier 128-candidate GPT-5.6 artifact remains frozen schema-v1 evidence.
 Its 16 accepted headings and 112 unsupported-family candidates are preserved
 for audit history but do not count toward the schema-v2 tracker.
 
+## Authoring model
+
+New, unsealed problem-bank generation and refinement uses GPT-6 Astra with the
+API model ID `gpt-6-astra`. Model use remains confined to the build-time
+curriculum-production workflow; the learner app makes no runtime AI calls.
+
+Existing batch prompts, raw candidates, `generatedBy` values, reviews, and
+digests keep the model provenance they were created with. Changing those
+sealed records would invalidate their evidence rather than migrate them.
+
 ## Gate order
 
 1. **Generate and normalize:** an exact build-time prompt and raw candidates
@@ -84,7 +94,8 @@ latest when the alias was committed.
 ## Artifact map
 
 - `generation-prompt.md` — exact generation request;
-- `candidates.raw.json` — human-readable GPT-5.6 output;
+- `candidates.raw.json` — human-readable model output with its original
+  `generatedBy` provenance;
 - `candidates.normalized.json` — deterministic generated artifact and digests;
 - `fixtures.json` and `verification.json` — definitions and real-engine result
   transcripts;

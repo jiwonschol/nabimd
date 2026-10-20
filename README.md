@@ -42,8 +42,10 @@ npm run dev
 ## How it was built
 
 Application implementation and Build Week documentation happened in Codex
-sessions. GPT-5.6 was used for problem-bank generation and verification at
-build time.
+sessions. GPT-5.6 was used for the existing problem-bank generation and
+verification artifacts. New problem-bank authoring uses GPT-6 Astra
+(`gpt-6-astra`) at build time while preserving each frozen artifact's original
+model provenance.
 
 CodeRabbit reviewed changes. Claude was used for design verification. The
 learning app makes no runtime AI calls; grading stays local, deterministic,
