@@ -18,7 +18,13 @@ import {
   useLayoutEffect,
   useRef,
 } from "react"
+import {
+  type FlaggedLineRange,
+  flaggedLines,
+  setFlaggedLines,
+} from "../editor/flaggedLine"
 import { invisibleCharacters } from "../editor/invisibleCharacters"
+import { wonSignToBacktick } from "../editor/koreanInput"
 import {
   markdownBlankGuides,
   type MarkdownBlankGuideSource,
@@ -74,16 +80,31 @@ function removeOneIndent(view: EditorView): boolean {
 type MarkdownSourceEditorProps = {
   active?: boolean
   blankGuides?: MarkdownBlankGuideSource
+  flaggedLines?: FlaggedSourceLines | null
+  label?: string
+  placeholder?: string
   showInvisibles?: boolean
   value: string
   onChange: (value: string) => void
   onCheck: () => void
 }
 
+/**
+ * The source lines a failed check points at, plus a key that changes with
+ * every check so the same lines can be flagged again after the learner's
+ * edits cleared the previous underline.
+ */
+export type FlaggedSourceLines = {
+  lines: FlaggedLineRange | null
+  key: number
+}
+
 type MarkdownWordProcessorBaseProps = {
   active?: boolean
   blankGuides?: MarkdownBlankGuideSource
+  flaggedLines?: FlaggedSourceLines | null
   label: string
+  placeholder?: string
   showInvisibles?: boolean
   value: string
 }
@@ -108,7 +129,9 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
   const {
     active = true,
     blankGuides,
+    flaggedLines: flaggedSourceLines = null,
     label,
+    placeholder: placeholderText = "Type Markdown…",
     presentation,
     readOnly,
     showInvisibles = false,
@@ -141,10 +164,16 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
       parent: mount,
       doc: value,
       extensions: [
-        ...(readOnly ? [] : [history()]),
+        ...(readOnly
+          ? []
+          : [
+              history(),
+              placeholder(placeholderText),
+              wonSignToBacktick(),
+              flaggedLines(),
+            ]),
         search({ top: true }),
         EditorView.lineWrapping,
-        ...(readOnly ? [] : [placeholder("Type Markdown…")]),
         EditorState.readOnly.of(readOnly),
         EditorView.editable.of(!readOnly),
         EditorView.contentAttributes.of({
@@ -259,6 +288,19 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
     if (active) viewRef.current?.focus()
   }, [active])
 
+  useEffect(() => {
+    const view = viewRef.current
+    if (!view || readOnly) return
+    view.dispatch({
+      effects: setFlaggedLines.of(flaggedSourceLines?.lines ?? null),
+    })
+  }, [
+    flaggedSourceLines?.key,
+    flaggedSourceLines?.lines?.from,
+    flaggedSourceLines?.lines?.to,
+    readOnly,
+  ])
+
   const navigateReadOnlyDocument = (
     event: ReactKeyboardEvent<HTMLElement>,
   ) => {
@@ -328,9 +370,11 @@ export function MarkdownSourceEditor(props: MarkdownSourceEditorProps) {
     <MarkdownWordProcessor
       active={props.active}
       blankGuides={props.blankGuides}
-      label="Your Markdown"
+      flaggedLines={props.flaggedLines}
+      label={props.label ?? "Your Markdown"}
       onChange={props.onChange}
       onCheck={props.onCheck}
+      placeholder={props.placeholder}
       presentation="source"
       readOnly={false}
       showInvisibles={props.showInvisibles}

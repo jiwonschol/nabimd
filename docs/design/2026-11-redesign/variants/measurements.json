@@ -1,0 +1,80 @@
+{
+  "a-1280-initial": {
+    "axeViolations": 0
+  },
+  "a-1280-retry": {
+    "axeViolations": 0
+  },
+  "a-1280-pass": {
+    "axeViolations": 0
+  },
+  "a-390-initial": {
+    "axeViolations": 0,
+    "targetFirstLine": {
+      "y": 194,
+      "bottom": 228
+    },
+    "editorFirstLine": {
+      "y": 412,
+      "bottom": 436
+    }
+  },
+  "a-390-retry": {
+    "axeViolations": 0
+  },
+  "a-390-pass": {
+    "axeViolations": 0
+  },
+  "b-1280-initial": {
+    "axeViolations": 0
+  },
+  "b-1280-retry": {
+    "axeViolations": 0
+  },
+  "b-1280-pass": {
+    "axeViolations": 0
+  },
+  "b-390-initial": {
+    "axeViolations": 0,
+    "targetFirstLine": {
+      "y": 194,
+      "bottom": 228
+    },
+    "editorFirstLine": {
+      "y": 412,
+      "bottom": 436
+    }
+  },
+  "b-390-retry": {
+    "axeViolations": 0
+  },
+  "b-390-pass": {
+    "axeViolations": 0
+  },
+  "c-1280-initial": {
+    "axeViolations": 0
+  },
+  "c-1280-retry": {
+    "axeViolations": 0
+  },
+  "c-1280-pass": {
+    "axeViolations": 0
+  },
+  "c-390-initial": {
+    "axeViolations": 0,
+    "targetFirstLine": {
+      "y": 194,
+      "bottom": 228
+    },
+    "editorFirstLine": {
+      "y": 472,
+      "bottom": 496
+    }
+  },
+  "c-390-retry": {
+    "axeViolations": 0
+  },
+  "c-390-pass": {
+    "axeViolations": 0
+  }
+}

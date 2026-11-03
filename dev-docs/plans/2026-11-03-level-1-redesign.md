@@ -329,7 +329,7 @@ nabimd의 `src/styles/tokens.css`를 아래 값으로 **통째로 교체**하고
 | WS | 상태 | 브랜치 / PR | 마지막 갱신 |
 |---|---|---|---|
 | WS0 승인·등록 | 완료 — Jiwon 승인, 계획 PR #250, 이슈 #251(WS1)·#252(WS2)·#253(WS3)·#254(WS4)·#255(추적) | `claude/level-1-redesign-plan` / PR #250 | 2026-11-03 |
-| WS1 시안 | 세션 시작(이슈 #251) | `redesign/ws1-variants` | 2026-11-03 |
+| WS1 시안 | PR 올림 — 시안 A·B·C 구현, 캡처 18장·비교표·허브 비교 이미지(`docs/design/2026-11-redesign/variants/`), Jiwon 선택 대기 | `claude/redesign-ws1-variants-fd280e` / PR #WS1_PR | 2026-11-03 |
 | WS2 앱 뼈대 | 대기(WS1 선택 뒤) — 이슈 #252 | — | 2026-11-03 |
 | WS3 한국어 콘텐츠 | 대기(WS1과 동시 가능) — 이슈 #253 | — | 2026-11-03 |
 | WS4 통합·출시 | 대기(WS2·WS3 머지 뒤) — 이슈 #254 | — | 2026-11-03 |

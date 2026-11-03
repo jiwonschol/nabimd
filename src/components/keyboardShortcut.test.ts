@@ -69,6 +69,35 @@ describe("the shared Check-or-Next shortcut", () => {
     ).toBe(false)
   })
 
+  it("ignores an Enter that finishes an IME composition", () => {
+    const composingEnter = (overrides: Partial<KeyboardEvent>) =>
+      ({
+        key: "Enter",
+        altKey: false,
+        ctrlKey: false,
+        metaKey: true,
+        shiftKey: false,
+        repeat: false,
+        isComposing: false,
+        keyCode: 13,
+        ...overrides,
+      }) as KeyboardEvent
+
+    expect(
+      isActionShortcut(composingEnter({}), { platform: "MacIntel" }),
+    ).toBe(true)
+    expect(
+      isActionShortcut(composingEnter({ isComposing: true }), {
+        platform: "MacIntel",
+      }),
+    ).toBe(false)
+    expect(
+      isActionShortcut(composingEnter({ keyCode: 229 }), {
+        platform: "MacIntel",
+      }),
+    ).toBe(false)
+  })
+
   it("uses the shared definitions in the editor without repeating an action", () => {
     const run = vi.fn(() => true)
     const [binding] = createActionKeyBindings(run, {

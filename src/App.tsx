@@ -23,6 +23,8 @@ import {
   playPageTurnSound,
   unlockAndPlayPageTurnSound,
 } from "./sound/pageTurnSound"
+import { VariantApp } from "./variants/VariantApp"
+import { readRedesignVariant } from "./variants/variantParam"
 
 export { PAGE_TURN_DURATION_MS }
 export const REDUCED_PAGE_TURN_DURATION_MS = REDUCED_MOTION_DURATION_MS
@@ -74,7 +76,20 @@ export function getPageTurnDuration() {
   return getMotionDuration(PAGE_TURN_DURATION_MS)
 }
 
+/**
+ * 임시 분기(계획서 §4.8): 주소에 ?variant=a|b|c가 있으면 옛 앱 대신 Level 1
+ * 재설계 시안을 띄운다. Jiwon이 하나를 고르면 WS2가 분기와 나머지 시안을 지운다.
+ */
 export function App() {
+  const [variant] = useState(() =>
+    typeof window === "undefined"
+      ? null
+      : readRedesignVariant(window.location.search),
+  )
+  return variant ? <VariantApp variant={variant} /> : <LegacyApp />
+}
+
+function LegacyApp() {
   const learningSession = useLearningSession()
   const [turningEntryId, setTurningEntryId] = useState<EntryId | null>(null)
   const [summarySnapshot, setSummarySnapshot] =
