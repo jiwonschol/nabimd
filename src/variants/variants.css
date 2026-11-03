@@ -618,8 +618,31 @@ html[data-redesign] #root {
     text-align: left;
   }
 
+  /* 휴대폰: 상태 문구는 자기 줄을 차지하고 단추들은 그 아래 한 줄에 놓인다.
+     두 번 실패해 "정답 보기"가 생기거나 320px 폭이어도 단추가 줄 바꿈으로
+     들어가고 문구가 눌리지 않는다. 문구가 비면 단추 줄만 남는다. */
+  .rd-bar__inner {
+    flex-wrap: wrap;
+    row-gap: var(--s1);
+  }
+
   .rd-bar__status {
+    order: -1;
+    flex: 1 1 100%;
     font-size: var(--t-xs);
+  }
+
+  .rd-bar__status:empty {
+    display: none;
+  }
+
+  .rd-bar__left {
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+  }
+
+  .rd-bar__inner > .rd-btn--primary {
+    margin-left: auto;
   }
 
   .rd-btn {
