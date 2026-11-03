@@ -1,8 +1,12 @@
 import { boldCards } from "./bold"
 import type { KoCard, KoMark } from "./build"
+import { codeBlockCards } from "./code-block"
 import { headingCards } from "./heading"
+import { inlineCodeCards } from "./inline-code"
 import { italicCards } from "./italic"
+import { linkCards } from "./link"
 import { listCards } from "./list"
+import { orderedListCards } from "./ordered-list"
 
 /**
  * 한국어 문제은행 v1의 진입점(계획서 §4.3, 이슈 #253).
@@ -15,6 +19,10 @@ export const koCardsByMark: Readonly<Partial<Record<KoMark, readonly KoCard[]>>>
   bold: boldCards,
   italic: italicCards,
   list: listCards,
+  "ordered-list": orderedListCards,
+  link: linkCards,
+  "inline-code": inlineCodeCards,
+  "code-block": codeBlockCards,
 }
 
 export const koMixedCards: readonly KoCard[] = []

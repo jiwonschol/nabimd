@@ -96,6 +96,8 @@ type MarkRule = {
   exampleLine: RegExp
   /** 누락·오형 픽스처가 겨누는 검사. 없으면 첫 검사다. */
   primaryCheckId?: string
+  /** 한 줄로 보여주기 어려운 기호는 셋째 힌트를 따로 만든다. */
+  example?: (target: string) => string
   checks: (target: string, priority: number) => readonly MatchCheck[]
   /** 기호를 통째로 뺀 원문. */
   missing: (target: string) => string
@@ -471,6 +473,11 @@ const marks: Readonly<Record<KoMark, MarkRule>> = {
       "여는 ``` 를 썼으면 닫는 ``` 도 쓴다.",
     ],
     exampleLine: FENCE,
+    example: (target) => {
+      const lines = target.split("\n")
+      const opening = lines.findIndex((line) => FENCE.test(line))
+      return `예: ${lines[opening]} 줄 다음에 ${lines[opening + 1]}, 그 아래에 \`\`\` 줄`
+    },
     checks: (_target, priority) => [
       {
         id: "fenced-code",
@@ -702,6 +709,7 @@ function objectParticle(word: string) {
 }
 
 function exampleLine(target: string, rule: MarkRule) {
+  if (rule.example) return rule.example(target)
   const line = target.split("\n").find((candidate) => rule.exampleLine.test(candidate))
   if (!line) throw new Error(`no example line for ${rule.name}:\n${target}`)
   return `예: ${line}`
