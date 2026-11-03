@@ -52,7 +52,10 @@ async function openVariant(page: Page, variant: Variant) {
 async function typeDraft(page: Page, source: string) {
   const editor = page.getByRole("textbox", { name: "내 마크다운" })
   await editor.click()
-  await page.keyboard.press(process.platform === "darwin" ? "Meta+a" : "Control+a")
+  // Ctrl+A는 Apple 밖 플랫폼에서 앱의 readline 키맵(줄 처음으로)에 잡혀 전체
+  // 선택이 되지 않는다. 편집 호스트에 포커스를 두고 selectAll을 직접 부르면
+  // CodeMirror가 DOM 선택 변화를 받아 문서 전체를 선택한다.
+  await page.evaluate(() => document.execCommand("selectAll"))
   await page.keyboard.insertText(source)
   await expect
     .poll(() =>
