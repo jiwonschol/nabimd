@@ -2,7 +2,7 @@
 
 > **계획만. 구현·빌드는 승인 후 별도 세션에서 한다.**
 > 작성 2026-11-03 · 바탕 진단: `docs/nabimd-assessment-2026-11-03.md` · 이 문서가 멀티세션 작업의 단일 정본(SoT)이다. 세션마다 §10의 상태 표와 확정된 결정을 갱신한다.
-> 재진입: 이 문서 §10 → `git log --oneline -20` → `gh pr list --repo jiwonschol/nabimd` 순으로 읽고 시작한다. 문서는 낡을 수 있으니 git이 정본이다.
+> 재진입: 이 문서 §10 → `git log --oneline -20` → `gh pr list --repo jiwonschol/nabimd` → 추적 이슈 #255 순으로 읽고 시작한다. 문서는 낡을 수 있으니 git이 정본이다.
 
 ## 0. 한 줄 목표
 
@@ -70,8 +70,8 @@
 - React·세션에 의존하지 않는 순수 함수다. `evaluateProblem(problem, source) → Evaluation`(`src/engine/evaluateProblem.ts:7-19`), `evaluateMatch`는 priority 다음 선언 순으로 검사해 실패를 모은다(`evaluateMatch.ts:78-114`), `evaluateEditorial`은 리뷰 문구를 최대 3개(`evaluateEditorial.ts:39-47`), `createEvaluationContext`(`evaluationContext.ts:14-52`), `diagnoseMatchFailure`(`matchDiagnostics.ts:300-327`).
 - 문제에서 읽는 필드는 셋뿐이다: `matchChecks`, `editorialChecks`, `target`(진단용).
 - 출력: `fail {feedbackId, message, failures[{check, diagnostic}]}` 또는 `matched {reviewItems}`(`src/engine/types.ts:19-44`). 진단 `MatchDiagnostic`: classification(aggregate/specific), reason(extra/malformed/missing), location, expectedRange, observedRange(`types.ts:8-17`).
-- 술어 전부: `heading-spacing`, `hash-heading-style`, `has-heading`(`predicates/heading.ts:29-41`); `block-count`, `inline-presence`, `heading-depth-order`, `list-shape`, `blockquote-shape`, `inline-code-shape`, `link-shape`, `code-block`, `block-sequence`, `document-limits`(`predicates/structural.ts:746-767`). 옵션 정의 `src/content/types.ts:83-165`, 범위 document/block/section(`types.ts:19-30`, `sectionIndex.ts:16-35`). **할 일 목록은 `list-shape`의 `requireTaskItems`(`types.ts:119`), 표는 `block-count`, 자동링크는 `allowAutolinks`(`types.ts:80`)로 이미 채점한다.** 옛 커리큘럼이 "미구현"이라 한 것은 카드 드릴의 칸 나누기 쪽이었다.
-- 없는 것: 취소선·각주 술어, 본문 텍스트 비교(의도된 설계).
+- 술어 전부: `heading-spacing`, `hash-heading-style`, `has-heading`(`predicates/heading.ts:29-41`); `block-count`, `inline-presence`, `heading-depth-order`, `list-shape`, `blockquote-shape`, `inline-code-shape`, `link-shape`, `code-block`, `block-sequence`, `document-limits`(`predicates/structural.ts:746-767`). 옵션 정의 `src/content/types.ts:83-165`, 범위 document/block/section(`types.ts:19-30`, `sectionIndex.ts:16-35`). **할 일 목록은 `list-shape`의 `requireTaskItems`(`types.ts:119`), 자동링크는 `allowAutolinks`(`types.ts:80`)로 이미 채점한다. 표는 `block-count`로 존재만 센다 — 머리 칸 수·본문 행 수 제약은 없다(§4.2에서 `table-shape`로 보강).** 옛 커리큘럼이 "미구현"이라 한 것은 카드 드릴의 칸 나누기 쪽이었다.
+- 없는 것: 표 모양(칸 수·행 수) 술어, 취소선·각주 술어, 본문 텍스트 비교(의도된 설계). Setext 제목은 `hash-heading-style`·`has-heading`이 거부하고 테스트가 그 동작을 고정한다(`src/engine/evaluateProblem.test.ts`).
 - 손볼 곳 네 가지: ① 엔진 안의 영어 문구 — 목록 공백 안내(`evaluateMatch.ts:36,43`), 위치 라벨 "Document"·"Document title"·`In “…”`(`matchDiagnostics.ts:124-131,146`) ② 표시 정책(리뷰 3개)이 엔진 안(`evaluateEditorial.ts:46`) ③ 진단이 학습자 문서와 target의 블록 수·순서가 같다고 전제해, 다르면 `observedRange`가 null(`matchDiagnostics.ts:246-270`) — 자유롭게 쓴 문서에서는 줄 위치가 자주 빈다 ④ 실패마다 target 재파싱(`:306`).
 
 ### 3.3 문제 스키마와 데이터
@@ -135,8 +135,8 @@
 - 목표 칸: 렌더된 문서(3~10줄). 제목은 "목표".
 - 에디터 칸: CodeMirror. 초기값은 목표의 산문(기호만 뺀 것, 줄 구조 유지) — **채우기** 모드가 기본이고 "빈 종이에서 쓰기" 토글이 있다(선택은 기억). 마크다운 기호 하이라이트, 투명 문자 보기 토글(기존), 줄 번호 없음, Tab은 두 칸 들여쓰기(Esc 다음 Tab은 포커스 이동), 글꼴 D2Coding. 한국어 자판에서 ₩로 들어오는 키는 백틱으로 바꾼다(기존 처리 재사용). 에디터 본체는 지금 연결이 끊긴 기존 CodeMirror 컴포넌트(§3.1)를 되살려 쓴다.
 - 판정 바(에디터 아래, 휴대폰에서는 화면 아래 고정): 왼쪽 "힌트", 가운데 상태 문구, 오른쪽 **"확인 ⌘↩"**(Windows는 Ctrl↩, 라벨은 OS에 맞춤).
-  - 통과: 바가 leaf 색으로 바뀌고 "통과 — 인용 기호를 바르게 썼다." 목표 옆에 **내가 쓴 것의 렌더**가 나란히 나타나 비교할 수 있고, 단추는 "다음 장 ↩"이 된다. **자동 진행은 없다** — 결과를 보는 시간이 학습이다.
-  - 다시: 상태 문구 한 문장("2번째 줄: 목록 기호 뒤에 공백이 필요하다.")이 clay 글자색으로 뜨고 해당 줄에 옅은 밑줄이 그어진다. 입력은 그대로 둔다(제자리 수정). 진단이 줄 위치를 못 찾으면(§3.2의 observedRange가 빈 경우) 줄 표시 없이 문장만 보여준다. 같은 장에서 2회째 실패하면 "정답 보기"가 생기고, 누르면 정답 소스가 목표 칸 아래에 펼쳐진다(에디터는 유지).
+  - 통과: 바가 leaf-soft 바탕(먹색 글자)으로 바뀌고 "통과 — 인용 기호를 바르게 썼다." 목표 옆에 **내가 쓴 것의 렌더**가 나란히 나타나 비교할 수 있고, 단추는 "다음 장 ↩"이 된다. **자동 진행은 없다** — 결과를 보는 시간이 학습이다.
+  - 다시: 상태 문구 한 문장("2번째 줄: 목록 기호 뒤에 공백이 필요하다.")이 글자용 clay(§4.7)로 뜨고 해당 줄에 옅은 밑줄이 그어진다. 입력은 그대로 둔다(제자리 수정). 진단이 줄 위치를 못 찾으면(§3.2의 observedRange가 빈 경우) 줄 표시 없이 문장만 보여준다. 같은 장에서 2회째 실패하면 "정답 보기"가 생기고, 누르면 정답 소스가 목표 칸 아래에 펼쳐진다(에디터는 유지).
   - 힌트: 1단계 기호만("`>` 와 공백"), 2단계 지워진 기호 자리를 에디터 안에 빈 칸으로 표시(기존 `markdownBlankGuides` 재사용, §3.3) + 데이터의 예시 힌트 한 줄. 벌점 없음, 지도 상태에 영향 없음, 포커스는 에디터에 남는다. 지시·가르침·힌트 문구는 문제 데이터의 `prompt`·`teaching`·`hints`에서 온다 — 지금 화면이 한 번도 쓰지 않던 필드다(§3.3).
 - 소리: 기존 3종(통과·다시·요약)과 토글을 유지하고 기본값은 지금과 같게 둔다.
 
@@ -151,7 +151,7 @@
 
 | 기호 | 마크 | 엔진이 보는 것(구조) | 동치로 통과 |
 |---|---|---|---|
-| 제목 | `# `, `## ` | 깊이와 순서 | Setext(`===`)는 통과시키되 해시 방식을 안내(D11 유지) |
+| 제목 | `# `, `## ` | 깊이와 순서 | Setext(`===`)는 **통과하지 않는다** — 엔진이 거부하고(`predicates/heading.ts`) 전용 안내 문구로 해시 방식을 가르친다(D11 유지) |
 | 굵게 | `**` | strong 노드 | `__` |
 | 기울임 | `*` | emphasis 노드 | `_` |
 | 목록 | `- ` | 항목 수, 중첩 | `*`, `+` |
@@ -161,10 +161,10 @@
 | 코드 블록 | ```` ``` ```` | code 노드 | `~~~`, 언어 태그 유무 |
 | 인용 | `> ` | blockquote | — |
 | 이미지 | `![설명](주소)` | image 노드와 alt | 주소는 아무 URL |
-| 표 | `\| a \| b \|` + 구분선 | 표의 머리·행 수 | 정렬 콜론 유무 |
+| 표 | `\| a \| b \|` + 구분선 | 표의 존재 + 머리 칸 수·본문 행 수(새 술어 `table-shape`, WS3이 추가) | 정렬 콜론 유무 |
 | 할 일 목록 | `- [ ] ` | 작업 항목 | `[x]` 대소문자 |
 
-12개 모두 엔진이 이미 채점한다(§3.2). 할 일 목록은 `list-shape`의 `requireTaskItems` 옵션이고, 옛 커리큘럼이 "미구현"이라 한 것은 카드 드릴의 칸 나누기 쪽이었다. 따라서 술어를 새로 만들 일은 없고, WS3이 기호마다 문제를 쓰면서 그 옵션으로 검사한다. 엔진 안의 영어 문구와 리뷰 3개 제한(§3.2의 손볼 곳 ①②)은 WS2가 사전으로 옮긴다.
+11개는 엔진이 이미 채점한다(§3.2). 할 일 목록은 `list-shape`의 `requireTaskItems` 옵션이고, 옛 커리큘럼이 "미구현"이라 한 것은 카드 드릴의 칸 나누기 쪽이었다. **표만 예외다**: 지금 엔진은 `block-count`로 표의 존재만 세고 머리 칸 수·본문 행 수를 볼 수 없다(`predicates/structural.ts`의 `blockCountPasses`). 본문 행이 빠진 표가 통과하면 안 되므로 WS3이 `table-shape` 술어(머리 칸 수, 본문 행 수 min/max, 범위 옵션)와 부정 픽스처를 `src/engine/predicates/structural.ts`·`src/content/types.ts`에 추가한다 — 콘텐츠가 필요로 하는 술어라 콘텐츠 소유자가 든다. 그 밖의 술어는 새로 만들지 않는다. 엔진 안의 영어 문구와 리뷰 3개 제한(§3.2의 손볼 곳 ①②)은 WS2가 사전으로 옮긴다(파일이 다르다: `evaluateMatch.ts`·`matchDiagnostics.ts`·`evaluateEditorial.ts`).
 
 ### 4.3 콘텐츠 — 한국어 문제은행 v1
 
@@ -206,14 +206,14 @@ nabimd의 `src/styles/tokens.css`를 아래 값으로 **통째로 교체**하고
 | 항목 | 값 (onsoonlabs `site/shared/tokens.css`) |
 |---|---|
 | 바탕·글·선 | `--bg #ffffff` · `--ink #1f1e1c` · `--ink-soft #6b655e` · `--line #e7e2da` · `--card #ffffff` |
-| 액센트 3색 | clay `#df5a48`(CTA·강조) · butter `#eec25f` · leaf `#7d9e6a`; soft 톤은 같은 hue |
+| 액센트 3색 | clay `#df5a48` · butter `#eec25f` · leaf `#7d9e6a`; soft 톤은 같은 hue. nabimd가 더하는 것은 글자용 짙은 변형 `--acc-clay-text`·`--acc-leaf-text` 둘뿐(4.5:1 이상, WS1 측정) |
 | 글자 크기 | 13 / 15 / 17.5 / 21 / 26px + display `clamp(1.9rem, 4.6vw, 3.1rem)`(제품 페이지 급) |
 | 굵기·행간 | 400 본문 · 500 라벨 · 700 제목 · 800 display 한 곳 / 1.15 · 1.3 · 1.65 |
 | 여백·모서리 | 8의 배수(8~144) / 8px · 16px (알약은 언어 토글만) |
 | 모션 | `.22s` 상태 전환 · `.14s` 눌림 · `.5s` 연출 한 번 · `cubic-bezier(.2,.8,.2,1)` |
 | 다크 모드 | 허브의 `prefers-color-scheme: dark` 세트 그대로(`#1a1a1c` 바탕 등). 에디터 테마도 두 벌 |
 
-- 색의 쓰임: CTA·링크·"다시" 글자 = clay, 통과 = leaf, 선 = line, 보조 글 = ink-soft. 제품 고유 색을 더하지 않는다(허브 규칙 "제품별 액센트 색은 두지 않는다").
+- 색의 쓰임과 대비: 허브의 원색은 흰 바탕에서 글자용으로 쓰기엔 대비가 모자란다(clay `#df5a48` 약 3.7:1, leaf `#7d9e6a` 약 3.0:1 — 둘 다 4.5:1 미달). 그래서 **글자에는 같은 hue의 짙은 변형**을 쓴다: 링크·"다시" 문구 = `--acc-clay-text`(clay hue, 흰 바탕에서 4.5:1 이상이 되도록 WS1이 측정해 값을 정하고 비교표에 측정값을 적는다), 통과 문구 = `--acc-leaf-text`(같은 방식). **주 단추는 먹색(`--ink`) 바탕에 흰 글자**다 — 허브 주 단추의 hover 상태이자 지금 nabimd의 Enter 단추 색이라 한 식구로 보이고 대비는 21:1이다. 통과 띠는 `--acc-leaf-soft` 바탕에 `--ink` 글자, clay 원색은 밑줄·아이콘·강조 띠처럼 글자가 아닌 곳에만. 선 = line, 보조 글 = ink-soft. 제품 고유 색을 더하지 않는다(허브 규칙 "제품별 액센트 색은 두지 않는다") — 짙은 변형은 새 hue가 아니라 같은 hue의 명도 단계다.
 - 글꼴: 화면 = **Pretendard Variable**(OFL 1.1; 허브의 `PretendardVariable.subset.woff2`가 한글 2,350자를 담는지 WS1 첫 단계에서 확인하고, 부족하면 공식 배포본의 한글 subset을 자체 호스팅). 에디터·코드·기호 예시 = **D2Coding**(OFL 1.1, Ver 1.4.0, 한글 고정폭). Source Serif 4·JetBrains Mono는 제거하고 THIRD-PARTY-NOTICES와 라이선스 페이지를 재생성한다.
 - 워드마크: 나비 로고(유지) + "Nabi Markdown" 글자(Pretendard 700). 세리프 워드마크 이미지는 교체.
 - 모션: 상태 전환 한 종류와 통과 때 지도 칸이 채워지는 연출 한 번. 페이지 넘김·타자기·스크롤 연동 없음. `prefers-reduced-motion`이면 전부 끈다.
@@ -243,10 +243,10 @@ nabimd의 `src/styles/tokens.css`를 아래 값으로 **통째로 교체**하고
 | **WS0 승인·등록** | Jiwon이 이 계획을 승인하면 이 세션이 `github-issue` 규율로 이슈를 만든다: 우산 이슈 1개(이 문서 링크, WS 체크리스트, "main 배포 금지 구간" 안내) + WS1~WS4 이슈 4개(본문 = 부록의 실행 프롬프트). 열린 옛 이슈 5개에 재평가 코멘트 | 이슈 5개 | Jiwon 승인 |
 | **WS1 시안** | 토큰 이식 → 시안 A·B·C 구현 → 18장 캡처 + 비교표 → Jiwon 선택 | PR 1개(토큰·시안·캡처), 비교표 | G1 + Jiwon 선택 |
 | **WS2 앱 뼈대** | 라우팅(홈·연습·요약), i18n 사전, 진도 저장, 에디터(CodeMirror 재사용), 판정·힌트·정답 보기, 요약, 동의+계측, 다크 모드, 엔진 영어 문구의 사전화, 옛 화면·책 CSS·레벨·타이머·턴·랭킹 코드 삭제(배치 게이트와 봉인 데이터는 건드리지 않음, §3.8) | PR 3~5개 | G2 |
-| **WS3 한국어 콘텐츠** | 120장 작성 + 픽스처 + validate + lint. 영어 Level 1 서빙 확인 | PR 2~3개(기호 묶음별) | G3 |
+| **WS3 한국어 콘텐츠** | 120장 작성 + 픽스처 + validate + lint. 표 모양 술어 `table-shape` 추가(§4.2). 영어 Level 1 서빙 확인 | PR 2~3개(기호 묶음별) | G3 |
 | **WS4 통합·출시 준비** | e2e 전면 갱신(production-health runbook 포함), a11y·번들·Lighthouse, 라이선스 페이지, README·SECURITY·CONTRIBUTING·changelog 갱신, OG 이미지, 배포 리허설(`wrangler deploy --dry-run`) → **Jiwon 배포 승인** → 배포 → production-health workflow_dispatch → 허브 `products.json` 문구·캡처 PR(onsoonlabs 저장소, Jiwon 머지) | PR 2개 + 배포 | G4 |
 
-**순서의 이유.** 시안이 앱 뼈대의 배치를 정하므로 WS1이 먼저다. WS3은 스키마가 고정되어 있어 화면과 독립이라 WS2와 **병렬**로 돈다(파일 소유권: WS2 = `src/components`·`src/styles`·`src/i18n`·`src/progress`·`src/app`·`src/engine`(문구 키 분리), WS3 = `src/content/ko`·`scripts/content`·그 테스트). WS4는 둘이 끝나야 한다.
+**순서의 이유.** 시안이 앱 뼈대의 배치를 정하므로 WS1이 먼저다. WS3은 스키마가 고정되어 있어 화면과 독립이라 WS2와 **병렬**로 돈다(파일 소유권: WS2 = `src/components`·`src/styles`·`src/i18n`·`src/progress`·`src/app`·`src/engine`의 `evaluateMatch.ts`·`matchDiagnostics.ts`·`evaluateEditorial.ts`(문구 키 분리), WS3 = `src/content/ko`·`scripts/content`·`src/engine/predicates/structural.ts`의 `table-shape` 술어와 `src/content/types.ts`의 그 옵션·그 테스트). WS4는 둘이 끝나야 한다.
 
 **브랜치와 배포.** PR은 main으로 직행한다. `ci.yml`은 push와 PR에 검사만 하고 배포는 `npm run deploy:cloudflare`를 사람이 실행하므로, main이 미완성이어도 라이브는 바뀌지 않는다. 다만 옛 화면을 지우는 PR이 머지되는 순간부터 WS4가 끝날 때까지 main은 **배포 금지 구간**이다 — 우산 이슈 맨 위에 적고, WS4 외의 세션은 `deploy:cloudflare`를 실행하지 않는다. 긴 브랜치에 모았다가 한 번에 머지하는 대안은 PR마다 붙는 Codex 리뷰를 얇게 만들어서 쓰지 않는다.
 
@@ -257,7 +257,7 @@ nabimd의 `src/styles/tokens.css`를 아래 값으로 **통째로 교체**하고
 **G1 시안(WS1)**
 - 캡처 18장(3 시안 × 2 폭 × 3 상태)이 `docs/design/2026-11-redesign/variants/`에 있고 비교표가 각 장을 가리킨다.
 - 세 시안 모두 390폭에서 가로 스크롤 0, 390×844 첫 화면에 목표 첫 줄과 에디터 첫 줄이 함께 보인다(Playwright bbox로 측정).
-- 본문 글자 대비 4.5:1 이상(axe 자동 검사), 콘솔 오류 0.
+- 글자 대비 4.5:1 이상 — 본문·링크·판정 문구·단추 라벨 모두(axe 자동 검사 + 토큰별 측정값을 비교표에), 콘솔 오류 0.
 - Jiwon이 하나를 고른다(사람 게이트). **셋 다 거부하면 시안을 더 만들지 않고 멈춰 이유를 묻는다.** 두 번째 라운드는 Jiwon의 지시로만.
 
 **G2 앱(WS2)**
@@ -269,6 +269,7 @@ nabimd의 `src/styles/tokens.css`를 아래 값으로 **통째로 교체**하고
 
 **G3 콘텐츠(WS3)**
 - 한국어 96장 이상(기호당 8장 이상), 장마다 픽스처 4개 이상이 실엔진을 통과, target 중복 0, 줄 60자 이하, 금칙(실존 URL·전화·주소·실명) 0.
+- `table-shape` 술어가 단위 테스트와 함께 들어 있고, 표 문제의 픽스처에 본문 행이 빠진 표와 머리 칸 수가 다른 표가 실패하는 부정 픽스처가 있다.
 - 생성 초안의 픽스처 첫 통과율을 기록한다. **70% 미만이면 수량을 줄이지 말고 생성 지침을 고쳐 다시 돌린다. 두 번째도 미만이면 멈추고 보고한다.**
 - 표본 20장 Jiwon 눈검수 통과(사람 게이트).
 
@@ -327,11 +328,11 @@ nabimd의 `src/styles/tokens.css`를 아래 값으로 **통째로 교체**하고
 
 | WS | 상태 | 브랜치 / PR | 마지막 갱신 |
 |---|---|---|---|
-| WS0 승인·등록 | 계획 작성됨, 승인 대기 | `claude/level-1-redesign-plan` | 2026-11-03 |
-| WS1 시안 | 대기 | — | — |
-| WS2 앱 뼈대 | 대기(WS1 선택 뒤) | — | — |
-| WS3 한국어 콘텐츠 | 대기(WS1과 무관, WS0 뒤 시작 가능) | — | — |
-| WS4 통합·출시 | 대기 | — | — |
+| WS0 승인·등록 | 완료 — Jiwon 승인, 계획 PR #250, 이슈 #251(WS1)·#252(WS2)·#253(WS3)·#254(WS4)·#255(추적) | `claude/level-1-redesign-plan` / PR #250 | 2026-11-03 |
+| WS1 시안 | 세션 시작(이슈 #251) | `redesign/ws1-variants` | 2026-11-03 |
+| WS2 앱 뼈대 | 대기(WS1 선택 뒤) — 이슈 #252 | — | 2026-11-03 |
+| WS3 한국어 콘텐츠 | 대기(WS1과 동시 가능) — 이슈 #253 | — | 2026-11-03 |
+| WS4 통합·출시 | 대기(WS2·WS3 머지 뒤) — 이슈 #254 | — | 2026-11-03 |
 
 **확정된 결정(날짜) — 다시 안건으로 올리지 않는다**
 
@@ -341,6 +342,8 @@ nabimd의 `src/styles/tokens.css`를 아래 값으로 **통째로 교체**하고
 - 2026-11-03 · 디자인은 허브 결을 바닥으로 두고 시안 3개 중 Jiwon이 고른다.
 - 2026-11-03 · 첫 배포는 Level 1만. AI 지시문 트랙은 다음 덩어리.
 - 2026-11-03 · 타이머·레벨 잠금·책 메타포·페이지 넘김·자동 진행 제거. 계측은 첫 PR에.
+
+**계획 수정 기록.** 2026-11-03 · PR #250의 Codex 리뷰 반영: Setext 제목은 통과가 아니라 전용 안내(D11 유지), 표는 `table-shape` 술어를 WS3이 추가, 글자용 액센트 변형(`--acc-clay-text`·`--acc-leaf-text`)과 먹색 주 단추로 대비 4.5:1 확보.
 
 **다음 덩어리(이 계획 밖, 출시 4주 뒤 Jiwon이 정한다).** "AI에게 주는 지시문 쓰기" 트랙 — 잠자는 Level 3~5 콘텐츠 86장(사람이 읽는 문서·개발 명세·에이전트 작업 지시서)을 한국어로 옮기고 같은 화면에서 긴 문서로 연습한다. 그다음이 GFM·Obsidian 같은 방언(#16).
 
@@ -369,7 +372,7 @@ ws = ws1-variants
 
 할 일(순서대로):
 1. 글꼴 확인. ~/develop/projects/onsoonlabs/site/assets/fonts/PretendardVariable.subset.woff2가 한글 2,350자(KS X 1001)를 담는지 fonttools 또는 브라우저 렌더로 확인한다. 부족하면 Pretendard 공식 배포본에서 한글 subset을 만들어 public/fonts/pretendard/에 둔다(OFL 1.1, 라이선스 파일 동봉). D2Coding Ver 1.4.0(naver/d2-coding-font, OFL 1.1)을 public/fonts/d2coding/에 둔다. Source Serif 4·JetBrains Mono는 아직 지우지 않는다(WS2가 옛 화면과 함께 지운다).
-2. 토큰 이식. src/styles/tokens.css를 계획서 §4.7의 표대로 새로 쓴다(다크 모드 세트 포함). 옛 토큰을 쓰는 옛 화면은 깨져도 된다 — 이 세션의 화면은 ?variant= 아래에서만 보인다.
+2. 토큰 이식. src/styles/tokens.css를 계획서 §4.7의 표대로 새로 쓴다(다크 모드 세트 포함). 글자용 짙은 변형 --acc-clay-text·--acc-leaf-text는 흰 바탕과 다크 바탕 각각에서 4.5:1 이상이 되는 값을 측정해 정하고, 측정값을 비교표 README에 적는다. 주 단추는 먹색 바탕에 흰 글자다. 옛 토큰을 쓰는 옛 화면은 깨져도 된다 — 이 세션의 화면은 ?variant= 아래에서만 보인다.
 3. 표본 문서. src/content/ko/_samples.ts에 한국어 문서 3장을 기존 문제 스키마로 만든다(장보기 메모: 제목 1 + 목록 3 / 회의 메모: 제목·굵게·번호 목록 / AI 요청문: 제목·목록·인용). 실엔진(evaluateProblem)으로 정답이 통과하는지 테스트로 고정한다. WS3이 나중에 바꾼다.
 4. 시안 셸. 주소에 ?variant=a|b|c가 있으면 옛 앱 대신 시안 화면을 띄우는 임시 분기를 src/App.tsx에 둔다. 세 시안은 계획서 §4.8의 배치를 따르고 색·글꼴은 같다. 에디터는 기존 MarkdownSourceEditor(CodeMirror)를 재사용하되 글꼴만 D2Coding으로 바꾼다(지금은 import 0건인 죽은 코드지만 테스트 632줄이 살아 있다 — 계획서 §3.1). 판정은 실제 엔진을 호출한다(가짜 상태 금지). 상태 셋(처음/다시/통과)은 실제 입력으로 만든다.
 5. 캡처. tests/e2e/capture-redesign-variants.spec.ts를 만들어 NABI_WRITE_VARIANT_QA=1일 때 3 시안 × 2 폭(1280×800, 390×844) × 3 상태 = 18장을 docs/design/2026-11-redesign/variants/<variant>-<width>-<state>.png로 저장한다. 390폭에서 목표 첫 줄과 에디터 첫 줄의 bbox가 둘 다 viewport 안에 있는지, 가로 스크롤이 0인지 같은 스펙에서 단언한다. 허브 제품 페이지(https://onsoonlabs.com/topki/) 1280 캡처 한 장을 옆에 둔 비교 이미지 compare-with-hub.png도 만든다.
@@ -397,7 +400,7 @@ PR 1 "뼈대·홈·연습":
   - 홈 = 기호 지도(계획서 §4.1). 연습 = 선택한 시안(§4.8)의 배치로 §4.1의 요소(지시 한 줄, 목표, 에디터, 판정 바, 힌트 2단계, 2회 실패 뒤 정답 보기, 통과 뒤 비교, 다음 장). 자동 진행 없음.
   - 선택기: "오늘의 다섯 장"은 안 해본 기호 우선, 이웃한 장은 같은 기호 금지, 혼합 문서는 다섯 장 중 최대 하나. 기존 selection/runComposition의 가중치·턴 규칙은 쓰지 않는다.
   - 영어 모드: 기존 Level 1 164장과 Level 1 기호만의 혼합 문서를 curriculumElements의 분류로 고른다. 문제은행은 언어별 동적 import 청크로 나눈다.
-  - 할 일 목록은 list-shape의 requireTaskItems 옵션으로 이미 채점된다(계획서 §3.2) — 표본 문제로 테스트만 추가한다. 엔진 안의 영어 문구(evaluateMatch.ts의 목록 공백 안내, matchDiagnostics.ts의 위치 라벨)와 리뷰 3개 제한을 엔진 밖 사전으로 옮기고 엔진은 키를 돌려주게 한다.
+  - 할 일 목록은 list-shape의 requireTaskItems 옵션으로 이미 채점된다(계획서 §3.2) — 표본 문제로 테스트만 추가한다. 표 모양 술어(table-shape)는 WS3이 structural.ts에 더하니 그 파일은 건드리지 않는다. Setext 제목은 통과시키지 않고 전용 안내 문구만 보여준다(옛 결정 D11). 엔진 안의 영어 문구(evaluateMatch.ts의 목록 공백 안내, matchDiagnostics.ts의 위치 라벨)와 리뷰 3개 제한을 엔진 밖 사전으로 옮기고 엔진은 키를 돌려주게 한다.
 PR 2 "요약·진도·동의·다크":
   - 요약 화면(§4.1), 메모 폼은 기존 SummaryFeedbackForm을 한국어 사전으로.
   - 진도 저장 nabimd.learning.v1(§4.5) + 메모리 폴백 + "진도 지우기". 옛 nabimd.progress.v5와 nabimd.session-seed.v1(sessionStorage)은 읽지 않고 지운다.
@@ -425,6 +428,7 @@ PR 3 "옛 화면 삭제·정리":
 할 일:
 1. 계획서 §3의 스키마와 src/content/types.ts, src/content/validateProblemBank.ts, src/engine/evaluateProblem.ts를 읽는다. 기존 Level 1 영어 문제 하나를 본으로 삼아 필드를 그대로 채운다. locale 필드가 없으면 "ko"|"en"을 추가하고 기존 데이터는 "en"으로 채운다(WS2와 겹치지 않게 types.ts의 이 한 줄만 만진다 — 충돌 나면 WS2가 먼저다).
 2. 기호 12개 × 8장 + 혼합 24장을 src/content/ko/<기호>.ts·mixed.ts에 쓴다(§4.3의 유형 10, 길이, 금칙). 각 장에 픽스처 4개 이상(정답, 산문만 바꾼 변형, 기호 누락, 기호 오형)을 같은 파일 옆 <기호>.fixtures.ts에 둔다.
+   표 문제를 쓰기 전에 table-shape 술어(머리 칸 수, 본문 행 수 min/max, 범위 옵션)를 src/engine/predicates/structural.ts와 src/content/types.ts에 더하고 단위 테스트로 고정한다(계획서 §4.2). WS2는 이 두 파일의 이 부분을 만지지 않는다.
 3. scripts/content/ko-report.mjs: 장 수(기호별), 픽스처 통과율, 중복, 줄 길이, 금칙, 해요체를 표로 찍는다. 첫 통과율을 PR 본문에 적는다. 70% 미만이면 수량을 줄이지 말고 생성 지침(문서 유형·길이·기호 배치)을 고쳐 다시 쓴다. 두 번째도 미만이면 멈추고 보고한다.
 4. 테스트: 픽스처 전부 실엔진 통과, validateProblemBank 통과, 중복 0을 vitest로 고정하고 npm run check에 포함.
 5. PR 세 개(기호 4개씩). 각 PR 본문에 그 묶음에서 무작위 7장의 목표 렌더(마크다운 원문)를 붙여 Jiwon이 눈으로 볼 수 있게 한다(세 PR 합쳐 20장 이상).
