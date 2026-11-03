@@ -143,6 +143,36 @@ function validateRange(
   }
 }
 
+function validateTableShape(
+  problemId: string,
+  check: MatchCheck,
+  runtimeCheck: Record<string, unknown>,
+  errors: string[],
+) {
+  const shape = runtimeCheck.tableShape
+  if (runtimeCheck.block !== "table") {
+    errors.push(
+      `Problem ${problemId} check ${check.id} can only use tableShape with table blocks`,
+    )
+  }
+  if (!isRecord(shape)) {
+    errors.push(`Problem ${problemId} check ${check.id} has invalid tableShape`)
+    return
+  }
+  if (!Number.isInteger(shape.headerCells) || Number(shape.headerCells) < 1) {
+    errors.push(
+      `Problem ${problemId} check ${check.id} has invalid tableShape header cells`,
+    )
+  }
+  validateRange(
+    problemId,
+    check,
+    shape.minBodyRows as number | undefined,
+    shape.maxBodyRows as number | undefined,
+    errors,
+  )
+}
+
 function validateScope(problemId: string, check: MatchCheck, errors: string[]) {
   if (!("scope" in check)) {
     if (scopeRequiredMatchCheckKinds.has(check.kind)) {
@@ -270,6 +300,9 @@ function validateMatchChecks(problem: GradableProblem, errors: string[]) {
             errors.push(
               `Problem ${problem.id} check ${check.id} has invalid recursive flag`,
             )
+          }
+          if (runtimeCheck.tableShape !== undefined) {
+            validateTableShape(problem.id, check, runtimeCheck, errors)
           }
         } else {
           const runtimeCheck = check as unknown as Record<string, unknown>
