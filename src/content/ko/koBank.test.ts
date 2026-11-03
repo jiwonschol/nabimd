@@ -2,15 +2,38 @@ import { describe, expect, it } from "vitest"
 import { evaluateProblem } from "../../engine/evaluateProblem"
 import { validateProblemBank } from "../validateProblemBank"
 import { koSamples } from "./_samples"
-import { KO_DOC_TYPES } from "./build"
+import { KO_DOC_TYPES, KO_MARKS } from "./build"
 import { koFixtures } from "./fixtures"
-import { koCards, koCardsByMark, koProblems } from "./index"
+import { koCards, koCardsByMark, koMixedCards, koProblems } from "./index"
 import { lintKoCard } from "./lint"
 
 describe("한국어 문제은행 v1", () => {
-  it("기호마다 8장 이상이다", () => {
-    for (const [mark, cards] of Object.entries(koCardsByMark)) {
-      expect(cards.length, mark).toBeGreaterThanOrEqual(8)
+  it("기호 12개마다 8장 이상이고 혼합이 24장이다", () => {
+    expect(Object.keys(koCardsByMark).sort()).toEqual([...KO_MARKS].sort())
+    for (const mark of KO_MARKS) {
+      expect(koCardsByMark[mark].length, mark).toBeGreaterThanOrEqual(8)
+      expect(koCardsByMark[mark].every((card) => card.marks.join() === mark), mark).toBe(true)
+    }
+    expect(koMixedCards).toHaveLength(24)
+    for (const card of koMixedCards) {
+      expect(card.marks.length, card.problem.id).toBeGreaterThanOrEqual(2)
+      expect(card.marks.length, card.problem.id).toBeLessThanOrEqual(3)
+    }
+  })
+
+  it("표가 든 장마다 본문 행이 빠진 표와 머리 칸 수가 다른 표가 실패한다", () => {
+    const tableCards = koCards.filter((card) => card.marks.includes("table"))
+    expect(tableCards.length).toBeGreaterThanOrEqual(8)
+    for (const card of tableCards) {
+      const byId = (suffix: string) =>
+        koFixtures.find((fixture) => fixture.id === `${card.problem.id}--table-${suffix}`)
+      for (const suffix of ["no-body-rows", "fewer-header-cells"]) {
+        const fixture = byId(suffix)
+        expect(fixture, `${card.problem.id} ${suffix}`).toBeDefined()
+        const evaluation = evaluateProblem(card.problem, fixture!.source)
+        expect(evaluation.status).toBe("fail")
+        if (evaluation.status === "fail") expect(evaluation.feedbackId).toBe("shaped-table")
+      }
     }
   })
 
