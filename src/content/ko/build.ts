@@ -94,6 +94,8 @@ type MarkRule = {
   hints: readonly [string, string]
   /** 셋째 힌트로 보여줄 줄을 고른다. */
   exampleLine: RegExp
+  /** 누락·오형 픽스처가 겨누는 검사. 없으면 첫 검사다. */
+  primaryCheckId?: string
   checks: (target: string, priority: number) => readonly MatchCheck[]
   /** 기호를 통째로 뺀 원문. */
   missing: (target: string) => string
@@ -215,6 +217,7 @@ const marks: Readonly<Record<KoMark, MarkRule>> = {
       "# 은 문서에 하나, 그 아래 구획은 ## 이다.",
     ],
     exampleLine: H2,
+    primaryCheckId: "section-headings",
     checks: (target, priority) => [
       {
         id: "heading-order",
@@ -224,13 +227,20 @@ const marks: Readonly<Record<KoMark, MarkRule>> = {
         feedback: "# 다음에는 ## 이 온다. 단계를 건너뛰지 않는다.",
       },
       {
+        id: "use-hash-section-style",
+        kind: "hash-heading-style",
+        level: 2,
+        priority: priority + 1,
+        feedback: "구획 이름 아래에 --- 선을 긋지 말고 줄 처음에 ## 을 쓴다.",
+      },
+      {
         id: "section-headings",
         kind: "block-count",
         scope: doc,
         block: "heading",
         depth: 2,
         min: linesMatching(target, H2).length,
-        priority: priority + 1,
+        priority: priority + 2,
         feedback: "구획 이름 줄마다 ## 과 공백을 앞에 쓴다.",
       },
     ],
@@ -238,6 +248,15 @@ const marks: Readonly<Record<KoMark, MarkRule>> = {
     malformed: (target) => target.replace(/^## /gm, "##"),
     variant: (target) => target.replace(/^## (.+)$/gm, "## $1 ##"),
     extraFixtures: (target) => [
+      {
+        suffix: "setext-sections",
+        role: "edge-case",
+        kind: "setext",
+        source: target.replace(/^## (.+)$/gm, "$1\n---"),
+        exercisesCheckId: "use-hash-section-style",
+        expectedStatus: "fail",
+        expectedFeedbackId: "use-hash-section-style",
+      },
       {
         suffix: "skipped-depth",
         role: "edge-case",
@@ -820,7 +839,8 @@ function buildCard(source: KoDoc, cardMarks: readonly KoMark[]): BuiltCard {
   ]
 
   rules.forEach((rule, index) => {
-    const primary = markChecks[index]!.find((check) => check.kind !== "heading-depth-order") ?? markChecks[index]![0]!
+    const primary =
+      markChecks[index]!.find((check) => check.id === rule.primaryCheckId) ?? markChecks[index]![0]!
     const mark = cardMarks[index]!
     drafts.push(
       {
