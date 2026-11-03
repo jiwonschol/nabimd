@@ -136,7 +136,8 @@ export function EditorPanel({ sheet }: { sheet: PracticeSheet }) {
         flaggedLines={flaggedLinesOf(sheet.verdict)}
         label="내 마크다운"
         onChange={sheet.changeDraft}
-        onCheck={sheet.check}
+        // 통과한 뒤에는 같은 단축키가 판정 바의 "다음 장"과 같은 일을 한다.
+        onCheck={sheet.verdict?.kind === "pass" ? sheet.next : sheet.check}
         placeholder="여기에 마크다운을 쓴다"
         value={sheet.draft}
       />
@@ -209,11 +210,12 @@ export function VerdictBar({
         </p>
         {passed ? (
           <button
+            aria-keyshortcuts={shortcut.ariaKeyShortcuts}
             className="rd-btn rd-btn--primary"
             onClick={sheet.next}
             type="button"
           >
-            다음 장 <kbd>↩</kbd>
+            다음 장 <kbd aria-hidden="true">{keyLabel}</kbd>
           </button>
         ) : (
           <button

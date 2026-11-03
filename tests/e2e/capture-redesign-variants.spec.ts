@@ -207,7 +207,7 @@ test.afterAll(() => {
 // 두 번 실패하면 판정 바에 "정답 보기"가 더 생긴다(계획서 §4.1). 좁은 폭에서
 // 단추 셋과 확인이 한 줄에 몰려 문구를 누르거나 넘치지 않는지 본다 — 시안 B는
 // 건너뛰기까지 있어 가장 붐빈다(Codex 리뷰 P2).
-for (const width of [390, 320] as const) {
+for (const width of [768, 390, 320] as const) {
   for (const variant of VARIANTS) {
     test(`시안 ${variant.toUpperCase()} · ${width} · 두 번 실패 뒤 정답 보기`, async ({
       page,
@@ -229,13 +229,17 @@ for (const width of [390, 320] as const) {
       ])
       expect(barBox).not.toBeNull()
       expect(statusBox).not.toBeNull()
-      // 문구는 바 폭의 대부분을 쓰고(한 글자 폭으로 눌리지 않는다), 바는
-      // 화면의 4분의 1을 넘지 않는다.
-      expect(statusBox!.width).toBeGreaterThan(barBox!.width * 0.8)
+      // 문구는 한 글자 폭으로 눌리지 않고(폭 160px 이상, 세 줄 이하) 바는
+      // 화면의 4분의 1을 넘지 않으며, 단추는 바 안에 머문다(시안 C의 768px
+      // 가운데 칸처럼 좁은 열에서 옆 칸으로 흘러넘치지 않는다).
+      expect(statusBox!.width).toBeGreaterThanOrEqual(160)
+      expect(statusBox!.height).toBeLessThanOrEqual(60)
       expect(barBox!.height).toBeLessThan(viewportHeight / 4)
-      for (const name of ["힌트", "정답 보기"]) {
+      const barRight = barBox!.x + barBox!.width + 1
+      for (const name of ["힌트", "정답 보기", /^확인/]) {
         const box = await page.getByRole("button", { name }).boundingBox()
-        expect(box!.x + box!.width, name).toBeLessThanOrEqual(width)
+        expect(box!.x + box!.width, String(name)).toBeLessThanOrEqual(barRight)
+        expect(box!.x, String(name)).toBeGreaterThanOrEqual(barBox!.x - 1)
       }
 
       await answerButton.click()
@@ -245,6 +249,26 @@ for (const width of [390, 320] as const) {
     })
   }
 }
+
+// 통과한 뒤에는 에디터 안의 같은 단축키가 "다음 장"으로 이어진다(Codex 리뷰 P2).
+test("통과 뒤 에디터 단축키가 다음 장으로 넘어간다", async ({ page }) => {
+  trackConsole(page)
+  await page.setViewportSize({ width: 1280, height: 800 })
+  await openVariant(page, "a")
+  await typeDraft(page, GROCERY_PASS)
+  await page.keyboard.press("Control+Enter")
+  await expect(page.getByTestId("rd-bar")).toHaveAttribute("data-tone", "pass")
+  await expect(page.getByRole("button", { name: /^다음 장/ })).toHaveAttribute(
+    "aria-keyshortcuts",
+    /Control\+Enter/,
+  )
+  await page.keyboard.press("Control+Enter")
+  await expect(page.getByTestId("rd-target").locator("h1")).toHaveText(
+    "11월 기획 회의",
+  )
+  await expect(page.getByTestId("rd-bar")).toHaveAttribute("data-tone", "idle")
+  expect(consoleErrors.get(page)).toEqual([])
+})
 
 // 허브 제품 페이지(https://onsoonlabs.com/topki/) 1280 캡처를 시안 A·B·C의
 // 1280 '처음' 캡처 옆에 둔 비교 이미지. 바깥 네트워크를 쓰므로 캡처 모드에서만.
