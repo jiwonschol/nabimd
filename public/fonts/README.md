@@ -19,5 +19,6 @@ Level 1 재설계(계획서 `dev-docs/plans/2026-11-03-level-1-redesign.md` §4.
   - `U+3000-303F` CJK 기호, `U+3130-318F` 한글 호환 자모
   - `U+AC00-D7A3` 한글 음절 11,172자 전부 (에디터에서는 드문 음절도 폭이 맞아야 해서 줄이지 않았다)
   - `U+FF00-FFEF` 전각 기호
+- 고친 글리프: D2Coding은 `|`(U+007C)를 가운데가 끊긴 두 조각으로 그려서 에디터에서 `¦`(U+00A6, 다른 글자)처럼 보인다. 마크다운 표를 쓰는 학습자가 누를 키를 헷갈리지 않게, subset 뒤에 `scripts/fonts/d2coding-solid-bar.py`로 두 파일의 `bar` 글리프를 같은 폭·같은 위아래 끝의 막대 하나로 바꿨다(글자 폭 500은 그대로라 표 칸 정렬이 같다). `¦`는 원래 모양 그대로다.
 - 이름: OFL의 Reserved Font Name 조항(원본은 "D2Coding"·"D2Coding-Bold"를 예약한다)에 따라, 수정본인 이 subset의 글꼴 이름표(name 테이블 1·3·4·6·16)를 "D2Coding Web"으로 바꿨다. CSS에서도 `font-family: "D2Coding Web"`으로 부른다.
 - 원 저작권: NAVER Corporation.
