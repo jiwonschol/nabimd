@@ -11,6 +11,7 @@ import type {
   List,
   ListItem,
   RootContent,
+  Table,
 } from "mdast"
 import type {
   BlockKind,
@@ -19,6 +20,7 @@ import type {
   InlineKind,
   LinkShapeOptions,
   MatchCheck,
+  TableShape,
 } from "../../content/types"
 import {
   descendants,
@@ -76,6 +78,15 @@ function blockCountPasses(
   check: Extract<StructuralCheck, { kind: "block-count" }>,
   context: EvaluationContext,
 ) {
+  if (check.tableShape) {
+    const count = countShapedTables(
+      context,
+      check.scope,
+      check.tableShape,
+      check.recursive,
+    )
+    return inRange(count, check.min, check.max)
+  }
   const count = countBlockNodes(
     context,
     check.scope,
@@ -100,6 +111,43 @@ export function countBlockNodes(
   return candidateNodes.filter((node) =>
     blockMatches(node, { block, depth }),
   ).length
+}
+
+/**
+ * Tables in scope whose header has exactly `shape.headerCells` cells and whose
+ * body has a row count inside the shape's range. A body row counts only when
+ * one of its cells has visible text, so padding a table with empty rows does
+ * not stand in for the rows the document asks for.
+ */
+export function countShapedTables(
+  context: EvaluationContext,
+  scope: CheckScope,
+  shape: TableShape,
+  recursive = false,
+) {
+  const scopedNodes = nodesInScope(context, scope) as AstNode[]
+  const candidates = recursive ? descendants(scopedNodes) : scopedNodes
+  return candidates
+    .filter((node): node is AstNode & Table => node.type === "table")
+    .filter((table) => {
+      const [header, ...body] = table.children
+      if (!header || header.children.length !== shape.headerCells) return false
+      const bodyRows = body.filter((row) =>
+        row.children.some((cell) =>
+          hasMeaningfulCharacters(visibleText(cell as unknown as AstNode)),
+        ),
+      ).length
+      return inRange(bodyRows, shape.minBodyRows, shape.maxBodyRows)
+    }).length
+}
+
+function visibleText(node: AstNode): string {
+  if (node.type === "image" || node.type === "imageReference") {
+    return typeof node.alt === "string" ? node.alt : ""
+  }
+  if (node.type === "html") return ""
+  if (typeof node.value === "string") return node.value
+  return node.children?.map(visibleText).join("") ?? ""
 }
 
 function inlinePresencePasses(
