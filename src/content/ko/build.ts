@@ -117,15 +117,10 @@ const linesMatching = (target: string, pattern: RegExp) =>
 const countMatches = (target: string, pattern: RegExp) =>
   [...target.matchAll(pattern)].length
 
-function replaceLast(target: string, pattern: RegExp, replacement: string) {
+/** 인용 블록의 수: > 줄 가운데 바로 윗줄이 > 줄이 아닌 것. */
+function quoteStarts(target: string) {
   const lines = target.split("\n")
-  for (let index = lines.length - 1; index >= 0; index -= 1) {
-    if (pattern.test(lines[index]!)) {
-      lines[index] = lines[index]!.replace(pattern, replacement)
-      break
-    }
-  }
-  return lines.join("\n")
+  return lines.filter((line, index) => /^> /.test(line) && !/^>/.test(lines[index - 1] ?? "")).length
 }
 
 function replaceFirst(target: string, pattern: RegExp, replacement: string) {
@@ -524,7 +519,7 @@ const marks: Readonly<Record<KoMark, MarkRule>> = {
         kind: "block-count",
         scope: doc,
         block: "blockquote",
-        min: countMatches(target, /(?:^|\n\n)> /g),
+        min: quoteStarts(target),
         priority,
         feedback: "인용할 줄을 > 와 공백으로 시작한다.",
       },
