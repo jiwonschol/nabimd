@@ -331,7 +331,7 @@ nabimd의 `src/styles/tokens.css`를 아래 값으로 **통째로 교체**하고
 | WS0 승인·등록 | 완료 — Jiwon 승인, 계획 PR #250, 이슈 #251(WS1)·#252(WS2)·#253(WS3)·#254(WS4)·#255(추적) | `claude/level-1-redesign-plan` / PR #250 | 2026-11-03 |
 | WS1 시안 | **Jiwon 선택: A 목표 옆에 쓰기**(2026-11-04). 시안 A·B·C 구현, 캡처 18장·비교표·허브 비교 이미지(`docs/design/2026-11-redesign/variants/`), Codex 수렴. 머지 대기 | `claude/redesign-ws1-variants-fd280e` / PR #256 | 2026-11-04 |
 | WS2 앱 뼈대 | 시작 가능 — 선택한 시안 = A. 이슈 #252 | — | 2026-11-04 |
-| WS3 한국어 콘텐츠 | 진행 — 1/3 묶음(제목·굵게·기울임·목록 32장, 픽스처 296개 첫 통과 100%) + `table-shape`(`block-count`의 `tableShape` 옵션) + `locale`. 2/3(번호 목록·링크·코드·코드 블록), 3/3(인용·이미지·표·할 일 목록 + 혼합 24장) 차례. 이슈 #253 | `claude/redesign-ws3-content-ko-cf7a90` / PR 1/3 | 2026-11-04 |
+| WS3 한국어 콘텐츠 | 진행 — 1/3 묶음(제목·굵게·기울임·목록 32장, 픽스처 296개 첫 통과 100%) + `table-shape`(`block-count`의 `tableShape` 옵션) + `locale`. 2/3(번호 목록·링크·코드·코드 블록), 3/3(인용·이미지·표·할 일 목록 + 혼합 24장) 차례. 이슈 #253 | `claude/redesign-ws3-content-ko-cf7a90` / PR #257 | 2026-11-04 |
 | WS4 통합·출시 | 대기(WS2·WS3 머지 뒤) — 이슈 #254 | — | 2026-11-03 |
 
 **확정된 결정(날짜) — 다시 안건으로 올리지 않는다**
