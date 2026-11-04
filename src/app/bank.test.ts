@@ -54,3 +54,21 @@ describe("Korean bank", () => {
     })
   })
 })
+
+describe("Korean bank index (issue #253)", () => {
+  it("reads the bank's cards, naming its bulleted list as the list mark", async () => {
+    const { itemsFromKoIndex } = await import("./bankKo")
+    const grocery = koSamples[0].problem
+    const meeting = koSamples[1]!.problem
+    const items = itemsFromKoIndex({
+      koCardsByMark: { list: [{ problem: grocery, marks: ["list"] }] },
+      koMixedCards: [{ problem: meeting, marks: ["heading", "bold", "ordered-list"] }],
+    })
+    expect(items.map((item) => [item.problem.id, item.marks, item.mixed])).toEqual([
+      ["ko-sample-grocery-memo", ["unordered-list"], false],
+      ["ko-sample-meeting-memo", ["heading", "bold", "ordered-list"], true],
+    ])
+    expect(items[0]!.allMarks).toContain("heading")
+    expect(items[0]!.problem.starterText).not.toBe("")
+  })
+})
