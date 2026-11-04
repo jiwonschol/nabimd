@@ -1,4 +1,6 @@
 import { expect, type Page } from "@playwright/test"
+import { readFileSync } from "node:fs"
+import { koCards } from "../../../src/content/ko"
 
 /**
  * Starts the context in the given screen language (the hub-wide key). Only
@@ -41,4 +43,57 @@ export async function replaceDraft(page: Page, text: string) {
 
 export async function check(page: Page) {
   await page.getByTestId("check").click()
+}
+
+type RuntimeProblem = {
+  id: string
+  level: number
+  flavor: string
+  skillIds: string[]
+  syntaxTokens: string[]
+  target: string
+}
+
+/** The English bank as the app serves it (the same generated projection). */
+export const runtime = JSON.parse(
+  readFileSync(
+    new URL(
+      "../../../curriculum/problem-bank/runtime-projections.generated.json",
+      import.meta.url,
+    ),
+    "utf8",
+  ),
+) as { levels: Record<string, RuntimeProblem[]> }
+
+/** Every document's answer, English and Korean, by problem id. */
+export const targetById = new Map<string, string>([
+  ...Object.values(runtime.levels)
+    .flat()
+    .map((problem) => [problem.id, problem.target] as const),
+  ...koCards.map(({ problem }) => [problem.id, problem.target] as const),
+])
+
+export async function currentProblemId(page: Page): Promise<string> {
+  const practice = page.getByTestId("practice")
+  await expect(practice).toHaveAttribute("data-problem-id", /.+/)
+  return (await practice.getAttribute("data-problem-id"))!
+}
+
+/** Writes the open document's answer and waits for the pass verdict. */
+export async function passCurrent(page: Page) {
+  const id = await currentProblemId(page)
+  const target = targetById.get(id)
+  expect(target, `No answer known for ${id}`).toBeDefined()
+  await replaceDraft(page, target!)
+  await check(page)
+  await expect(page.getByTestId("rd-bar")).toHaveAttribute("data-tone", "pass")
+}
+
+export function collectRuntimeErrors(page: Page): string[] {
+  const errors: string[] = []
+  page.on("pageerror", (error) => errors.push(error.message))
+  page.on("console", (message) => {
+    if (message.type() === "error") errors.push(message.text())
+  })
+  return errors
 }
