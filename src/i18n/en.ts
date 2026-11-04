@@ -43,6 +43,7 @@ export const en: Readonly<Record<TextKey, string>> = {
   "footer.licenses": "Third-party licenses",
   "footer.version": "Version {version}",
   "footer.newTab": "opens in a new tab",
+  "footer.changes": "What changed",
 
   "practice.home": "Home",
   "practice.runProgress": "Today’s five {current}/{total}",

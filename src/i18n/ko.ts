@@ -47,6 +47,7 @@ export const ko = {
   "footer.licenses": "제3자 라이선스",
   "footer.version": "버전 {version}",
   "footer.newTab": "새 탭에서 열린다",
+  "footer.changes": "변경 이력",
 
   "practice.home": "홈으로",
   "practice.runProgress": "오늘의 다섯 장 {current}/{total}",

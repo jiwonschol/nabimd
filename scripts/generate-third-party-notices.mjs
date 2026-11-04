@@ -388,14 +388,13 @@ const renderLicensesHtml = (entries) => `<!doctype html>
         <a class="brand" href="./" aria-label="Nabi Markdown home">
           <img
             alt=""
-            height="48"
-            src="./brand/bfly-wordmark.png"
-            width="48"
+            height="28"
+            src="./brand/bfly-favicon.png"
+            width="28"
           />
           <span>Nabi Markdown</span>
         </a>
-        <p class="eyebrow">Open work, carefully credited</p>
-        <h1>Licenses &amp;<br />acknowledgements</h1>
+        <h1>Licenses and acknowledgements</h1>
         <p class="licenses-hero__intro">
           Nabi Markdown is possible because many people chose to share their
           work. This page records the terms that protect that generosity and
@@ -405,11 +404,8 @@ const renderLicensesHtml = (entries) => `<!doctype html>
 
       <section class="project-licenses" aria-labelledby="project-licenses-title">
         <div class="section-heading">
-          <p class="section-number">01</p>
-          <div>
-            <h2 id="project-licenses-title">This project</h2>
-            <p>Different parts of Nabi Markdown carry different licenses.</p>
-          </div>
+          <h2 id="project-licenses-title">This project</h2>
+          <p>Different parts of Nabi Markdown carry different licenses.</p>
         </div>
         <dl class="project-license-list">
           <div>
@@ -451,20 +447,17 @@ const renderLicensesHtml = (entries) => `<!doctype html>
       </section>
 
       <section class="software-licenses" aria-labelledby="software-licenses-title">
-        <div class="section-heading section-heading--software">
-          <p class="section-number">02</p>
-          <div>
-            <h2 id="software-licenses-title">Third-party software</h2>
-            <p>
-              ${entries.length} production dependency packages, grouped by
-              SPDX license. Expand a group to read package-level credits.
-            </p>
-          </div>
+        <div class="section-heading">
+          <h2 id="software-licenses-title">Third-party software</h2>
+          <p>
+            ${entries.length} production dependency packages, grouped by
+            SPDX license. Expand a group to read package-level credits.
+          </p>
           <a
             class="raw-notices-link"
             download
             href="./THIRD-PARTY-NOTICES.txt"
-          >Download full notices <span aria-hidden="true">.txt</span></a>
+          >Download the full notices (.txt)</a>
         </div>
 ${renderLicenseGroups(entries)}
       </section>
