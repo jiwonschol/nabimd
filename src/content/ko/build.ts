@@ -96,6 +96,8 @@ type MarkRule = {
   exampleLine: RegExp
   /** 누락·오형 픽스처가 겨누는 검사. 없으면 첫 검사다. */
   primaryCheckId?: string
+  /** 한 줄로 보여주기 어려운 기호는 셋째 힌트를 따로 만든다. */
+  example?: (target: string) => string
   checks: (target: string, priority: number) => readonly MatchCheck[]
   /** 기호를 통째로 뺀 원문. */
   missing: (target: string) => string
@@ -115,15 +117,10 @@ const linesMatching = (target: string, pattern: RegExp) =>
 const countMatches = (target: string, pattern: RegExp) =>
   [...target.matchAll(pattern)].length
 
-function replaceLast(target: string, pattern: RegExp, replacement: string) {
+/** 인용 블록의 수: > 줄 가운데 바로 윗줄이 > 줄이 아닌 것. */
+function quoteStarts(target: string) {
   const lines = target.split("\n")
-  for (let index = lines.length - 1; index >= 0; index -= 1) {
-    if (pattern.test(lines[index]!)) {
-      lines[index] = lines[index]!.replace(pattern, replacement)
-      break
-    }
-  }
-  return lines.join("\n")
+  return lines.filter((line, index) => /^> /.test(line) && !/^>/.test(lines[index - 1] ?? "")).length
 }
 
 function replaceFirst(target: string, pattern: RegExp, replacement: string) {
@@ -471,6 +468,11 @@ const marks: Readonly<Record<KoMark, MarkRule>> = {
       "여는 ``` 를 썼으면 닫는 ``` 도 쓴다.",
     ],
     exampleLine: FENCE,
+    example: (target) => {
+      const lines = target.split("\n")
+      const opening = lines.findIndex((line) => FENCE.test(line))
+      return `예: ${lines[opening]} 줄 다음에 ${lines[opening + 1]}, 그 아래에 \`\`\` 줄`
+    },
     checks: (_target, priority) => [
       {
         id: "fenced-code",
@@ -517,7 +519,7 @@ const marks: Readonly<Record<KoMark, MarkRule>> = {
         kind: "block-count",
         scope: doc,
         block: "blockquote",
-        min: countMatches(target, /(?:^|\n\n)> /g),
+        min: quoteStarts(target),
         priority,
         feedback: "인용할 줄을 > 와 공백으로 시작한다.",
       },
@@ -702,6 +704,7 @@ function objectParticle(word: string) {
 }
 
 function exampleLine(target: string, rule: MarkRule) {
+  if (rule.example) return rule.example(target)
   const line = target.split("\n").find((candidate) => rule.exampleLine.test(candidate))
   if (!line) throw new Error(`no example line for ${rule.name}:\n${target}`)
   return `예: ${line}`
