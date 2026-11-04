@@ -332,7 +332,7 @@ nabimd의 `src/styles/tokens.css`를 아래 값으로 **통째로 교체**하고
 | WS1 시안 | **Jiwon 선택: A 목표 옆에 쓰기**(2026-11-04). 시안 A·B·C 구현, 캡처 18장·비교표·허브 비교 이미지(`docs/design/2026-11-redesign/variants/`), Codex 수렴. 머지 대기 | `claude/redesign-ws1-variants-fd280e` / PR #256 | 2026-11-04 |
 | WS2 앱 뼈대 | 리뷰·머지 대기 — PR 셋(#260 뼈대·홈·연습, #261 요약·진도·동의·다크, #262 옛 화면 삭제·한국어 lint)을 #260 하나로 합쳤다. 한국어 모드는 main의 120장 문제은행을 쓴다. 봉인 배치 테스트·게이트가 쓰는 턴 기계·`curriculumLevels`·`guidedSyntax`는 남겼다(#260 본문). **#260이 main에 머지되면 WS4가 끝날 때까지 배포 금지.** 이슈 #252 | `claude/redesign-ws2-app-49bad8` / PR #260 | 2026-11-04 |
 | WS3 한국어 콘텐츠 | 120장 작성 완료, 머지 대기 — 기호 12개 × 8장 + 혼합 24장, 픽스처 1190개 첫 실행 100% 통과, `table-shape`(`block-count`의 `tableShape` 옵션)·`locale`. 표본 21장 Jiwon 눈검수 대기(PR 본문). 이슈 #253 | PR #257(1/3) · #258(2/3, #257 위) · #259(3/3, #258 위) | 2026-11-04 |
-| WS4 통합·출시 | **배포 승인 대기** — 운영 점검 e2e(지도 → 오늘의 다섯 장 → 요약 + 영어 한 장)·런북, 측정(axe 0, Lighthouse 모바일 99~100/100, 진입 JS 753,570 B, `docs/design/2026-11-redesign/release-check.md`), README·SECURITY·CONTRIBUTING·변경 이력·라이선스 페이지·OG, `npm run check` 녹색, dry-run 성공, 원격 D1 적용할 마이그레이션 없음. 남은 것: Jiwon 배포 승인 → 배포 → production-health → 라이브 ko·en 확인 → 허브 PR. 이슈 #254 | `claude/redesign-ws4-release-ae3c54` / PR #263 | 2026-11-04 |
+| WS4 통합·출시 | **완료** — 2026-11-04 `1c846d5` 배포(Jiwon 실행), production-health 성공(run 41792710818), 라이브 한국어·영어 한 장 통과·`\|` 모양·동의 뒤 통계 확인(`docs/design/2026-11-redesign/release-check.md`). 실기기 항목은 사람 확인 필요, Sentry는 운영 빌드에 없어 확인 불가. 허브 제품 페이지 PR은 onsoonlabs#37(머지·허브 배포는 Jiwon). 이슈 #254 | PR #263 · #264 · 이 문서 PR | 2026-11-04 |
 
 **확정된 결정(날짜) — 다시 안건으로 올리지 않는다**
 

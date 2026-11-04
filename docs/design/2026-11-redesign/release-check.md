@@ -63,3 +63,27 @@ Sentry가 켜진 빌드라면 이 크기가 달라질 수 있다. 오류 보고 
 - 효과음(iOS 무음 스위치를 켠 상태와 끈 상태).
 - 어두운 테마의 실제 화면 색(axe 대비 검사는 통과했다).
 - 휴대폰 자판이 올라온 상태에서 판정 바의 위치.
+
+## 배포 뒤 확인 (2026-11-04)
+
+PR #263(출시 준비)과 #264(배포 전 수정: 에디터 글꼴의 `|`, 지시문의 문서 유형)를 머지한 main `1c846d5`를 배포했다. 배포 명령(`npm run deploy:cloudflare`)은 Jiwon이 직접 실행했다. 이 세션의 권한 검사가 운영 배포를 막았기 때문이다. 배포 전 기록한 직전 Worker 버전은 `771b0bc5-361d-47ef-b02d-b4195220ef7a`(2026-10-04)다. 되돌릴 때 이 버전을 쓴다.
+
+| 확인 | 결과 | 누가·어떻게 |
+|---|---|---|
+| 라이브 빌드 | `X-Nabi-Build-Sha: 1c846d5955447d1e07681ff81666f67e2e809ce7` | 출시 세션이 `curl -I`로 |
+| 원격 D1 마이그레이션 | 적용할 것 없음 | 출시 세션이 배포 전에 `wrangler d1 migrations list NABIMD_DB --remote`로 |
+| production-health (workflow_dispatch, `expected_sha=1c846d5…`) | 성공, 3개 통과 — run 41792710818 | 지휘 세션이 실행, 출시 세션이 `gh run view`로 결과 확인 |
+| 라이브 한국어 한 장 | 표 문서 '주간 식단' 통과, 지시문 "이 식단표를 마크다운으로 쓴다." | 지휘 세션, 출시 세션(Playwright) 둘 다 |
+| 라이브 `\|` 모양 | 에디터에서 끊기지 않은 막대 | 지휘 세션(브라우저), 출시 세션(라이브 캡처) |
+| 라이브 영어 한 장 | 굵게 문서 `l1-emphasis-safety-first` 통과, "Passed — you wrote the Bold mark correctly." | 지휘 세션, 출시 세션(Playwright) 둘 다 |
+| 동의 전 통계 요청 | 0건 | 지휘 세션, 출시 세션 둘 다 |
+| "모두 동의" 뒤 통계 | `beacon.min.js` 요청 1건 | 출시 세션(요청을 가로채 실제로는 보내지 않음) |
+| 통계 집계 요청 | `cloudflareinsights.com/cdn-cgi/rum` 204 | 지휘 세션(브라우저) |
+| 진도 저장 | `localStorage`의 `nabimd.learning.v1`에 남음(영어 `bold` 기록 확인) | 지휘 세션, 출시 세션 둘 다 |
+| 콘솔 오류 | 0 (출시 세션의 라이브 확인 동안) | 출시 세션 |
+
+### 아직 확인하지 못한 것
+
+- **사람 확인 필요(실기기):** iPhone Safari와 Android Chrome 한국어 자판의 한글 조합 입력과 ⌘↩, 효과음(iOS 무음 스위치), 어두운 테마의 실제 색, 휴대폰 자판이 올라온 상태에서 판정 바의 위치.
+- **배포 24시간 뒤 Sentry 신규 오류 0:** 확인할 수 없다. 운영 빌드에 `VITE_SENTRY_DSN`이 주어지지 않아 오류 보고 SDK가 번들에 들어 있지 않다(위 '번들' 절).
+- **통계 숫자:** 4주 뒤 Cloudflare Web Analytics에서 방문, `/practice`·`/done` 도달 비율, 국가, 유입 경로를 Jiwon이 읽는다.
