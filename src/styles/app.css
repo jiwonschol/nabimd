@@ -1,31 +1,36 @@
 /* ============================================================
-   Level 1 재설계 시안 A·B·C의 스타일 — 토큰(src/styles/tokens.css)만 쓴다.
-   모든 규칙은 .rd 아래(또는 html[data-redesign])에 묶여 옛 화면과 섞이지 않는다.
-   옛 global.css가 아직 함께 읽히므로 에디터 규칙은 그보다 한 단계 높은
-   선택자(.rd-editor …)로 쓴다. 고른 시안이 정해지면 WS2가 이 파일을 새 전역
-   스타일로 옮긴다.
+   Nabi Markdown 화면 스타일 — 토큰(src/styles/tokens.css)만 쓴다.
+   연습 화면의 배치는 Jiwon이 고른 시안 A(목표 옆에 쓰기, 2026-11-04)다.
+   근거와 캡처: docs/design/2026-11-redesign/variants/README.md
    ============================================================ */
 
-html[data-redesign] {
-  height: auto;
+html {
   background: var(--bg);
 }
 
-html[data-redesign] body {
-  height: auto;
-  min-height: 100%;
+body {
   min-width: 320px;
-  overflow: auto;
+  margin: 0;
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font);
   font-size: var(--t-base);
   font-weight: var(--w-body);
   line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
 }
 
-html[data-redesign] #root {
-  height: auto;
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  margin: -1px !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
 }
 
 .rd {
@@ -35,8 +40,17 @@ html[data-redesign] #root {
 
 .rd *,
 .rd *::before,
-.rd *::after {
+.rd *::after,
+.error-screen *,
+.error-screen *::before,
+.error-screen *::after {
   box-sizing: border-box;
+}
+
+code,
+kbd,
+pre {
+  font-family: var(--font-code);
 }
 
 /* ===== 머리말 — 허브 .nav와 같은 구성: 왼쪽 로고, 오른쪽 도구 ===== */
@@ -158,8 +172,7 @@ html[data-redesign] #root {
   line-height: var(--lh-body);
 }
 
-/* 옛 global.css의 .rendered-document__body 규칙(세리프·큰 제목·안쪽 여백)을 덮는다.
-   선택자를 한 단계 높여 읽는 순서와 무관하게 이긴다. */
+/* 렌더된 문서 — 목표와 "내가 쓴 것"이 같은 글꼴·크기로 보인다. */
 .rd-doc .rendered-document__body {
   min-height: 0;
   padding: 0;
@@ -452,7 +465,7 @@ html[data-redesign] #root {
   font-weight: var(--w-label);
 }
 
-/* 바가 놓인 칸이 좁으면(휴대폰 전체 폭, 시안 C의 가운데 칸 등) 상태 문구는 자기
+/* 바가 놓인 칸이 좁으면(휴대폰 전체 폭, 좁은 데스크톱 격자) 상태 문구는 자기
    줄을 차지하고 단추들은 그 아래 한 줄에서 줄 바꿈된다. 두 번 실패해 "정답 보기"가
    생기거나 320px 폭이어도 단추가 넘치지 않고 문구가 눌리지 않는다. viewport가
    아니라 바의 실제 폭을 보므로 768px 데스크톱 격자에서도 성립한다. 문구가 비면
@@ -484,31 +497,7 @@ html[data-redesign] #root {
   }
 }
 
-/* 화면 아래 고정 — 시안 B는 항상, A·C는 휴대폰에서만 */
-.rd-bar--fixed {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 20;
-  margin: 0;
-  padding: 0 var(--s3) env(safe-area-inset-bottom);
-  border-top: 1px solid var(--line);
-  border-radius: 0;
-  background: var(--bg);
-}
-
-.rd-bar--fixed.rd-bar--pass {
-  background: var(--acc-leaf-soft);
-  border-top-color: transparent;
-}
-
-.rd-bar--fixed .rd-bar__inner {
-  max-width: var(--maxw-wide);
-  margin: 0 auto;
-}
-
-/* ===== 시안 A — 왼쪽 목표, 오른쪽 에디터 ===== */
+/* ===== 연습 배치(시안 A) — 왼쪽 목표, 오른쪽 에디터 ===== */
 .rd-a-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
@@ -525,65 +514,395 @@ html[data-redesign] #root {
   margin-top: 0;
 }
 
-.rd--a .rd-bar__inner {
+.rd-practice .rd-bar__inner {
   justify-content: flex-end;
 }
 
-.rd--a .rd-bar__status {
+.rd-practice .rd-bar__status {
   flex: 0 1 auto;
   text-align: right;
 }
 
-/* ===== 시안 B — 한 열, 아래 고정 판정 바 ===== */
-.rd--b {
-  --rd-column: 760px;
+
+/* ===== 글 안의 코드 조각 — 가르침·판정 문구·힌트 ===== */
+.rd-teaching code,
+.rd-bar__status code,
+.rd-note code {
+  padding: 0 0.25em;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ink) 7%, transparent);
+  font-size: 0.95em;
 }
 
-.rd-b-col {
-  max-width: var(--rd-column);
-  padding-bottom: calc(var(--rd-bar-height) + var(--s5));
+/* ===== 글자 단추(링크 모양) — 상단 줄의 홈으로·다른 장 ===== */
+.rd-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: var(--t-sm);
+  font-weight: var(--w-label);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--dur) var(--ease);
 }
 
-.rd-b-col > .rd-panel + .rd-panel,
-.rd-b-col > .rd-b-compare + .rd-panel {
-  margin-top: var(--s2);
+.rd-link:hover {
+  color: var(--ink);
 }
 
-.rd-b-compare {
+.rd-link:focus-visible,
+.rd-toggle:focus-visible,
+.rd-map__cell:focus-visible,
+.rd-footer a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.rd-btn:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.rd-btn--large {
+  min-height: 52px;
+  padding: 0 var(--s3);
+  font-size: var(--t-base);
+}
+
+.rd-note {
+  margin: var(--s2) 0 0;
+  color: var(--ink-soft);
+  font-size: var(--t-sm);
+}
+
+/* ===== 홈 — 소개 한 줄, 주 단추, 기호 지도 ===== */
+.rd-home {
+  padding-top: var(--s6);
+}
+
+.rd-home__intro {
+  max-width: 760px;
+  margin-bottom: var(--s6);
+}
+
+.rd-home__headline {
+  margin: 0 0 var(--s2);
+  font-size: var(--t-display-sub);
+  font-weight: var(--w-display);
+  line-height: var(--lh-tight);
+  letter-spacing: -0.03em;
+  word-break: keep-all;
+}
+
+.rd-home__lead {
+  margin: 0 0 var(--s4);
+  color: var(--ink-soft);
+  font-size: var(--t-lg);
+  line-height: var(--lh-title);
+  word-break: keep-all;
+}
+
+.rd-map {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--s2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.rd--b .rd-bar--fixed .rd-bar__inner {
-  max-width: var(--rd-column);
-}
-
-/* ===== 시안 C — 세 칸, 오른쪽은 실시간 미리보기 ===== */
-.rd-c-grid {
+.rd-map__cell {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--s1);
+  width: 100%;
+  min-height: 132px;
+  padding: var(--s3);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--dur) var(--ease),
+    transform var(--dur-tap) var(--ease);
+}
+
+.rd-map__cell:hover:not(:disabled) {
+  border-color: var(--ink);
+}
+
+.rd-map__cell:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.rd-map__cell:disabled {
+  cursor: default;
+}
+
+.rd-map__cell[data-state="unavailable"] {
+  color: var(--ink-soft);
+}
+
+.rd-map__name {
+  font-size: var(--t-lg);
+  font-weight: var(--w-title);
+  line-height: var(--lh-title);
+}
+
+.rd-map__example {
+  color: var(--ink-soft);
+  font-size: var(--t-sm);
+  white-space: pre;
+}
+
+.rd-map__state {
+  display: flex;
+  align-items: center;
+  gap: var(--s1);
+  align-self: end;
+  color: var(--ink-soft);
+  font-size: var(--t-xs);
+  font-weight: var(--w-label);
+}
+
+/* 상태 점: 안 해봄은 빈 고리, 해봄은 butter, 익숙함은 leaf. 글자로도 적는다. */
+.rd-map__dot {
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid var(--ink-soft);
+  border-radius: 50%;
+  transition:
+    background-color var(--dur-slow) var(--ease),
+    border-color var(--dur-slow) var(--ease);
+}
+
+.rd-map__cell[data-state="tried"] .rd-map__dot {
+  border-color: var(--acc-butter);
+  background: var(--acc-butter);
+}
+
+.rd-map__cell[data-state="familiar"] .rd-map__dot {
+  border-color: var(--acc-leaf);
+  background: var(--acc-leaf);
+}
+
+.rd-map__cell[data-state="unavailable"] .rd-map__dot {
+  border-style: dashed;
+}
+
+/* ===== 바닥글 — 페이지 끝에 한 번 ===== */
+.rd-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s1) var(--s3);
+  max-width: var(--maxw-wide);
+  margin: 0 auto;
+  padding: var(--s4) var(--s3) var(--s5);
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: var(--t-xs);
+}
+
+.rd-footer a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.rd-footer a:hover {
+  color: var(--ink);
+}
+
+/* ===== 연습 상단 줄 — 홈으로 · 오늘의 다섯 장 n/5 · 다른 장 ===== */
+.rd-topline {
+  display: flex;
+  align-items: center;
   gap: var(--s3);
-  align-items: start;
+  margin-bottom: var(--s3);
 }
 
-.rd-c-left,
-.rd-c-mid {
-  display: grid;
+.rd-topline__progress {
+  color: var(--ink);
+  font-size: var(--t-sm);
+  font-weight: var(--w-label);
+}
+
+.rd-topline__another {
+  margin-left: auto;
+}
+
+/* ===== 칸 머리 — 제목과 에디터 설정 ===== */
+.rd-panel__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s1) var(--s2);
+  margin-bottom: var(--s2);
+}
+
+.rd-panel__head .rd-panel__title {
+  margin: 0;
+}
+
+.rd-editor__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s1);
+}
+
+.rd-toggle {
+  min-height: 32px;
+  padding: 0 var(--s1);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: var(--t-xs);
+  font-weight: var(--w-label);
+  cursor: pointer;
+  transition:
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.rd-toggle:hover {
+  color: var(--ink);
+}
+
+.rd-toggle[aria-pressed="true"] {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+/* ===== 공백 보기와 빈 칸 힌트 — 에디터 안의 표시 ===== */
+.rd-editor .cm-invisible-character {
+  display: inline-block;
+  min-width: 0.62em;
+  color: color-mix(in srgb, var(--acc-clay-text) 62%, transparent);
+  line-height: inherit;
+  text-align: center;
+  user-select: none;
+  vertical-align: top;
+}
+
+.rd-editor .cm-invisible-character--tab {
+  min-width: 1.4em;
+  text-align: left;
+}
+
+.rd-editor .cm-invisible-character--word-space {
+  position: relative;
+}
+
+.rd-editor .cm-invisible-character--word-space::after {
+  position: absolute;
+  left: 50%;
+  color: inherit;
+  content: "·";
+  line-height: inherit;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.rd-editor .cm-markdown-blank-guide {
+  position: relative;
+  display: inline-flex;
+  width: 0;
+  height: 0;
+  align-items: flex-end;
+  gap: 0.12em;
+  pointer-events: none;
+  vertical-align: baseline;
+}
+
+.rd-editor .cm-markdown-blank-guide__cell {
+  flex: 0 0 0.48em;
+  width: 0.48em;
+  height: 0.72em;
+  border-bottom: 1.5px solid var(--acc-clay);
+  background: color-mix(in srgb, var(--acc-clay) 10%, transparent);
+  transform: translateY(0.08em);
+}
+
+/* ===== 요약 ===== */
+.rd-done {
+  padding-top: var(--s6);
+}
+
+.rd-done__title {
+  margin: 0 0 var(--s4);
+  font-size: var(--t-display-sub);
+  font-weight: var(--w-display);
+  line-height: var(--lh-tight);
+  letter-spacing: -0.03em;
+}
+
+.rd-done__actions {
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--s2);
-  min-width: 0;
 }
 
-.rd-c-left .rd-instruction-block {
-  margin-bottom: 0;
+/* ===== 오류 화면 — 앱 밖(ErrorBoundary)에서도 같은 결 ===== */
+.error-screen {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--s6) var(--s3);
+  color: var(--ink);
+  font-family: var(--font);
 }
 
-.rd-c-mid .rd-bar {
-  margin-top: 0;
+.error-screen__title {
+  margin: 0 0 var(--s2);
+  font-size: var(--t-xl);
+  font-weight: var(--w-title);
+  line-height: var(--lh-title);
 }
 
-.rd-c-tabs {
-  display: none;
+.error-screen__lead,
+.error-screen__report {
+  margin: 0 0 var(--s3);
+  color: var(--ink-soft);
+}
+
+.error-screen__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s1);
+  margin-bottom: var(--s3);
+}
+
+.error-screen__details {
+  margin-bottom: var(--s3);
+  font-size: var(--t-sm);
+}
+
+.error-screen__facts {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: var(--s1) var(--s2);
+}
+
+.error-screen__facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.error-screen__report a {
+  color: var(--acc-clay-text);
+}
+
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .rd-map {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 /* ===== 휴대폰 — 상하 스택, 판정 바는 화면 아래 고정 ===== */
@@ -608,9 +927,7 @@ html[data-redesign] #root {
     padding: var(--s2);
   }
 
-  .rd-a-grid,
-  .rd-c-grid,
-  .rd-b-compare {
+  .rd-a-grid {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--s2);
   }
@@ -633,11 +950,6 @@ html[data-redesign] #root {
     border-top-color: transparent;
   }
 
-  .rd-bar--fixed {
-    padding-right: var(--s2);
-    padding-left: var(--s2);
-  }
-
   .rd-bar__inner {
     gap: var(--s1);
   }
@@ -651,22 +963,35 @@ html[data-redesign] #root {
     font-size: var(--t-xs);
   }
 
-  .rd-c-tabs {
-    display: flex;
+  .rd-home {
+    padding-top: var(--s4);
+  }
+
+  .rd-home__intro {
+    margin-bottom: var(--s4);
+  }
+
+  .rd-map {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--s1);
   }
 
-  .rd-c-tabs .rd-btn {
-    flex: 1 1 0;
-    justify-content: center;
+  .rd-map__cell {
+    min-height: 112px;
+    padding: var(--s2);
   }
 
-  .rd-main[data-pane="editor"] .rd-preview {
-    display: none;
+  .rd-map__name {
+    font-size: var(--t-base);
   }
 
-  .rd-main[data-pane="preview"] .rd-editor {
-    display: none;
+  .rd-footer {
+    padding: var(--s3) var(--s2) var(--s5);
+  }
+
+  .rd-topline {
+    gap: var(--s2);
+    margin-bottom: var(--s2);
   }
 }
 

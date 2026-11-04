@@ -1,4 +1,5 @@
 import { Eye, Lightbulb, Pencil } from "lucide-react"
+import { describeLocation, translator } from "../i18n/text"
 import {
   type KeyboardEvent as ReactKeyboardEvent,
   useCallback,
@@ -17,6 +18,9 @@ import { useCenterCard } from "../guided/useCenterCard"
 import { CenterCard } from "./CenterCard"
 import { RenderedDocumentBody } from "./RenderedDocument"
 import { WordProcessorPage } from "./WordProcessorPage"
+
+// Retired screen, removed with the old UI; it only ever spoke English.
+const englishText = translator("en")
 
 type AnswerView = "write" | "preview" | "review" | "hint"
 type LegacyCoachState = "closed" | "hint"
@@ -157,7 +161,7 @@ function HintPanel({
               key={cue.id}
             >
               {showsMessages ? (
-                <span className="answer-hint__location">{cue.location}</span>
+                <span className="answer-hint__location">{describeLocation(cue.location, englishText)}</span>
               ) : null}
               <h4>{cue.label}</h4>
               {showsMessages && cue.learnerExcerpt ? (
@@ -265,7 +269,7 @@ function ReviewPanel({
               className="answer-review__correction"
               key={cue.id}
             >
-              <span className="answer-review__location">{cue.location}</span>
+              <span className="answer-review__location">{describeLocation(cue.location, englishText)}</span>
               <h4>{cue.label}</h4>
               {cue.learnerExcerpt ? (
                 <div className="answer-correction__source">

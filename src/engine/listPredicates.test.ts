@@ -119,7 +119,8 @@ describe("unordered-list predicates", () => {
     ).toMatchObject({
       status: "fail",
       feedbackId: "use-bullet-list",
-      message: "Put one space after each bullet marker, for example `- Item`.",
+      message: "Make a bullet list with at least three items.",
+      messageKey: "list-bullet-space",
     })
   })
 
@@ -146,7 +147,8 @@ describe("unordered-list predicates", () => {
     ).toMatchObject({
       status: "fail",
       feedbackId: "use-numbered-list",
-      message: "Put one space after each numbered marker, for example `1. Step`.",
+      message: "Make a numbered list with at least three items.",
+      messageKey: "list-number-space",
     })
   })
 

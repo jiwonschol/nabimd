@@ -1,310 +1,247 @@
+import { useCallback, useEffect, useRef, useState } from "react"
+import type { MarkId } from "./app/marks"
+import type { PracticeItem } from "./app/practiceItem"
+import type { SheetResult } from "./app/practiceSheet"
+import { navigate, type Route, useRoute } from "./app/routes"
+import { pickForMark, pickTodayFive } from "./app/selection"
+import { type BankState, useBank } from "./app/useBank"
+import { AppHeader } from "./components/AppHeader"
+import { DoneScreen } from "./components/DoneScreen"
+import { HomeScreen } from "./components/HomeScreen"
+import { PracticeScreen, type PracticeView } from "./components/PracticeScreen"
+import type { Lang } from "./i18n/text"
+import { LanguageProvider, useText } from "./i18n/useText"
 import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react"
-import { EditorialDesk } from "./components/EditorialDesk"
-import { OpenBookLanding } from "./components/OpenBookLanding"
-import {
-  getEntryChoice,
-  isEntryId,
-  type EntryId,
-} from "./content/entryChoices"
-import { useLearningSession } from "./session/useLearningSession"
-import type { PracticeHistorySnapshot } from "./session/learningSession"
-import {
-  getMotionDuration,
-  PAGE_TURN_DURATION_MS,
-  REDUCED_MOTION_DURATION_MS,
-} from "./motionTiming"
-import {
-  playPageTurnSound,
-  unlockAndPlayPageTurnSound,
-} from "./sound/pageTurnSound"
-import { VariantApp } from "./variants/VariantApp"
-import { readRedesignVariant } from "./variants/variantParam"
+  emptyProgress,
+  type LearningProgress,
+  recordCheck,
+} from "./progress/learning"
+import "./styles/tokens.css"
+import "./styles/app.css"
 
-export { PAGE_TURN_DURATION_MS }
-export const REDUCED_PAGE_TURN_DURATION_MS = REDUCED_MOTION_DURATION_MS
+/** Today's five in progress. `index === items.length` means finished. */
+type Run = {
+  id: number
+  lang: Lang
+  items: PracticeItem[]
+  index: number
+  results: (SheetResult | undefined)[]
+}
 
-const HISTORY_MARKER = "nabimd-practice-v3"
+/** One mark (or one linked document) practised open-endedly. */
+type Single = {
+  /** Which route and language this pick answers. */
+  key: string
+  seq: number
+  item: PracticeItem | null
+}
 
-type LearningSessionController = ReturnType<typeof useLearningSession>
+function singleKey(lang: Lang, route: Extract<Route, { name: "practice" }>) {
+  return `${lang}|${route.doc ?? ""}|${route.mark ?? ""}`
+}
 
-type AppHistoryState =
-  | { marker: typeof HISTORY_MARKER; view: "landing" }
-  | {
-      marker: typeof HISTORY_MARKER
-      view: "practice"
-      snapshot: PracticeHistorySnapshot
+function practiceView(
+  route: Route,
+  bank: BankState,
+  run: Run | null,
+  single: Single | null,
+  lang: Lang,
+): PracticeView {
+  if (route.name !== "practice") return { status: "loading" }
+  if (bank.status === "loading") return { status: "loading" }
+  if (bank.status === "failed") return { status: "failed" }
+
+  if (route.doc || route.mark) {
+    if (!single || single.key !== singleKey(lang, route)) {
+      return { status: "loading" }
     }
-
-function isAppHistoryState(value: unknown): value is AppHistoryState {
-  if (typeof value !== "object" || value === null) return false
-  const candidate = value as Partial<AppHistoryState>
-  if (candidate.marker !== HISTORY_MARKER) return false
-  if (candidate.view === "landing") return true
-  if (
-    candidate.view !== "practice" ||
-    typeof candidate.snapshot !== "object" ||
-    candidate.snapshot === null
-  ) {
-    return false
+    if (!single.item) return { status: "empty" }
+    return {
+      status: "ready",
+      item: single.item,
+      sheetKey: `single-${single.seq}-${single.item.problem.id}`,
+      isLast: false,
+    }
   }
-  const entryId = (candidate.snapshot as Partial<PracticeHistorySnapshot>)
-    .entryId
-  return isEntryId(entryId) && getEntryChoice(entryId).available
+
+  const item = run && run.lang === lang ? run.items[run.index] : undefined
+  if (!run || !item) {
+    return run && run.items.length === 0 ? { status: "empty" } : { status: "loading" }
+  }
+  return {
+    status: "ready",
+    item,
+    sheetKey: `run-${run.id}-${run.index}-${item.problem.id}`,
+    position: { current: run.index + 1, total: run.items.length },
+    isLast: run.index === run.items.length - 1,
+  }
 }
 
-function sameHistoryLocation(
-  left: unknown,
-  right: AppHistoryState,
-): boolean {
-  if (!isAppHistoryState(left) || left.view !== right.view) return false
-  if (left.view === "landing" || right.view === "landing") return true
-  return (
-    left.snapshot.entryId === right.snapshot.entryId &&
-    left.snapshot.runNumber === right.snapshot.runNumber &&
-    left.snapshot.runStepIndex === right.snapshot.runStepIndex &&
-    left.snapshot.currentProblemId === right.snapshot.currentProblemId
-  )
-}
+function Shell() {
+  const { lang } = useText()
+  const route = useRoute()
+  const bank = useBank(lang)
+  const [progress, setProgress] = useState<LearningProgress>(emptyProgress)
+  const [blankPage, setBlankPage] = useState(false)
+  const [run, setRun] = useState<Run | null>(null)
+  const [single, setSingle] = useState<Single | null>(null)
+  const sequence = useRef(0)
+  const progressRef = useRef(progress)
+  progressRef.current = progress
 
-export function getPageTurnDuration() {
-  return getMotionDuration(PAGE_TURN_DURATION_MS)
-}
-
-/**
- * 임시 분기(계획서 §4.8): 주소에 ?variant=a|b|c가 있으면 옛 앱 대신 Level 1
- * 재설계 시안을 띄운다. Jiwon이 하나를 고르면 WS2가 분기와 나머지 시안을 지운다.
- */
-export function App() {
-  const [variant] = useState(() =>
-    typeof window === "undefined"
-      ? null
-      : readRedesignVariant(window.location.search),
-  )
-  return variant ? <VariantApp variant={variant} /> : <LegacyApp />
-}
-
-function LegacyApp() {
-  const learningSession = useLearningSession()
-  const [turningEntryId, setTurningEntryId] = useState<EntryId | null>(null)
-  const [summarySnapshot, setSummarySnapshot] =
-    useState<LearningSessionController | null>(null)
-  const turningEntryRef = useRef<EntryId | null>(null)
-  const sessionRef = useRef(learningSession.session)
-
-  useLayoutEffect(() => {
-    sessionRef.current = learningSession.session
-  }, [learningSession.session])
-
+  // Opens what the practice address asks for once the bank is ready: a new
+  // today's five, or one document for a mark or a linked id.
   useEffect(() => {
-    const landingState: AppHistoryState = {
-      marker: HISTORY_MARKER,
-      view: "landing",
-    }
-    window.history.replaceState(landingState, "")
-
-    const handlePopState = (event: PopStateEvent) => {
-      if (!isAppHistoryState(event.state)) return
-      if (event.state.view === "landing") {
-        learningSession.returnToGreetingFromHistory()
+    if (route.name !== "practice" || bank.status !== "ready") return
+    const langProgress = progressRef.current[lang]
+    if (route.doc || route.mark) {
+      const key = singleKey(lang, route)
+      if (single?.key === key) return
+      const linked = route.doc
+        ? bank.items.find((item) => item.problem.id === route.doc)
+        : undefined
+      // A linked id from the other language falls back to its mark, and the
+      // address follows so a reload opens the same mark.
+      const mark = route.mark ?? single?.item?.marks[0]
+      if (route.doc && !linked && mark) {
+        navigate({ name: "practice", mark }, { replace: true })
         return
       }
-      const current = sessionRef.current
-      if (
-        current.entryId === event.state.snapshot.entryId &&
-        current.runNumber === event.state.snapshot.runNumber &&
-        current.runStepIndex === event.state.snapshot.runStepIndex &&
-        current.currentProblemId === event.state.snapshot.currentProblemId
-      ) {
-        return
-      }
-      if (!learningSession.navigateToHistory(event.state.snapshot)) {
-        // The pop already moved the pointer, so walk it back toward the entry
-        // matching the current session: left alone, a later pushState would
-        // truncate (after Back) or append past (after Forward) steps the
-        // learner never left. The popped snapshot's position tells which side
-        // the pointer landed on; each healed hop fires another popstate, so a
-        // multi-entry jump converges one entry at a time until the
-        // same-location check above stops the cascade.
-        const popped = event.state.snapshot
-        if (popped.runNumber !== current.runNumber) {
-          window.history.go(popped.runNumber < current.runNumber ? 1 : -1)
-        } else if (popped.runStepIndex !== current.runStepIndex) {
-          window.history.go(popped.runStepIndex < current.runStepIndex ? 1 : -1)
-        }
-        // Equal run and step means an abandoned-branch twin of the current
-        // entry; its side is unknowable, so skip the heal rather than risk
-        // walking the pointer further away.
-      }
-    }
-
-    window.addEventListener("popstate", handlePopState)
-    return () => window.removeEventListener("popstate", handlePopState)
-  }, [
-    learningSession.navigateToHistory,
-    learningSession.returnToGreetingFromHistory,
-  ])
-
-  useEffect(() => {
-    const historyState: AppHistoryState = learningSession.session.entryId
-      ? {
-          marker: HISTORY_MARKER,
-          view: "practice",
-          snapshot: {
-            entryId: learningSession.session.entryId,
-            runNumber: learningSession.session.runNumber,
-            runProblemIds: [...learningSession.session.runProblemIds],
-            runStepIndex: learningSession.session.runStepIndex,
-            scheduledStepIndex: learningSession.session.scheduledStepIndex,
-            currentProblemId: learningSession.session.currentProblemId,
-            currentIsTransfer: learningSession.session.currentIsTransfer,
-            runStartedAtMs: learningSession.session.runStartedAtMs,
-          },
-        }
-      : { marker: HISTORY_MARKER, view: "landing" }
-
-    if (!sameHistoryLocation(window.history.state, historyState)) {
-      // In-app previous/next moves rewrite the current entry so browser Back
-      // still walks real steps instead of bouncing to the step just left.
-      if (learningSession.consumeHistoryReplaceHint()) {
-        window.history.replaceState(historyState, "")
-      } else {
-        window.history.pushState(historyState, "")
-      }
-    }
-  }, [
-    learningSession.consumeHistoryReplaceHint,
-    learningSession.session.currentIsTransfer,
-    learningSession.session.currentProblemId,
-    learningSession.session.entryId,
-    learningSession.session.runNumber,
-    learningSession.session.runProblemIds,
-    learningSession.session.runStartedAtMs,
-    learningSession.session.runStepIndex,
-    learningSession.session.scheduledStepIndex,
-  ])
-
-  const chooseLevel = useCallback(
-    (entryId: EntryId) => {
-      if (turningEntryRef.current) return
-
-      turningEntryRef.current = entryId
-      setTurningEntryId(entryId)
-      unlockAndPlayPageTurnSound()
-      learningSession.start(entryId)
-    },
-    [learningSession.start],
-  )
-
-  useEffect(() => {
-    if (!turningEntryId || !learningSession.session.entryId) return
-
-    const timer = window.setTimeout(() => {
-      turningEntryRef.current = null
-      setTurningEntryId(null)
-    }, getPageTurnDuration())
-
-    return () => window.clearTimeout(timer)
-  }, [learningSession.session.entryId, turningEntryId])
-
-  useEffect(() => {
-    if (learningSession.session.entryId) return
-    turningEntryRef.current = null
-    setTurningEntryId(null)
-    setSummarySnapshot(null)
-  }, [learningSession.session.entryId])
-
-  useEffect(() => {
-    if (!summarySnapshot) return
-    if (learningSession.session.phase !== "complete") {
-      setSummarySnapshot(null)
+      const item =
+        linked ??
+        (mark ? pickForMark(bank.items, mark, langProgress) : null)
+      sequence.current += 1
+      setSingle({ key, seq: sequence.current, item })
       return
     }
+    if (run && run.lang === lang && run.index < run.items.length) return
+    sequence.current += 1
+    const items = pickTodayFive(bank.items, langProgress)
+    setRun({
+      id: sequence.current,
+      lang,
+      items,
+      index: 0,
+      results: items.map(() => undefined),
+    })
+  }, [bank, lang, route, run, single])
 
-    const timer = window.setTimeout(
-      () => setSummarySnapshot(null),
-      getPageTurnDuration(),
-    )
-    return () => window.clearTimeout(timer)
-  }, [learningSession.session.phase, summarySnapshot])
+  const view = practiceView(route, bank, run, single, lang)
+  const currentItem = view.status === "ready" ? view.item : null
+  const inRun = route.name === "practice" && !route.doc && !route.mark
 
-  useEffect(() => {
-    if (
-      turningEntryId ||
-      summarySnapshot ||
-      !learningSession.session.entryId
-    ) {
-      return
-    }
-    // The card's box input outranks the read-only document (whose CodeMirror
-    // still carries role="textbox" earlier in the DOM).
-    const focusTarget =
-      document.querySelector<HTMLElement>(".center-card__boxinput") ??
-      document.querySelector<HTMLElement>(
-        '.card-practice [role="textbox"]',
+  const recordResult = useCallback(
+    (result: SheetResult) => {
+      if (!currentItem) return
+      setProgress((current) =>
+        recordCheck(current, lang, {
+          problemId: result.problemId,
+          marks: currentItem.marks,
+          passed: result.passed,
+          at: Date.now(),
+        }),
       )
-    focusTarget?.focus()
-  }, [learningSession.session.entryId, summarySnapshot, turningEntryId])
+      if (inRun) {
+        setRun((current) => {
+          if (!current) return current
+          const results = [...current.results]
+          results[current.index] = result
+          return { ...current, results }
+        })
+      }
+    },
+    [currentItem, inRun, lang],
+  )
 
-  const advance = useCallback(() => {
-    const { session } = learningSession
-    const willComplete =
-      learningSession.canNext &&
-      !(session.needsTransfer && !session.currentIsTransfer) &&
-      !session.runProblemIds[session.runStepIndex + 1]
-
-    if (willComplete) {
-      turningEntryRef.current = null
-      setTurningEntryId(null)
-      setSummarySnapshot(learningSession)
-      playPageTurnSound()
+  const pickAnotherSingle = useCallback(() => {
+    if (bank.status !== "ready" || !currentItem || route.name !== "practice") {
+      return
     }
-    learningSession.next()
-  }, [learningSession])
+    const mark = currentItem.marks[0]
+    const item = pickForMark(bank.items, mark, progressRef.current[lang], [
+      currentItem.problem.id,
+    ])
+    const nextRoute = { name: "practice" as const, mark }
+    if (route.doc) navigate(nextRoute, { replace: true })
+    sequence.current += 1
+    setSingle({ key: singleKey(lang, nextRoute), seq: sequence.current, item })
+  }, [bank, currentItem, lang, route])
 
-  if (!learningSession.session.entryId) {
-    return <OpenBookLanding onChoose={chooseLevel} turningEntryId={null} />
-  }
+  const next = useCallback(() => {
+    if (!inRun) {
+      pickAnotherSingle()
+      return
+    }
+    if (!run) return
+    const nextIndex = run.index + 1
+    setRun({ ...run, index: nextIndex })
+    if (nextIndex >= run.items.length) navigate({ name: "done" })
+  }, [inRun, pickAnotherSingle, run])
 
-  const turning = turningEntryId !== null
-  const summaryTurning = summarySnapshot !== null
+  const another = useCallback(() => {
+    if (!inRun) {
+      pickAnotherSingle()
+      return
+    }
+    if (!run || bank.status !== "ready" || !currentItem) return
+    const inRunIds = run.items.map((item) => item.problem.id)
+    const replacement = currentItem.mixed
+      ? (bank.items.find(
+          (item) => item.mixed && !inRunIds.includes(item.problem.id),
+        ) ?? null)
+      : pickForMark(
+          bank.items,
+          currentItem.marks[0],
+          progressRef.current[lang],
+          inRunIds,
+        )
+    if (!replacement) return
+    const items = [...run.items]
+    items[run.index] = replacement
+    sequence.current += 1
+    setRun({ ...run, id: sequence.current, items })
+  }, [bank, currentItem, inRun, lang, run])
+
+  const startRun = useCallback(() => {
+    setRun(null)
+    navigate({ name: "practice" })
+  }, [])
+
+  const pickMark = useCallback((mark: MarkId) => {
+    navigate({ name: "practice", mark })
+  }, [])
 
   return (
-    <div className={`page-turn-stage${turning ? " page-turn-stage--active" : ""}`}>
-      <div
-        className="page-turn-receiver"
-        data-testid="page-turn-receiver"
-        inert={turning || undefined}
-      >
-        <EditorialDesk
-          {...learningSession}
-          next={advance}
-          summaryMotionReady={!summaryTurning}
+    <div className="rd">
+      <AppHeader />
+      {route.name === "home" ? (
+        <HomeScreen
+          bank={bank}
+          onPickMark={pickMark}
+          onStart={startRun}
+          progress={progress[lang]}
         />
-      </div>
-      {turning ? (
-        <div className="page-turn-overlay">
-          <OpenBookLanding
-            onChoose={chooseLevel}
-            turningEntryId={turningEntryId}
-          />
-        </div>
-      ) : null}
-      {summarySnapshot ? (
-        <div
-          aria-hidden="true"
-          className="summary-page-turn-overlay"
-          data-testid="summary-page-turn-transition"
-          inert
-        >
-          <EditorialDesk {...summarySnapshot} transitionSnapshot />
-        </div>
-      ) : null}
+      ) : route.name === "practice" ? (
+        <PracticeScreen
+          blankPage={blankPage}
+          onAnother={another}
+          onBlankPageChange={setBlankPage}
+          onChecked={recordResult}
+          onNext={next}
+          progress={progress[lang]}
+          view={view}
+        />
+      ) : (
+        <DoneScreen onAgain={startRun} onHome={() => navigate({ name: "home" })} />
+      )}
     </div>
+  )
+}
+
+export function App() {
+  return (
+    <LanguageProvider>
+      <Shell />
+    </LanguageProvider>
   )
 }

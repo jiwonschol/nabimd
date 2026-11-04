@@ -2,7 +2,8 @@ import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 import { ErrorBoundary } from "./ErrorBoundary"
-import { PROGRESS_STORAGE_KEY } from "../progress/progressStore"
+import { setCurrentProblemId } from "../app/currentProblem"
+import { LANG_STORAGE_KEY } from "../i18n/text"
 
 const LEARNER_MARKDOWN = "# My private notes\n\n- something personal"
 
@@ -10,22 +11,15 @@ function Boom({ message }: { message: string }): never {
   throw new Error(message)
 }
 
-function seedProgress(): void {
-  window.sessionStorage.setItem(
-    PROGRESS_STORAGE_KEY,
-    JSON.stringify({
-      version: 5,
-      currentProblemId: "l1-heading-apple",
-      draftByProblemId: { "l1-heading-apple": LEARNER_MARKDOWN },
-      completedProblemIds: ["l1-heading-pear"],
-      runStepIndex: 2,
-    }),
-  )
+function seedProblem(): void {
+  setCurrentProblemId("l1-heading-apple")
 }
 
 describe("ErrorBoundary", () => {
   beforeEach(() => {
-    window.sessionStorage.clear()
+    window.localStorage.clear()
+    window.localStorage.setItem(LANG_STORAGE_KEY, "en")
+    setCurrentProblemId(undefined)
     // React logs caught errors; the assertions below are what matter.
     vi.spyOn(console, "error").mockImplementation(() => {})
   })
@@ -51,13 +45,22 @@ describe("ErrorBoundary", () => {
     expect(
       screen.getByRole("button", { name: "Try again" }),
     ).toBeInTheDocument()
-    expect(
-      screen.getByRole("button", { name: "Clear saved answers and reload" }),
-    ).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: "Reload" })).toBeInTheDocument()
+  })
+
+  it("speaks the stored screen language", () => {
+    window.localStorage.setItem(LANG_STORAGE_KEY, "ko")
+    render(
+      <ErrorBoundary>
+        <Boom message="Root element not found" />
+      </ErrorBoundary>,
+    )
+    expect(screen.getByText("화면을 그리다 멈췄다.")).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: "다시 시도" })).toBeInTheDocument()
   })
 
   it("names the exercise that broke, so a report can be matched to it", () => {
-    seedProgress()
+    seedProblem()
     render(
       <ErrorBoundary>
         <Boom message="Root element not found" />
@@ -66,8 +69,7 @@ describe("ErrorBoundary", () => {
     expect(screen.getByText("l1-heading-apple")).toBeInTheDocument()
   })
 
-  it("clears saved drafts but keeps progress", async () => {
-    seedProgress()
+  it("reloads the page from the reload button", async () => {
     const reload = vi.fn()
     Object.defineProperty(window, "location", {
       configurable: true,
@@ -79,22 +81,13 @@ describe("ErrorBoundary", () => {
         <Boom message="Root element not found" />
       </ErrorBoundary>,
     )
-    await userEvent.click(
-      screen.getByRole("button", { name: "Clear saved answers and reload" }),
-    )
+    await userEvent.click(screen.getByRole("button", { name: "Reload" }))
 
-    const saved = JSON.parse(
-      window.sessionStorage.getItem(PROGRESS_STORAGE_KEY) ?? "{}",
-    ) as Record<string, unknown>
-
-    expect(saved.draftByProblemId).toEqual({})
-    expect(saved.completedProblemIds).toEqual(["l1-heading-pear"])
-    expect(saved.runStepIndex).toBe(2)
     expect(reload).toHaveBeenCalledOnce()
   })
 
   it("never puts the learner's writing in the prefilled issue link", () => {
-    seedProgress()
+    seedProblem()
     render(
       <ErrorBoundary>
         <Boom message={`Failed on: ${LEARNER_MARKDOWN}`} />

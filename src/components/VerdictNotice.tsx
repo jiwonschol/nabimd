@@ -1,4 +1,5 @@
 import { X } from "lucide-react"
+import { describeLocation, translator } from "../i18n/text"
 import { useEffect, useRef, useState } from "react"
 import type { GradableProblem } from "../content/types"
 import type { Evaluation } from "../engine/types"
@@ -6,6 +7,9 @@ import { buildReviewCorrections } from "../feedback/reviewCorrections"
 import type { LearningSession } from "../session/learningSession"
 import { playFeedbackSound } from "../sound/feedbackSound"
 import { VERDICT_BEAT_DURATION_MS } from "../motionTiming"
+
+// Retired screen, removed with the old UI; it only ever spoke English.
+const englishText = translator("en")
 
 type VerdictNoticeProps = {
   evaluation: Evaluation | null
@@ -102,7 +106,7 @@ export function VerdictNotice({
           <div className="verdict-notice__correction">
             <h4>
               {correction.label}
-              <small>{correction.location}</small>
+              <small>{describeLocation(correction.location, englishText)}</small>
             </h4>
             {correction.learnerExcerpt ? (
               <span className="verdict-notice__source">

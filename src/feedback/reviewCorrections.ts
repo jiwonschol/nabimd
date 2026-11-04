@@ -2,6 +2,7 @@ import type { GradableProblem } from "../content/types"
 import { createEvaluationContext } from "../engine/evaluationContext"
 import { diagnoseMatchFailure } from "../engine/matchDiagnostics"
 import type {
+  DiagnosticLocation,
   MatchFailure,
   MatchFailureItem,
   SourceRange,
@@ -12,7 +13,7 @@ export type ReviewCorrection = {
   id: string
   kind: "structure" | "syntax"
   label: string
-  location: string
+  location: DiagnosticLocation
   learnerExcerpt: string | null
   requiredSource: string | null
   repairInstruction: string

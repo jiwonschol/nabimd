@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from "vitest"
 import {
   createActionKeyBindings,
+  getPlatformFamily,
   isActionShortcut,
   resolveActionShortcut,
 } from "./keyboardShortcut"
@@ -29,6 +30,12 @@ describe("the shared Check-or-Next shortcut", () => {
       label: "Ctrl+↩ / Shift+↩",
       ariaKeyShortcuts: "Control+Enter Shift+Enter",
     })
+  })
+
+  it("treats an empty userAgentData platform like a missing one", () => {
+    expect(
+      getPlatformFamily({ userAgentData: { platform: "" }, platform: "MacIntel" }),
+    ).toBe("apple")
   })
 
   it("recognizes only the exact platform-approved modifier sets", () => {

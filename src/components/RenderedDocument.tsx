@@ -21,12 +21,17 @@ type RenderedDocumentBodyProps = Pick<
   "source" | "emptyMessage"
 > & {
   corrections?: LineCorrections
+  /** Words for an image, which renders as a placeholder; the caller's language. */
+  imageLabel?: (alt: string) => string
 }
+
+const englishImageLabel = (alt: string) => `[Image: ${alt || "image"}]`
 
 export function RenderedDocumentBody({
   source,
   emptyMessage,
   corrections,
+  imageLabel = englishImageLabel,
 }: RenderedDocumentBodyProps) {
   // A correction belongs to the smallest block that starts on its line, so a
   // list marks the one item that was missed rather than the whole list.
@@ -74,7 +79,7 @@ export function RenderedDocumentBody({
             ),
             img: ({ alt }) => (
               <span className="rendered-document__media-placeholder">
-                [Image: {alt || "image"}]
+                {imageLabel(alt ?? "")}
               </span>
             ),
             p: ({ children, node }) =>

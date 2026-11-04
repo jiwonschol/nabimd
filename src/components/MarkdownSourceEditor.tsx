@@ -79,7 +79,9 @@ function removeOneIndent(view: EditorView): boolean {
 
 type MarkdownSourceEditorProps = {
   active?: boolean
-  blankGuides?: MarkdownBlankGuideSource
+  blankGuides?: MarkdownBlankGuideSource | null
+  /** Screen-reader note on leaving the editor; the caller supplies the words. */
+  escapeHint?: string
   flaggedLines?: FlaggedSourceLines | null
   label?: string
   placeholder?: string
@@ -101,7 +103,8 @@ export type FlaggedSourceLines = {
 
 type MarkdownWordProcessorBaseProps = {
   active?: boolean
-  blankGuides?: MarkdownBlankGuideSource
+  blankGuides?: MarkdownBlankGuideSource | null
+  escapeHint?: string
   flaggedLines?: FlaggedSourceLines | null
   label: string
   placeholder?: string
@@ -128,7 +131,8 @@ type MarkdownWordProcessorProps = MarkdownWordProcessorBaseProps &
 export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
   const {
     active = true,
-    blankGuides,
+    blankGuides = null,
+    escapeHint = "Press Escape, then Tab to leave the editor.",
     flaggedLines: flaggedSourceLines = null,
     label,
     placeholder: placeholderText = "Type Markdown…",
@@ -147,6 +151,7 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
   const onCheckRef = useRef(onCheck)
   const invisibleCompartmentRef = useRef(new Compartment())
   const presentationCompartmentRef = useRef(new Compartment())
+  const blankGuideCompartmentRef = useRef(new Compartment())
 
   onChangeRef.current = onChange
   onCheckRef.current = onCheck
@@ -216,7 +221,9 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
               ],
         ),
         invisibleCompartmentRef.current.of([]),
-        ...(blankGuides ? [markdownBlankGuides(blankGuides)] : []),
+        blankGuideCompartmentRef.current.of(
+          blankGuides ? markdownBlankGuides(blankGuides) : [],
+        ),
         presentationCompartmentRef.current.of(
           presentation === "rendered" ? renderedMarkdown() : [],
         ),
@@ -272,6 +279,19 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
       ),
     })
   }, [showInvisibles])
+
+  // The second hint step switches the blank guides on mid-sheet, so they sit
+  // in a compartment instead of being fixed at mount.
+  useEffect(() => {
+    const view = viewRef.current
+    if (!view) return
+
+    view.dispatch({
+      effects: blankGuideCompartmentRef.current.reconfigure(
+        blankGuides ? markdownBlankGuides(blankGuides) : [],
+      ),
+    })
+  }, [blankGuides])
 
   useEffect(() => {
     const view = viewRef.current
@@ -357,7 +377,7 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
         </div>
       ) : (
         <p className="visually-hidden" id={tabEscapeHintId}>
-          Press Escape, then Tab to leave the editor.
+          {escapeHint}
         </p>
       )}
       <div className="markdown-source-editor__mount" ref={mountRef} />
@@ -370,6 +390,7 @@ export function MarkdownSourceEditor(props: MarkdownSourceEditorProps) {
     <MarkdownWordProcessor
       active={props.active}
       blankGuides={props.blankGuides}
+      escapeHint={props.escapeHint}
       flaggedLines={props.flaggedLines}
       label={props.label ?? "Your Markdown"}
       onChange={props.onChange}

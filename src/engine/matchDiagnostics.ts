@@ -7,7 +7,11 @@ import {
   type AstNode,
   type EvaluationContext,
 } from "./evaluationContext"
-import type { MatchDiagnostic, SourceRange } from "./types"
+import type {
+  DiagnosticLocation,
+  MatchDiagnostic,
+  SourceRange,
+} from "./types"
 import {
   countBlockNodes,
   structuralCheckPasses,
@@ -117,25 +121,31 @@ function containingBlockIndex(
   return index < 0 ? null : index
 }
 
+const DOCUMENT: DiagnosticLocation = { kind: "document" }
+
 function nearestHeadingLocation(
   context: EvaluationContext,
   blockIndex: number | null,
-): string {
-  if (blockIndex === null) return "Document"
+): DiagnosticLocation {
+  if (blockIndex === null) return DOCUMENT
   for (let index = blockIndex; index >= 0; index -= 1) {
     const block = context.blocks[index]
     if (block?.type !== "heading") continue
-    if (block.depth === 1 && index === blockIndex) return "Document title"
-    if (block.depth >= 2) return `In “${nodeText(block as AstNode)}”`
+    if (block.depth === 1 && index === blockIndex) {
+      return { kind: "document-title" }
+    }
+    if (block.depth >= 2) {
+      return { kind: "section", heading: nodeText(block as AstNode) }
+    }
   }
-  return "Document"
+  return DOCUMENT
 }
 
 function locationForCheck(
   check: MatchCheck,
   context: EvaluationContext,
   blockIndex: number | null,
-): string {
+): DiagnosticLocation {
   if ("scope" in check && check.scope.kind === "section") {
     const scope = check.scope
     const section = context.sections.find(
@@ -143,7 +153,9 @@ function locationForCheck(
         candidate.headingDepth === scope.headingDepth &&
         candidate.occurrence === scope.occurrence,
     )
-    if (section) return `In “${nodeText(section.heading as AstNode)}”`
+    if (section) {
+      return { kind: "section", heading: nodeText(section.heading as AstNode) }
+    }
   }
   return nearestHeadingLocation(context, blockIndex)
 }
