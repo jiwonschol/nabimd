@@ -89,6 +89,8 @@ export const ko = {
 
   "render.image": "[이미지: {alt}]",
   "render.imageFallback": "이미지",
+  "render.taskDone": "끝낸 할 일",
+  "render.taskOpen": "남은 할 일",
 
   "done.title": "다섯 장을 썼다.",
   "done.again": "다섯 장 더",

@@ -25,6 +25,16 @@ describe("Korean copy lint", () => {
     ])
   })
 
+  it("sees text beside an expression in the same element", () => {
+    expect(findHardcodedCopy("const a = <p>Hello {name}</p>").map((f) => f.text)).toEqual([
+      "Hello",
+    ])
+    expect(
+      findHardcodedCopy("const a = <p>{count} items left</p>").map((f) => f.text),
+    ).toEqual(["items left"])
+    expect(findHardcodedCopy('const a = <p>{t("a")} · {t("b")}</p>')).toEqual([])
+  })
+
   it("lets dictionary lookups, the product name and comments through", () => {
     const source = [
       "// 화면 문구는 사전에서 온다",

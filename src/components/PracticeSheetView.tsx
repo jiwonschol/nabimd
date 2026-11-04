@@ -19,6 +19,7 @@ import {
 } from "./MarkdownSourceEditor"
 import { getPlatformFamily, resolveActionShortcut } from "./keyboardShortcut"
 import { RenderedDocumentBody } from "./RenderedDocument"
+import { useRenderLabels } from "./useRenderLabels"
 
 const navigatorLike = typeof navigator === "undefined" ? {} : navigator
 
@@ -29,12 +30,6 @@ function markNames(marks: readonly MarkId[], t: Translate): string {
 function markSyntax(mark: MarkId, t: Translate): string {
   const example = MARK_EXAMPLES[mark]
   return example.startsWith("markExample.") ? t(example as TextKey) : example
-}
-
-function useImageLabel() {
-  const { t } = useText()
-  return (alt: string) =>
-    t("render.image", { alt: alt || t("render.imageFallback") })
 }
 
 function Instruction({
@@ -64,7 +59,7 @@ function Instruction({
 function TargetPanel({ sheet }: { sheet: PracticeSheet }) {
   const { t } = useText()
   const headingId = useId()
-  const imageLabel = useImageLabel()
+  const labels = useRenderLabels()
   const { target } = sheet.item.problem
   return (
     <section
@@ -76,7 +71,7 @@ function TargetPanel({ sheet }: { sheet: PracticeSheet }) {
         {t("practice.target")}
       </h2>
       <div className="rd-doc">
-        <RenderedDocumentBody imageLabel={imageLabel} source={target} />
+        <RenderedDocumentBody labels={labels} source={target} />
       </div>
       {sheet.answerShown ? (
         <pre
@@ -94,7 +89,7 @@ function TargetPanel({ sheet }: { sheet: PracticeSheet }) {
 function MyRenderPanel({ source }: { source: string }) {
   const { t } = useText()
   const headingId = useId()
-  const imageLabel = useImageLabel()
+  const labels = useRenderLabels()
   return (
     <section
       aria-labelledby={headingId}
@@ -105,7 +100,7 @@ function MyRenderPanel({ source }: { source: string }) {
         {t("practice.mine")}
       </h2>
       <div className="rd-doc">
-        <RenderedDocumentBody imageLabel={imageLabel} source={source} />
+        <RenderedDocumentBody labels={labels} source={source} />
       </div>
     </section>
   )

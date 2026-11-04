@@ -80,6 +80,22 @@ export type LinkShapeOptions = {
   allowAutolinks: boolean
 }
 
+/**
+ * The shape a `block-count` check over tables may require (the plan's
+ * `table-shape` predicate). Only tables that match it are counted, so a table
+ * with no body rows, or with a different number of header cells, does not
+ * satisfy `min`. Body rows count only when some cell has visible text.
+ *
+ * It rides on `block-count` instead of a new check kind because the engine's
+ * dispatch and diagnostics switch over every kind; a table check counted this
+ * way is diagnosed like any other table count.
+ */
+export type TableShape = {
+  headerCells: number
+  minBodyRows?: number
+  maxBodyRows?: number
+}
+
 export type MatchCheck =
   | (HeadingMatchCheck & { kind: "heading-spacing" })
   | (HeadingMatchCheck & { kind: "hash-heading-style" })
@@ -92,6 +108,8 @@ export type MatchCheck =
       recursive?: boolean
       min?: number
       max?: number
+      /** Only with `block: "table"`. */
+      tableShape?: TableShape
     })
   | (MatchCheckBase & {
       kind: "inline-presence"
@@ -198,6 +216,8 @@ export type EditorialCheck =
 
 type ProblemBase = {
   id: string
+  /** Learner language of the copy and target. Absent means "en". */
+  locale?: "ko" | "en"
   teachingMode: "introduce" | "recall"
   teaching: {
     concept: string

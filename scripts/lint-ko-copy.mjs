@@ -49,9 +49,18 @@ export function findHardcodedCopy(source) {
   const findings = []
   const lineOf = (offset) => code.slice(0, offset).split("\n").length
 
-  // JSX text between a closing ">" of a tag and the next "<".
-  for (const match of code.matchAll(/>([^<>{}]*?)</g)) {
-    const text = match[1].trim()
+  // JSX text between a closing ">" of a tag and the next "<". Expressions
+  // ({name}, {t("key")}) are cut out first, so text sitting beside one is
+  // still seen: "<p>Hello {name}</p>" leaves "Hello".
+  for (const match of code.matchAll(/>([^<>]*?)</g)) {
+    let text = match[1]
+    for (let previous = ""; previous !== text; ) {
+      previous = text
+      text = text.replace(/\{[^{}]*\}/g, " ")
+    }
+    // An expression cut by a nested tag ({cond ? <b/> : …}) leaves an
+    // unclosed brace at either end; drop it too.
+    text = text.replace(/\{[\s\S]*$/, " ").replace(/^[\s\S]*\}/, " ").trim()
     if (!text || !/[A-Za-zㄱ-ㆎ가-힣]/.test(text)) continue
     // Code between a generic or a closing tag and the next "<" (useRef<T>(…),
     // a ternary after </p>) carries brackets, "=" or ";"; screen text does not.

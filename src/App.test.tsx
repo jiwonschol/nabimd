@@ -2,9 +2,12 @@ import { EditorView } from "@codemirror/view"
 import { act, render, screen, waitFor, within } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { beforeEach, describe, expect, it, vi } from "vitest"
-import { koSamples } from "./content/ko/_samples"
+import { koCardsByMark } from "./content/ko"
 import { LANG_STORAGE_KEY } from "./i18n/text"
 import { App } from "./App"
+
+const listCard = koCardsByMark.list[0]!.problem
+const quoteCard = koCardsByMark.blockquote[0]!.problem
 
 function goTo(path: string) {
   window.history.replaceState(null, "", path)
@@ -50,9 +53,8 @@ describe("home", () => {
       "data-state",
       "new",
     )
-    // A mark with no document written for it stays closed rather than
-    // borrowing another mark's lesson.
-    expect(within(map).getByRole("button", { name: /^제목/ })).toBeDisabled()
+    // The Korean bank covers all twelve marks.
+    for (const cell of within(map).getAllByRole("button")) expect(cell).toBeEnabled()
     expect(screen.getByTestId("start-run")).toBeEnabled()
     expect(document.documentElement.lang).toBe("ko")
   })
@@ -94,11 +96,11 @@ describe("practice", () => {
 
   it("grades in place, offers the answer after two misses, and passes", async () => {
     const user = userEvent.setup()
-    const grocery = koSamples[0].problem
+    const grocery = listCard
     await renderReady(`/practice?doc=${grocery.id}`)
 
     expect(screen.getByTestId("instruction")).toHaveTextContent(
-      "이 문서를 마크다운으로 쓴다. 이번 기호: 목록",
+      `${grocery.prompt} 이번 기호: 목록`,
     )
     // The teaching line shows while the mark is untried.
     expect(screen.getByTestId("teaching")).toBeInTheDocument()
@@ -109,7 +111,7 @@ describe("practice", () => {
     )
     expect(screen.queryByTestId("show-answer")).not.toBeInTheDocument()
 
-    replaceDraft("# 장보기 메모\n\n-우유\n-달걀\n-식빵")
+    replaceDraft(grocery.target.replace(/^- /gm, "-"))
     await user.click(screen.getByTestId("check"))
     expect(screen.getByTestId("rd-status")).toHaveTextContent(
       "목록 기호 뒤에는 공백 하나를 둔다.",
@@ -130,26 +132,26 @@ describe("practice", () => {
 
   it("names the line when the engine can place the miss", async () => {
     const user = userEvent.setup()
-    const grocery = koSamples[0].problem
+    const grocery = listCard
     await renderReady(`/practice?doc=${grocery.id}`)
 
-    replaceDraft("# 장보기 메모\n\n- 우유\n- 달걀\n식빵")
+    // The last item loses its marker and joins the item before it, so the
+    // engine points at the whole list block.
+    replaceDraft(grocery.target.replace(/\n- ([^\n]*)$/, "\n$1"))
     await user.click(screen.getByTestId("check"))
     expect(screen.getByTestId("rd-status")).toHaveTextContent(
-      /^3~5번째 줄: 항목 세 개를/,
+      /^3~6번째 줄: 항목 4개를/,
     )
   })
 
   it("shows the hint in two steps, the second one marking the blanks", async () => {
     const user = userEvent.setup()
-    await renderReady(`/practice?doc=${koSamples[2]!.problem.id}`)
+    await renderReady(`/practice?doc=${quoteCard.id}`)
 
     await user.click(screen.getByTestId("hint"))
     expect(screen.getByTestId("rd-status")).toHaveTextContent("쓸 기호: >")
     await user.click(screen.getByTestId("hint"))
-    expect(screen.getByTestId("rd-status")).toHaveTextContent(
-      "예: > 결과는 마크다운으로 준다",
-    )
+    expect(screen.getByTestId("rd-status")).toHaveTextContent(quoteCard.hints[2])
     expect(document.querySelectorAll(".cm-markdown-blank-guide").length).toBeGreaterThan(0)
     await user.click(screen.getByTestId("hint"))
     expect(document.querySelectorAll(".cm-markdown-blank-guide")).toHaveLength(0)
@@ -169,7 +171,7 @@ describe("practice", () => {
 
   it("starts from a blank page on request, keeping typed work", async () => {
     const user = userEvent.setup()
-    await renderReady(`/practice?doc=${koSamples[0].problem.id}`)
+    await renderReady(`/practice?doc=${listCard.id}`)
 
     await user.click(screen.getByTestId("blank-page-toggle"))
     expect(editorView().state.doc.toString()).toBe("")
@@ -208,7 +210,7 @@ describe("practice", () => {
 describe("progress and consent", () => {
   it("keeps the map across a reload and clears it from settings", async () => {
     const user = userEvent.setup()
-    const grocery = koSamples[0].problem
+    const grocery = listCard
     const first = await (async () => {
       goTo(`/practice?doc=${grocery.id}`)
       const view = render(<App />)

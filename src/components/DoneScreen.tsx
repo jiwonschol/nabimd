@@ -6,6 +6,7 @@ import { useText } from "../i18n/useText"
 import { type LangProgress, markState } from "../progress/learning"
 import { playFeedbackSound } from "../sound/feedbackSound"
 import { RenderedDocumentBody } from "./RenderedDocument"
+import { useRenderLabels } from "./useRenderLabels"
 import { SummaryFeedbackForm } from "./SummaryFeedbackForm"
 
 export type DoneSummary = {
@@ -33,8 +34,7 @@ function changedMarks(
 function SummaryCard({ item, source }: { item: PracticeItem; source: string }) {
   const { t } = useText()
   const titleId = useId()
-  const imageLabel = (alt: string) =>
-    t("render.image", { alt: alt || t("render.imageFallback") })
+  const labels = useRenderLabels()
   return (
     <li aria-labelledby={titleId} className="rd-done__card">
       <h3 className="rd-panel__title" id={titleId}>
@@ -52,7 +52,7 @@ function SummaryCard({ item, source }: { item: PracticeItem; source: string }) {
           className="rd-doc rd-done__render"
           role="group"
         >
-          <RenderedDocumentBody imageLabel={imageLabel} source={source} />
+          <RenderedDocumentBody labels={labels} source={source} />
         </div>
       </div>
     </li>

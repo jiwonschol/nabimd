@@ -28,7 +28,7 @@ describe("routes", () => {
       { name: "done" },
       { name: "practice" },
       { name: "practice", mark: "image" },
-      { name: "practice", doc: "ko-sample-grocery-memo" },
+      { name: "practice", doc: "ko-list-weekend-groceries" },
     ] as const) {
       const href = routeHref(route, "/nabimd/")
       const url = new URL(href, "https://onsoonlabs.com")

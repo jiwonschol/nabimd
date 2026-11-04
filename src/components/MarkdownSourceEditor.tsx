@@ -373,7 +373,10 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
           className="visually-hidden markdown-word-processor__semantic-document"
           role="document"
         >
-          <RenderedDocumentBody imageLabel={(alt) => alt} source={value} />
+          <RenderedDocumentBody
+            labels={{ image: (alt) => alt, task: (checked) => (checked ? "☑" : "☐") }}
+            source={value}
+          />
         </div>
       ) : (
         <p className="visually-hidden" id={tabEscapeHintId}>

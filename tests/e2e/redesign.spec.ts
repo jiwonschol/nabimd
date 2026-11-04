@@ -3,7 +3,7 @@ import { expect, test, type Page } from "@playwright/test"
 import { readFileSync } from "node:fs"
 import { MARKS } from "../../src/app/marks"
 import { getCurriculumElements } from "../../src/content/curriculumElements"
-import { koSamples } from "../../src/content/ko/_samples"
+import { koCards } from "../../src/content/ko"
 import { derivePlaintextStarter } from "../../src/content/plaintextStarter"
 import {
   check,
@@ -41,7 +41,7 @@ const targetById = new Map<string, string>([
   ...Object.values(runtime.levels)
     .flat()
     .map((problem) => [problem.id, problem.target] as const),
-  ...koSamples.map(({ problem }) => [problem.id, problem.target] as const),
+  ...koCards.map(({ problem }) => [problem.id, problem.target] as const),
 ])
 
 async function currentProblemId(page: Page): Promise<string> {
@@ -121,18 +121,19 @@ test("② a map cell opens a document; a miss is fixed in place and passes", asy
   await expect(page.getByTestId("instruction")).toContainText("이번 기호: 목록")
 
   // Fill mode: the editor starts with the goal's words, marks removed.
-  const grocery = koSamples[0].problem
-  await expect.poll(() => readDraft(page)).toBe(derivePlaintextStarter(grocery.target))
+  const target = targetById.get(await currentProblemId(page))!
+  await expect.poll(() => readDraft(page)).toBe(derivePlaintextStarter(target))
 
-  await replaceDraft(page, "# 장보기 메모\n\n- 우유\n- 달걀\n식빵")
+  // The last item loses its marker and joins the item before it.
+  await replaceDraft(page, target.replace(/\n- ([^\n]*)$/, "\n$1"))
   await check(page)
   await expect(page.getByTestId("rd-bar")).toHaveAttribute("data-tone", "retry")
-  await expect(page.getByTestId("rd-status")).toContainText("3~5번째 줄:")
+  await expect(page.getByTestId("rd-status")).toContainText(/\d+~\d+번째 줄:/)
   await expect(page.locator(".cm-flagged-line").first()).toBeVisible()
   await expectNoCriticalAxe(page)
 
   // Fixing the draft keeps the editor; the verdict waits for the next check.
-  await replaceDraft(page, grocery.target)
+  await replaceDraft(page, target)
   await check(page)
   await expect(page.getByTestId("rd-bar")).toHaveAttribute("data-tone", "pass")
   await expect(page.getByTestId("rd-mine")).toBeVisible()
@@ -226,7 +227,7 @@ test("⑦ no beacon request before consent, one after", async ({ page }) => {
 })
 
 test("⑥ the language switch changes every word, both ways", async ({ page }) => {
-  await page.goto("./practice?doc=ko-sample-grocery-memo")
+  await page.goto("./practice?doc=ko-list-weekend-groceries")
   await expect(page.getByTestId("instruction")).toContainText("이번 기호")
 
   await page.getByTestId("lang-toggle").click()
@@ -279,12 +280,13 @@ test("⑧ a document can be opened, written and passed with the keyboard alone",
   }
   await expect(editorContent(page)).toBeFocused()
 
-  const lines = koSamples[2].problem.target.split("\n")
+  const quoteTarget = targetById.get(await currentProblemId(page))!
+  const lines = quoteTarget.split("\n")
   for (const [index, line] of lines.entries()) {
     if (line) await page.keyboard.type(line)
     if (index < lines.length - 1) await page.keyboard.press("Enter")
   }
-  await expect.poll(() => readDraft(page)).toBe(koSamples[2].problem.target)
+  await expect.poll(() => readDraft(page)).toBe(quoteTarget)
   await page.keyboard.press("Control+Enter")
   await expect(page.getByTestId("rd-bar")).toHaveAttribute("data-tone", "pass")
 
@@ -335,6 +337,21 @@ test("English mode opens 20 random Level 1 documents in fill mode and passes the
       await replaceDraft(page, problem.target)
       await check(page)
       await expect(page.getByTestId("rd-bar")).toHaveAttribute("data-tone", "pass")
+    })
+  }
+})
+
+test("axe finds no critical problem on any Korean mark's document, before and after a pass", async ({
+  page,
+}) => {
+  test.setTimeout(120_000)
+  for (const mark of MARKS) {
+    await test.step(mark, async () => {
+      await page.goto(`./practice?mark=${mark}`)
+      await expect(page.getByTestId("rd-editor")).toBeVisible()
+      await expectNoCriticalAxe(page)
+      await passCurrent(page)
+      await expectNoCriticalAxe(page)
     })
   }
 })

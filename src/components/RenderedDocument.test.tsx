@@ -2,7 +2,10 @@ import { render, screen } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
 import { RenderedDocumentBody } from "./RenderedDocument"
 
-const englishImage = (alt: string) => `[Image: ${alt || "image"}]`
+const englishLabels = {
+  image: (alt: string) => `[Image: ${alt || "image"}]`,
+  task: (checked: boolean) => (checked ? "Done task" : "Open task"),
+}
 
 /** A labelled region around the body, the way the screens place it. */
 function RenderedDocument({
@@ -18,7 +21,7 @@ function RenderedDocument({
     <section aria-label={label} className="rendered-document">
       <RenderedDocumentBody
         emptyMessage={emptyMessage}
-        imageLabel={englishImage}
+        labels={englishLabels}
         source={source}
       />
     </section>
@@ -26,6 +29,12 @@ function RenderedDocument({
 }
 
 describe("RenderedDocument", () => {
+  it("names task-list checkboxes", () => {
+    render(<RenderedDocument label="Goal" source={"- [x] Pack\n- [ ] Lock"} />)
+    expect(screen.getByRole("checkbox", { name: "Done task" })).toBeChecked()
+    expect(screen.getByRole("checkbox", { name: "Open task" })).not.toBeChecked()
+  })
+
   it("shows a quiet empty state without turning it into Markdown", () => {
     render(
       <RenderedDocument

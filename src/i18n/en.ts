@@ -86,6 +86,8 @@ export const en: Readonly<Record<TextKey, string>> = {
 
   "render.image": "[Image: {alt}]",
   "render.imageFallback": "image",
+  "render.taskDone": "Done task",
+  "render.taskOpen": "Open task",
 
   "done.title": "You wrote five documents.",
   "done.again": "Five more",

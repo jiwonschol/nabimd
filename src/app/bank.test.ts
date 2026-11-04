@@ -1,8 +1,9 @@
 import { describe, expect, it } from "vitest"
-import { koSamples } from "../content/ko/_samples"
+import { koCardsByMark } from "../content/ko"
 import { evaluateProblem } from "../engine/evaluateProblem"
 import { loadBank } from "./bank"
 import { englishItems } from "./bankEn"
+import { itemsFromKoBank } from "./bankKo"
 import { MARKS } from "./marks"
 
 describe("English bank", () => {
@@ -31,43 +32,40 @@ describe("English bank", () => {
 })
 
 describe("Korean bank", () => {
-  it("runs on the three samples until the Korean bank lands", async () => {
+  it("serves the Korean bank v1: 96 single-mark and 24 mixed documents", async () => {
     const items = await loadBank("ko")
-    expect(items.map((item) => [item.problem.id, item.marks])).toEqual([
-      ["ko-sample-grocery-memo", ["unordered-list"]],
-      ["ko-sample-meeting-memo", ["ordered-list"]],
-      ["ko-sample-ai-request", ["blockquote"]],
-    ])
+    expect(items.filter((item) => !item.mixed)).toHaveLength(96)
+    expect(items.filter((item) => item.mixed)).toHaveLength(24)
+    for (const mark of MARKS) {
+      expect(items.filter((item) => !item.mixed && item.marks[0] === mark), mark).toHaveLength(8)
+    }
     for (const { problem } of items) {
-      expect(problem.starterText).not.toBe("")
-      expect(evaluateProblem(problem, problem.target).status).toBe("matched")
+      expect(problem.starterText, problem.id).not.toBe("")
+      expect(problem.starterText, problem.id).not.toBe(problem.target)
+      expect(evaluateProblem(problem, problem.target).status, problem.id).toBe("matched")
     }
   })
 
+  it("names the bank's bulleted list as the list mark", () => {
+    const [card] = koCardsByMark.list
+    const items = itemsFromKoBank({
+      koCardsByMark: { list: [card!] },
+      koMixedCards: [{ problem: card!.problem, marks: ["heading", "list"] }],
+    })
+    expect(items.map((item) => [item.marks, item.mixed])).toEqual([
+      [["unordered-list"], false],
+      [["heading", "unordered-list"], true],
+    ])
+  })
+
   it("explains a Setext title with the dedicated hash-style feedback (D11)", () => {
-    const grocery = koSamples[0].problem
-    const setext = grocery.target.replace("# 장보기 메모", "장보기 메모\n===")
+    const grocery = koCardsByMark.list[0]!.problem
+    const title = grocery.target.split("\n")[0]!.replace(/^# /, "")
+    const setext = grocery.target.replace(`# ${title}`, `${title}\n===`)
     expect(evaluateProblem(grocery, setext)).toMatchObject({
       status: "fail",
       feedbackId: "use-hash-heading-style",
-      message: "제목은 # 으로 시작하는 방식으로 쓴다. 예: # 장보기 메모",
+      message: `제목 아래에 선을 긋지 말고 줄 처음에 # 을 쓴다. 예: # ${title}`,
     })
-  })
-})
-
-describe("Korean bank index (issue #253)", () => {
-  it("reads the bank's cards, naming its bulleted list as the list mark", async () => {
-    const { itemsFromKoIndex } = await import("./bankKo")
-    const grocery = koSamples[0].problem
-    const meeting = koSamples[1]!.problem
-    const items = itemsFromKoIndex({
-      koCardsByMark: { list: [{ problem: grocery, marks: ["list"] }] },
-      koMixedCards: [{ problem: meeting, marks: ["heading", "bold", "ordered-list"] }],
-    })
-    expect(items.map((item) => [item.problem.id, item.marks, item.mixed])).toEqual([
-      ["ko-sample-grocery-memo", ["unordered-list"], false],
-      ["ko-sample-meeting-memo", ["heading", "bold", "ordered-list"], true],
-    ])
-    expect(items[0]!.problem.starterText).not.toBe("")
   })
 })
