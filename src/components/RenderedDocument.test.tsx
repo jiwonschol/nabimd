@@ -1,25 +1,38 @@
 import { render, screen } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
-import {
-  RenderedDocument,
-  RenderedDocumentBody,
-} from "./RenderedDocument"
+import { RenderedDocumentBody } from "./RenderedDocument"
+
+const englishLabels = {
+  image: (alt: string) => `[Image: ${alt || "image"}]`,
+  task: (checked: boolean) => (checked ? "Done task" : "Open task"),
+}
+
+/** A labelled region around the body, the way the screens place it. */
+function RenderedDocument({
+  label,
+  source,
+  emptyMessage,
+}: {
+  label: string
+  source: string
+  emptyMessage?: string
+}) {
+  return (
+    <section aria-label={label} className="rendered-document">
+      <RenderedDocumentBody
+        emptyMessage={emptyMessage}
+        labels={englishLabels}
+        source={source}
+      />
+    </section>
+  )
+}
 
 describe("RenderedDocument", () => {
-  it("uses one paper surface for Goal and Live preview", () => {
-    const { rerender } = render(
-      <RenderedDocument label="Goal" source="# Apple" />,
-    )
-
-    const goal = screen.getByRole("region", { name: "Goal" })
-    expect(goal).toHaveClass("rendered-document")
-    expect(goal).toHaveTextContent("Apple")
-
-    rerender(<RenderedDocument label="Live preview" source="# Apple" />)
-
-    const preview = screen.getByRole("region", { name: "Live preview" })
-    expect(preview).toHaveClass("rendered-document")
-    expect(preview.className).toBe(goal.className)
+  it("names task-list checkboxes", () => {
+    render(<RenderedDocument label="Goal" source={"- [x] Pack\n- [ ] Lock"} />)
+    expect(screen.getByRole("checkbox", { name: "Done task" })).toBeChecked()
+    expect(screen.getByRole("checkbox", { name: "Open task" })).not.toBeChecked()
   })
 
   it("shows a quiet empty state without turning it into Markdown", () => {
@@ -132,52 +145,4 @@ describe("RenderedDocument", () => {
       "Kept with the document.",
     )
   })
-
-  it("marks level 5 and level 6 headings on the teacher's returned page", () => {
-    render(
-      <RenderedDocumentBody
-        corrections={
-          new Map([
-            [1, [1]],
-            [3, [2]],
-          ])
-        }
-        source={"##### Shelf note\n\n###### Final detail"}
-      />,
-    )
-
-    expect(
-      screen.getByRole("heading", { level: 5, name: /Shelf note/ }),
-    ).toHaveAttribute("data-corrected", "true")
-    expect(
-      screen.getByRole("heading", { level: 6, name: /Final detail/ }),
-    ).toHaveAttribute("data-corrected", "true")
-  })
-
-  it("uses a valid block wrapper when marking a thematic break", () => {
-    const { container } = render(
-      <RenderedDocumentBody
-        corrections={new Map([[3, [1]]])}
-        source={"Before\n\n---\n\nAfter"}
-      />,
-    )
-
-    const markedBreak = container.querySelector(".rendered-document__break")
-    expect(markedBreak?.tagName).toBe("DIV")
-    expect(markedBreak).toHaveAttribute("data-corrected", "true")
-    expect(markedBreak?.querySelector("hr")).toBeInTheDocument()
-  })
-
-  it("gives each visible correction number explicit accessible text", () => {
-    render(
-      <RenderedDocumentBody
-        corrections={new Map([[1, [3]]])}
-        source="# Marked heading"
-      />,
-    )
-
-    expect(screen.getByText("Correction 3")).toHaveClass("visually-hidden")
-    expect(screen.getByText("3")).toHaveAttribute("aria-hidden", "true")
-  })
-
 })

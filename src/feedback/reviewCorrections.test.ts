@@ -99,7 +99,7 @@ describe("buildReviewCorrections", () => {
         id: "owner-bold",
         kind: "syntax",
         label: "Bold text",
-        location: "In “Next”",
+        location: { kind: "section", heading: "Next" },
         learnerExcerpt: "# Owner: Read the [status page](/status).",
         requiredSource: "**Owner:**",
         attachedFailureIds: ["document-shape", "owner-bold", "owner-link"],

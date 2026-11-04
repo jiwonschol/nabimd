@@ -24,10 +24,13 @@ const testOnlySentinels = [
   "data-e2e-document",
 ]
 
-// Card-first practice exposes its current problem and the grown Markdown
-// through stable data attributes. Production E2E uses those public contracts
-// instead of reaching into the retired CodeMirror editor.
-const automationContractSentinels = ["data-problem-id", "data-draft"]
+// The practice screen names its document through a data attribute, and the
+// editor exposes a read-only, webdriver-only bridge to its text. Production
+// E2E uses those public contracts instead of CodeMirror's private DOM.
+const automationContractSentinels = [
+  "data-problem-id",
+  "__nabimdReadDocumentForE2E",
+]
 
 const leaked = testOnlySentinels.filter((sentinel) => bundle.includes(sentinel))
 if (leaked.length > 0) {

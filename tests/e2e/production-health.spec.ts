@@ -1,82 +1,5 @@
-import { expect, test, type Locator, type Page } from "@playwright/test"
-import { readFileSync } from "node:fs"
-import { curriculumLevels } from "../../src/content/curriculumLevels"
-import {
-  getCurriculumElements,
-  isEntryAvailableForBank,
-} from "../../src/content/curriculumElements"
-import { withinRuntimeBudget } from "../../src/content/runtimeBudget"
-import { deriveSyntaxCheckpoints } from "../../src/guided/guidedSyntax"
-import { RUN_POLICY } from "../../src/selection/runPolicy"
-
-type RuntimeProblemSource = {
-  id: string
-  flavor: "standard" | "transfer"
-  skillIds: string[]
-  syntaxTokens: string[]
-  target: string
-}
-
-const runtimeProjection = JSON.parse(
-  readFileSync(
-    new URL(
-      "../../curriculum/problem-bank/runtime-projections.generated.json",
-      import.meta.url,
-    ),
-    "utf8",
-  ),
-) as { levels: Record<string, RuntimeProblemSource[]> }
-
-const runtimeProblems = Object.values(runtimeProjection.levels)
-  .flat()
-  .filter(withinRuntimeBudget)
-const runtimeProblemById = new Map<string, RuntimeProblemSource>(
-  runtimeProblems.map((problem) => [problem.id, problem]),
-)
-const entries = curriculumLevels.map((entry) => ({
-  ...entry,
-  available: isEntryAvailableForBank(
-    entry,
-    runtimeProblems,
-    RUN_POLICY.turnSize,
-  ),
-}))
-
-const progressStorageKey = "nabimd.progress.v5"
-const sessionSeedStorageKey = "nabimd.session-seed.v1"
-
-function cardBoxInput(page: Page): Locator {
-  return page.getByRole("textbox", { name: /^Marks \d+ of \d+$/ }).first()
-}
-
-function practiceShell(page: Page): Locator {
-  return page.locator("main.app-shell--practice")
-}
-
-async function resetFreshSession(page: Page) {
-  await page.goto("./")
-  await page.evaluate(
-    ({ progressKey, seedKey }) => {
-      window.sessionStorage.removeItem(progressKey)
-      window.sessionStorage.setItem(seedKey, "0")
-    },
-    {
-      progressKey: progressStorageKey,
-      seedKey: sessionSeedStorageKey,
-    },
-  )
-  await page.reload()
-  await expect(
-    page.getByRole("heading", { name: "Choose a level to begin." }),
-  ).toBeVisible()
-}
-
-async function submitMarks(page: Page, marks: string) {
-  const input = cardBoxInput(page)
-  await expect(input).toBeVisible()
-  await input.fill(marks)
-  await input.press("Enter")
-}
+import { expect, test } from "@playwright/test"
+import { check, replaceDraft, useLanguage } from "./support/practice"
 
 // Every other check here passes just as happily against a build from last
 // week, so on its own the suite cannot tell "production is healthy" from
@@ -111,103 +34,33 @@ test("production serves the commit this workflow expects", async ({ page }) => {
   ).toBe(expected)
 })
 
-test("production serves five distinct syntax elements for every available level", async ({
-  page,
-}) => {
-  test.setTimeout(120_000)
+// The full flow check (home → five → summary in both languages) is the
+// release session's job (plan appendix D); this keeps one document passing.
+test("production opens the map and passes one document", async ({ page }) => {
   const runtimeFailures: string[] = []
-
+  page.on("pageerror", (error) => runtimeFailures.push(error.message))
   page.on("console", (message) => {
-    if (message.type() === "error") {
-      runtimeFailures.push(`console: ${message.text()}`)
-    }
-  })
-  page.on("pageerror", (error) => {
-    runtimeFailures.push(`pageerror: ${error.message}`)
-  })
-  page.on("response", (response) => {
-    if (response.status() >= 500) {
-      runtimeFailures.push(`${response.status()}: ${response.url()}`)
-    }
+    if (message.type() === "error") runtimeFailures.push(message.text())
   })
 
-  for (const entry of entries) {
-    await test.step(entry.label, async () => {
-      await resetFreshSession(page)
+  await useLanguage(page, "en")
+  await page.addInitScript(() =>
+    window.localStorage.setItem(
+      "nabimd.consent.v1",
+      JSON.stringify({ v: 1, analytics: false }),
+    ),
+  )
+  await page.goto("./")
+  await expect(page.getByTestId("mark-map").getByRole("button")).toHaveCount(12)
+  await expect(page.getByTestId("start-run")).toBeEnabled()
 
-      if (!entry.available) {
-        await expect(
-          page.getByRole("button", { name: entry.label }),
-        ).toBeDisabled()
-        return
-      }
-
-      await page.getByRole("button", { name: entry.label }).click()
-      await expect(page.getByTestId("page-turn-transition")).toHaveCount(0)
-      await expect(page.getByLabel("Practice details")).toContainText(
-        `Level ${entry.level}`,
-      )
-      const servedSingleElements = new Set<string>()
-      let mixedExerciseCount = 0
-
-      for (let exercise = 0; exercise < 5; exercise += 1) {
-        const problemId =
-          await practiceShell(page).getAttribute("data-problem-id")
-        expect(
-          problemId,
-          `problem ${exercise + 1} for Level ${entry.level}`,
-        ).toBeTruthy()
-        if (!problemId) {
-          throw new Error(
-            `Missing problem ${exercise + 1} for Level ${entry.level}`,
-          )
-        }
-        const problem = runtimeProblemById.get(problemId)
-        if (!problem) {
-          throw new Error(`Missing runtime source for ${problemId}`)
-        }
-        const elements = getCurriculumElements(problem)
-        expect(elements.length).toBeGreaterThan(0)
-        for (const element of elements) expect(entry.elements).toContain(element)
-        if (elements.length === 1) {
-          expect(servedSingleElements.has(elements[0]!)).toBe(false)
-          servedSingleElements.add(elements[0]!)
-        } else {
-          mixedExerciseCount += 1
-        }
-        const marks = deriveSyntaxCheckpoints(problem.target, "").map(
-          (checkpoint) => checkpoint.canonicalInput,
-        )
-        expect(
-          marks.length,
-          `syntax checkpoints for ${problemId}`,
-        ).toBeGreaterThan(0)
-
-        for (const mark of marks) {
-          await submitMarks(page, mark)
-        }
-        if (exercise < 4) {
-          await expect(practiceShell(page)).not.toHaveAttribute(
-            "data-problem-id",
-            problemId,
-          )
-        }
-      }
-
-      await expect(
-        page.getByRole("heading", { name: "Well done." }),
-      ).toBeVisible()
-      await expect(page.getByLabel("Score")).toContainText("5 / 5")
-      await expect(
-        page.getByRole("region", { name: "Your work" }).getByRole("article"),
-      ).toHaveCount(1)
-      await expect(
-        page.getByRole("region", { name: "Markdown source" }),
-      ).toBeVisible()
-      expect(servedSingleElements.size).toBe(4)
-      expect(mixedExerciseCount).toBe(1)
-    })
-  }
-
-  expect(runtimeFailures, "browser runtime failures").toEqual([])
+  await page.goto("./practice?doc=l1-heading-apple")
+  await expect(page.getByTestId("practice")).toHaveAttribute(
+    "data-problem-id",
+    "l1-heading-apple",
+  )
+  await replaceDraft(page, "# Apple")
+  await check(page)
+  await expect(page.getByTestId("rd-bar")).toHaveAttribute("data-tone", "pass")
+  expect(runtimeFailures).toEqual([])
 })

@@ -1,8 +1,9 @@
-import { type FormEvent, useRef, useState } from "react"
+import { type FormEvent, useId, useRef, useState } from "react"
 import {
   SUMMARY_FEEDBACK_MAX_LENGTH,
   submitSummaryFeedback,
 } from "../feedback/summaryFeedback"
+import { useText } from "../i18n/useText"
 
 type SummaryFeedbackFormProps = {
   level: number
@@ -17,6 +18,9 @@ export function SummaryFeedbackForm({
   score,
   total,
 }: SummaryFeedbackFormProps) {
+  const { t } = useText()
+  const fieldId = useId()
+  const privacyId = useId()
   const [message, setMessage] = useState("")
   const [website, setWebsite] = useState("")
   const lastSubmission = useRef<{ content: string; id: string } | null>(null)
@@ -59,79 +63,72 @@ export function SummaryFeedbackForm({
 
   if (submissionState === "sent") {
     return (
-      <section
-        aria-live="polite"
-        className="run-summary__feedback run-summary__feedback--sent summary-ink summary-ink--actions"
-      >
-        <h3>Thank you.</h3>
-        <p>Your note was sent.</p>
-      </section>
+      <p aria-live="polite" className="rd-feedback__sent" data-testid="feedback-sent">
+        {t("feedback.sent")}
+      </p>
     )
   }
 
   return (
-    <form
-      className="run-summary__feedback summary-ink summary-ink--actions"
-      onSubmit={submit}
-    >
-      <div className="run-summary__feedback-heading">
-        <div>
-          <h3>Leave a note</h3>
-          <p>Found a bug, have an improvement, or want to share how it felt?</p>
-        </div>
-        <span aria-live="polite">
-          {message.length} / {SUMMARY_FEEDBACK_MAX_LENGTH}
+    <form className="rd-feedback" onSubmit={submit}>
+      <div className="rd-feedback__head">
+        <p className="rd-feedback__lead">{t("feedback.lead")}</p>
+        <span aria-live="polite" className="rd-feedback__count">
+          {t("feedback.count", {
+            count: message.length,
+            max: SUMMARY_FEEDBACK_MAX_LENGTH,
+          })}
         </span>
       </div>
 
-      <label className="visually-hidden" htmlFor="summary-feedback">
-        Bug report, improvement, or impression
+      <label className="visually-hidden" htmlFor={fieldId}>
+        {t("feedback.label")}
       </label>
       <textarea
-        aria-describedby="summary-feedback-privacy"
+        aria-describedby={privacyId}
+        className="rd-feedback__field"
         disabled={submissionState === "submitting"}
-        id="summary-feedback"
+        id={fieldId}
         maxLength={SUMMARY_FEEDBACK_MAX_LENGTH}
         onChange={(event) => {
           setMessage(event.target.value)
           if (submissionState !== "idle") setSubmissionState("idle")
         }}
-        placeholder="What should we know?"
+        placeholder={t("feedback.placeholder")}
         rows={3}
         value={message}
       />
 
-      <div className="run-summary__feedback-footer">
-        <p id="summary-feedback-privacy">
-          We keep your note, level, score, and app revision for up to 90 days.
-          Your answer and account are not sent, and your IP is not saved with
-          the note.
+      <div className="rd-feedback__foot">
+        <p className="rd-feedback__privacy" id={privacyId}>
+          {t("feedback.privacy")}
         </p>
         <button
-          className="text-button run-summary__feedback-submit"
+          className="rd-btn rd-btn--ghost"
           disabled={!trimmedMessage || submissionState === "submitting"}
           type="submit"
         >
-          {submissionState === "submitting" ? "Sending…" : "Send note"}
+          {submissionState === "submitting"
+            ? t("feedback.sending")
+            : t("feedback.send")}
         </button>
       </div>
 
       {submissionState === "limited" ? (
-        <p aria-live="polite" className="run-summary__feedback-status">
-          Too many notes were sent from this network. Please try again in a
-          minute.
+        <p aria-live="polite" className="rd-feedback__status">
+          {t("feedback.limited")}
         </p>
       ) : null}
       {submissionState === "error" ? (
-        <p aria-live="polite" className="run-summary__feedback-status">
-          We couldn’t confirm whether your note was sent. Your text is still here.
+        <p aria-live="polite" className="rd-feedback__status">
+          {t("feedback.error")}
         </p>
       ) : null}
 
       <input
         aria-hidden="true"
         autoComplete="off"
-        className="run-summary__feedback-honeypot"
+        className="rd-feedback__honeypot"
         name="website"
         onChange={(event) => setWebsite(event.target.value)}
         tabIndex={-1}

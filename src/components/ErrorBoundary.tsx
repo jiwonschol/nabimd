@@ -1,11 +1,8 @@
 import { Component, type ErrorInfo, type ReactNode } from "react"
+import { getCurrentProblemId } from "../app/currentProblem"
+import { readBrowserLang, translator } from "../i18n/text"
 import { reportError } from "../monitoring/errorMonitoring"
 import { sanitizeMessage } from "../monitoring/scrubEvent"
-import { resolveBrowserStorage } from "../progress/browserStorage"
-import {
-  clearPersistedDrafts,
-  PROGRESS_STORAGE_KEY,
-} from "../progress/progressStore"
 
 const ISSUE_URL = "https://github.com/jiwonschol/nabimd/issues/new"
 
@@ -17,20 +14,6 @@ type ErrorBoundaryProps = {
 
 type ErrorBoundaryState = {
   error: Error | null
-}
-
-/** The authored problem id, which tells us which exercise broke. */
-function readCurrentProblemId(): string | undefined {
-  try {
-    const saved = resolveBrowserStorage().getItem(PROGRESS_STORAGE_KEY)
-    if (!saved) return undefined
-    const parsed: unknown = JSON.parse(saved)
-    if (typeof parsed !== "object" || parsed === null) return undefined
-    const id = (parsed as { currentProblemId?: unknown }).currentProblemId
-    return typeof id === "string" ? id : undefined
-  } catch {
-    return undefined
-  }
 }
 
 /**
@@ -75,7 +58,7 @@ export class ErrorBoundary extends Component<
   override componentDidCatch(error: Error, info: ErrorInfo): void {
     reportError(error, {
       boundary: this.props.boundary ?? "app-root",
-      problemId: readCurrentProblemId(),
+      problemId: getCurrentProblemId(),
     })
     // Keeps the component trace in the browser console for local debugging; it
     // is not sent anywhere.
@@ -86,8 +69,7 @@ export class ErrorBoundary extends Component<
     this.setState({ error: null })
   }
 
-  private readonly clearDraftsAndReload = () => {
-    clearPersistedDrafts(resolveBrowserStorage())
+  private readonly reload = () => {
     window.location.reload()
   }
 
@@ -95,54 +77,48 @@ export class ErrorBoundary extends Component<
     const { error } = this.state
     if (!error) return this.props.children
 
-    const problemId = readCurrentProblemId()
+    // The boundary sits outside the language provider, so it reads the same
+    // stored choice the provider starts from.
+    const t = translator(readBrowserLang())
+    const problemId = getCurrentProblemId()
 
     return (
       <div className="error-screen" role="alert">
         <div className="error-screen__panel">
-          <h1 className="error-screen__title">Something went wrong.</h1>
-          <p className="error-screen__lead">
-            Nabi Markdown stopped before it could finish drawing this page. Your
-            saved progress is still here.
-          </p>
+          <h1 className="error-screen__title">{t("error.title")}</h1>
+          <p className="error-screen__lead">{t("error.lead")}</p>
 
           <div className="error-screen__actions">
             <button
-              className="error-screen__button error-screen__button--primary"
+              className="rd-btn rd-btn--primary"
               onClick={this.retry}
               type="button"
             >
-              Try again
+              {t("error.retry")}
             </button>
             <button
-              className="error-screen__button"
-              onClick={this.clearDraftsAndReload}
+              className="rd-btn rd-btn--ghost"
+              onClick={this.reload}
               type="button"
             >
-              Clear saved answers and reload
+              {t("error.reload")}
             </button>
           </div>
 
-          <p className="error-screen__hint">
-            If “Try again” keeps landing back here, the answer saved for this
-            exercise is what triggers it — clearing saved answers gets you
-            moving again. Your levels and completed exercises are kept.
-          </p>
-
           <details className="error-screen__details">
-            <summary>Technical detail</summary>
+            <summary>{t("error.details")}</summary>
             <dl className="error-screen__facts">
-              <dt>Error</dt>
+              <dt>{t("error.name")}</dt>
               <dd>{error.name}</dd>
-              <dt>Detail</dt>
-              <dd>{error.message || "(none)"}</dd>
+              <dt>{t("error.message")}</dt>
+              <dd>{error.message || t("error.none")}</dd>
               {problemId ? (
                 <>
-                  <dt>Exercise</dt>
+                  <dt>{t("error.problem")}</dt>
                   <dd>{problemId}</dd>
                 </>
               ) : null}
-              <dt>Build</dt>
+              <dt>{t("error.build")}</dt>
               <dd>{__BUILD_SHA__.slice(0, 12)}</dd>
             </dl>
           </details>
@@ -153,11 +129,9 @@ export class ErrorBoundary extends Component<
               rel="noreferrer"
               target="_blank"
             >
-              Report this on GitHub
+              {t("error.report")}
             </a>{" "}
-            — the form opens with the technical detail filled in. It asks for
-            the Markdown you typed, but that field starts empty: paste it only
-            if you are happy for it to be public.
+            {t("error.reportNote")}
           </p>
         </div>
       </div>

@@ -61,8 +61,10 @@ const ACTION_SHORTCUTS: readonly ActionShortcut[] = [
 export function getPlatformFamily(
   navigatorLike: NavigatorLike,
 ): PlatformFamily {
+  // Headless Chromium reports userAgentData.platform as an empty string, so an
+  // empty value falls through to navigator.platform like a missing one.
   const platform =
-    navigatorLike.userAgentData?.platform ?? navigatorLike.platform ?? ""
+    navigatorLike.userAgentData?.platform || navigatorLike.platform || ""
   if (/mac|iphone|ipad|ipod/i.test(platform)) return "apple"
   if (/win/i.test(platform)) return "windows"
   return "other"

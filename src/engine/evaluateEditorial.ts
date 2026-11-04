@@ -36,6 +36,10 @@ function editorialCheckPasses(
   }
 }
 
+/**
+ * Every editorial review the draft earns. How many the screen shows is a
+ * display decision and lives with the screen (src/app/practiceSheet.ts).
+ */
 export function evaluateEditorial(
   problem: GradableProblem,
   context: EvaluationContext,
@@ -43,5 +47,4 @@ export function evaluateEditorial(
   return problem.editorialChecks
     .filter((check) => !editorialCheckPasses(check, context))
     .map((check) => ({ id: check.id, message: check.review }))
-    .slice(0, 3)
 }

@@ -2,7 +2,7 @@ import type { GradableProblem, MatchCheck } from "../content/types"
 import type { EvaluationContext } from "./evaluationContext"
 import { headingCheckPasses } from "./predicates/heading"
 import { structuralCheckPasses } from "./predicates/structural"
-import type { MatchFailure } from "./types"
+import type { EngineMessageKey, MatchFailure } from "./types"
 import { diagnoseMatchFailure } from "./matchDiagnostics"
 
 type ListShapeCheck = Extract<MatchCheck, { kind: "list-shape" }>
@@ -25,31 +25,34 @@ function missingNumberedSpaceCount(source: string): number {
   ).length
 }
 
-function listFailureMessage(
+function listMessageKey(
   check: ListShapeCheck,
   source: string,
-): string {
+): EngineMessageKey | undefined {
   if (
     check.ordered !== true &&
     missingBulletSpaceCount(source) >= check.minItems
   ) {
-    return "Put one space after each bullet marker, for example `- Item`."
+    return "list-bullet-space"
   }
 
   if (
     check.ordered !== false &&
     missingNumberedSpaceCount(source) >= check.minItems
   ) {
-    return "Put one space after each numbered marker, for example `1. Step`."
+    return "list-number-space"
   }
 
-  return check.feedback
+  return undefined
 }
 
-function failureMessage(check: MatchCheck, source: string): string {
+function failureMessageKey(
+  check: MatchCheck,
+  context: EvaluationContext,
+): EngineMessageKey | undefined {
   return check.kind === "list-shape"
-    ? listFailureMessage(check, source)
-    : check.feedback
+    ? listMessageKey(check, context.source)
+    : undefined
 }
 
 function checkPasses(
@@ -91,7 +94,8 @@ export function evaluateMatch(
     .filter(({ check }) => !checkPasses(check, context))
     .map(({ check, declarationIndex }) => ({
       feedbackId: check.id,
-      message: failureMessage(check, context.source),
+      message: check.feedback,
+      messageKey: failureMessageKey(check, context),
       check,
       diagnostic: diagnoseMatchFailure(
         problem,
@@ -108,6 +112,7 @@ export function evaluateMatch(
     status: "fail",
     feedbackId: firstFailure.feedbackId,
     message: firstFailure.message,
+    messageKey: firstFailure.messageKey,
     failures,
     checkedSource: context.source,
   }

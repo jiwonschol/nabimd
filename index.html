@@ -1,14 +1,27 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Practice writing clear, human-readable Markdown with short quests."
+      content="실제 문서를 마크다운으로 직접 써 보는 연습이다. 로그인 없이 바로 시작한다."
     />
     <link rel="icon" type="image/png" href="/brand/bfly-favicon.png" />
     <title>Nabi Markdown</title>
+    <script>
+      // 동의 전에는 Cloudflare가 끼워 넣은 beacon도 집계하지 않게 "이미 불렀다"
+      // 표시를 미리 남긴다(허브 site/consent.js와 같은 방법, 계획서 §4.6).
+      // 동의하면 src/consent/consent.ts가 이 표시를 지우고 beacon을 부른다.
+      try {
+        var stored = JSON.parse(localStorage.getItem("nabimd.consent.v1"))
+        if (!(stored && stored.v === 1 && stored.analytics === true)) {
+          window.__cfBeacon = { load: "single" }
+        }
+      } catch (error) {
+        window.__cfBeacon = { load: "single" }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
