@@ -1,5 +1,10 @@
 import { useEffect, useId, useState } from "react"
-import { loadAnalytics, readConsent, storeConsent } from "../consent/consent"
+import {
+  analyticsLoaded,
+  loadAnalytics,
+  readConsent,
+  storeConsent,
+} from "../consent/consent"
 import { useText } from "../i18n/useText"
 
 /**
@@ -18,7 +23,14 @@ export function ConsentBanner({ onClose }: { onClose: () => void }) {
 
   const choose = (allow: boolean) => {
     storeConsent(allow)
-    if (allow) loadAnalytics()
+    if (allow) {
+      loadAnalytics()
+    } else if (analyticsLoaded()) {
+      // A running beacon cannot be unloaded and keeps counting address
+      // changes, so withdrawing consent reloads the page without it.
+      window.location.reload()
+      return
+    }
     onClose()
   }
 

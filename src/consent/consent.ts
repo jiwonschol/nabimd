@@ -46,6 +46,11 @@ type BeaconWindow = Window & { __cfBeacon?: unknown }
 
 let loaded = false
 
+/** Whether the beacon was added to this page. */
+export function analyticsLoaded(): boolean {
+  return loaded
+}
+
 /**
  * Adds the beacon once per page. `spa: true` lets it count each address the
  * router pushes (/, /practice, /done); the beacon wraps history.pushState

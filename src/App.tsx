@@ -17,6 +17,7 @@ import { readConsent } from "./consent/consent"
 import { emptyProgress, type LangProgress, recordCheck } from "./progress/learning"
 import {
   clearLearning,
+  LEARNING_STORAGE_KEY,
   loadLearning,
   resolveLearningStorage,
   saveLearning,
@@ -119,6 +120,18 @@ function Shell() {
     }
     saveLearning(storage, learning)
   }, [learning, storage])
+
+  // Another tab of this app saved progress: take it over instead of
+  // overwriting it with this tab's older copy on the next save.
+  useEffect(() => {
+    const onStorage = (event: StorageEvent) => {
+      if (event.key !== LEARNING_STORAGE_KEY && event.key !== null) return
+      skipSave.current = true
+      setLearning(loadLearning(storage))
+    }
+    window.addEventListener("storage", onStorage)
+    return () => window.removeEventListener("storage", onStorage)
+  }, [storage])
 
   const setBlankPage = useCallback((blank: boolean) => {
     setLearning((current) => ({ ...current, blankPage: blank }))

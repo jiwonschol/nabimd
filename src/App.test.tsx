@@ -1,7 +1,7 @@
 import { EditorView } from "@codemirror/view"
 import { act, render, screen, waitFor, within } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { beforeEach, describe, expect, it } from "vitest"
+import { beforeEach, describe, expect, it, vi } from "vitest"
 import { koSamples } from "./content/ko/_samples"
 import { LANG_STORAGE_KEY } from "./i18n/text"
 import { App } from "./App"
@@ -265,5 +265,43 @@ describe("progress and consent", () => {
     const beacon = document.querySelector<HTMLScriptElement>('script[src*="cloudflareinsights"]')
     expect(beacon).not.toBeNull()
     expect(JSON.parse(beacon!.dataset.cfBeacon!)).toMatchObject({ spa: true })
+  })
+})
+
+describe("several tabs and a withdrawn consent", () => {
+  it("takes over progress another tab saved instead of overwriting it", async () => {
+    await renderReady("/")
+    const other = {
+      v: 1,
+      ko: { marks: { blockquote: { tries: 1, passes: 1, lastAt: 1 } }, recentIds: ["x"] },
+      en: { marks: {}, recentIds: [] },
+    }
+    window.localStorage.setItem("nabimd.learning.v1", JSON.stringify(other))
+    act(() => {
+      window.dispatchEvent(new StorageEvent("storage", { key: "nabimd.learning.v1" }))
+    })
+    const map = screen.getByTestId("mark-map")
+    await waitFor(() => {
+      expect(within(map).getByRole("button", { name: /인용/ })).toHaveAttribute("data-state", "tried")
+    })
+    // Taking it over does not write this tab's copy back.
+    expect(JSON.parse(window.localStorage.getItem("nabimd.learning.v1")!)).toEqual(other)
+  })
+
+  it("reloads without the beacon when consent is withdrawn after it loaded", async () => {
+    const user = userEvent.setup()
+    const reload = vi.fn()
+    Object.defineProperty(window, "location", {
+      configurable: true,
+      value: { ...window.location, reload },
+    })
+    await renderReady("/")
+    await user.click(screen.getByTestId("consent-accept"))
+    await user.click(screen.getByTestId("open-cookies"))
+    await user.click(screen.getByTestId("consent-reject"))
+    expect(JSON.parse(window.localStorage.getItem("nabimd.consent.v1")!)).toMatchObject({
+      analytics: false,
+    })
+    expect(reload).toHaveBeenCalledOnce()
   })
 })
