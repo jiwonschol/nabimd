@@ -1,5 +1,35 @@
-import { expect, test } from "@playwright/test"
-import { check, replaceDraft, useLanguage } from "./support/practice"
+import { expect, test, type Page } from "@playwright/test"
+import {
+  collectRuntimeErrors,
+  passCurrent,
+  useLanguage,
+} from "./support/practice"
+
+/**
+ * The scheduled and post-deploy browser check (docs/production-health-monitoring.md).
+ * It behaves like a learner who chose "necessary only": no analytics beacon
+ * loads, and nothing it writes leaves the browser.
+ */
+
+/** Uncaught errors, console errors and HTTP 5xx answers, in arrival order. */
+function collectFailures(page: Page): string[] {
+  const failures = collectRuntimeErrors(page)
+  page.on("response", (response) => {
+    if (response.status() >= 500) {
+      failures.push(`HTTP ${response.status()} ${response.url()}`)
+    }
+  })
+  return failures
+}
+
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() =>
+    window.localStorage.setItem(
+      "nabimd.consent.v1",
+      JSON.stringify({ v: 1, analytics: false }),
+    ),
+  )
+})
 
 // Every other check here passes just as happily against a build from last
 // week, so on its own the suite cannot tell "production is healthy" from
@@ -34,33 +64,49 @@ test("production serves the commit this workflow expects", async ({ page }) => {
   ).toBe(expected)
 })
 
-// The full flow check (home → five → summary in both languages) is the
-// release session's job (plan appendix D); this keeps one document passing.
-test("production opens the map and passes one document", async ({ page }) => {
-  const runtimeFailures: string[] = []
-  page.on("pageerror", (error) => runtimeFailures.push(error.message))
-  page.on("console", (message) => {
-    if (message.type() === "error") runtimeFailures.push(message.text())
-  })
+test("production: the map, today's five and the summary in Korean", async ({
+  page,
+}) => {
+  test.setTimeout(90_000)
+  const failures = collectFailures(page)
+  await useLanguage(page, "ko")
 
-  await useLanguage(page, "en")
-  await page.addInitScript(() =>
-    window.localStorage.setItem(
-      "nabimd.consent.v1",
-      JSON.stringify({ v: 1, analytics: false }),
-    ),
-  )
   await page.goto("./")
+  await expect(page.locator("html")).toHaveAttribute("lang", "ko")
   await expect(page.getByTestId("mark-map").getByRole("button")).toHaveCount(12)
-  await expect(page.getByTestId("start-run")).toBeEnabled()
 
-  await page.goto("./practice?doc=l1-heading-apple")
+  await page.getByTestId("start-run").click()
+  await expect(page).toHaveURL(/\/practice$/)
+  for (let index = 1; index <= 5; index += 1) {
+    await expect(page.getByTestId("run-progress")).toHaveText(
+      `오늘의 다섯 장 ${index}/5`,
+    )
+    await passCurrent(page)
+    await page.getByTestId("next").click()
+  }
+
+  await expect(page).toHaveURL(/\/done$/)
+  await expect(page.getByTestId("done")).toContainText("다섯 장을 썼다.")
+  await expect(page.getByTestId("done-facts")).toContainText(
+    "한 번에 통과한 장: 5장",
+  )
+  await expect(page.locator('[data-testid="done-cards"] > li')).toHaveCount(5)
+  expect(failures).toEqual([])
+})
+
+test("production: one English document passes", async ({ page }) => {
+  const failures = collectFailures(page)
+  await useLanguage(page, "en")
+
+  await page.goto("./practice?mark=heading")
+  await expect(page.locator("html")).toHaveAttribute("lang", "en")
+  // The first English visit waits for that language's bank chunk.
   await expect(page.getByTestId("practice")).toHaveAttribute(
     "data-problem-id",
-    "l1-heading-apple",
+    /.+/,
+    { timeout: 30_000 },
   )
-  await replaceDraft(page, "# Apple")
-  await check(page)
-  await expect(page.getByTestId("rd-bar")).toHaveAttribute("data-tone", "pass")
-  expect(runtimeFailures).toEqual([])
+  await expect(page.getByTestId("instruction")).toContainText("This time:")
+  await passCurrent(page)
+  expect(failures).toEqual([])
 })

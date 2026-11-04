@@ -8,20 +8,29 @@ it is a separate path from the scheduled health check.
 ## What it verifies
 
 Once an hour at minute 17, and on manual dispatch after a production deploy, a
-Playwright browser:
+Playwright browser runs
+[`tests/e2e/production-health.spec.ts`](../tests/e2e/production-health.spec.ts)
+against `https://onsoonlabs.com/nabimd/`. It:
 
-1. opens `https://onsoonlabs.com/nabimd/`;
-2. shows all `3` levels, with levels that have fewer than `5` implemented
-   syntax elements marked Coming soon and disabled;
-3. selects each available level and confirms that every problem belongs to
-   that level, with four distinct single-syntax exercises plus one mixed exercise;
-4. enters the required Markdown marks for all `5` problems;
-5. reaches Summary with a `5 / 5` result and `5` completed pages; and
+1. checks that the page's `data-build-sha` is the expected commit (skipped
+   when no commit is given, which never happens in the workflow);
+2. in Korean, opens the home page and sees the map of `12` marks;
+3. starts today's five, writes each document's authored answer, and sees each
+   one pass;
+4. reaches the summary at `/nabimd/done` with "다섯 장을 썼다.", `5` documents
+   passed on the first try, and `5` summary cards;
+5. in English, opens one heading document (the English bank loads as its own
+   chunk) and passes it; and
 6. fails on uncaught page errors, console errors, or HTTP 5xx responses.
+
+Before each page loads, the check stores "necessary only" in
+`nabimd.consent.v1`, so the consent banner stays closed and the Cloudflare Web
+Analytics beacon never loads. Synthetic runs therefore do not appear in the
+visit, `/practice` or `/done` counts.
 
 The hourly check reads `data-build-sha` from the running app in a browser, checks
 out that exact revision, and derives exercise answers from the matching problem
-bank. It does not depend on the route publishing `X-Nabi-Build-Sha`.
+banks (the English runtime projection and the Korean cards). It does not depend on the route publishing `X-Nabi-Build-Sha`.
 
 The manual post-deploy check receives the deployed SHA explicitly, checks out
 that exact revision before deriving exercise answers, and verifies the bundle's
@@ -130,9 +139,9 @@ is not captured by this path.
 
 [`sentryClient.ts`](../src/monitoring/sentryClient.ts) retains the SDK's global
 error and unhandled-rejection handlers. The app also reports React render
-failures from [`ErrorBoundary`](../src/components/ErrorBoundary.tsx) and caught
-grading failures from [`useLearningSession`](../src/session/useLearningSession.ts).
-At most three explicit reports are queued while the SDK loads. The `beforeSend`
+failures from [`ErrorBoundary`](../src/components/ErrorBoundary.tsx); a
+grading failure on the practice screen reaches Sentry through that boundary or
+the global handlers. At most three explicit reports are queued while the SDK loads. The `beforeSend`
 hook allows at most five scrubbed error events per page load; delivery can still
 fail. This is not a limit on all SDK network requests.
 
@@ -142,12 +151,11 @@ replay or tracing integrations, and removes `Breadcrumbs`, `HttpContext`, and
 [`scrubEvent.ts`](../src/monitoring/scrubEvent.ts) rebuilds error events from
 allowed fields: event identity/time, platform/severity, release/environment,
 exception type and allowed message, mechanism, up to 40 stack frames per
-exception, and selected problem/boundary/level tags and context. The grading
-caller supplies only draft length, line count, and code-fence presence as
-context, not the draft text. With the pinned `@sentry/browser` 10.75.0 and
-`normalizeDepth: 1`, however, the SDK converts the nested `nabi` context to a
-string before `beforeSend`; the filter then drops it. The current wire event
-therefore omits those draft-shape facts, while problem/boundary tags survive.
+exception, and selected problem/boundary/level tags and context. No current
+caller attaches draft context, and the filter would drop it anyway: with the
+pinned `@sentry/browser` 10.75.0 and `normalizeDepth: 1`, the SDK converts the
+nested `nabi` context to a string before `beforeSend`. Problem/boundary tags
+survive.
 Unrecognized messages are redacted; allowed messages are capped at 300
 characters. Request/user objects, arbitrary extra fields, frame variables and
 source excerpts are dropped.

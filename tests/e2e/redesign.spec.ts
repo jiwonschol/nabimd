@@ -1,15 +1,18 @@
 import AxeBuilder from "@axe-core/playwright"
 import { expect, test, type Page } from "@playwright/test"
-import { readFileSync } from "node:fs"
 import { MARKS } from "../../src/app/marks"
 import { getCurriculumElements } from "../../src/content/curriculumElements"
-import { koCards } from "../../src/content/ko"
 import { derivePlaintextStarter } from "../../src/content/plaintextStarter"
 import {
   check,
+  collectRuntimeErrors,
+  currentProblemId,
   editorContent,
+  passCurrent,
   readDraft,
   replaceDraft,
+  runtime,
+  targetById,
   useLanguage,
 } from "./support/practice"
 
@@ -17,54 +20,6 @@ import {
  * The redesigned Level 1 end to end (plan §6 G2). Each scenario is named by
  * the gate line it covers.
  */
-
-type RuntimeProblem = {
-  id: string
-  level: number
-  flavor: string
-  skillIds: string[]
-  syntaxTokens: string[]
-  target: string
-}
-
-const runtime = JSON.parse(
-  readFileSync(
-    new URL(
-      "../../curriculum/problem-bank/runtime-projections.generated.json",
-      import.meta.url,
-    ),
-    "utf8",
-  ),
-) as { levels: Record<string, RuntimeProblem[]> }
-
-const targetById = new Map<string, string>([
-  ...Object.values(runtime.levels)
-    .flat()
-    .map((problem) => [problem.id, problem.target] as const),
-  ...koCards.map(({ problem }) => [problem.id, problem.target] as const),
-])
-
-async function currentProblemId(page: Page): Promise<string> {
-  const practice = page.getByTestId("practice")
-  await expect(practice).toHaveAttribute("data-problem-id", /.+/)
-  return (await practice.getAttribute("data-problem-id"))!
-}
-
-async function passCurrent(page: Page) {
-  const id = await currentProblemId(page)
-  await replaceDraft(page, targetById.get(id)!)
-  await check(page)
-  await expect(page.getByTestId("rd-bar")).toHaveAttribute("data-tone", "pass")
-}
-
-function collectRuntimeErrors(page: Page): string[] {
-  const errors: string[] = []
-  page.on("pageerror", (error) => errors.push(error.message))
-  page.on("console", (message) => {
-    if (message.type() === "error") errors.push(message.text())
-  })
-  return errors
-}
 
 async function expectNoCriticalAxe(page: Page) {
   const results = await new AxeBuilder({ page })

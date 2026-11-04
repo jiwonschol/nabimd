@@ -964,6 +964,41 @@ pre {
   text-underline-offset: 0.15em;
 }
 
+/* 변경 이력 — 접어 두고, 열면 바닥글 한 줄을 다 쓴다 */
+.rd-footer__changes {
+  flex-basis: 100%;
+}
+
+.rd-footer__changes summary {
+  width: fit-content;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.rd-footer__changes summary:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.rd-footer__entry {
+  max-width: 640px;
+  margin-top: var(--s2);
+}
+
+.rd-footer__entry-title {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--t-xs);
+  font-weight: var(--w-label);
+}
+
+.rd-footer__entry ul {
+  margin: var(--s1) 0 0;
+  padding-left: 1.2em;
+  line-height: var(--lh-body);
+}
+
 /* ===== 동의 배너 — 화면 아래 왼쪽(오른쪽 아래의 확인 단추를 가리지 않게),
    휴대폰은 아래 전체 ===== */
 .rd-consent {

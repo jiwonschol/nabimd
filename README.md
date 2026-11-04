@@ -1,34 +1,42 @@
 # Nabi Markdown
 
-**Learn Markdown by rebuilding real documents — one short quest at a time.**
+**Write one short, real document in Markdown, and get it graded by its structure.**
 
-**Live demo:** [onsoonlabs.com/nabimd/](https://onsoonlabs.com/nabimd/)
+**Live:** [onsoonlabs.com/nabimd/](https://onsoonlabs.com/nabimd/) · Korean first, English too · no login
 
-![Nabi Markdown practice with a rendered Goal and Markdown answer sheet](docs/design/qa/restore-practice-1280x800.png)
-
-[![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/jiwonschol/nabimd?utm_source=oss&utm_medium=github&utm_campaign=jiwonschol%2Fnabimd&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)](https://coderabbit.ai)
+![A passed table document: the goal on the left, the learner's render and Markdown on the right, and a green verdict bar](docs/design/2026-11-redesign/readme/practice-pass-ko-1280.png)
 
 ## What it is
 
-- **Five levels:** Learn the syntax → Rebuild real documents → Write for people →
-  Write a development spec → Write an agent work order. Each level changes the
-  document context while keeping the exercise short.
-- **A reason to start:** The landing answers "why bother with a format this
-  simple?" — five reasons to learn Markdown drift in below the motto, so the
-  payoff is clear before the first quest. Reduced-motion visitors see the full
-  list at once, and the motto keeps the page.
-- **A short visit:** No login, ads, streak, or persistent learner
-  profile. Progress lasts for the current browser session and clears when that
-  session ends.
-- **Deterministic grading:** Local AST checks grade Markdown structure rather
-  than wording, spelling, or capitalization. The same structure receives the
-  same result, and the app makes zero runtime AI calls.
-- **Inspected problems:** Every published exercise passes fixture verification,
-  independent review, and an editorial inspection gate before it reaches the
-  app.
-- **One loop:** Read the brief, write the source, inspect the render, and check
-  the structure. After a failed Check, repair it and prove the same syntax again
-  with different content.
+Each exercise is a short document someone would really write: a weekly menu, a
+meeting note, a request to an AI assistant. The finished document sits on the
+left as the goal. You write its Markdown in the editor on the right and press
+Check (⌘↩ or Ctrl+↩).
+
+- **Fill mode first.** The editor starts with the document's words and the
+  marks taken out, so you only add the Markdown. "Start from a blank page"
+  turns that off for every document.
+- **Graded by structure.** A local, deterministic Markdown check compares the
+  structure of your document with the goal: headings, lists, tables, emphasis,
+  links and so on. Wording, spelling and capitalization do not count. The
+  same structure always gets the same verdict, and the app makes no AI calls.
+- **Fix it in place.** A miss points at the line when it can and says what is off in one
+  sentence. You edit the same draft and check again. Two hints are there when
+  you want them, and the answer can be shown after two misses.
+- **Twelve marks on a map.** The home page shows heading, bold, italic, list,
+  numbered list, link, inline code, code block, quote, image, table and task
+  list. Each one is "not tried", "tried" or "familiar" (three passes). Pick a
+  mark to practise it, or start **today's five**: five documents that favour
+  marks you have not tried, ending on a summary of what you wrote.
+- **Two languages.** The Korean screen uses 120 Korean documents written for
+  this release. The English screen uses the 316 English Level 1 documents of
+  the earlier app. Each language's documents load as their own chunk.
+- **Stays in this browser.** Progress is saved in this browser only, with no
+  account, and Settings can clear it. Visit statistics run only after you
+  agree in the cookie banner. The full list of what is stored is in
+  [SECURITY.md](SECURITY.md#scope).
+
+![The home page: a headline, the "today's five" button and the map of twelve marks, three of them tried](docs/design/2026-11-redesign/readme/home-ko-1280x800.png)
 
 ## Run locally
 
@@ -39,29 +47,28 @@ npm ci
 npm run dev
 ```
 
-## How it was built
-
-Application implementation and Build Week documentation happened in Codex
-sessions. GPT-5.6 was used for problem-bank generation and verification at
-build time.
-
-CodeRabbit reviewed changes. Claude was used for design verification. The
-learning app makes no runtime AI calls; grading stays local, deterministic,
-and inspectable.
-
-Primary Codex task and `/feedback` Session ID:
-`019f7290-4f9c-7c01-beaa-bc106cbdd874`
-
-## Development log
-
-Follow the public [release tracker](https://github.com/jiwonschol/nabimd/issues/2).
+`npm run check` runs everything CI runs, and `npm run test:e2e` runs the browser
+scenarios. [CONTRIBUTING.md](CONTRIBUTING.md) has the details.
 
 ## Data and error reporting
 
-Learning progress and drafts use browser session storage. Optional Summary
-notes are stored on the server, and builds configured with a Sentry DSN send
-filtered error reports to Sentry. See the [security and data notice](SECURITY.md#scope)
-and [monitoring details](docs/production-health-monitoring.md#client-error-reporting).
+Progress, the language and your consent choice stay in the browser's
+`localStorage`; the document you are writing is not stored or sent. Optional
+notes from the summary are stored on the server for at most 90 days. Builds
+configured with a Sentry DSN send filtered error reports to Sentry. See the
+[security and data notice](SECURITY.md#scope) and the
+[monitoring details](docs/production-health-monitoring.md).
+
+## History
+
+Nabi Markdown began in July 2026 as an individual entry in OpenAI Build Week.
+That version was a drill of five levels, from learning the syntax up to writing
+an agent work order, built in Codex sessions, with GPT-5.6 generating and
+verifying the problem bank at build time and CodeRabbit reviewing changes
+([build log](docs/build-log.md)). In November 2026 Level 1 was rebuilt around
+writing whole short documents, with Korean first, progress that stays in the
+browser, and the Onsoon Labs hub's design. The plan and its reasoning are in
+[dev-docs/plans/2026-11-03-level-1-redesign.md](dev-docs/plans/2026-11-03-level-1-redesign.md).
 
 ## Licensing
 

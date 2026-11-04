@@ -2,6 +2,7 @@ import { useId } from "react"
 import { MARK_EXAMPLES, MARKS, markNameKey, type MarkId } from "../app/marks"
 import type { PracticeItem } from "../app/practiceItem"
 import { hasDocumentForMark } from "../app/selection"
+import { changelogEntries } from "../content/changelog"
 import type { BankState } from "../app/useBank"
 import type { TextKey } from "../i18n/ko"
 import { useText } from "../i18n/useText"
@@ -55,6 +56,27 @@ function MarkMap({
   )
 }
 
+function Changes() {
+  const { lang, t } = useText()
+  return (
+    <details className="rd-footer__changes" data-testid="changes">
+      <summary>{t("footer.changes")}</summary>
+      {changelogEntries[lang].map((entry) => (
+        <section className="rd-footer__entry" key={entry.date}>
+          <h2 className="rd-footer__entry-title">
+            {entry.date} · {entry.title}
+          </h2>
+          <ul>
+            {entry.items.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </details>
+  )
+}
+
 function Footer({ onOpenCookies }: { onOpenCookies: () => void }) {
   const { t } = useText()
   const base = import.meta.env.BASE_URL
@@ -77,6 +99,7 @@ function Footer({ onOpenCookies }: { onOpenCookies: () => void }) {
         {t("footer.cookies")}
       </button>
       <span>{t("footer.version", { version: __APP_VERSION__ })}</span>
+      <Changes />
     </footer>
   )
 }

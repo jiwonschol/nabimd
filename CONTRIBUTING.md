@@ -2,15 +2,41 @@
 
 Thank you for your interest in Nabi Markdown.
 
-Nabi Markdown is currently an individual entry in OpenAI Build Week. The
-official rules require the submission to remain the entrant's original,
-solely owned work. For that reason, external code and content contributions
-will not be accepted or merged until the judging period ends.
+## Issues are welcome
 
-You may open an issue to report a reproducible problem or share feedback.
-Please do not submit a pull request during the competition period; unsolicited
-pull requests will be closed without merging.
+Open an issue to report a problem or share feedback. The most useful reports
+say which screen language you used (한국어 or English), which document you were
+writing (its title, or the `doc=` part of the address), what you typed, and
+what the verdict said. Please do not paste personal information into an issue.
 
-After Build Week, this policy can be replaced with a normal contribution
-process and an explicit contributor-rights agreement appropriate for the
-project's open-source and commercial-licensing goals.
+Report security problems privately as described in [SECURITY.md](SECURITY.md).
+
+## Pull requests
+
+The project does not merge outside pull requests yet. Code is licensed under
+the AGPL and problem-bank content under CC BY-SA, and the maintainer has not
+yet chosen a contributor-rights agreement that fits those licenses and the
+project's commercial-licensing goals. Until one exists, unsolicited pull
+requests are closed without merging. An issue that describes the change is the
+best way to propose it.
+
+## Working locally
+
+Requires Node.js `22.13`–`22.x`, `24.x`, or `26` or later.
+
+```bash
+npm ci
+npm run dev        # the app at http://localhost:5173
+npm run check      # everything CI runs
+npm run test:e2e   # the browser scenarios (needs `npx playwright install chromium`)
+```
+
+Korean screen copy lives in `src/i18n/ko.ts` and ends its sentences in "~다";
+`npm run lint:ko-copy` checks that, and that components carry no copy of their
+own.
+
+## History
+
+Nabi Markdown started as an individual entry in OpenAI Build Week (July 2026),
+whose rules required the submission to stay the entrant's own work. That was the
+original reason outside contributions were closed.
