@@ -55,7 +55,7 @@ function MarkMap({
   )
 }
 
-function Footer() {
+function Footer({ onOpenCookies }: { onOpenCookies: () => void }) {
   const { t } = useText()
   const base = import.meta.env.BASE_URL
   return (
@@ -68,6 +68,14 @@ function Footer() {
         {t("footer.licenses")}
         <span className="visually-hidden"> ({t("footer.newTab")})</span>
       </a>
+      <button
+        className="rd-link rd-footer__button"
+        data-testid="open-cookies"
+        onClick={onOpenCookies}
+        type="button"
+      >
+        {t("footer.cookies")}
+      </button>
       <span>{t("footer.version", { version: __APP_VERSION__ })}</span>
     </footer>
   )
@@ -78,11 +86,13 @@ export function HomeScreen({
   progress,
   onStart,
   onPickMark,
+  onOpenCookies,
 }: {
   bank: BankState
   progress: LangProgress
   onStart: () => void
   onPickMark: (mark: MarkId) => void
+  onOpenCookies: () => void
 }) {
   const { t } = useText()
   const mapHeadingId = useId()
@@ -126,7 +136,7 @@ export function HomeScreen({
           ) : null}
         </section>
       </main>
-      <Footer />
+      <Footer onOpenCookies={onOpenCookies} />
     </>
   )
 }

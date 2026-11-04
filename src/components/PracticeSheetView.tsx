@@ -119,6 +119,18 @@ function flaggedLinesOf(
     : null
 }
 
+/**
+ * Focus policy: on a desktop (fine pointer, a wide screen) the editor takes
+ * focus when a document opens, so the learner can type at once. On a phone
+ * it does not: the keyboard would rise and cover the goal on the first view.
+ */
+function shouldFocusEditor(): boolean {
+  return (
+    typeof window !== "undefined" &&
+    window.matchMedia?.("(pointer: fine) and (min-width: 768px)").matches === true
+  )
+}
+
 function EditorPanel({
   sheet,
   onNext,
@@ -128,6 +140,9 @@ function EditorPanel({
   onNext: (fromKeyboard: boolean) => void
   focusOnOpen: boolean
 }) {
+  // Desktop policy, or the learner arrived here by keyboard from the last
+  // document's editor. Read once, when the document opens.
+  const [takeFocus] = useState(() => focusOnOpen || shouldFocusEditor())
   const { t } = useText()
   const headingId = useId()
   return (
@@ -162,7 +177,7 @@ function EditorPanel({
         </div>
       </div>
       <MarkdownSourceEditor
-        active={focusOnOpen}
+        active={takeFocus}
         blankGuides={sheet.blankGuides}
         escapeHint={t("editor.escapeHint")}
         flaggedLines={flaggedLinesOf(sheet.verdict)}

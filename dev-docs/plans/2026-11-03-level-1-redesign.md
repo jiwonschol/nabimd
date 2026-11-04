@@ -330,7 +330,7 @@ nabimd의 `src/styles/tokens.css`를 아래 값으로 **통째로 교체**하고
 |---|---|---|---|
 | WS0 승인·등록 | 완료 — Jiwon 승인, 계획 PR #250, 이슈 #251(WS1)·#252(WS2)·#253(WS3)·#254(WS4)·#255(추적) | `claude/level-1-redesign-plan` / PR #250 | 2026-11-03 |
 | WS1 시안 | **Jiwon 선택: A 목표 옆에 쓰기**(2026-11-04). 시안 A·B·C 구현, 캡처 18장·비교표·허브 비교 이미지(`docs/design/2026-11-redesign/variants/`), Codex 수렴. 머지 대기 | `claude/redesign-ws1-variants-fd280e` / PR #256 | 2026-11-04 |
-| WS2 앱 뼈대 | 진행 중 — PR 1(뼈대·홈·연습: 주소 세 개, 사전 ko·en, 기호 지도, 시안 A 연습 화면, 오늘의 다섯 장, 언어별 지연 청크, 엔진 문구 키화) 리뷰 중. PR 2(요약·진도·동의·다크)·PR 3(옛 화면 삭제) 남음. 이슈 #252 | `claude/redesign-ws2-app-49bad8` | 2026-11-04 |
+| WS2 앱 뼈대 | PR 셋 리뷰·머지 대기 — PR 1 뼈대·홈·연습 #260, PR 2 요약·진도·동의·다크 #261, PR 3 옛 화면 삭제·한국어 lint(이 PR). 봉인 배치 테스트·게이트가 쓰는 턴 기계·`curriculumLevels`·`guidedSyntax`는 남겼다(PR 3 본문). **PR 3이 main에 머지되면 WS4가 끝날 때까지 배포 금지.** 이슈 #252 | `claude/redesign-ws2-app-49bad8` → `claude/redesign-ws2-pr2-summary` → `claude/redesign-ws2-pr3-cleanup` | 2026-11-04 |
 | WS3 한국어 콘텐츠 | 대기(WS1과 동시 가능) — 이슈 #253 | — | 2026-11-03 |
 | WS4 통합·출시 | 대기(WS2·WS3 머지 뒤) — 이슈 #254 | — | 2026-11-03 |
 

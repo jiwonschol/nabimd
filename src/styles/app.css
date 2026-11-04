@@ -899,6 +899,263 @@ pre {
 }
 
 
+/* ===== 머리말 도구 — 소리 · 설정 (글자 단추, 언어 토글 왼쪽) ===== */
+.rd-tool {
+  min-height: 32px;
+  white-space: nowrap;
+  padding: 0 var(--s1);
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: var(--t-xs);
+  font-weight: var(--w-label);
+  cursor: pointer;
+  transition: color var(--dur) var(--ease);
+}
+
+.rd-tool:hover,
+.rd-tool[aria-expanded="true"] {
+  color: var(--ink);
+}
+
+.rd-tool:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.rd-settings {
+  position: relative;
+}
+
+.rd-settings__panel {
+  position: absolute;
+  top: calc(100% + var(--s1));
+  right: 0;
+  z-index: 30;
+  display: grid;
+  gap: var(--s2);
+  width: max-content;
+  max-width: min(320px, calc(100vw - var(--s4)));
+  padding: var(--s2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.rd-settings__note {
+  margin: 0;
+  font-size: var(--t-sm);
+  line-height: var(--lh-title);
+}
+
+.rd-settings__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s1);
+}
+
+.rd-footer__button {
+  color: inherit;
+  font-size: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+/* ===== 동의 배너 — 화면 아래 왼쪽(오른쪽 아래의 확인 단추를 가리지 않게),
+   휴대폰은 아래 전체 ===== */
+.rd-consent {
+  position: fixed;
+  left: var(--s3);
+  bottom: var(--s3);
+  z-index: 40;
+  width: min(440px, calc(100vw - var(--s6)));
+  padding: var(--s3);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.rd-consent__title {
+  margin: 0 0 var(--s1);
+  font-size: var(--t-base);
+  font-weight: var(--w-title);
+}
+
+.rd-consent__body {
+  margin: 0 0 var(--s2);
+  color: var(--ink-soft);
+  font-size: var(--t-sm);
+  line-height: var(--lh-title);
+}
+
+.rd-consent__items {
+  display: grid;
+  gap: var(--s2);
+  margin-bottom: var(--s2);
+}
+
+.rd-consent__item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--s1);
+  align-items: start;
+  font-size: var(--t-sm);
+  line-height: var(--lh-title);
+}
+
+.rd-consent__item input {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--ink);
+}
+
+.rd-consent__item strong {
+  display: block;
+  font-weight: var(--w-title);
+}
+
+.rd-consent__item span span {
+  color: var(--ink-soft);
+  overflow-wrap: anywhere;
+}
+
+.rd-consent__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--s1);
+}
+
+/* ===== 요약 — 바뀐 기호, 다섯 장 카드, 메모 ===== */
+.rd-done__facts {
+  display: grid;
+  gap: var(--s1);
+  margin-bottom: var(--s4);
+  color: var(--ink-soft);
+  font-size: var(--t-lg);
+  line-height: var(--lh-title);
+}
+
+.rd-done__facts p {
+  margin: 0;
+}
+
+.rd-done__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: var(--s2);
+  margin: var(--s5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rd-done__card {
+  min-width: 0;
+  padding: var(--s3);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--card);
+}
+
+.rd-done__card-body {
+  display: grid;
+  gap: var(--s2);
+}
+
+.rd-done__source {
+  margin: 0;
+}
+
+.rd-done__note {
+  margin-top: var(--s5);
+  padding-top: var(--s3);
+  border-top: 1px solid var(--line);
+}
+
+.rd-done__note summary {
+  color: var(--ink-soft);
+  font-size: var(--t-sm);
+  font-weight: var(--w-label);
+  cursor: pointer;
+}
+
+.rd-done__note summary:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.rd-feedback {
+  display: grid;
+  gap: var(--s2);
+  max-width: 640px;
+  margin-top: var(--s2);
+}
+
+.rd-feedback__head,
+.rd-feedback__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s2);
+}
+
+.rd-feedback__lead,
+.rd-feedback__privacy,
+.rd-feedback__status,
+.rd-feedback__sent {
+  margin: 0;
+  font-size: var(--t-sm);
+  line-height: var(--lh-title);
+}
+
+.rd-feedback__privacy,
+.rd-feedback__count {
+  flex: 1 1 260px;
+  color: var(--ink-soft);
+  font-size: var(--t-xs);
+}
+
+.rd-feedback__count {
+  flex: none;
+}
+
+.rd-feedback__field {
+  width: 100%;
+  padding: var(--s2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--t-sm);
+  resize: vertical;
+}
+
+.rd-feedback__field:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 1px;
+}
+
+.rd-feedback__status {
+  color: var(--acc-clay-text);
+}
+
+.rd-feedback__honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+
 @media (min-width: 768px) and (max-width: 1023px) {
   .rd-map {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -993,9 +1250,38 @@ pre {
     gap: var(--s2);
     margin-bottom: var(--s2);
   }
+
+  .rd-tools {
+    gap: var(--s1);
+  }
+
+  .rd-consent {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+    padding: var(--s2) var(--s2) calc(var(--s2) + env(safe-area-inset-bottom));
+  }
 }
 
 /* ===== 모션을 끈 사용자에게는 전부 끈다 ===== */
+/* 아주 좁은 폭(320~399px): 로고 그림만 남기고 도구를 한 줄에 둔다. 로고 링크의
+   이름("Nabi Markdown 홈")은 그대로 읽힌다. */
+@media (max-width: 399px) {
+  .rd-logo span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .rd-lang {
+    padding: var(--s1) 12px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .rd *,
   .rd *::before,

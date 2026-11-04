@@ -6,16 +6,24 @@ import { navigate, type Route, useRoute } from "./app/routes"
 import { pickForMark, pickTodayFive } from "./app/selection"
 import { type BankState, useBank } from "./app/useBank"
 import { AppHeader } from "./components/AppHeader"
+import { ConsentBanner } from "./components/ConsentBanner"
 import { DoneScreen } from "./components/DoneScreen"
+import { SettingsMenu, SoundToggle } from "./components/HeaderTools"
 import { HomeScreen } from "./components/HomeScreen"
 import { PracticeScreen, type PracticeView } from "./components/PracticeScreen"
 import type { Lang } from "./i18n/text"
 import { LanguageProvider, useText } from "./i18n/useText"
+import { readConsent } from "./consent/consent"
+import { emptyProgress, type LangProgress, recordCheck } from "./progress/learning"
 import {
-  emptyProgress,
-  type LearningProgress,
-  recordCheck,
-} from "./progress/learning"
+  clearLearning,
+  LEARNING_STORAGE_KEY,
+  loadLearning,
+  resolveLearningStorage,
+  saveLearning,
+  type StoredLearning,
+} from "./progress/learningStore"
+import { playFeedbackSound } from "./sound/feedbackSound"
 import "./styles/tokens.css"
 import "./styles/app.css"
 
@@ -26,6 +34,8 @@ type Run = {
   items: PracticeItem[]
   index: number
   results: (SheetResult | undefined)[]
+  /** Progress when the bundle started; the summary shows what changed. */
+  before: LangProgress
 }
 
 /** One mark (or one linked document) practised open-endedly. */
@@ -84,8 +94,13 @@ function Shell() {
   const { lang } = useText()
   const route = useRoute()
   const bank = useBank(lang)
-  const [progress, setProgress] = useState<LearningProgress>(emptyProgress)
-  const [blankPage, setBlankPage] = useState(false)
+  const [storage] = useState(resolveLearningStorage)
+  const [learning, setLearning] = useState<StoredLearning>(() =>
+    loadLearning(storage),
+  )
+  const progress = learning
+  const blankPage = learning.blankPage === true
+  const [consentOpen, setConsentOpen] = useState(() => readConsent() === null)
   const [run, setRun] = useState<Run | null>(null)
   const [single, setSingle] = useState<Single | null>(null)
   // Set when the learner advanced from the editor by keyboard, so the next
@@ -94,6 +109,39 @@ function Shell() {
   const sequence = useRef(0)
   const progressRef = useRef(progress)
   progressRef.current = progress
+  const skipSave = useRef(true)
+
+  // Progress lives in this browser only (plan §4.5). The first render is the
+  // stored value itself, so it is not written back.
+  useEffect(() => {
+    if (skipSave.current) {
+      skipSave.current = false
+      return
+    }
+    saveLearning(storage, learning)
+  }, [learning, storage])
+
+  // Another tab of this app saved progress: take it over instead of
+  // overwriting it with this tab's older copy on the next save.
+  useEffect(() => {
+    const onStorage = (event: StorageEvent) => {
+      if (event.key !== LEARNING_STORAGE_KEY && event.key !== null) return
+      skipSave.current = true
+      setLearning(loadLearning(storage))
+    }
+    window.addEventListener("storage", onStorage)
+    return () => window.removeEventListener("storage", onStorage)
+  }, [storage])
+
+  const setBlankPage = useCallback((blank: boolean) => {
+    setLearning((current) => ({ ...current, blankPage: blank }))
+  }, [])
+
+  const clearProgress = useCallback(() => {
+    clearLearning(storage)
+    skipSave.current = true
+    setLearning(emptyProgress())
+  }, [storage])
 
   // Opens what the practice address asks for once the bank is ready: a new
   // today's five, or one document for a mark or a linked id.
@@ -129,6 +177,7 @@ function Shell() {
       items,
       index: 0,
       results: items.map(() => undefined),
+      before: langProgress,
     })
   }, [bank, lang, route, run, single])
 
@@ -139,7 +188,8 @@ function Shell() {
   const recordResult = useCallback(
     (result: SheetResult) => {
       if (!currentItem) return
-      setProgress((current) =>
+      playFeedbackSound(result.passed ? "matched" : "retry")
+      setLearning((current) =>
         recordCheck(current, lang, {
           problemId: result.problemId,
           marks: currentItem.marks,
@@ -215,16 +265,26 @@ function Shell() {
     navigate({ name: "practice" })
   }, [])
 
+  const closeConsent = useCallback(() => setConsentOpen(false), [])
+
   const pickMark = useCallback((mark: MarkId) => {
     navigate({ name: "practice", mark })
   }, [])
 
   return (
     <div className="rd">
-      <AppHeader />
+      <AppHeader
+        tools={
+          <>
+            <SoundToggle />
+            <SettingsMenu onClearProgress={clearProgress} />
+          </>
+        }
+      />
       {route.name === "home" ? (
         <HomeScreen
           bank={bank}
+          onOpenCookies={() => setConsentOpen(true)}
           onPickMark={pickMark}
           onStart={startRun}
           progress={progress[lang]}
@@ -240,8 +300,18 @@ function Shell() {
           view={view}
         />
       ) : (
-        <DoneScreen onAgain={startRun} onHome={() => navigate({ name: "home" })} />
+        <DoneScreen
+          onAgain={startRun}
+          onHome={() => navigate({ name: "home" })}
+          progress={progress[lang]}
+          summary={
+            run && run.lang === lang
+              ? { items: run.items, results: run.results, before: run.before }
+              : null
+          }
+        />
       )}
+      {consentOpen ? <ConsentBanner onClose={closeConsent} /> : null}
     </div>
   )
 }

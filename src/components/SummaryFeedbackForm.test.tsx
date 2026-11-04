@@ -1,7 +1,17 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { afterEach, describe, expect, it, vi } from "vitest"
-import { SummaryFeedbackForm } from "./SummaryFeedbackForm"
+import type { ReactElement } from "react"
+import { LanguageProvider } from "../i18n/useText"
+import { SummaryFeedbackForm as Form } from "./SummaryFeedbackForm"
+
+function SummaryFeedbackForm(props: Parameters<typeof Form>[0]): ReactElement {
+  return (
+    <LanguageProvider initialLang="en">
+      <Form {...props} />
+    </LanguageProvider>
+  )
+}
 
 afterEach(() => {
   vi.unstubAllGlobals()
@@ -31,7 +41,7 @@ describe("SummaryFeedbackForm", () => {
       website: "",
       submissionId: expect.any(String),
     })
-    expect(screen.getByRole("heading", { name: "Thank you." })).toBeVisible()
+    expect(screen.getByTestId("feedback-sent")).toHaveTextContent("Your note was sent.")
     expect(screen.queryByRole("textbox")).toBeNull()
   })
 
@@ -76,7 +86,7 @@ describe("SummaryFeedbackForm", () => {
     expect(note).toBeEnabled()
     await user.type(note, "  ")
     await user.click(screen.getByRole("button", { name: "Send note" }))
-    expect(await screen.findByText("Your note was sent.")).toBeVisible()
+    expect(await screen.findByText(/Your note was sent\./)).toBeVisible()
     expect(fetchMock).toHaveBeenCalledTimes(2)
     const first = JSON.parse(fetchMock.mock.calls[0]![1].body)
     const retry = JSON.parse(fetchMock.mock.calls[1]![1].body)
@@ -132,7 +142,7 @@ describe("SummaryFeedbackForm", () => {
     expect(screen.queryByText(/We couldn’t confirm/)).toBeNull()
     expect(screen.getByRole("textbox")).toHaveValue("Try later.")
     await user.click(screen.getByRole("button", { name: "Send note" }))
-    expect(await screen.findByText("Your note was sent.")).toBeVisible()
+    expect(await screen.findByText(/Your note was sent\./)).toBeVisible()
     expect(fetchMock.mock.calls[1]![1].body).toBe(fetchMock.mock.calls[0]![1].body)
   })
 

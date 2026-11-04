@@ -436,9 +436,9 @@ const renderLicensesHtml = (entries) => `<!doctype html>
             <dt>Typefaces</dt>
             <dd>
               SIL OFL 1.1 ·
-              <a href="./fonts/source-serif-4/LICENSE.md">Source Serif 4</a>
+              <a href="./fonts/pretendard/LICENSE.txt">Pretendard</a>
               and
-              <a href="./fonts/jetbrains-mono/LICENSE.txt">JetBrains Mono</a>
+              <a href="./fonts/d2coding/LICENSE.txt">D2Coding</a>
             </dd>
           </div>
           <div>
