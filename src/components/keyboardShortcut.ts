@@ -102,6 +102,10 @@ function matchesActionCombination(
   navigatorLike: NavigatorLike,
 ): boolean {
   if (event.key !== "Enter") return false
+  // An Enter that finishes an IME composition (Hangul, kana) is not an
+  // action, even with a modifier held; keyCode 229 is the legacy signal
+  // browsers send for the same case.
+  if (event.isComposing || event.keyCode === 229) return false
 
   return shortcutsFor(navigatorLike).some((shortcut) =>
     Object.entries(shortcut.modifiers).every(

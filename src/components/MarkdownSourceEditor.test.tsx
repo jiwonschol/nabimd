@@ -114,6 +114,82 @@ describe("MarkdownSourceEditor", () => {
     expect(onCheck).toHaveBeenCalledOnce()
   })
 
+  it("normalizes a typed or pasted won sign to a backtick", async () => {
+    const onChange = vi.fn()
+    render(
+      <MarkdownSourceEditor
+        onChange={onChange}
+        onCheck={vi.fn()}
+        value=""
+      />,
+    )
+    const editor = screen.getByRole("textbox", { name: "Your Markdown" })
+    const view = EditorView.findFromDOM(editor)!
+
+    view.dispatch({
+      changes: { from: 0, insert: "₩명령₩ 실행" },
+      selection: { anchor: 4 },
+      userEvent: "input.type",
+    })
+
+    expect(view.state.doc.toString()).toBe("`명령` 실행")
+    expect(view.state.selection.main.head).toBe(4)
+    await waitFor(() => expect(onChange).toHaveBeenLastCalledWith("`명령` 실행"))
+
+    // Hangul composition never produces ₩; leaving those transactions alone
+    // keeps the browser's composition state in step with the document.
+    view.dispatch({
+      changes: { from: 0, to: view.state.doc.length, insert: "₩" },
+      userEvent: "input.type.compose",
+    })
+    expect(view.state.doc.toString()).toBe("₩")
+  })
+
+  it("underlines the flagged source lines until the learner edits", () => {
+    const { container, rerender } = render(
+      <MarkdownSourceEditor
+        flaggedLines={{ lines: { from: 2, to: 3 }, key: 1 }}
+        onChange={vi.fn()}
+        onCheck={vi.fn()}
+        value={"# 장보기 메모\n우유\n달걀"}
+      />,
+    )
+    const flagged = () => container.querySelectorAll(".cm-flagged-line")
+    expect(flagged()).toHaveLength(2)
+    expect(flagged()[0]).toHaveTextContent("우유")
+    expect(flagged()[1]).toHaveTextContent("달걀")
+
+    const view = EditorView.findFromDOM(
+      screen.getByRole("textbox", { name: "Your Markdown" }),
+    )!
+    view.dispatch({
+      changes: { from: view.state.doc.length, insert: "!" },
+      userEvent: "input.type",
+    })
+    expect(flagged()).toHaveLength(0)
+
+    // The same lines flagged by a later check need a new key to show again.
+    rerender(
+      <MarkdownSourceEditor
+        flaggedLines={{ lines: { from: 2, to: 2 }, key: 2 }}
+        onChange={vi.fn()}
+        onCheck={vi.fn()}
+        value={"# 장보기 메모\n우유\n달걀!"}
+      />,
+    )
+    expect(flagged()).toHaveLength(1)
+
+    rerender(
+      <MarkdownSourceEditor
+        flaggedLines={{ lines: { from: 2, to: 9 }, key: 3 }}
+        onChange={vi.fn()}
+        onCheck={vi.fn()}
+        value={"# 장보기 메모\n우유\n달걀!"}
+      />,
+    )
+    expect(flagged()).toHaveLength(0)
+  })
+
   it("consumes a repeated action shortcut without checking again", () => {
     const onCheck = vi.fn()
     render(

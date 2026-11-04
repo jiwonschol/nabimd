@@ -1,3 +1,145 @@
+/* ============================================================
+   Nabi Markdown 디자인 토큰 — onsoonlabs 허브의 site/shared/tokens.css를
+   바닥으로 옮겼다(계획서 dev-docs/plans/2026-11-03-level-1-redesign.md §4.7).
+
+   값은 허브와 같고, nabimd가 더한 것은 글자용 짙은 액센트 둘
+   (--acc-clay-text·--acc-leaf-text)과 코드 글꼴(--font-code)뿐이다.
+   측정값은 docs/design/2026-11-redesign/variants/README.md에 있다.
+
+   맨 아래 "옛 화면용" 구획은 WS2가 옛 화면과 함께 지운다.
+   ============================================================ */
+
+/* --- 글꼴 --------------------------------------------------
+   화면: Pretendard Variable(OFL 1.1) — 허브가 쓰는 한글 2,350자(KS X 1001) subset.
+   에디터·코드: D2Coding 1.4.0(OFL 1.1)을 웹용으로 subset·개명한 "D2Coding Web".
+   두 파일의 출처와 subset 범위는 public/fonts/README.md에 있다. */
+@font-face {
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 45 920;
+  font-display: swap;
+  src: url("/fonts/pretendard/PretendardVariable.subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "D2Coding Web";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/d2coding/D2CodingWeb.subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "D2Coding Web";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/d2coding/D2CodingBoldWeb.subset.woff2") format("woff2");
+}
+
+:root {
+  /* 다크 세트는 아래에서 재설계 화면(html[data-redesign])에만 건다. 옛 global.css의
+     판정 띠가 옅은 바탕색을 하드코딩하고 있어 전역으로 걸면 옛 화면의 글자가
+     흰 바탕에 흰 글자가 된다. WS2가 옛 화면을 지우면 :root 전체로 넓힌다. */
+  color-scheme: light;
+
+  /* --- 지면 — 액센트가 아닌 중성색 ------------------------- */
+  --bg: #ffffff;
+  --ink: #1f1e1c;
+  --ink-soft: #6b655e;
+  --line: #e7e2da;
+  --card: #ffffff;
+  --shadow: 0 12px 32px rgba(60, 40, 20, 0.09);
+
+  /* --- 액센트 — hue 3개가 전부. -soft는 같은 hue의 밝은 톤 ---
+     원색은 흰 바탕에서 글자용 대비가 모자라(clay 3.70:1, leaf 3.02:1)
+     글자에는 같은 hue의 짙은 변형 -text를 쓴다. 원색은 밑줄·아이콘·띠처럼
+     글자가 아닌 곳에만. 제품 고유 색은 더하지 않는다. */
+  --acc-clay: #df5a48;
+  --acc-clay-soft: #e2a08b;
+  --acc-clay-text: #c73623; /* 흰 바탕 5.28:1 */
+  --acc-butter: #eec25f;
+  --acc-leaf: #7d9e6a;
+  --acc-leaf-soft: #b9cba4;
+  --acc-leaf-text: #5b754c; /* 흰 바탕 5.13:1 */
+
+  /* --- 타입 — 6단계 ------------------------------------------ */
+  --t-xs: 0.8125rem; /* 13px  태그·캡션 */
+  --t-sm: 0.9375rem; /* 15px  보조·단추 */
+  --t-base: 1.09375rem; /* 17.5px 본문 */
+  --t-lg: 1.3125rem; /* 21px  카드·항목 제목 */
+  --t-xl: 1.625rem; /* 26px  섹션 제목 */
+  --t-display-sub: clamp(1.9rem, 4.6vw, 3.1rem); /* 제품 페이지 급 */
+
+  /* --- 굵기 --------------------------------------------------- */
+  --w-body: 400;
+  --w-label: 500;
+  --w-title: 700;
+  --w-display: 800; /* display 한 곳에만 */
+
+  /* --- 행간 — 3종 -------------------------------------------- */
+  --lh-tight: 1.15;
+  --lh-title: 1.3;
+  --lh-body: 1.65;
+
+  /* --- 여백 — 8의 배수만 ------------------------------------- */
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 32px;
+  --s5: 48px;
+  --s6: 64px;
+  --s7: 96px;
+  --s8: 144px;
+
+  /* --- 모서리 — 2개 + pill(언어 토글만) ---------------------- */
+  --r-sm: 8px;
+  --r-lg: 16px;
+  --r-pill: 999px;
+
+  /* --- 모션 — duration 3개, curve 1개 ------------------------ */
+  --dur: 0.22s; /* 상태 전환 */
+  --dur-tap: 0.14s; /* 단추 눌림 */
+  --dur-slow: 0.5s; /* 연출 한 번 */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* --- 컨테이너 — 2종 ---------------------------------------- */
+  --maxw-text: 1040px;
+  --maxw-wide: 1240px;
+
+  --font:
+    "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    "Apple SD Gothic Neo", "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+  --font-code:
+    "D2Coding Web", D2Coding, ui-monospace, Menlo, Consolas,
+    "Apple SD Gothic Neo", monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-redesign] {
+    color-scheme: dark;
+    --bg: #1a1a1c;
+    --ink: #edeae6;
+    --ink-soft: #a49f98;
+    --line: #312f2b;
+    --card: #212022;
+    --shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+
+    --acc-clay: #f07a68;
+    --acc-clay-soft: #7d4f40;
+    --acc-clay-text: #f07a68; /* 다크 바탕 6.36:1 — 원색이 이미 넘는다 */
+    --acc-butter: #8a6f2a;
+    --acc-leaf: #6a8759;
+    --acc-leaf-soft: #5a6a4c;
+    --acc-leaf-text: #7e9f6b; /* 다크 바탕 5.6:1 */
+  }
+}
+
+/* ============================================================
+   옛 화면용 — 옛 global.css가 아직 읽는 이름. WS2가 옛 화면과 함께 지운다.
+   값은 위 토큰을 가리키게 해 두어 ?variant= 밖의 옛 경로도 열린다.
+   Source Serif 4·JetBrains Mono 파일은 WS2가 지운다(계획서 §8).
+   ============================================================ */
 @font-face {
   font-family: "Source Serif 4";
   font-style: normal;
@@ -39,25 +181,19 @@
 }
 
 :root {
-  color-scheme: light;
-  --ink: #111111;
-  --paper: #ffffff;
-  --canvas: #f5f5f2;
-  --book-paper: #f2eee5;
-  --book-paper-pressed: #e7e1d6;
-  --book-line: #b8b1a5;
-  --muted: #5f5f5a;
-  --line: #d7d7d2;
-  --focus: #111111;
-  --quote-rule: color-mix(in srgb, var(--ink) 72%, var(--paper));
-  --quote-surface: color-mix(in srgb, var(--ink) 4%, var(--paper));
-  --quote-nested-surface: color-mix(in srgb, var(--ink) 7%, var(--paper));
-  --sans: ui-sans-serif, -apple-system, blinkmacsystemfont, "Segoe UI",
-    sans-serif;
-  --serif: "Source Serif 4", ui-serif, georgia, cambria, "Times New Roman",
-    serif;
-  --mono: "JetBrains Mono", ui-monospace, sfmono-regular, menlo, monaco,
-    consolas, monospace;
+  --paper: var(--card);
+  --canvas: var(--bg);
+  --book-paper: var(--card);
+  --book-paper-pressed: var(--line);
+  --book-line: var(--line);
+  --muted: var(--ink-soft);
+  --focus: var(--ink);
+  --quote-rule: color-mix(in srgb, var(--ink) 72%, var(--card));
+  --quote-surface: color-mix(in srgb, var(--ink) 4%, var(--card));
+  --quote-nested-surface: color-mix(in srgb, var(--ink) 7%, var(--card));
+  --sans: var(--font);
+  --serif: "Source Serif 4", ui-serif, georgia, cambria, "Times New Roman", serif;
+  --mono: "JetBrains Mono", var(--font-code);
   --space-1: 0.375rem;
   --space-2: 0.75rem;
   --space-3: 1.25rem;
