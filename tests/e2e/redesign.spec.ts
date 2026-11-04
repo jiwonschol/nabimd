@@ -201,9 +201,11 @@ test("⑧ a document can be opened, written and passed with the keyboard alone",
   await page.keyboard.press("Control+Enter")
   await expect(page.getByTestId("rd-bar")).toHaveAttribute("data-tone", "pass")
 
-  // The same shortcut moves on after a pass.
+  // The same shortcut moves on after a pass, and typing carries on in the
+  // next document's editor.
   await page.keyboard.press("Control+Enter")
   await expect(page.getByTestId("rd-bar")).toHaveAttribute("data-tone", "idle")
+  await expect(editorContent(page)).toBeFocused()
 })
 
 test("English mode opens 20 random Level 1 documents in fill mode and passes their answers", async ({

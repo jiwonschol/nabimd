@@ -19,7 +19,6 @@ export function englishItems(): PracticeItem[] {
     items.push({
       problem,
       marks: [marks[0]!, ...marks.slice(1)],
-      allMarks: marks,
       mixed: marks.length > 1,
     })
   }

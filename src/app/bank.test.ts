@@ -68,7 +68,6 @@ describe("Korean bank index (issue #253)", () => {
       ["ko-sample-grocery-memo", ["unordered-list"], false],
       ["ko-sample-meeting-memo", ["heading", "bold", "ordered-list"], true],
     ])
-    expect(items[0]!.allMarks).toContain("heading")
     expect(items[0]!.problem.starterText).not.toBe("")
   })
 })

@@ -5,11 +5,10 @@ import type { MarkId } from "./marks"
 import type { PracticeItem } from "./practiceItem"
 import { pickForMark, pickTodayFive, RUN_SIZE } from "./selection"
 
-function item(id: string, marks: MarkId[], allMarks = marks): PracticeItem {
+function item(id: string, marks: MarkId[]): PracticeItem {
   return {
     problem: { id } as NormalizedProblem,
     marks: [marks[0]!, ...marks.slice(1)],
-    allMarks,
     mixed: marks.length > 1,
   }
 }
@@ -109,13 +108,8 @@ describe("pickForMark", () => {
     expect(choice?.problem.id).toBe("bold-2")
   })
 
-  it("practises a mark found only inside another document as that mark", () => {
-    const choice = pickForMark(bank, "unordered-list", emptyLangProgress(), [], seeded(1))
-    expect(choice).toMatchObject({
-      problem: { id: "mixed-heading-list" },
-      marks: ["unordered-list"],
-      mixed: false,
-    })
+  it("does not borrow a document written for another mark", () => {
+    expect(pickForMark(bank, "unordered-list", emptyLangProgress())).toBeNull()
   })
 
   it("finds nothing for a mark no document contains", () => {

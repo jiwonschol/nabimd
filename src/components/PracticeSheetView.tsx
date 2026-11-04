@@ -1,4 +1,4 @@
-import { useEffect, useId, useMemo, useState } from "react"
+import { Fragment, type ReactNode, useEffect, useId, useMemo, useState } from "react"
 import { setCurrentProblemId } from "../app/currentProblem"
 import { MARK_EXAMPLES, markNameKey, type MarkId } from "../app/marks"
 import type { PracticeItem } from "../app/practiceItem"
@@ -122,9 +122,11 @@ function flaggedLinesOf(
 function EditorPanel({
   sheet,
   onNext,
+  focusOnOpen,
 }: {
   sheet: PracticeSheet
-  onNext: () => void
+  onNext: (fromKeyboard: boolean) => void
+  focusOnOpen: boolean
 }) {
   const { t } = useText()
   const headingId = useId()
@@ -160,14 +162,14 @@ function EditorPanel({
         </div>
       </div>
       <MarkdownSourceEditor
-        active={false}
+        active={focusOnOpen}
         blankGuides={sheet.blankGuides}
         escapeHint={t("editor.escapeHint")}
         flaggedLines={flaggedLinesOf(sheet.verdict)}
         label={t("practice.editor")}
         onChange={sheet.changeDraft}
         // 통과한 뒤에는 같은 단축키가 판정 바의 "다음 장"과 같은 일을 한다.
-        onCheck={sheet.verdict?.kind === "pass" ? onNext : sheet.check}
+        onCheck={sheet.verdict?.kind === "pass" ? () => onNext(true) : sheet.check}
         placeholder={t("editor.placeholder")}
         showInvisibles={sheet.showInvisibles}
         value={sheet.draft}
@@ -176,13 +178,25 @@ function EditorPanel({
   )
 }
 
+/** The first hint names the marks; they render as code, not as backticks. */
+function markHint(sheet: PracticeSheet, t: Translate): ReactNode {
+  const [before = "", after = ""] = t("hint.marks", { marks: "\u0000" }).split("\u0000")
+  return (
+    <>
+      {before}
+      {sheet.item.marks.map((mark, index) => (
+        <Fragment key={mark}>
+          {index > 0 ? " " : null}
+          <code>{markSyntax(mark, t)}</code>
+        </Fragment>
+      ))}
+      {after}
+    </>
+  )
+}
+
 function statusText(sheet: PracticeSheet, t: Translate): string {
   const { problem, marks } = sheet.item
-  if (sheet.hintStep === 1) {
-    return t("hint.marks", {
-      marks: marks.map((mark) => `\`${markSyntax(mark, t)}\``).join(" "),
-    })
-  }
   if (sheet.hintStep === 2) {
     return problem.hints[2] ?? problem.hints[0]
   }
@@ -220,7 +234,7 @@ function VerdictBar({
 }: {
   sheet: PracticeSheet
   nextLabel: string
-  onNext: () => void
+  onNext: (fromKeyboard: boolean) => void
 }) {
   const { t } = useText()
   const passed = sheet.verdict?.kind === "pass"
@@ -263,14 +277,21 @@ function VerdictBar({
           data-testid="rd-status"
           role="status"
         >
-          <InlineCode text={statusText(sheet, t)} />
+          {sheet.hintStep === 1 ? (
+            markHint(sheet, t)
+          ) : (
+            <InlineCode text={statusText(sheet, t)} />
+          )}
         </p>
         {passed ? (
           <button
             aria-keyshortcuts={shortcut.ariaKeyShortcuts}
             className="rd-btn rd-btn--primary"
             data-testid="next"
-            onClick={onNext}
+            // A keyboard press reports no clicks (detail 0); only then does
+            // the next editor take focus, so a tap does not raise a phone
+            // keyboard.
+            onClick={(event) => onNext(event.detail === 0)}
             type="button"
           >
             {nextLabel} <kbd aria-hidden="true">{keyLabel}</kbd>
@@ -305,14 +326,18 @@ export function PracticeSheetView({
   onChecked,
   onNext,
   nextLabel,
+  focusOnOpen,
 }: {
   item: PracticeItem
   progress: LangProgress
   blankPage: boolean
   onBlankPageChange: (blank: boolean) => void
   onChecked: (result: SheetResult) => void
-  onNext: () => void
+  /** `fromKeyboard` asks the next document's editor to take focus. */
+  onNext: (fromKeyboard: boolean) => void
   nextLabel: string
+  /** Set when the learner moved here from the previous editor by keyboard. */
+  focusOnOpen: boolean
 }) {
   const sheet = usePracticeSheet(item, {
     blankPage,
@@ -344,7 +369,7 @@ export function PracticeSheetView({
         <TargetPanel sheet={sheet} />
         <div className="rd-a-right">
           {myRender}
-          <EditorPanel onNext={onNext} sheet={sheet} />
+          <EditorPanel focusOnOpen={focusOnOpen} onNext={onNext} sheet={sheet} />
           <VerdictBar nextLabel={nextLabel} onNext={onNext} sheet={sheet} />
         </div>
       </div>

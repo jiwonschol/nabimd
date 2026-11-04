@@ -1,4 +1,3 @@
-import { getCurriculumElements } from "../content/curriculumElements"
 import { koSamples } from "../content/ko/_samples"
 import { derivePlaintextStarter } from "../content/plaintextStarter"
 import type { NormalizedProblem } from "../content/types"
@@ -41,14 +40,10 @@ function withStarter(problem: NormalizedProblem): NormalizedProblem {
 
 function toItem(problem: NormalizedProblem, marks: readonly MarkId[], mixed: boolean) {
   if (marks.length === 0) return []
-  const allMarks = [
-    ...new Set([...marks, ...getCurriculumElements(problem).filter(isMark)]),
-  ]
   return [
     {
       problem: withStarter(problem),
       marks: [marks[0]!, ...marks.slice(1)] as PracticeItem["marks"],
-      allMarks,
       mixed,
     } satisfies PracticeItem,
   ]

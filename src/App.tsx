@@ -46,6 +46,7 @@ function practiceView(
   run: Run | null,
   single: Single | null,
   lang: Lang,
+  focusEditor: boolean,
 ): PracticeView {
   if (route.name !== "practice") return { status: "loading" }
   if (bank.status === "loading") return { status: "loading" }
@@ -61,6 +62,7 @@ function practiceView(
       item: single.item,
       sheetKey: `single-${single.seq}-${single.item.problem.id}`,
       isLast: false,
+      focusEditor,
     }
   }
 
@@ -74,6 +76,7 @@ function practiceView(
     sheetKey: `run-${run.id}-${run.index}-${item.problem.id}`,
     position: { current: run.index + 1, total: run.items.length },
     isLast: run.index === run.items.length - 1,
+    focusEditor,
   }
 }
 
@@ -85,6 +88,9 @@ function Shell() {
   const [blankPage, setBlankPage] = useState(false)
   const [run, setRun] = useState<Run | null>(null)
   const [single, setSingle] = useState<Single | null>(null)
+  // Set when the learner advanced from the editor by keyboard, so the next
+  // document's editor takes focus and typing carries on.
+  const [focusEditor, setFocusEditor] = useState(false)
   const sequence = useRef(0)
   const progressRef = useRef(progress)
   progressRef.current = progress
@@ -126,7 +132,7 @@ function Shell() {
     })
   }, [bank, lang, route, run, single])
 
-  const view = practiceView(route, bank, run, single, lang)
+  const view = practiceView(route, bank, run, single, lang, focusEditor)
   const currentItem = view.status === "ready" ? view.item : null
   const inRun = route.name === "practice" && !route.doc && !route.mark
 
@@ -167,7 +173,8 @@ function Shell() {
     setSingle({ key: singleKey(lang, nextRoute), seq: sequence.current, item })
   }, [bank, currentItem, lang, route])
 
-  const next = useCallback(() => {
+  const next = useCallback((fromKeyboard: boolean) => {
+    setFocusEditor(fromKeyboard)
     if (!inRun) {
       pickAnotherSingle()
       return
@@ -179,6 +186,7 @@ function Shell() {
   }, [inRun, pickAnotherSingle, run])
 
   const another = useCallback(() => {
+    setFocusEditor(false)
     if (!inRun) {
       pickAnotherSingle()
       return

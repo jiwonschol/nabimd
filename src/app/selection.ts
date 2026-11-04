@@ -109,8 +109,9 @@ export function pickTodayFive(
 /**
  * The document a map cell (or 다음 장 / 다른 장 in mark practice) opens: a
  * single-mark document of that mark, avoiding the given ids and preferring
- * ones not written recently. When no single-mark document exists, any
- * document containing the mark is used and practised as that mark.
+ * ones not written recently. A mark with no document of its own opens
+ * nothing; borrowing a document written for another mark would teach that
+ * other mark's lesson under this one's name.
  */
 export function pickForMark(
   items: readonly PracticeItem[],
@@ -121,26 +122,21 @@ export function pickForMark(
 ): PracticeItem | null {
   const recent = new Set(progress.recentIds)
   const avoid = new Set(avoidIds)
-  const notAvoided = (item: PracticeItem) => !avoid.has(item.problem.id)
-
-  const dedicated = items.filter(
-    (item) => !item.mixed && item.marks[0] === mark,
+  const dedicated = items.filter((item) => !item.mixed && item.marks[0] === mark)
+  return (
+    pickPreferringFresh(
+      dedicated.filter((item) => !avoid.has(item.problem.id)),
+      recent,
+      random,
+    ) ??
+    pickRandom(dedicated, random) ??
+    null
   )
-  const dedicatedChoice =
-    pickPreferringFresh(dedicated.filter(notAvoided), recent, random) ??
-    pickRandom(dedicated, random)
-  if (dedicatedChoice) return dedicatedChoice
-
-  const containing = items.filter((item) => item.allMarks.includes(mark))
-  const fallback =
-    pickPreferringFresh(containing.filter(notAvoided), recent, random) ??
-    pickRandom(containing, random)
-  return fallback ? { ...fallback, marks: [mark], mixed: false } : null
 }
 
 export function hasDocumentForMark(
   items: readonly PracticeItem[],
   mark: MarkId,
 ): boolean {
-  return items.some((item) => item.allMarks.includes(mark))
+  return items.some((item) => !item.mixed && item.marks[0] === mark)
 }

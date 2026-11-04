@@ -18,6 +18,8 @@ export type PracticeView =
       /** Today's five only: which document of how many. */
       position?: { current: number; total: number }
       isLast: boolean
+      /** Focus the editor on open (the learner advanced by keyboard). */
+      focusEditor: boolean
     }
 
 export function PracticeScreen({
@@ -34,7 +36,7 @@ export function PracticeScreen({
   blankPage: boolean
   onBlankPageChange: (blank: boolean) => void
   onChecked: (result: SheetResult) => void
-  onNext: () => void
+  onNext: (fromKeyboard: boolean) => void
   onAnother: () => void
 }) {
   const { t } = useText()
@@ -77,6 +79,7 @@ export function PracticeScreen({
       {view.status === "ready" ? (
         <PracticeSheetView
           blankPage={blankPage}
+          focusOnOpen={view.focusEditor}
           item={view.item}
           key={view.sheetKey}
           nextLabel={view.isLast ? t("bar.finish") : t("bar.next")}

@@ -50,6 +50,9 @@ describe("home", () => {
       "data-state",
       "new",
     )
+    // A mark with no document written for it stays closed rather than
+    // borrowing another mark's lesson.
+    expect(within(map).getByRole("button", { name: /^제목/ })).toBeDisabled()
     expect(screen.getByTestId("start-run")).toBeEnabled()
     expect(document.documentElement.lang).toBe("ko")
   })
@@ -150,6 +153,18 @@ describe("practice", () => {
     expect(document.querySelectorAll(".cm-markdown-blank-guide").length).toBeGreaterThan(0)
     await user.click(screen.getByTestId("hint"))
     expect(document.querySelectorAll(".cm-markdown-blank-guide")).toHaveLength(0)
+  })
+
+  it("shows code marks in the first hint as code, not wrapped in backticks", async () => {
+    const user = userEvent.setup()
+    window.localStorage.setItem(LANG_STORAGE_KEY, "en")
+    await renderReady("/practice?doc=l1-inline-code-blue-value")
+    await waitFor(() => screen.getByTestId("rd-editor"))
+    await user.click(screen.getByTestId("hint"))
+    const status = screen.getByTestId("rd-status")
+    expect(status).toHaveTextContent("Marks to use: `")
+    expect(status.querySelectorAll("code")).toHaveLength(1)
+    expect(status.querySelector("code")).toHaveTextContent(/^`$/)
   })
 
   it("starts from a blank page on request, keeping typed work", async () => {
