@@ -140,7 +140,9 @@ function EditorPanel({
   onNext: (fromKeyboard: boolean) => void
   focusOnOpen: boolean
 }) {
-  const [focusOnOpen] = useState(shouldFocusEditor)
+  // Desktop policy, or the learner arrived here by keyboard from the last
+  // document's editor. Read once, when the document opens.
+  const [takeFocus] = useState(() => focusOnOpen || shouldFocusEditor())
   const { t } = useText()
   const headingId = useId()
   return (
@@ -175,7 +177,7 @@ function EditorPanel({
         </div>
       </div>
       <MarkdownSourceEditor
-        active={focusOnOpen}
+        active={takeFocus}
         blankGuides={sheet.blankGuides}
         escapeHint={t("editor.escapeHint")}
         flaggedLines={flaggedLinesOf(sheet.verdict)}
