@@ -1,6 +1,6 @@
 # 글꼴 파일의 출처
 
-Level 1 재설계(계획서 `dev-docs/plans/2026-11-03-level-1-redesign.md` §4.7)가 쓰는 두 글꼴이다. 라이선스는 둘 다 SIL Open Font License 1.1이고 원문은 각 폴더의 `LICENSE.txt`에 있다. `source-serif-4/`·`jetbrains-mono/`는 옛 화면의 글꼴이고 2단계(이슈 #252)가 옛 화면과 함께 지운다.
+Level 1 재설계(계획서 `dev-docs/plans/2026-11-03-level-1-redesign.md` §4.7)가 쓰는 두 글꼴이다. 라이선스는 둘 다 SIL Open Font License 1.1이고 원문은 각 폴더의 `LICENSE.txt`에 있다.
 
 ## pretendard/
 
