@@ -119,6 +119,18 @@ function flaggedLinesOf(
     : null
 }
 
+/**
+ * Focus policy: on a desktop (fine pointer, a wide screen) the editor takes
+ * focus when a document opens, so the learner can type at once. On a phone
+ * it does not: the keyboard would rise and cover the goal on the first view.
+ */
+function shouldFocusEditor(): boolean {
+  return (
+    typeof window !== "undefined" &&
+    window.matchMedia?.("(pointer: fine) and (min-width: 768px)").matches === true
+  )
+}
+
 function EditorPanel({
   sheet,
   onNext,
@@ -128,6 +140,7 @@ function EditorPanel({
   onNext: (fromKeyboard: boolean) => void
   focusOnOpen: boolean
 }) {
+  const [focusOnOpen] = useState(shouldFocusEditor)
   const { t } = useText()
   const headingId = useId()
   return (

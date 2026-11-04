@@ -38,9 +38,7 @@
 }
 
 :root {
-  /* 다크 세트는 아래에서 재설계 화면(html[data-redesign])에만 건다. 옛 global.css의
-     판정 띠가 옅은 바탕색을 하드코딩하고 있어 전역으로 걸면 옛 화면의 글자가
-     흰 바탕에 흰 글자가 된다. WS2가 옛 화면을 지우면 :root 전체로 넓힌다. */
+  /* 다크 세트는 아래 prefers-color-scheme에서 :root 전체에 건다. */
   color-scheme: light;
 
   /* --- 지면 — 액센트가 아닌 중성색 ------------------------- */
@@ -116,7 +114,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root[data-redesign] {
+  :root {
     color-scheme: dark;
     --bg: #1a1a1c;
     --ink: #edeae6;

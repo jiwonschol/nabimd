@@ -44,6 +44,12 @@ test("production opens the map and passes one document", async ({ page }) => {
   })
 
   await useLanguage(page, "en")
+  await page.addInitScript(() =>
+    window.localStorage.setItem(
+      "nabimd.consent.v1",
+      JSON.stringify({ v: 1, analytics: false }),
+    ),
+  )
   await page.goto("./")
   await expect(page.getByTestId("mark-map").getByRole("button")).toHaveCount(12)
   await expect(page.getByTestId("start-run")).toBeEnabled()

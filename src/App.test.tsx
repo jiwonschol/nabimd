@@ -204,3 +204,66 @@ describe("practice", () => {
     })
   })
 })
+
+describe("progress and consent", () => {
+  it("keeps the map across a reload and clears it from settings", async () => {
+    const user = userEvent.setup()
+    const grocery = koSamples[0].problem
+    const first = await (async () => {
+      goTo(`/practice?doc=${grocery.id}`)
+      const view = render(<App />)
+      await waitFor(() => screen.getByTestId("rd-editor"))
+      return view
+    })()
+    replaceDraft(grocery.target)
+    await user.click(screen.getByTestId("check"))
+    expect(screen.getByTestId("rd-bar")).toHaveAttribute("data-tone", "pass")
+    first.unmount()
+
+    const stored = JSON.parse(window.localStorage.getItem("nabimd.learning.v1") ?? "null")
+    expect(stored).toMatchObject({
+      v: 1,
+      ko: { marks: { "unordered-list": { tries: 1, passes: 1 } }, recentIds: [grocery.id] },
+    })
+
+    await renderReady("/")
+    const cell = within(screen.getByTestId("mark-map")).getByRole("button", { name: /^목록/ })
+    expect(cell).toHaveAttribute("data-state", "tried")
+
+    await user.click(screen.getByTestId("settings"))
+    await user.click(screen.getByTestId("clear-progress"))
+    await user.click(screen.getByTestId("clear-progress-confirm"))
+    expect(cell).toHaveAttribute("data-state", "new")
+    expect(window.localStorage.getItem("nabimd.learning.v1")).toBeNull()
+  })
+
+  it("removes the retired drill's session progress unread", async () => {
+    const { removeRetiredProgress } = await import("./progress/learningStore")
+    window.sessionStorage.setItem("nabimd.progress.v5", "{}")
+    window.sessionStorage.setItem("nabimd.session-seed.v1", "3")
+    removeRetiredProgress()
+    expect(window.sessionStorage.getItem("nabimd.progress.v5")).toBeNull()
+    expect(window.sessionStorage.getItem("nabimd.session-seed.v1")).toBeNull()
+  })
+
+  it("asks about statistics once and loads the beacon only after consent", async () => {
+    const user = userEvent.setup()
+    await renderReady("/")
+    expect(screen.getByTestId("consent")).toBeInTheDocument()
+    expect(document.querySelector('script[src*="cloudflareinsights"]')).toBeNull()
+
+    await user.click(screen.getByTestId("consent-reject"))
+    expect(screen.queryByTestId("consent")).not.toBeInTheDocument()
+    expect(JSON.parse(window.localStorage.getItem("nabimd.consent.v1")!)).toEqual({
+      v: 1,
+      analytics: false,
+    })
+    expect(document.querySelector('script[src*="cloudflareinsights"]')).toBeNull()
+
+    await user.click(screen.getByTestId("open-cookies"))
+    await user.click(screen.getByTestId("consent-accept"))
+    const beacon = document.querySelector<HTMLScriptElement>('script[src*="cloudflareinsights"]')
+    expect(beacon).not.toBeNull()
+    expect(JSON.parse(beacon!.dataset.cfBeacon!)).toMatchObject({ spa: true })
+  })
+})

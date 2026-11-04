@@ -94,6 +94,51 @@ export const ko = {
   "done.again": "다섯 장 더",
   "done.home": "홈",
 
+  "done.empty": "오늘의 다섯 장을 끝내면 여기에 정리된다.",
+  "done.firstTry": "한 번에 통과한 장: {count}장",
+  "done.newMarks": "새로 해본 기호: {marks}",
+  "done.familiarMarks": "익숙해진 기호: {marks}",
+  "done.cardSource": "{title} — 쓴 마크다운",
+  "done.cardRender": "{title} — 렌더",
+  "done.note": "메모 남기기",
+
+  "feedback.lead": "버그, 고칠 점, 써 본 느낌을 남긴다.",
+  "feedback.label": "버그, 고칠 점, 느낌",
+  "feedback.placeholder": "무엇이든 적는다",
+  "feedback.privacy":
+    "메모와 앱 버전, 이번 묶음의 통과 수를 90일까지 보관한다. 쓴 답과 IP 주소는 메모와 함께 저장하지 않는다.",
+  "feedback.send": "메모 보내기",
+  "feedback.sending": "보내는 중이다",
+  "feedback.sent": "메모를 받았다. 고맙다.",
+  "feedback.limited": "이 네트워크에서 메모가 너무 많이 왔다. 1분 뒤에 다시 보낸다.",
+  "feedback.error": "보내졌는지 확인하지 못했다. 쓴 글은 그대로 있다.",
+  "feedback.count": "{count} / {max}",
+
+  "settings.open": "설정",
+  "settings.clear": "진도 지우기",
+  "settings.clearConfirm": "이 브라우저에 남은 진도를 모두 지운다.",
+  "settings.clearYes": "지운다",
+  "settings.clearNo": "그대로 둔다",
+  "settings.cleared": "진도를 지웠다.",
+  "sound.on": "소리 켜짐",
+  "sound.off": "소리 꺼짐",
+  "sound.label": "효과음",
+
+  "footer.cookies": "쿠키 설정",
+  "consent.title": "쿠키 설정",
+  "consent.body":
+    "이 앱은 고른 언어, 진도, 소리 설정, 이 창에서 고른 내용을 이 브라우저에 저장한다. 동의하면 여기에 더해 어느 나라에서 어떤 경로로 들어와 어느 화면을 보는지 합계로 세는 방문 통계를 켠다.",
+  "consent.choose": "항목 고르기",
+  "consent.need": "필수",
+  "consent.needNote":
+    "언어(onsoon-lang), 진도(nabimd.learning.v1), 이 선택(nabimd.consent.v1), 소리 설정(nabimd.sound-muted)을 저장한다. 끌 수 없다.",
+  "consent.stats": "방문 통계",
+  "consent.statsNote":
+    "나라, 유입 경로, 화면별 방문 수를 합계로 센다. Cloudflare Web Analytics를 쓴다.",
+  "consent.reject": "필수만 허용",
+  "consent.accept": "모두 동의",
+  "consent.save": "선택한 대로 저장",
+
   "error.title": "화면을 그리다 멈췄다.",
   "error.lead":
     "Nabi Markdown이 이 화면을 끝까지 그리지 못했다. 쌓은 진도는 그대로 있다.",

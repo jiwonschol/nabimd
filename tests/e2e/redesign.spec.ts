@@ -76,8 +76,20 @@ async function expectNoCriticalAxe(page: Page) {
   expect(critical.map((violation) => violation.id)).toEqual([])
 }
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page }, testInfo) => {
   await useLanguage(page, "ko")
+  // Every scenario but the consent one starts with "necessary only" chosen,
+  // so the banner does not sit over the page.
+  if (!testInfo.title.startsWith("⑦")) {
+    await page.addInitScript(() => {
+      if (window.localStorage.getItem("nabimd.consent.v1") === null) {
+        window.localStorage.setItem(
+          "nabimd.consent.v1",
+          JSON.stringify({ v: 1, analytics: false }),
+        )
+      }
+    })
+  }
 })
 
 test("① a first visit lands on the map of twelve marks", async ({ page }) => {
@@ -140,7 +152,77 @@ test("③ today's five end on the summary", async ({ page }) => {
   }
   await expect(page).toHaveURL(/\/done$/)
   await expect(page.getByTestId("done")).toContainText("다섯 장을 썼다.")
+  await expect(page.getByTestId("done-facts")).toContainText("한 번에 통과한 장: 5장")
+  await expect(page.getByTestId("done-facts")).toContainText("새로 해본 기호:")
+  await expect(page.locator('[data-testid="done-cards"] > li')).toHaveCount(5)
   await expectNoCriticalAxe(page)
+
+  await page.getByTestId("again").click()
+  await expect(page).toHaveURL(/\/practice$/)
+  await expect(page.getByTestId("run-progress")).toHaveText("오늘의 다섯 장 1/5")
+})
+
+test("④ the map survives a reload", async ({ page }) => {
+  await page.goto("./practice?mark=blockquote")
+  await passCurrent(page)
+  await page.reload()
+  await page.goto("./")
+  await expect(page.locator('[data-mark="blockquote"]')).toHaveAttribute(
+    "data-state",
+    "tried",
+  )
+  await expect(page.locator('[data-mark="unordered-list"]')).toHaveAttribute(
+    "data-state",
+    "new",
+  )
+})
+
+test("⑤ clearing progress empties the map at once", async ({ page }) => {
+  await page.goto("./practice?mark=ordered-list")
+  await passCurrent(page)
+  await page.goto("./")
+  const cell = page.locator('[data-mark="ordered-list"]')
+  await expect(cell).toHaveAttribute("data-state", "tried")
+
+  await page.getByTestId("settings").click()
+  await page.getByTestId("clear-progress").click()
+  await page.getByTestId("clear-progress-confirm").click()
+  await expect(cell).toHaveAttribute("data-state", "new")
+  await page.reload()
+  await expect(cell).toHaveAttribute("data-state", "new")
+})
+
+test("⑦ no beacon request before consent, one after", async ({ page }) => {
+  const beaconRequests: string[] = []
+  await page.route("https://static.cloudflareinsights.com/**", async (route) => {
+    beaconRequests.push(route.request().url())
+    await route.fulfill({ contentType: "text/javascript", body: "" })
+  })
+  await page.route("https://cloudflareinsights.com/**", (route) => {
+    beaconRequests.push(route.request().url())
+    return route.fulfill({ status: 204, body: "" })
+  })
+
+  await page.goto("./")
+  await expect(page.getByTestId("consent")).toBeVisible()
+  await page.getByTestId("start-run").click()
+  await page.goto("./")
+  expect(beaconRequests).toEqual([])
+  // Before consent the page leaves the "already loaded" marker for any
+  // beacon the edge injects.
+  expect(await page.evaluate(() => (window as { __cfBeacon?: unknown }).__cfBeacon)).toEqual({
+    load: "single",
+  })
+
+  await page.getByTestId("consent-accept").click()
+  await expect.poll(() => beaconRequests.length).toBe(1)
+  expect(beaconRequests[0]).toContain("beacon.min.js")
+
+  // A later visit with consent loads it again, once.
+  beaconRequests.length = 0
+  await page.reload()
+  await expect.poll(() => beaconRequests.length).toBe(1)
+  await expect(page.getByTestId("consent")).toHaveCount(0)
 })
 
 test("⑥ the language switch changes every word, both ways", async ({ page }) => {
@@ -180,9 +262,14 @@ test("⑧ a document can be opened, written and passed with the keyboard alone",
   // Start from a blank page, then write the whole document by keys.
   const focusedTestId = () =>
     page.evaluate(() => (document.activeElement as HTMLElement | null)?.dataset.testid)
-  for (let step = 0; step < 20 && (await focusedTestId()) !== "blank-page-toggle"; step += 1) {
-    await page.keyboard.press("Tab")
+  // On a desktop the editor takes focus when the document opens; Escape
+  // then Shift+Tab leaves it backwards, toward the editor options.
+  await expect(editorContent(page)).toBeFocused()
+  await page.keyboard.press("Escape")
+  for (let step = 0; step < 6 && (await focusedTestId()) !== "blank-page-toggle"; step += 1) {
+    await page.keyboard.press("Shift+Tab")
   }
+  expect(await focusedTestId()).toBe("blank-page-toggle")
   await page.keyboard.press("Space")
   await expect.poll(() => readDraft(page)).toBe("")
   const editorFocused = () =>
