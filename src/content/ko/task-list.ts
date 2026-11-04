@@ -46,7 +46,7 @@ export const taskListDocs: readonly KoDoc[] = [
   },
   {
     slug: "kimjang",
-    type: "레시피",
+    type: "할 일",
     title: "김장 준비",
     target: "# 김장 준비\n\n- [ ] 배추 절이기\n- [ ] 양념 만들기\n- [ ] 통에 담기",
     prose: [["배추", "무"], ["통에 담기", "항아리에 담기"]],

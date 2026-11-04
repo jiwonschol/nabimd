@@ -30,6 +30,7 @@ export const KO_DOC_TYPES = [
   "버그 신고",
   "README 조각",
   "AI에게 보내는 요청문",
+  "식단표",
 ] as const
 
 export type KoDocType = (typeof KO_DOC_TYPES)[number]
