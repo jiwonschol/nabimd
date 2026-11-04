@@ -60,15 +60,8 @@ export function LanguageProvider({
   )
 }
 
-/**
- * Outside a provider (the retired screens until they are removed) the stored
- * language is read once and cannot be changed.
- */
-function standaloneText(): LanguageContextValue {
-  const lang = readBrowserLang()
-  return { lang, setLang: () => undefined, t: translator(lang) }
-}
-
 export function useText(): LanguageContextValue {
-  return useContext(LanguageContext) ?? standaloneText()
+  const value = useContext(LanguageContext)
+  if (!value) throw new Error("useText must be used inside LanguageProvider")
+  return value
 }

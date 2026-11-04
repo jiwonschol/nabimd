@@ -7,10 +7,26 @@ import { describe, expect, it, vi } from "vitest"
 import { resolveReadlineNavigationKeymap } from "./editorKeyboard"
 import { deriveMarkdownBlankGuides } from "../content/plaintextStarter"
 import { getProblemsForLevel } from "../content/problemBank"
+import type { ComponentProps } from "react"
 import {
-  MarkdownSourceEditor,
+  MarkdownSourceEditor as Editor,
   MarkdownWordProcessor,
 } from "./MarkdownSourceEditor"
+
+/** The screen passes dictionary words; these tests use the English ones. */
+function MarkdownSourceEditor(
+  props: Omit<ComponentProps<typeof Editor>, "label" | "placeholder" | "escapeHint"> &
+    Partial<Pick<ComponentProps<typeof Editor>, "label" | "placeholder" | "escapeHint">>,
+) {
+  return (
+    <Editor
+      escapeHint="Press Escape, then Tab to leave the editor."
+      label="Your Markdown"
+      placeholder="Type Markdown…"
+      {...props}
+    />
+  )
+}
 
 describe("MarkdownSourceEditor", () => {
   it("presents only the writing surface without a second toolbar", () => {
@@ -692,11 +708,9 @@ describe("MarkdownSourceEditor", () => {
     )
 
     const semanticDocument = screen.getByRole("document", {
-      name: "Goal document rendered structure",
+      name: "Goal document",
     })
-    expect(semanticDocument).toHaveTextContent(
-      "[Image: Raindrops on the window]",
-    )
+    expect(semanticDocument).toHaveTextContent("Raindrops on the window")
     const visualPlaceholder = container.querySelector(
       ".cm-rendered-widget--image",
     )

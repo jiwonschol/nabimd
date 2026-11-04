@@ -81,10 +81,10 @@ type MarkdownSourceEditorProps = {
   active?: boolean
   blankGuides?: MarkdownBlankGuideSource | null
   /** Screen-reader note on leaving the editor; the caller supplies the words. */
-  escapeHint?: string
+  escapeHint: string
   flaggedLines?: FlaggedSourceLines | null
-  label?: string
-  placeholder?: string
+  label: string
+  placeholder: string
   showInvisibles?: boolean
   value: string
   onChange: (value: string) => void
@@ -132,10 +132,10 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
   const {
     active = true,
     blankGuides = null,
-    escapeHint = "Press Escape, then Tab to leave the editor.",
+    escapeHint = "",
     flaggedLines: flaggedSourceLines = null,
     label,
-    placeholder: placeholderText = "Type Markdown…",
+    placeholder: placeholderText = "",
     presentation,
     readOnly,
     showInvisibles = false,
@@ -369,11 +369,11 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
     >
       {readOnly ? (
         <div
-          aria-label={`${label} rendered structure`}
+          aria-label={label}
           className="visually-hidden markdown-word-processor__semantic-document"
           role="document"
         >
-          <RenderedDocumentBody source={value} />
+          <RenderedDocumentBody imageLabel={(alt) => alt} source={value} />
         </div>
       ) : (
         <p className="visually-hidden" id={tabEscapeHintId}>
@@ -392,7 +392,7 @@ export function MarkdownSourceEditor(props: MarkdownSourceEditorProps) {
       blankGuides={props.blankGuides}
       escapeHint={props.escapeHint}
       flaggedLines={props.flaggedLines}
-      label={props.label ?? "Your Markdown"}
+      label={props.label}
       onChange={props.onChange}
       onCheck={props.onCheck}
       placeholder={props.placeholder}
