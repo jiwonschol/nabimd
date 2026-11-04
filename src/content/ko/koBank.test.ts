@@ -37,7 +37,7 @@ describe("한국어 문제은행 v1", () => {
     }
   })
 
-  it("문서 유형 열 가지가 모두 나온다", () => {
+  it("정한 문서 유형이 모두 나온다", () => {
     const types = new Set(koCards.map((card) => card.docType))
     expect([...types].sort()).toEqual([...KO_DOC_TYPES].sort())
   })

@@ -7,7 +7,7 @@ import { markCards, type KoDoc } from "./build"
 export const tableDocs: readonly KoDoc[] = [
   {
     slug: "weekly-menu",
-    type: "레시피",
+    type: "식단표",
     title: "주간 식단",
     target: "# 주간 식단\n\n| 요일 | 메뉴 |\n| --- | --- |\n| 월 | 국수 |\n| 화 | 김밥 |\n| 수 | 카레 |",
     prose: [["국수", "비빔밥"], ["카레", "볶음밥"]],
