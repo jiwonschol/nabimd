@@ -74,6 +74,7 @@ export const en: Readonly<Record<TextKey, string>> = {
   "verdict.lineOne": "Line {line}",
   "verdict.lineRange": "Lines {from}–{to}",
   "verdict.withLines": "{where}: {message}",
+  "verdict.tabHint": "Tab moves to the next spot.",
   "hint.marks": "Marks to use: {marks}",
 
   "engine.list-bullet-space":

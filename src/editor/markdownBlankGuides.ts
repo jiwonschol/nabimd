@@ -98,7 +98,7 @@ function initialGuideRanges(
   })
 }
 
-function matchedMarkerCount(fragment: string, markers: string): number {
+export function matchedMarkerCount(fragment: string, markers: string): number {
   let matched = 0
   for (const character of fragment) {
     if (character === markers[matched]) matched += 1

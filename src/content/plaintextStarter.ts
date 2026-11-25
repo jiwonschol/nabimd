@@ -242,6 +242,49 @@ function hiddenMarkdownMarks(gap: string, atLineStart: boolean): string {
     .join("")
 }
 
+/**
+ * Where each starter character sits in the target line (-1 when it has no
+ * match). Of the possible placements it takes the one that leaves the fewest
+ * separate runs of marks, earliest first on a tie. Taking the first match for
+ * every character is not enough: in `3. \`./start.sh\`` the prose begins
+ * with the same `.` the list marker ends with.
+ */
+const SKIP_COST = 10_000
+
+function proseColumns(targetLine: string, starterLine: string): number[] {
+  const memo = new Map<number, { gaps: number; column: number }>()
+  const width = targetLine.length + 1
+
+  const best = (index: number, from: number): { gaps: number; column: number } => {
+    if (index === starterLine.length) {
+      return { gaps: from < targetLine.length ? 1 : 0, column: -1 }
+    }
+    const key = index * width + from
+    const known = memo.get(key)
+    if (known) return known
+    let result: { gaps: number; column: number } | null = null
+    for (let column = from; column < targetLine.length; column += 1) {
+      if (targetLine[column] !== starterLine[index]) continue
+      const gaps = (column > from ? 1 : 0) + best(index + 1, column + 1).gaps
+      if (!result || gaps < result.gaps) result = { gaps, column }
+    }
+    // A starter character the target does not have is skipped, at a cost no
+    // real placement reaches, so skipping never beats matching.
+    result ??= { gaps: SKIP_COST + best(index + 1, from).gaps, column: -1 }
+    memo.set(key, result)
+    return result
+  }
+
+  const columns: number[] = []
+  let from = 0
+  for (let index = 0; index < starterLine.length; index += 1) {
+    const { column } = best(index, from)
+    columns.push(column)
+    if (column >= 0) from = column + 1
+  }
+  return columns
+}
+
 function guidesForLine(
   targetLine: string,
   starterLine: string,
@@ -264,9 +307,9 @@ function guidesForLine(
     }
   }
 
+  const positions = proseColumns(targetLine, starterLine)
   for (let starterColumn = 0; starterColumn < starterLine.length; starterColumn += 1) {
-    const character = starterLine[starterColumn]
-    const targetPosition = targetLine.indexOf(character ?? "", targetCursor)
+    const targetPosition = positions[starterColumn] ?? -1
     if (targetPosition < 0) continue
     appendGap(targetPosition, starterColumn)
     targetCursor = targetPosition + 1

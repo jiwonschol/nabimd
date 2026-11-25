@@ -6,7 +6,11 @@ import type { MarkdownBlankGuideSource } from "../editor/markdownBlankGuides"
 import { evaluateProblem } from "../engine/evaluateProblem"
 import { createEvaluationContext } from "../engine/evaluationContext"
 import { diagnoseMatchFailure } from "../engine/matchDiagnostics"
-import type { EngineMessageKey, MatchFailure } from "../engine/types"
+import type {
+  EngineMessageKey,
+  MatchFailure,
+  MatchFailureItem,
+} from "../engine/types"
 import type { PracticeItem } from "./practiceItem"
 
 /** Failed checks on one document before "정답 보기" appears (plan §4.1). */
@@ -30,6 +34,11 @@ export type SheetVerdict =
       messageKey?: EngineMessageKey
       /** 1-based source lines the first failed check points at, when known. */
       lines: FlaggedLineRange | null
+      /**
+       * The lines of every failed check, which decide the slots the cursor
+       * is sent to; null when the engine could not place every failure.
+       */
+      failedLines: readonly FlaggedLineRange[] | null
     }
   | {
       kind: "pass"
@@ -53,19 +62,16 @@ function lineNumberAt(source: string, offset: number): number {
  * block order, so a freely written document often yields no range (plan
  * §3.2); the verdict then shows the sentence alone.
  */
-export function failureLines(
+function linesOfFailure(
   problem: GradableProblem,
-  evaluation: MatchFailure,
-  source: string,
+  failure: MatchFailureItem,
+  checkedSource: string,
 ): FlaggedLineRange | null {
-  const first = evaluation.failures[0]
-  if (!first) return null
-  const checkedSource = evaluation.checkedSource ?? source
   const diagnostic =
-    first.diagnostic ??
+    failure.diagnostic ??
     diagnoseMatchFailure(
       problem,
-      first.check,
+      failure.check,
       createEvaluationContext(checkedSource),
       0,
     )
@@ -78,6 +84,36 @@ export function failureLines(
     from: lineNumberAt(checkedSource, range.start),
     to: lineNumberAt(checkedSource, lastOffset),
   }
+}
+
+export function failureLines(
+  problem: GradableProblem,
+  evaluation: MatchFailure,
+  source: string,
+): FlaggedLineRange | null {
+  const first = evaluation.failures[0]
+  if (!first) return null
+  return linesOfFailure(problem, first, evaluation.checkedSource ?? source)
+}
+
+/**
+ * The lines of every failed check, not only the one the verdict names. Null
+ * when any failed check has no line: the failures then cover more of the
+ * document than the known lines say.
+ */
+export function allFailureLines(
+  problem: GradableProblem,
+  evaluation: MatchFailure,
+  source: string,
+): FlaggedLineRange[] | null {
+  const checkedSource = evaluation.checkedSource ?? source
+  const lines: FlaggedLineRange[] = []
+  for (const failure of evaluation.failures) {
+    const range = linesOfFailure(problem, failure, checkedSource)
+    if (!range) return null
+    lines.push(range)
+  }
+  return lines
 }
 
 export type SheetResult = {
@@ -99,6 +135,11 @@ export type PracticeSheet = {
   canShowAnswer: boolean
   blankPage: boolean
   showInvisibles: boolean
+  /**
+   * Fill mode: the mark positions that take input while the prose stays
+   * fixed. Null on a blank page, which is a free text editor.
+   */
+  markSlots: MarkdownBlankGuideSource | null
   /** Present only on the second hint step in fill mode. */
   blankGuides: MarkdownBlankGuideSource | null
   changeDraft: (value: string) => void
@@ -146,6 +187,14 @@ export function usePracticeSheet(
   const onCheckedRef = useRef(options.onChecked)
   onCheckedRef.current = options.onChecked
 
+  const guides = useMemo<MarkdownBlankGuideSource>(
+    () => ({
+      guides: deriveMarkdownBlankGuides(problem.target),
+      starterText: problem.starterText,
+    }),
+    [problem],
+  )
+
   const check = useCallback(() => {
     const draft = draftRef.current
     const evaluation = evaluateProblem(problem, draft)
@@ -177,6 +226,7 @@ export function usePracticeSheet(
       message: evaluation.message,
       messageKey: evaluation.messageKey,
       lines: failureLines(problem, evaluation, draft),
+      failedLines: allFailureLines(problem, evaluation, draft),
     })
   }, [problem, retries])
 
@@ -199,14 +249,6 @@ export function usePracticeSheet(
     [options, problem, startedBlank],
   )
 
-  const guides = useMemo<MarkdownBlankGuideSource>(
-    () => ({
-      guides: deriveMarkdownBlankGuides(problem.target),
-      starterText: problem.starterText,
-    }),
-    [problem],
-  )
-
   return {
     item,
     draft,
@@ -217,6 +259,7 @@ export function usePracticeSheet(
     canShowAnswer: retries >= ANSWER_AFTER_RETRIES && !answerShown,
     blankPage: options.blankPage,
     showInvisibles,
+    markSlots: startedBlank ? null : guides,
     blankGuides: hintStep === 2 && !startedBlank ? guides : null,
     changeDraft,
     check,

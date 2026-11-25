@@ -4,7 +4,12 @@ import {
   historyKeymap,
   insertTab,
 } from "@codemirror/commands"
-import { Annotation, Compartment, EditorState } from "@codemirror/state"
+import {
+  Annotation,
+  Compartment,
+  EditorState,
+  type Transaction,
+} from "@codemirror/state"
 import { search, searchKeymap } from "@codemirror/search"
 import {
   EditorView,
@@ -18,6 +23,13 @@ import {
   useLayoutEffect,
   useRef,
 } from "react"
+import {
+  enterFirstMarkSlot,
+  markSlots,
+  nextMarkSlot,
+  previousMarkSlot,
+  showFailedMarkSlots,
+} from "../editor/markSlots"
 import {
   type FlaggedLineRange,
   flaggedLines,
@@ -35,6 +47,8 @@ import { createActionKeyBindings } from "./keyboardShortcut"
 import { RenderedDocumentBody } from "./RenderedDocument"
 
 const externalChange = Annotation.define<boolean>()
+const isExternalChange = (transaction: Transaction) =>
+  transaction.annotation(externalChange) === true
 const e2eDocumentReaderKey = "__nabimdReadDocumentForE2E"
 // Remote deployment E2E runs the production bundle. The webdriver gate keeps
 // this same-page read-only bridge unavailable to ordinary browsing while
@@ -84,6 +98,8 @@ type MarkdownSourceEditorProps = {
   escapeHint: string
   flaggedLines?: FlaggedSourceLines | null
   label: string
+  /** Fill mode: only these mark positions take input. */
+  markSlots?: MarkdownBlankGuideSource | null
   placeholder: string
   showInvisibles?: boolean
   value: string
@@ -94,10 +110,12 @@ type MarkdownSourceEditorProps = {
 /**
  * The source lines a failed check points at, plus a key that changes with
  * every check so the same lines can be flagged again after the learner's
- * edits cleared the previous underline.
+ * edits cleared the previous underline. `failedLines` are the lines of every
+ * failed check, which pick the mark slots the cursor is sent to.
  */
 export type FlaggedSourceLines = {
   lines: FlaggedLineRange | null
+  failedLines?: readonly FlaggedLineRange[] | null
   key: number
 }
 
@@ -107,6 +125,7 @@ type MarkdownWordProcessorBaseProps = {
   escapeHint?: string
   flaggedLines?: FlaggedSourceLines | null
   label: string
+  markSlots?: MarkdownBlankGuideSource | null
   placeholder?: string
   showInvisibles?: boolean
   value: string
@@ -135,6 +154,7 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
     escapeHint = "",
     flaggedLines: flaggedSourceLines = null,
     label,
+    markSlots: markSlotSource = null,
     placeholder: placeholderText = "",
     presentation,
     readOnly,
@@ -152,7 +172,10 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
   const invisibleCompartmentRef = useRef(new Compartment())
   const presentationCompartmentRef = useRef(new Compartment())
   const blankGuideCompartmentRef = useRef(new Compartment())
+  const markSlotCompartmentRef = useRef(new Compartment())
 
+  const activeRef = useRef(active)
+  activeRef.current = active
   onChangeRef.current = onChange
   onCheckRef.current = onCheck
 
@@ -210,6 +233,9 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
                 ...createActionKeyBindings(runCheck, navigatorLike),
                 ...searchKeymap,
                 ...resolveReadlineNavigationKeymap(navigatorLike),
+                // In fill mode Tab walks the mark slots; on a blank page it
+                // falls through to the indent below.
+                { key: "Tab", run: nextMarkSlot, shift: previousMarkSlot },
                 {
                   key: "Tab",
                   run: insertTab,
@@ -227,8 +253,14 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
         presentationCompartmentRef.current.of(
           presentation === "rendered" ? renderedMarkdown() : [],
         ),
+        markSlotCompartmentRef.current.of(
+          markSlotSource && !readOnly
+            ? markSlots(markSlotSource, isExternalChange)
+            : [],
+        ),
       ],
     })
+    enterFirstMarkSlot(view)
 
     viewRef.current = view
     if (exposeE2eDocument) {
@@ -293,6 +325,22 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
     })
   }, [blankGuides])
 
+  // Switching between fill mode and a blank page swaps the lock in or out.
+  // The draft is replaced first (the layout effect above), so the slots are
+  // found in the text the learner now sees.
+  const markSlotsMounted = useRef(markSlotSource)
+  useEffect(() => {
+    const view = viewRef.current
+    if (!view || readOnly || markSlotsMounted.current === markSlotSource) return
+    markSlotsMounted.current = markSlotSource
+    view.dispatch({
+      effects: markSlotCompartmentRef.current.reconfigure(
+        markSlotSource ? markSlots(markSlotSource, isExternalChange) : [],
+      ),
+    })
+    enterFirstMarkSlot(view)
+  }, [markSlotSource, readOnly])
+
   useEffect(() => {
     const view = viewRef.current
     if (!view) return
@@ -314,6 +362,11 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
     view.dispatch({
       effects: setFlaggedLines.of(flaggedSourceLines?.lines ?? null),
     })
+    if (!flaggedSourceLines) return
+    if (!showFailedMarkSlots(view, flaggedSourceLines.failedLines ?? null)) return
+    // The learner fixes at once on a desktop or when already typing; a phone
+    // tap on "확인" must not raise the keyboard over the verdict.
+    if (activeRef.current || view.hasFocus) view.focus()
   }, [
     flaggedSourceLines?.key,
     flaggedSourceLines?.lines?.from,
@@ -396,6 +449,7 @@ export function MarkdownSourceEditor(props: MarkdownSourceEditorProps) {
       escapeHint={props.escapeHint}
       flaggedLines={props.flaggedLines}
       label={props.label}
+      markSlots={props.markSlots}
       onChange={props.onChange}
       onCheck={props.onCheck}
       placeholder={props.placeholder}

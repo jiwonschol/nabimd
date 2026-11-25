@@ -78,6 +78,7 @@ export const ko = {
   "verdict.lineOne": "{line}번째 줄",
   "verdict.lineRange": "{from}~{to}번째 줄",
   "verdict.withLines": "{where}: {message}",
+  "verdict.tabHint": "Tab을 누르면 다음 자리로 간다.",
   "hint.marks": "쓸 기호: {marks}",
 
   "engine.list-bullet-space":
