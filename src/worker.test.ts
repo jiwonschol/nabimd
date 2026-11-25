@@ -145,6 +145,18 @@ describe("Cloudflare worker", () => {
     await expect(response.text()).resolves.toBe("app")
   })
 
+  it("answers 404 when the page stands in for a missing build file", async () => {
+    const { env } = createEnv()
+    const response = await worker.fetch(
+      new Request("https://onsoonlabs.com/nabimd/assets/index-missing.js"),
+      env,
+    )
+
+    expect(response.status).toBe(404)
+    expect(response.headers.get("Cache-Control")).toBe("no-store")
+    expect(response.headers.get("X-Nabi-Build-Sha")).toBe(env.NABI_BUILD_SHA)
+  })
+
   it("expires feedback after 89 days so daily cleanup stays under 90 days", async () => {
     const { env, bind, prepare } = createEnv()
     const daySeconds = 24 * 60 * 60
