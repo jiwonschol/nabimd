@@ -6,20 +6,27 @@ const expectedSha = "a".repeat(40)
 const scriptOk = () =>
   new Response("", { headers: { "Content-Type": "text/javascript" } })
 
-// Production as the probe sees it: the revision header on HEAD, the page on
-// GET, and the script the page names.
-function production({ revision = () => expectedSha, script = scriptOk } = {}) {
-  return async (url, init) => {
-    if (new URL(url).pathname.includes("/assets/")) return script()
-    if (init.method === "HEAD") {
-      const sha = revision()
-      return new Response(null, {
-        headers: sha ? { "X-Nabi-Build-Sha": sha } : {},
-      })
-    }
+const currentScript = "/nabimd/assets/index-new.js"
+
+// Production as the probe sees it: the page, carrying the revision header and
+// naming its script, and whatever answers for a script path.
+function production({
+  revision = () => expectedSha,
+  pageScript = () => currentScript,
+  script = scriptOk,
+} = {}) {
+  return async (url) => {
+    const { pathname } = new URL(url)
+    if (pathname.includes("/assets/")) return script(pathname)
+    const sha = revision()
     return new Response(
-      '<script type="module" src="/nabimd/assets/index-abc.js"></script>',
-      { headers: { "Content-Type": "text/html" } },
+      `<script type="module" src="${pageScript()}"></script>`,
+      {
+        headers: {
+          "Content-Type": "text/html",
+          ...(sha ? { "X-Nabi-Build-Sha": sha } : {}),
+        },
+      },
     )
   }
 }
@@ -46,7 +53,31 @@ test("rejects a page whose script comes back as the page", async () => {
           }),
       }),
     }),
-  ).rejects.toThrow(/script \/nabimd\/assets\/index-abc\.js returned HTTP 200/)
+  ).rejects.toThrow(/script \/nabimd\/assets\/index-new\.js returned HTTP 200/)
+})
+
+test("fetches the script of the page that passed the revision check", async () => {
+  const fetched = []
+  let pages = 0
+  const revision = await verifyCloudflareDeployment({
+    expectedSha,
+    attempts: 2,
+    retryDelayMs: 0,
+    fetchImpl: production({
+      // The first page comes from the previous version: old revision, old
+      // script. Its script must not be what the probe accepts.
+      revision: () => ((pages += 1) === 1 ? "b".repeat(40) : expectedSha),
+      pageScript: () =>
+        pages === 1 ? "/nabimd/assets/index-old.js" : currentScript,
+      script: (pathname) => {
+        fetched.push(pathname)
+        return scriptOk()
+      },
+    }),
+  })
+
+  expect(fetched).toEqual([currentScript])
+  expect(revision).toBe(expectedSha)
 })
 
 test("waits for the script to reach the new version", async () => {

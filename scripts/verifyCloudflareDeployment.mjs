@@ -6,16 +6,11 @@ function sleep(milliseconds) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds))
 }
 
-// The revision header only proves the page's request reached the new Worker.
-// While a deployment spreads, the script the page names can still land on the
-// previous version, which does not have it, and the app stays blank. Fetch
-// that script the way a browser would before calling the deployment live.
-async function verifyPageScript({ url, fetchImpl, signal }) {
-  const page = await fetchImpl(new URL(url), { cache: "no-store", signal })
-  if (!page.ok) {
-    throw new Error(`production page returned HTTP ${page.status}`)
-  }
-
+// The revision header alone is not enough. While a deployment spreads, the
+// script the new page names can still land on the previous version, which
+// does not have it, and the app stays blank. Fetch that script the way a
+// browser would before calling the deployment live.
+async function verifyPageScript({ page, url, fetchImpl, signal }) {
   const source = /<script\b[^>]*\bsrc="([^"]+)"/.exec(await page.text())?.[1]
   if (!source) {
     throw new Error("production page names no script")
@@ -56,7 +51,6 @@ export async function verifyCloudflareDeployment({
       const requestUrl = new URL(url)
       requestUrl.searchParams.set("deployment-sha", expectedSha)
       const response = await fetchImpl(requestUrl, {
-        method: "HEAD",
         redirect: "follow",
         cache: "no-store",
         signal: controller.signal,
@@ -77,7 +71,14 @@ export async function verifyCloudflareDeployment({
         )
       }
 
-      await verifyPageScript({ url, fetchImpl, signal: controller.signal })
+      // The script is read from this same response, so the page that passed
+      // the revision check is the page whose script gets fetched.
+      await verifyPageScript({
+        page: response,
+        url,
+        fetchImpl,
+        signal: controller.signal,
+      })
 
       return deployedSha
     } catch (error) {
