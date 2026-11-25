@@ -145,9 +145,10 @@ const jumpedToSlot = StateEffect.define<null>()
 /**
  * The slots a failed check sends the learner to. A slot counts as missing
  * when the target's marks are not all there, which is stricter than the
- * engine (it also accepts `_x_` for `*x*`), so missing slots are narrowed to
- * the failed lines when the engine placed every failure. A failed line with
- * no missing slot has a mark typed wrong, and its slots are flagged instead.
+ * engine (it also accepts `_x_` for `*x*`). So when the engine placed every
+ * failure, each failed line gives its missing slots, or all of its slots when
+ * none is missing (a mark typed wrong, such as `#` without its space).
+ * Otherwise every missing slot counts.
  */
 function failedSlotIds(
   doc: Text,
@@ -155,21 +156,16 @@ function failedSlotIds(
   failedLines: readonly FlaggedLineRange[] | null,
 ): Set<number> {
   const text = doc.toString()
-  const onFailedLine = (slot: MarkSlot) => {
-    const line = doc.lineAt(slot.from).number
-    return (failedLines ?? []).some(
-      (range) => line >= range.from && line <= range.to,
-    )
-  }
   const missing = slots.filter((slot) => !isFilled(text, slot))
-  const narrowed = failedLines ? missing.filter(onFailedLine) : missing
-  const chosen =
-    narrowed.length > 0
-      ? narrowed
-      : missing.length > 0
-        ? missing
-        : slots.filter(onFailedLine)
-  return new Set(chosen.map((slot) => slot.id))
+  const chosen = (failedLines ?? []).flatMap((range) => {
+    const onLine = slots.filter((slot) => {
+      const line = doc.lineAt(slot.from).number
+      return line >= range.from && line <= range.to
+    })
+    const missingOnLine = onLine.filter((slot) => missing.includes(slot))
+    return missingOnLine.length > 0 ? missingOnLine : onLine
+  })
+  return new Set((chosen.length > 0 ? chosen : missing).map((slot) => slot.id))
 }
 
 class EmptySlotWidget extends WidgetType {
@@ -332,7 +328,13 @@ function lock(
     const inside = slots.some(
       (slot) => selection.from >= slot.from && selection.to <= slot.to,
     )
-    if (inside) return transaction
+    // Selecting the whole draft stays possible so a finished answer can be
+    // pasted over it; the paste still has to leave the prose untouched.
+    const wholeDocument =
+      !selection.empty &&
+      selection.from === 0 &&
+      selection.to === transaction.newDoc.length
+    if (inside || wholeDocument) return transaction
 
     const before = transaction.changes.mapPos(
       transaction.startState.selection.main.head,

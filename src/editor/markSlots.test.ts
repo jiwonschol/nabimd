@@ -78,12 +78,28 @@ describe("mark slots", () => {
     view.destroy()
   })
 
-  it("accepts a finished answer pasted over the whole draft", () => {
+  it("accepts a finished answer pasted over the selected draft", () => {
     const view = editor()
     view.dispatch({
-      changes: { from: 0, to: view.state.doc.length, insert: target },
+      selection: { anchor: 0, head: view.state.doc.length },
+      userEvent: "select",
     })
+    expect(view.state.selection.main.to).toBe(view.state.doc.length)
+    type(view, "x")
+    expect(view.state.doc.toString()).toBe(source.starterText)
+    type(view, target)
     expect(view.state.doc.toString()).toBe(target)
+    view.destroy()
+  })
+
+  it("flags a mistyped slot on a failed line even when other slots are empty", () => {
+    // The heading has its `#` but not the space; the bold marks are missing.
+    const view = editor("#장보기\n\n우유와 *빵*을 산다.")
+    showFailedMarkSlots(view, [{ from: 1, to: 1 }])
+    expect(head(view)).toBe(1)
+    // Only the heading slot is flagged, so Tab stays on it.
+    nextMarkSlot(view)
+    expect(head(view)).toBe(1)
     view.destroy()
   })
 
