@@ -110,7 +110,7 @@ function flaggedLinesOf(
   verdict: SheetVerdict | null,
 ): FlaggedSourceLines | null {
   return verdict?.kind === "retry"
-    ? { lines: verdict.lines, key: verdict.id }
+    ? { lines: verdict.lines, failedLines: verdict.failedLines, key: verdict.id }
     : null
 }
 
@@ -177,6 +177,7 @@ function EditorPanel({
         escapeHint={t("editor.escapeHint")}
         flaggedLines={flaggedLinesOf(sheet.verdict)}
         label={t("practice.editor")}
+        markSlots={sheet.markSlots}
         onChange={sheet.changeDraft}
         // 통과한 뒤에는 같은 단축키가 판정 바의 "다음 장"과 같은 일을 한다.
         onCheck={sheet.verdict?.kind === "pass" ? () => onNext(true) : sheet.check}
@@ -292,6 +293,14 @@ function VerdictBar({
           ) : (
             <InlineCode text={statusText(sheet, t)} />
           )}
+          {sheet.hintStep === 0 &&
+          sheet.verdict?.kind === "retry" &&
+          sheet.markSlots ? (
+            <span className="rd-bar__keys" data-testid="tab-hint">
+              {" "}
+              {t("verdict.tabHint")}
+            </span>
+          ) : null}
         </p>
         {passed ? (
           <button

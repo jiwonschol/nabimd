@@ -335,6 +335,70 @@ pre {
     left bottom / 100% 2px no-repeat;
 }
 
+/* 채우기 모드: 본문은 고정이고 기호 자리만 입력칸이다. 빈 칸은 몇 글자가
+   들어갈지 알려주지 않는다(그건 힌트 2단계의 빈 칸이 맡는다). */
+.rd-editor .cm-mark-slot-mode .cm-line {
+  color: var(--ink-soft);
+}
+
+.rd-editor .cm-mark-slot {
+  border-bottom: 2px solid var(--line-strong, var(--ink-soft));
+  border-radius: 0.2em 0.2em 0 0;
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+  color: var(--ink);
+}
+
+.rd-editor .cm-mark-slot--empty {
+  display: inline-block;
+  width: 0.9em;
+  height: 1.15em;
+  margin: 0 0.08em;
+  vertical-align: text-bottom;
+  cursor: text;
+}
+
+.rd-editor .cm-mark-slot--active {
+  border-bottom-color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.rd-editor .cm-mark-slot--flagged {
+  border-bottom-color: var(--acc-clay);
+  background: color-mix(in srgb, var(--acc-clay) 16%, transparent);
+}
+
+.rd-editor .cm-mark-slot--flagged.cm-mark-slot--active {
+  background: color-mix(in srgb, var(--acc-clay) 30%, transparent);
+}
+
+.rd-editor .cm-mark-slot--pulse-0 {
+  animation: rd-mark-slot-arrive-0 420ms ease-out;
+}
+
+.rd-editor .cm-mark-slot--pulse-1 {
+  animation: rd-mark-slot-arrive-1 420ms ease-out;
+}
+
+@keyframes rd-mark-slot-arrive-0 {
+  from {
+    box-shadow: 0 0 0 0.5em color-mix(in srgb, var(--acc-clay) 45%, transparent);
+  }
+
+  to {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+@keyframes rd-mark-slot-arrive-1 {
+  from {
+    box-shadow: 0 0 0 0.5em color-mix(in srgb, var(--acc-clay) 45%, transparent);
+  }
+
+  to {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
 .rd-editor .markdown-source-editor__mount .cm-panels {
   border-bottom: 1px solid var(--line);
   background: var(--card);
@@ -445,6 +509,18 @@ pre {
 .rd-bar--retry .rd-bar__status {
   color: var(--acc-clay-text);
   font-weight: var(--w-label);
+}
+
+.rd-bar__keys {
+  color: var(--ink-soft);
+  font-weight: var(--w-body, 400);
+}
+
+/* 휴대폰에는 Tab 키가 없다. */
+@media (max-width: 767px), (pointer: coarse) {
+  .rd-bar__keys {
+    display: none;
+  }
 }
 
 .rd-bar--hint .rd-bar__status {
