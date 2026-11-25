@@ -244,8 +244,21 @@ const slotField = StateField.define<SlotState>({
       if (transaction.docChanged) {
         const text = transaction.state.doc.toString()
         slots = align(transaction.state, text)
+        // A flag goes out only when the learner edits that slot and its
+        // marks are then all there. Typing elsewhere leaves it, so a slot
+        // flagged for a mistyped mark is not forgotten.
+        const before = transaction.startState.doc
+        const textBefore = new Map(
+          value.slots.map((slot) => [
+            slot.id,
+            before.sliceString(slot.from, slot.to),
+          ]),
+        )
         const stillFlagged = slots.filter(
-          (slot) => flagged.has(slot.id) && !isFilled(text, slot),
+          (slot) =>
+            flagged.has(slot.id) &&
+            (text.slice(slot.from, slot.to) === textBefore.get(slot.id) ||
+              !isFilled(text, slot)),
         )
         if (stillFlagged.length !== flagged.size) {
           flagged = new Set(stillFlagged.map((slot) => slot.id))

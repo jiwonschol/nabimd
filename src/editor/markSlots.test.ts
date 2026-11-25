@@ -103,6 +103,25 @@ describe("mark slots", () => {
     view.destroy()
   })
 
+  it("keeps a mistyped slot flagged while another slot is being fixed", () => {
+    const view = editor("#장보기\n\n우유와 *빵*을 산다.")
+    showFailedMarkSlots(view, [
+      { from: 1, to: 1 },
+      { from: 3, to: 3 },
+    ])
+    nextMarkSlot(view)
+    type(view, "**")
+    nextMarkSlot(view)
+    type(view, "**")
+    // The bold slots are done; Tab comes back to the heading still to fix.
+    nextMarkSlot(view)
+    expect(head(view)).toBe(1)
+    type(view, " ")
+    nextMarkSlot(view)
+    expect(view.state.doc.toString()).toBe(target)
+    view.destroy()
+  })
+
   it("walks the slots with Tab, and only the failed ones after a check", () => {
     const view = editor("# 장보기\n\n**우유**와 빵을 산다.")
     expect(showFailedMarkSlots(view, null)).toBe(true)
