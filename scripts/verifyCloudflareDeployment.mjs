@@ -6,6 +6,29 @@ function sleep(milliseconds) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds))
 }
 
+// The revision header alone is not enough. While a deployment spreads, the
+// script the new page names can still land on the previous version, which
+// does not have it, and the app stays blank. Fetch that script the way a
+// browser would before calling the deployment live.
+async function verifyPageScript({ page, url, fetchImpl, signal }) {
+  const source = /<script\b[^>]*\bsrc="([^"]+)"/.exec(await page.text())?.[1]
+  if (!source) {
+    throw new Error("production page names no script")
+  }
+
+  const scriptUrl = new URL(source, url)
+  const script = await fetchImpl(scriptUrl, { cache: "no-store", signal })
+  const contentType = script.headers.get("Content-Type") ?? ""
+  // Only the status and type matter. An unread body would hold the connection
+  // open and keep this process from exiting.
+  await script.body?.cancel()
+  if (!script.ok || !contentType.includes("javascript")) {
+    throw new Error(
+      `production script ${scriptUrl.pathname} returned HTTP ${script.status} (${contentType || "no content type"})`,
+    )
+  }
+}
+
 export async function verifyCloudflareDeployment({
   expectedSha,
   url = defaultUrl,
@@ -28,7 +51,6 @@ export async function verifyCloudflareDeployment({
       const requestUrl = new URL(url)
       requestUrl.searchParams.set("deployment-sha", expectedSha)
       const response = await fetchImpl(requestUrl, {
-        method: "HEAD",
         redirect: "follow",
         cache: "no-store",
         signal: controller.signal,
@@ -48,6 +70,15 @@ export async function verifyCloudflareDeployment({
           `production serves ${deployedSha}, but ${expectedSha} was deployed`,
         )
       }
+
+      // The script is read from this same response, so the page that passed
+      // the revision check is the page whose script gets fetched.
+      await verifyPageScript({
+        page: response,
+        url,
+        fetchImpl,
+        signal: controller.signal,
+      })
 
       return deployedSha
     } catch (error) {

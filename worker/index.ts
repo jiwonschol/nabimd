@@ -222,6 +222,26 @@ export default {
     if (assetRequest instanceof Response) return assetRequest
 
     const response = await env.ASSETS.fetch(assetRequest)
+
+    // The build puts only scripts, styles and fonts under /assets/. An HTML
+    // answer there is the single-page fallback standing in for a file this
+    // version does not have, which happens while a deployment is still
+    // spreading: the page comes from the new version and its script request
+    // lands on the old one. A browser cannot run that page as a script, so
+    // say the file is missing instead of answering 200.
+    if (
+      new URL(request.url).pathname.startsWith(`${basePath}/assets/`) &&
+      response.headers.get("Content-Type")?.startsWith("text/html")
+    ) {
+      return new Response("Not Found", {
+        status: 404,
+        headers: {
+          "Cache-Control": "no-store",
+          "X-Nabi-Build-Sha": env.NABI_BUILD_SHA,
+        },
+      })
+    }
+
     const location = response.headers.get("Location")
 
     // Static Assets can canonicalize an .html request to its extensionless
